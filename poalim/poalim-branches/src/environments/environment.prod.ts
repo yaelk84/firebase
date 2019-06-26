@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: false,
+  apiBaseUrl: 'http://63.32.9.230:7000/',
+  translationPath: '/assets/translate/',
+  configPath: '/assets/static-resources/config.json'
 };
