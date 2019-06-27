@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {RcTranslateService} from '@realcommerce/rc-packages';
-
+import {TimeService} from './time.service';
+import {Observable, of} from "rxjs";
 
 
 @Injectable({
@@ -8,10 +9,12 @@ import {RcTranslateService} from '@realcommerce/rc-packages';
 })
 export class BranchDataService {
 
-  constructor(private translate: RcTranslateService) { }
+  constructor(private translate: RcTranslateService, private timeService:TimeService ) { }
+
+
 
   createSingleBranch(data){
-    console.log('data',this.translate.getText('branches'));
+
     return{id:1,
       branchNum:data.field_branch_num,
       branchName:data.field_branch_latlon.name,
@@ -21,8 +24,8 @@ export class BranchDataService {
       closeHours:"22:00",
       closeNow:true,
       change:false};
-
   }
+
 
 
 }
