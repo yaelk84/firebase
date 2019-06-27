@@ -1,0 +1,126 @@
+{
+"data": [{
+  "tid": "25",
+  "name": "אדומים",
+  "field_branch_street": "דרך קדם",
+  "field_branch_street_num": "5",
+  "field_branch_city": {
+    "tid": "72",
+    "name": "מעלה אדומים",
+    "code": "28"
+  },
+  "field_branch_open_days": [{
+    "field_bod_day": "ב",
+    "field_bod_open_hours": "08:30",
+    "field_bod_close_hour": "13:00",
+    "field_bod_open_noon": "1",
+    "field_bod_noon_open": "16:00",
+    "field_bod_noon_close": "18:30"
+  },
+    {
+      "field_bod_day": "ה",
+      "field_bod_open_hours": "08:30",
+      "field_bod_close_hour": "13:00",
+      "field_bod_open_noon": "1",
+      "field_bod_noon_open": "16:00",
+      "field_bod_noon_close": "18:30"
+    },
+    {
+      "field_bod_day": "ג",
+      "field_bod_open_hours": "08:30",
+      "field_bod_close_hour": "14:00",
+      "field_bod_open_noon": "0",
+      "field_bod_noon_open": null,
+      "field_bod_noon_close": null
+    },
+    {
+      "field_bod_day": "ד",
+      "field_bod_open_hours": "08:30",
+      "field_bod_close_hour": "14:00",
+      "field_bod_open_noon": "0",
+      "field_bod_noon_open": null,
+      "field_bod_noon_close": null
+    },
+    {
+      "field_bod_day": "ו",
+      "field_bod_open_hours": "08:30",
+      "field_bod_close_hour": "12:30",
+      "field_bod_open_noon": "0",
+      "field_bod_noon_open": null,
+      "field_bod_noon_close": null
+    },
+    {
+      "field_bod_day": "holidays",
+      "field_bod_open_hours": "08:30",
+      "field_bod_close_hour": "12:00",
+      "field_bod_open_noon": "0",
+      "field_bod_noon_open": null,
+      "field_bod_noon_close": null
+    }
+  ],
+  "field_branch_phone": "03-9439111",
+  "field_branch_fax": "02-5905588",
+  "field_branch_services": [{
+    "serviceId": 2037,
+    "serviceName": "סניפים נגישים",
+    "providedInBranch": "0"
+  },
+    {
+      "serviceId": 132,
+      "serviceName": "כספומט הפקדת מזומן (₪)",
+      "providedInBranch": "1"
+    },
+    {
+      "serviceId": 131,
+      "serviceName": "כספומט\"ח",
+      "providedInBranch": "1"
+    },
+    {
+      "serviceId": 136,
+      "serviceName": "ייעוץ פנסיוני",
+      "providedInBranch": "1"
+    },
+    {
+      "serviceId": 133,
+      "serviceName": "ייעוץ משכנתא",
+      "providedInBranch": "0"
+    },
+    {
+      "serviceId": 134,
+      "serviceName": "סחר חוץ",
+      "providedInBranch": "0"
+    },
+    {
+      "serviceId": 2390,
+      "serviceName": "כספומט",
+      "providedInBranch": "1"
+    }
+  ],
+  "field_branch_num": "516",
+  "field_branch_latlon": "{\"name\":\"\\u05d0\\u05d3\\u05d5\\u05de\\u05d9\\u05dd\",\"num\":\"516\"}",
+  "field_branch_info": "<p>ייעוץ פנסיוני לסירוגין&nbsp;<br \/>\nבערבי חג \/ חול המועד רצוי להתעדכן בשעות פתיחת הסניפים.&nbsp;<\/p>\n<p>שירותי כספומט 24 שעות ביממה&nbsp;<br \/>\nשירותי משוב ותיבת אלתור בהתאם לשעות פעילות הקניון<\/p>\n",
+  "field_branch_info_block": [{
+    "InfoTextLine": "ייעוץ פנסיוני לסירוגיןבערבי חג \/ חול המועד רצוי להתעדכן בשעות פתיחת הסניפים."
+  },
+    {
+      "InfoTextLine": "שירותי כספומט 24 שעות ביממהשירותי משוב ותיבת אלתור בהתאם לשעות פעילות הקניון"
+    }
+  ],
+  "field_branch_phone_mortgage": "02-5913331",
+  "field_branch_open_days_pension": [{
+    "field_bodp_day": null,
+    "field_bodp_open_hours": null,
+    "field_bodp_close_hour": null,
+    "field_bodp_open_noon": "0",
+    "field_bodp_noon_open": null,
+    "field_bodp_noon_close": null
+  }],
+  "field_branch_x_coordinate": "31.7720639",
+  "field_branch_y_coordinate": "35.2991573",
+  "field_manager_name": null,
+  "field_service_type": "2",
+  "field_important_message": null,
+  "metatags": null
+}
+]
+}
