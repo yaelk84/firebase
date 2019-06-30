@@ -5,7 +5,7 @@ import {BranchBox} from '../../core/interface/branch-box';
 @Component({
   selector: 'app-branch-box',
   templateUrl: './branch-box.component.html',
-  styleUrls: ['./branch-box.component.sass']
+  styleUrls: ['./branch-box.component.scss']
 })
 export class BranchBoxComponent implements OnInit {
 
