@@ -1,5 +1,15 @@
 {
   "header": {
     "imgSrc": "/assets/images/header-logo.png"
+  },
+  "daysHe": {
+    "א": "Sunday",
+    "ב": "Monday",
+    "ג": "Tuesday",
+    "ד": "Wednesday",
+    "ה": "Thursday",
+    "ו": "Friday",
+    "ז": "Saturday"
+
   }
 }

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {RcTranslateService} from '@realcommerce/rc-packages';
 import {TimeService} from './time-service';
+import {AppService} from './app.service'
+
 
 
 
@@ -8,8 +10,8 @@ import {TimeService} from './time-service';
   providedIn: 'root'
 })
 export class BranchDataService {
-
-  constructor(private translate: RcTranslateService, private timeService: TimeService ) {
+  private config = this.appService.appConfig;
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService  ) {
     const curTime = this.timeService.getCurrentTime();
     const dayName = this.timeService.getDayName(curTime);
     const  tomarrowDay = this.timeService.addDays(1, curTime);
@@ -17,19 +19,22 @@ export class BranchDataService {
 
   }
 
-  private perapeHoursArray(data: any) {
+  private convertHoursToObject(data: any) {
     let daysObject :any={};
     data.forEach(obj => {
-      const key = daysObject[obj.field_bod_day] = obj;
+      const key = this.config.daysHe[obj.field_bod_day];
+        daysObject[key] = obj;
     });
     return daysObject;
-   }
-  private createHours() {
+   };
+  private createOpeningHours(dataObj) {
+    let daysObject = [];
 
   }
 
   createSingleBranch(data) {
-    this.perapeHoursArray(data.field_branch_open_days);
+    let houresObj = this.convertHoursToObject(data.field_branch_open_days);
+    let hours = this.createOpeningHours(houresObj);
     return{id: 1,
       branchNum: data.field_branch_num,
       branchName: data.field_branch_latlon.name,
