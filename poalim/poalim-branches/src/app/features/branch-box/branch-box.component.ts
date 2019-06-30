@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BranchBox} from "../../core/interface/branch-box";
+import {BranchBox} from '../../core/interface/branch-box';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class BranchBoxComponent implements OnInit {
   constructor() { }
   @Input() branchData: BranchBox;
   ngOnInit() {
-    console.log(' injiside.data', this.branchData)
+
 
   }
 

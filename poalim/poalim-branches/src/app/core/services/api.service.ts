@@ -48,7 +48,7 @@ export class ApiService extends RcApiService {
     return this.get(path, requestParams, force).pipe(
       mergeMap((result: ApiResponse) => {
         if (result.isSucceeded === true || true) {
-          return of(result.content);
+          return of(result);
         } else {
           if (doNotThrowError) {
             return of(result);
@@ -149,115 +149,9 @@ export class ApiService extends RcApiService {
     return this.http.get(`${environment.configPath}`);
   }
 
-  public getPermissions(force: boolean = false) {
-    return this.apiGet('account/rolesPermissions', {}, force);
-  }
-
-  public validateInitialLogin(params) {
-    return this.apiPost('account/validateUser', params);
-  }
-
-  public validateForgotPasswordUser(params) {
-    return this.apiPost('account/ValidateForgotPasswordUser', params);
-  }
-
-  public setInitialPassword(params) {
-    return this.apiPost('account/setPassword', params);
-  }
-
-  public changePassword(params) {
-    return this.apiPost('account/changePassword', params);
-  }
-
-  public forgotPasswordEmail(params) {
-    return this.apiPost('account/forgotPasswordEmail', params);
-  }
-
-  public login(params): Observable<any> {
-    return this.apiPost('account/login', params);
-  }
-
-  public changeExpiredPassword(params): Observable<any> {
-    return this.apiPost('account/changeExpiredPassword', params);
-  }
-
-  public getMerchantDetails (params , force: boolean = false) {
-    return this.apiGet('configOrchestrator/' + params.commonMerchantId, force);
-  }
-
-  public getParentsList (force: boolean = false, handleError: boolean = true, doNotThrowError: boolean = false) {
-    return this.apiGet('configOrchestrator/Parents', {}, force, handleError, doNotThrowError);
-  }
-
-  public getReconServerList (force: boolean = false, handleError: boolean = true, doNotThrowError: boolean = false) {
-    return this.apiGet('configOrchestrator/ReconServersList', {}, force, handleError, doNotThrowError);
-  }
-
-  public getGatewayServerList (force: boolean = false, handleError: boolean = true, doNotThrowError: boolean = false) {
-    return this.apiGet('configOrchestrator/GwServersList', {}, force, handleError, doNotThrowError);
-  }
-
-  public addMerchant(params): Observable<any> {
-    return this.apiPost('configOrchestrator', params);
-  }
-
-  public updateMerchant(params): Observable<any> {
-    return this.apiPut('configOrchestrator', params);
-  }
-
-  public getMerchantsList(params, force: boolean = true) {
-    return this.apiGet('ConfigOrchestrator', params, force);
-  }
-
-  public getUsersList(params, force: boolean = true) {
-    return this.apiGet('ConfigOrchestrator/' + params.commonMerchantId + '/Users', {}, force);
-  }
-
-  public getMerchantTerminalsList(params, force: boolean = true) {
-    return this.apiGet('ConfigOrchestrator/' + params.commonMerchantId + '/Terminals', {}, force);
-  }
 
 
-  public getMerchantTerminalsGroupsList(params, force: boolean = true) {
-    //todo: Nati this is not yet implemented server side
-    return of([]); // this.apiGet('getMerchantTerminalsGroupsList', params, force);
-  }
-  //TODO: Nati please add commonMerchantId in all the calls
-  public getRolesList(params = {}, force: boolean = true) {
-    return this.apiGet('ConfigOrchestrator/' + (params as any).commonMerchantId + '/Roles', {}, force);
-  }
-  // public getRolesList(params, force: boolean = true) {
-  //   return this.apiGet('ConfigOrchestrator/' + params.commonMerchantId + '/Roles', {}, force);
-  // }
-
-  public deleteRole(params, force: boolean = true) {
-    return this.apiPost('deleteRole', params, force);
-  }
-
-  public getUserDetails(params, force: boolean = true) {
-    return this.apiGet('ConfigOrchestrator/' + params.commonMerchantId + '/Users/' + params.userId, {}, force);
-  }
-
-  public addUser(params, force: boolean = true) {
-    return this.apiPost('ConfigOrchestrator/User', params, force);
-  }
-
-  public updateUser(params, force: boolean = true) {
-    return this.apiPut('ConfigOrchestrator/User', params, force);
-  }
-  public sendRegistrationEmail(params, force: boolean = true) {
-    return this.apiPost('account/RegistrationEmail', params, force);
-  }
-
-  public deleteUser(params, force: boolean = true) {
-    return this.apiPost('deleteUser', params, force);
-  }
-
-  public getPermissionsList(params = {}, force: boolean = true) {
-    return this.apiGet('getPermissionsList', params, force);
-  }
-
-  public getRoleDetails(params = {}, force: boolean = true) {
+  public getBranches(params = {}, force: boolean = true) {
     return this.apiGet('../assets/stubs/mockData.json', {}, true);
   }
 
