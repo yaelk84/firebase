@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AppService} from "./core/services/app.service";
-import {RcTranslateService} from "@realcommerce/rc-packages";
+import {AppService} from './core/services/app.service';
+import {RcTranslateService} from '@realcommerce/rc-packages';
 
 
 @Component({

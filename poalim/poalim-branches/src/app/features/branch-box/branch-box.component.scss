@@ -1,11 +1,15 @@
 @import "../../../assets/scss/style";
-.branch-box{
+
+.branch-box {
   display: flex;
   padding: 31px 12px 28px 12px;
-  .wrapper-icon{
-    padding-left: 24px;
-    .branch-icon{
 
+
+  .wrapper-icon {
+    padding-left: 24px;
+
+    .branch-icon {
+text-align: center;
       float: $default-start;
       width: 26px;
       height: 26px;
@@ -13,10 +17,52 @@
       border-radius: 5px;
       transform: rotate(45deg);
 
-      .icon-val{
+      .icon-val {
         color: $white;
         transform: rotate(-45deg);
       }
+    }
+  }
+
+
+
+
+
+  .branch-details {
+    color: $marine-two;
+    .name-and-number {
+      display: flex;
+      font-size: 23.9px;
+
+
+      span {
+        margin-left: 5px;
+      }
+
+      .num-branch {
+        font-weight: 300;
+      }
+
+      .separator {
+        font-weight: 300;
+      }
+
+    }
+    .wrapper-icon-accessibility {
+      display: flex;
+      align-self: center ;
+      .icon-accessibility {
+
+        width: 21px;
+        height: 20px;
+        background-image: url('~src/assets/media/group-26.svg');
+        background-repeat: no-repeat;
+      }
+    }
+
+    .address {
+      font-size: 20px;
+
     }
   }
 

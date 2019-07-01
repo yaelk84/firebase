@@ -3,13 +3,13 @@
     "imgSrc": "/assets/images/header-logo.png"
   },
   "daysHe": {
-    "א": "Sunday",
-    "ב": "Monday",
-    "ג": "Tuesday",
-    "ד": "Wednesday",
-    "ה": "Thursday",
-    "ו": "Friday",
-    "ז": "Saturday",
+    "Sunday": "א",
+    "Monday": "ב",
+    "Tuesday": "ג",
+    "Wednesday": "ד",
+    "Thursday": "ה",
+    "Friday": "ו",
+    "Saturday": "ז",
     "holidays": "holidays"
 
   }

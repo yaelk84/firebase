@@ -20,7 +20,7 @@ export class BranchDataService {
     const  afterTomarrowDay = this.timeService.addDays(2, curTime);
 
   }
-  private returnOpenHoursForSpecificDay(dayObject, currentTime ,IshourChange) {
+  private returnOpenHoursForSpecificDay(dayObject, currentTime , IshourChange) {
    let hours: string = '';
    if (isNullOrUndefined(dayObject)) {
      return hours;
