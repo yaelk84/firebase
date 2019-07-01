@@ -9,7 +9,8 @@
     "ד": "Wednesday",
     "ה": "Thursday",
     "ו": "Friday",
-    "ז": "Saturday"
+    "ז": "Saturday",
+    "holidays": "holidays"
 
   }
 }
