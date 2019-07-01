@@ -1,0 +1,24 @@
+@import "../../../assets/scss/style";
+.branch-box{
+  display: flex;
+  padding: 31px 12px 28px 12px;
+  .wrapper-icon{
+    padding-left: 24px;
+    .branch-icon{
+
+      float: $default-start;
+      width: 26px;
+      height: 26px;
+      background: $lipstick-two;;
+      border-radius: 5px;
+      transform: rotate(45deg);
+
+      .icon-val{
+        color: $white;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+}
+

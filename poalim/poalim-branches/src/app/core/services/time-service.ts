@@ -21,6 +21,9 @@ export class TimeService extends RcTimeService {
   addDays(amount: number, date: any) {
     return (this.momentRef(date).add(amount, 'days').toDate());
   }
+  getHours(date) {
+    return this.momentRef(date).format('H HH');
+  }
 
   dateDiff(fromDate, toDate, type) {
     type = type ? type : 'minutes';
@@ -32,4 +35,14 @@ export class TimeService extends RcTimeService {
   dateFormat(date: any) {
     return this.momentRef(date).format(this.momentDateFormat);
   }
+
+  isIBetween(date, start, end) {
+    const startTime = this.momentRef(start, 'HH:mm');
+    const endTime = this.momentRef(end, 'HH:mm');
+    const amIBetween = this.momentRef(date).isBetween(startTime , endTime);
+    return amIBetween;   //  returns false.  if date ignored I expect TRUE
+
+
+  }
+
 }

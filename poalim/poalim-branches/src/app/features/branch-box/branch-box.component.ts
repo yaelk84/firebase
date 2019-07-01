@@ -10,9 +10,9 @@ import {BranchBox} from '../../core/interface/branch-box';
 export class BranchBoxComponent implements OnInit {
 
   constructor() { }
-  @Input() branchData: BranchBox;
+  @Input() branchData: any;
   ngOnInit() {
-
+    console.log('branchData', this.branchData)
 
   }
 
