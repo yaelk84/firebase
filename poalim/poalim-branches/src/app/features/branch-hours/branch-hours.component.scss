@@ -1,0 +1,32 @@
+@import "../../../assets/scss/style";
+
+.hours{
+  font-size: 18px;
+  font-weight: normal;
+}
+.open-today{
+  display: flex;
+  align-items: center;
+  .title-open-today{
+    color:  $true-green;
+    margin-#{$default-end}: 8px;
+  }
+}
+.future-date{
+  color: $lipstick-two;
+}
+.was-change{
+  color:$true-yellow ;
+}
+.icon-hours {
+  margin: 0 5px;
+  text-align: center;
+  float: $default-start;
+  width: 5px;
+  height: 5px;
+  background: $marine-two;;
+  border-radius: 5px;
+  transform: rotate(45deg);
+
+
+}
