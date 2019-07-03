@@ -1,5 +1,70 @@
 {
   "header": {
     "imgSrc": "/assets/images/header-logo.png"
+  },
+  "holiday": "holidays",
+  "daysEn": {
+    "Sunday": {
+      "he": "א",
+      "index": 0
+    },
+    "Monday": {
+      "he": "ב",
+      "index": 1
+    },
+    "Tuesday": {
+      "he": "ג",
+      "index": 2
+    },
+    "Wednesday": {
+      "he": "ד",
+      "index": 3
+    },
+    "Thursday": {
+      "he": "ה",
+      "index": 4
+    },
+    "Friday": {
+      "he": "ו",
+      "index": 5
+    },
+    "Saturday": {
+      "he": "ז",
+      "index": 6
+    },
+    "holidays": {
+      "he": "א",
+      "index": 7
+    }
+  },
+  "daysHe": {
+    "א": {
+      "en": "Sunday",
+      "index": 0
+    },
+    "ב": {
+      "en": "Monday",
+      "index": 1
+    },
+    "ג": {
+      "en": "Tuesday",
+      "index": 2
+    },
+    "ד": {
+      "en": "Wednesday",
+      "index": 3
+    },
+    "ה": {
+      "en": "Thursday",
+      "index": 4
+    },
+    "ו": {
+      "en": "Friday",
+      "index": 5
+    },
+    "ז": {
+      "en": "זSaturday",
+      "index": 6
+    }
   }
 }

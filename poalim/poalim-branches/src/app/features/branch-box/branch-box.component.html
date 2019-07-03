@@ -1,3 +1,27 @@
-<div>
+<div class="branch-box ">
+  <div class="wrapper-icon">
+    <div class="branch-icon">
+      <div class="icon-val" > {{branchData.id}}</div>
+
+    </div>
+  </div>
+
+  <div class="branch-details">
+    <div class="name-and-number">
+      <span class="num-branch">{{branchData.branchNum}}</span>
+      <span class="name-branch">{{branchData.branchName}}</span>
+      <span class="separator">|</span>
+      <span class="wrapper-icon-accessibility">
+        <div class="icon-accessibility"></div>
+      </span>
+
+    </div>
+    <div class="address"> <span>{{branchData.address}}</span></div>
+    <div class="location"></div>
+    <div class="hours">
+      <app-branch-hours [hours]="openAndCloseHours"></app-branch-hours>
+    </div>
+
+  </div>
 
 </div>

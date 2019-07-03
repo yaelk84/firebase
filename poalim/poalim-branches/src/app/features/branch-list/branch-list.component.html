@@ -1,4 +1,7 @@
-<p>
-branch list work
-  <app-branch-box [branchData]="data"></app-branch-box>
-</p>
+<div>
+
+  <div *ngFor="let branch of  branchNewArray" style="width: 448px;margin-right: 30px">
+    <app-branch-box [branchData]="branch"></app-branch-box>
+  </div>
+
+</div>

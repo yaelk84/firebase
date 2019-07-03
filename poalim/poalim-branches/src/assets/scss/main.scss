@@ -1,0 +1,8 @@
+@import 'shared_param';
+
+body{
+  direction: $direction;
+  text-align: $default-start;
+  font-family: 'Poalim';
+
+}

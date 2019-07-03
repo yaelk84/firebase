@@ -7,18 +7,22 @@ import { AppComponent } from './app.component';
 import { BranchBoxComponent } from './features/branch-box/branch-box.component';
 import { BranchListComponent } from './features/branch-list/branch-list.component';
 import { HomeComponent } from './features/home/home.component';
+import { BranchHoursComponent } from './features/branch-hours/branch-hours.component';
+import {RcUiModule} from '@realcommerce/rc-packages';
 
 @NgModule({
   declarations: [
     AppComponent,
     BranchBoxComponent,
     BranchListComponent,
-    HomeComponent
+    HomeComponent,
+    BranchHoursComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    RcUiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

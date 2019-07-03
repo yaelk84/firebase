@@ -17,7 +17,7 @@ export class AppService {
   public appConfig;
 
   initApp(): Observable<any> {
-    return forkJoin([this.loadTranslation()]).pipe(
+    return forkJoin([this.loadTranslation(),this.loadConfig()]).pipe(
       map((response: any) => {
                return of({});
       }));

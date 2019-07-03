@@ -11,7 +11,7 @@
   },
   "field_branch_open_days": [{
     "field_bod_day": "ב",
-    "field_bod_open_hours": "08:30",
+    "field_bod_open_hours": "10:30",
     "field_bod_close_hour": "13:00",
     "field_bod_open_noon": "1",
     "field_bod_noon_open": "16:00",
@@ -19,7 +19,7 @@
   },
     {
       "field_bod_day": "ה",
-      "field_bod_open_hours": "08:30",
+      "field_bod_open_hours": "10:30",
       "field_bod_close_hour": "13:00",
       "field_bod_open_noon": "1",
       "field_bod_noon_open": "16:00",
@@ -27,11 +27,11 @@
     },
     {
       "field_bod_day": "ג",
-      "field_bod_open_hours": "08:30",
-      "field_bod_close_hour": "14:00",
+      "field_bod_open_hours": "10:30",
+      "field_bod_close_hour": "17:00",
       "field_bod_open_noon": "0",
-      "field_bod_noon_open": null,
-      "field_bod_noon_close": null
+      "field_bod_noon_open": "16:00",
+      "field_bod_noon_close": "18:30"
     },
     {
       "field_bod_day": "ד",
@@ -97,7 +97,7 @@
     }
   ],
   "field_branch_num": "516",
-  "field_branch_latlon": "{\"name\":\"\\u05d0\\u05d3\\u05d5\\u05de\\u05d9\\u05dd\",\"num\":\"516\"}",
+  "field_branch_latlon": "סניף גבכ",
   "field_branch_info": "<p>ייעוץ פנסיוני לסירוגין&nbsp;<br \/>\nבערבי חג \/ חול המועד רצוי להתעדכן בשעות פתיחת הסניפים.&nbsp;<\/p>\n<p>שירותי כספומט 24 שעות ביממה&nbsp;<br \/>\nשירותי משוב ותיבת אלתור בהתאם לשעות פעילות הקניון<\/p>\n",
   "field_branch_info_block": [{
     "InfoTextLine": "ייעוץ פנסיוני לסירוגיןבערבי חג \/ חול המועד רצוי להתעדכן בשעות פתיחת הסניפים."
