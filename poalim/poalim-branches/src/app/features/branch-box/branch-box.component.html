@@ -18,7 +18,9 @@
     </div>
     <div class="address"> <span>{{branchData.address}}</span></div>
     <div class="location"></div>
-    <div class="hours"></div>
+    <div class="hours">
+      <app-branch-hours [hours]="openAndCloseHours"></app-branch-hours>
+    </div>
 
   </div>
 

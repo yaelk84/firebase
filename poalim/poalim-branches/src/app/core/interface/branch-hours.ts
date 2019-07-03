@@ -1,5 +1,7 @@
 export interface BranchHours{
-  hours: string;
+  morninigHours: string;
+  nooonHours: string;
   openNow: boolean;
   changeHours: boolean;
+  dayName: string;
 }

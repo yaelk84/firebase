@@ -26,9 +26,19 @@
   "clearAll": "נקה הכל",
   "mapShow": "עבור לתצוגת מפה",
   "listShow": "עבור לתצוגת רשימה",
-  "openToday": "פתוח היום",
-  "openTomarrow": "יפתח מחר",
-  "openInDay": "יפתח ביום",
+  "openToday": "פתוח היום: ",
+  "alwaysOpen": "פתוח תמיד",
+  "changeHours": "ייתכנו שינויים בשעות פתיחת הסניפים.",
+  "openTomarrow": "(סגור יפתח מחר ב {0})",
+  "openAnotherDay": "סגור (יפתח ביום {0} ב {1})",
+  "openInDay": "יפתח ביום ",
   "openHoursPensionService": "שעות פתיחה ייעוץ פנסיוני",
-  "noBranchesFound": "לא נמצא הסניף לבקשתכם. נסו שוב."
+  "noBranchesFound": "לא נמצא הסניף לבקשתכם. נסו שוב.",
+  "Sunday": "ראשון",
+  "Monday": "שני",
+  "Tuesday": "שלישי",
+  "Wednesday": "רביעי",
+  "Thursday": "חמישי",
+  "Friday": "שישי",
+  "tomorrow": "מחר"
 }

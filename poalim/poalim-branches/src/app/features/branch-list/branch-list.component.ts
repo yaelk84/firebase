@@ -24,7 +24,7 @@ export class BranchListComponent implements OnInit {
       response.data.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
         this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchNum, branchFetched.branchName, branchFetched.address,
-          branchFetched.distance, branchFetched.openAndCloseHours , branchFetched.openNow, branchFetched.change));
+          branchFetched.distance, branchFetched.openAndCloseHours ));
       });
 
       console.log('fff',  this.branchNewArray );
