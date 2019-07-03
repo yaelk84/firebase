@@ -1,0 +1,29 @@
+<div class="" [ngClass]="{'overlay' : true}"></div>
+
+<div class="search-wrapper">
+  <ng-select [(ngModel)]="selectedItem"
+             [items]="items"
+             class="autocomplete-search"
+             bindLabel="name"
+             placeholder="{{'placeInputSearch' | rcTranslate}}"
+             [searchFn] = "searchFn"
+             [isOpen]="openDropdown"
+             (search)="onSearch($event)"
+             (close)="onClose()"
+  >
+    <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
+      <p [ngOptionHighlight]="search">{{item.name}}</p>
+      <p [ngOptionHighlight]="search">{{item.address}}</p>
+    </ng-template>
+  </ng-select>
+  <div class="search-btn-wrapper">
+    <button class="search-btn"
+            [disabled]="!selectedItem"
+            [ngClass]="{
+            'can-click': selectedItem,
+            'cant-click': !selectedItem }">
+      <img class="search-btn-icon" src="../../../assets/media/icons/search-white.svg" alt="">
+    </button>
+  </div>
+</div>
+

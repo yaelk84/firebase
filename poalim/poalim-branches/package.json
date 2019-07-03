@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
+    "@ng-select/ng-select": "^2.20.3",
     "@realcommerce/rc-packages": "^7.0.13",
     "angular2-moment": "^1.9.0",
     "bootstrap": "^4.3.1",

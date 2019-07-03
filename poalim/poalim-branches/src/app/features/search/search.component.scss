@@ -1,0 +1,93 @@
+@import "../../../assets/scss/shared_param";
+@import "../../../assets/scss/colors";
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(47, 47, 67, 0.4); /*dim the background*/
+}
+.search-wrapper {
+  border: 1px solid;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 11;
+  background: $white;
+  box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+
+
+  /deep/
+  .autocomplete-search {
+    margin-bottom: 0;
+    .ng-value-container {
+      .ng-placeholder {
+        font-size: 20px;
+        font-weight: 300;
+        line-height: 1;
+      }
+      .ng-input {
+        input {
+          color: $marine-two;
+          font-size: 20px;
+          line-height: 1;
+        }
+
+      }
+
+    }
+    .ng-dropdown-panel {
+      margin-top: 1.7rem;
+      color: $marine-two;
+      background-color: $white;
+      border-radius: 9px;
+      box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+      padding: .5rem;
+      .ng-option {
+        padding: 1rem;
+        border-radius: 4px;
+        font-size: 20px;
+        font-weight: lighter;
+        .highlighted {
+          font-weight: bold;
+          text-decoration: none;
+        }
+      }
+      .ng-option:hover {
+        background: $marine-two;
+        color: $white;
+      }
+    }
+  }
+
+  .search-btn-wrapper {
+    position: absolute;
+    #{$default-end}: -1px;
+    top: -1px;
+    .search-btn {
+      background-color: $lipstick-two;
+      border: none;
+      height: 3.6rem;
+      width: 3.6rem;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+      .search-btn-icon {
+        padding: .6em;
+      }
+    }
+    .search-btn.cant-click {
+      background-color: $pale-grey;
+    }
+    .search-btn.can-click {
+      background-color: $lipstick-two;
+    }
+  }
+
+}
+
+
