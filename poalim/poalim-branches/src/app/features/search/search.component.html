@@ -1,27 +1,34 @@
-<div class="" [ngClass]="{'overlay' : true}"></div>
+<div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
 
-<div class="search-wrapper">
+<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem}">
   <ng-select [(ngModel)]="selectedItem"
              [items]="items"
              class="autocomplete-search"
              bindLabel="name"
              placeholder="{{'placeInputSearch' | rcTranslate}}"
+             [markFirst]="true"
+             [closeOnSelect]="true"
              [searchFn] = "searchFn"
              [isOpen]="openDropdown"
              (search)="onSearch($event)"
              (close)="onClose()"
+             (focus)="onFocus($event)"
+             (clear)="onClear()"
+             (blur)="onBlur($event)"
+             (change)="onChange($event)"
   >
     <ng-template ng-option-tmp let-item="item" let-search="searchTerm">
-      <p [ngOptionHighlight]="search">{{item.name}}</p>
-      <p [ngOptionHighlight]="search">{{item.address}}</p>
+<!-- todo: add the icons and complete the template according to city/branch -->
+      <div [ngOptionHighlight]="search">{{item.name}}</div>
+      <div [ngOptionHighlight]="search">{{item.address}}</div>
     </ng-template>
   </ng-select>
   <div class="search-btn-wrapper">
     <button class="search-btn"
-            [disabled]="!selectedItem"
+            [disabled]="!openDropdown"
             [ngClass]="{
-            'can-click': selectedItem,
-            'cant-click': !selectedItem }">
+            'can-click': openDropdown,
+            'cant-click': searchTerm && searchTerm.length < 3}">
       <img class="search-btn-icon" src="../../../assets/media/icons/search-white.svg" alt="">
     </button>
   </div>

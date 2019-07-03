@@ -11,7 +11,9 @@ export class SearchComponent implements OnInit {
 
   items: any[];
   selectedItem: any;
+  searchTerm: string;
   openDropdown: boolean;
+  searchFocused: boolean;
 
   constructor() { }
 
@@ -49,6 +51,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch($event) {
+    this.searchTerm = $event.term;
     if ($event.term.length > 2) {
       this.openDropdown = true;
     } else {
@@ -56,8 +59,31 @@ export class SearchComponent implements OnInit {
     }
   }
 
+  onFocus($event) {
+    console.log($event);
+    this.searchFocused = true;
+  }
+
+  onBlur($event) {
+    console.log($event);
+    this.searchFocused = false;
+    this.openDropdown = false;
+
+  }
+
+  onClear() {
+    this.searchTerm = '';
+    this.openDropdown = false;
+  }
+
   onClose() {
     this.openDropdown = false;
+  }
+
+  onChange($event) {
+    console.log($event);
+    this.openDropdown = false;
+    this.searchTerm = '';
   }
 
   searchFn(term, item) {
