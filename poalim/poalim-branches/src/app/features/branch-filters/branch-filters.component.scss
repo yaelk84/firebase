@@ -1,36 +1,121 @@
 @import "../../../assets/scss/style";
 
-.filter-box-cointener{
+.filter-box-cointener {
   padding-top: 100px;
   display: flex;
 }
 
-.filter-box-wrapper{
+.filter-box-wrapper {
   display: flex;
+  flex: 1;
+  min-width: 0;
 
 }
-.filter-box{
-      width: 120px;
-    height: 124px;
-    border-radius: 3.1px;
+
+.filter-box {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  border-radius: 3.1px;
+    background-color:$white;
+  margin: 0 9px;
+  &:hover{
     box-shadow: 1px 7px 18px 6px rgba(189, 208, 228, 0.6);
-    background-color: var(--white);
-    margin: 0 9px;
-  &:first-child{
+  }
+  &::selection{
+  border-color: 2px solid $lipstick-two;
+  }
+
+  .wrapper-icon-filter {
+    display: flex;
+    align-self: center;
+
+    .icon-filter {
+      background-repeat: no-repeat;
+
+      &.cube-0 {
+        width: 25px;
+        height: 35px;
+        background-image: url('~src/assets/media/cube-0.svg');
+      }
+
+      &.cube-1 {
+        width: 32px;
+        height: 31px;
+        background-image: url('~src/assets/media/cube-1.svg');
+      }
+
+      &.cube-2 {
+        width: 38px;
+        height: 29px;
+        background-image: url('~src/assets/media/cube-2.svg');
+      }
+
+      &.cube-3 {
+        width: 33px;
+        height: 35px;
+        background-image: url('~src/assets/media/cube-3.svg');
+      }
+
+      &.cube-4 {
+        width: 42px;
+        height: 23px;
+        background-image: url('~src/assets/media/cube-4.svg');
+      }
+
+      &.cube-5 {
+        width: 42px;
+        height: 23px;
+        background-image: url('~src/assets/media/cube-4.svg');
+      }
+
+      &.cube-6 {
+        width: 34px;
+        height: 33px;
+        background-image: url('~src/assets/media/cube-6.svg');
+      }
+      &.cube-6 {
+        width: 31px;
+        height: 39px;
+        background-image: url('~src/assets/media/cube-7.svg');
+      }
+
+
+    }
+  }
+
+  &:first-child {
     margin-#{$default-start}: 0
   }
-  &:last-child{
+
+  &:last-child {
     margin-#{$default-end}: 19px;
   }
 
 
 }
 
-.plus {
+.filter-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 33px;
   height: 124px;
   border-radius: 3.3px;
   border: solid 1.2px $marine-two;
   margin-right: 12px;
+  .icon-filter-btn{
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    -ms-transition: -ms-transform .8s ease-in-out;
+    transition: transform .8s ease-in-out;
+      width: 10px;
+    height: 12px;
+    background-image: url('~src/assets/media/filterButton.svg');
+    background-repeat: no-repeat;
+    transform: rotate(45deg);
+  }
 }
 

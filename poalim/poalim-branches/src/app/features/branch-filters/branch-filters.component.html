@@ -1,17 +1,16 @@
 <div class="filter-box-cointener">
   <div class="filter-box-wrapper">
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
-    <div class="filter-box">ssss</div>
+    <div class="filter-box"   *ngFor="let branch of  branchFiltersWithIcon; let i = index">
 
-  </div>
+      <div class="wrapper-icon-filter">
+        <div class="icon-filter" [ngClass]="'cube-'+ i">
 
-  <div class="plus">ee</div>
+        </div>
+      </div>
+      {{branch.text}}
+    </div>
+      </div>
+  <div class="filter-btn"><div class="icon-filter-btn"></div></div>
 
 
 </div>
