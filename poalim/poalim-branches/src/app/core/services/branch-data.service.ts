@@ -4,6 +4,8 @@ import {TimeService} from './time-service';
 import {AppService} from './app.service';
 import {BranchHours} from '../interface/branch-hours';
 import {isNullOrUndefined} from 'util';
+import {BranchObj} from '../models/branch-model';
+import {BranchSummarize} from '../models/branch-summarize-model';
 
 
 @Injectable({
@@ -97,19 +99,43 @@ export class BranchDataService {
     }
     return objectHours;
   };
-
+  private  replaceNullOrUndefinedInEmpty(val) {
+    const  str = isNullOrUndefined(val) || val === 'null' ? '' : val;
+    return str;
+  }
+  private  craeteBrancServices(services) {
+        return services;
+  }
+  private  craeteContactAddress(contactAddress) {
+    return {phone: contactAddress[0].contactAddressInfo,
+            fax: contactAddress[1].contactAddressInfo};
+  }
   createSingleBranch(data) {
-    const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
-    return {
-      id: 1,
-      branchNum: data.field_branch_num,
-      branchName: data.field_branch_latlon,
-      address: data.name + ' ' + data.field_branch_street,
+    console.log('data', data);
+    //const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
+    const address = data.geographicAddress[0];
+    const contactAddress= this.craeteContactAddress(data.contactAddress);
+    const branchData = {
+
+      branchNum: data.branchNumber,
+      branchName: data.branchName,
+      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) + + this.replaceNullOrUndefinedInEmpty(address.streetName),
       distance: 0,
-      openAndCloseHours: hours,
-      openNow: hours.openNow,
-      change: hours.changeHours
+      openAndCloseHours: {},
+      branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
+      branchService:this.craeteBrancServices(data.branchService),
+      fax: contactAddress.fax,
+      phone: contactAddress.phone
     };
+      const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
+      branchData.distance, branchData.openAndCloseHours);
+      return{
+        id: 1,
+        branchSummarize: branchSummarize,
+        branchService:  branchData.branchService,
+        fax:  branchData.fax,
+        phone:  branchData.phone,
+      };
   }
 
 

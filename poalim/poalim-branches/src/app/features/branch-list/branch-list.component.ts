@@ -20,14 +20,13 @@ export class BranchListComponent implements OnInit {
   ngOnInit() {
 
     return this.apiService.getBranches().subscribe((response) => {
-      debugger
-      response.data.forEach(obj => {
+      response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
-        this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchNum, branchFetched.branchName, branchFetched.address,
-          branchFetched.distance, branchFetched.openAndCloseHours ));
+        this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
+          branchFetched.phone));
       });
 
-      console.log('fff',  this.branchNewArray );
+      console.log('fff', this.branchNewArray);
 
 
     });

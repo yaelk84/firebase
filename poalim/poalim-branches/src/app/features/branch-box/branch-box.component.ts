@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./branch-box.component.scss']
 })
 export class BranchBoxComponent implements OnInit {
-  openAndCloseHours;
+
 
   constructor() {
   }
@@ -15,7 +15,7 @@ export class BranchBoxComponent implements OnInit {
   @Input() branchData: any;
 
   ngOnInit() {
-    this.openAndCloseHours = this.branchData.openAndCloseHours;
+
       console.log('branchgdate', this.branchData);
   }
 

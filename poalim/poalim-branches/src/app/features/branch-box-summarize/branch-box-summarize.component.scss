@@ -1,0 +1,38 @@
+@import "../../../assets/scss/style";
+.branch-details {
+  color: $marine-two;
+  .name-and-number {
+    display: flex;
+    font-size: 23.9px;
+
+
+    span {
+      margin-left: 5px;
+    }
+
+    .num-branch {
+      font-weight: 300;
+    }
+
+    .separator {
+      font-weight: 300;
+    }
+
+  }
+  .wrapper-icon-accessibility {
+    display: flex;
+    align-self: center ;
+    .icon-accessibility {
+
+      width: 21px;
+      height: 20px;
+      background-image: url('~src/assets/media/group-26.svg');
+      background-repeat: no-repeat;
+    }
+  }
+
+  .address {
+    font-size: 20px;
+
+  }
+}

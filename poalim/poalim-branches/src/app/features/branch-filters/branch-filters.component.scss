@@ -1,0 +1,36 @@
+@import "../../../assets/scss/style";
+
+.filter-box-cointener{
+  padding-top: 100px;
+  display: flex;
+}
+
+.filter-box-wrapper{
+  display: flex;
+
+}
+.filter-box{
+      width: 120px;
+    height: 124px;
+    border-radius: 3.1px;
+    box-shadow: 1px 7px 18px 6px rgba(189, 208, 228, 0.6);
+    background-color: var(--white);
+    margin: 0 9px;
+  &:first-child{
+    margin-#{$default-start}: 0
+  }
+  &:last-child{
+    margin-#{$default-end}: 19px;
+  }
+
+
+}
+
+.plus {
+  width: 33px;
+  height: 124px;
+  border-radius: 3.3px;
+  border: solid 1.2px $marine-two;
+  margin-right: 12px;
+}
+
