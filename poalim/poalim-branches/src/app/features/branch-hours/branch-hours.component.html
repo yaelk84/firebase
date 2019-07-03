@@ -1,0 +1,17 @@
+
+<div [ngSwitch]="typeHours">
+  <div *ngSwitchCase="'Bankat'">{{ 'alwaysOpen' | rcTranslate}}</div>
+  <div class="was-change" *ngSwitchCase="'wasChange'">{{'changeHours'| rcTranslate}</div>
+  <div class="open-today" *ngSwitchCase="'today'">
+    <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
+    <span> {{hours.morninigHours}}</span>
+    <span ng-if="hours.nooonHours"> <div  class="icon-hours"></div></span>
+
+    <span ng-if="hours.nooonHours"> {{hours.nooonHours}}</span>
+  </div>
+  <div class="future-date" *ngSwitchCase="'future-date'">
+    {{textHours}}
+  </div>
+
+
+</div>
