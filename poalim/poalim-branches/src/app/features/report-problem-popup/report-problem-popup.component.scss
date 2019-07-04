@@ -1,0 +1,51 @@
+@import "../../../assets/scss/shared_param";
+@import "../../../assets/scss/colors";
+
+.report-problem-wrapper {
+  text-align: center;
+  padding: 2rem;
+
+  .image-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .msg-wrapper {
+    margin-bottom: 1rem;
+
+    .msg-header {
+      font-size: 25px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      color: $greyish-brown;
+    }
+    .msg-text {
+      font-size: 18px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      color: $greyish-brown;
+    }
+  }
+
+  .choose-problem-wrapper {
+    .choose-problem-header {
+      margin-bottom: 1rem;
+      font-size: 20px;
+      color: $greyish-brown;
+    }
+    .choose-problem-btns {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      .outlined-btn {
+        width: 177px;
+      }
+    }
+  }
+}

@@ -3,4 +3,9 @@
   <app-no-location-permissions></app-no-location-permissions>
   <app-search></app-search>
   <app-branch-list></app-branch-list>
+
+  <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+     <app-report-problem-popup></app-report-problem-popup>
+  </lib-rc-popup-wrapper>
+
 </p>

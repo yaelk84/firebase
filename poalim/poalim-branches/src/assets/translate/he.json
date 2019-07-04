@@ -43,5 +43,13 @@
   "Wednesday": "רביעי",
   "Thursday": "חמישי",
   "Friday": "שישי",
-  "tomorrow": "מחר"
+  "tomorrow": "מחר",
+  "reportProblemHeader": "דיווח על בעיה בנתונים",
+  "reportProblemMsg1": "נתון שגוי? חסר מידע?",
+  "reportProblemMsg2": "נשמח אם תדווח על הבעיה ואנו נטפל בה בהקדם.",
+  "chooseProblem": "בחרו את הנתון השגוי:",
+  "badOpenHours": "שעות פעילות שגויות",
+  "badAddress": "כתובת לא מעודכנת",
+  "badServices": "שירותים לא מעודכנים"
+
 }

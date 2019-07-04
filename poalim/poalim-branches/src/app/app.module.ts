@@ -13,6 +13,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { SearchComponent } from './features/search/search.component';
 import {FormsModule} from '@angular/forms';
 import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
+import { ReportProblemPopupComponent } from './features/report-problem-popup/report-problem-popup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NoLocationPermissionsComponent } from './features/no-location-permissio
     HomeComponent,
     BranchHoursComponent,
     NoLocationPermissionsComponent,
-    SearchComponent
+    SearchComponent,
+    ReportProblemPopupComponent
   ],
   imports: [
     BrowserModule,

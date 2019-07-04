@@ -4,3 +4,14 @@
 @import 'colors';
 @import 'fonts';
 
+.outlined-btn {
+  height: 44px;
+  border-radius: 24px;
+  background-color: transparent;
+  border: 1px solid $marine-two;
+  color: $marine-two;
+  font-size: 20px;
+  min-width: 148px;
+  padding-bottom: .4rem;
+}
+
