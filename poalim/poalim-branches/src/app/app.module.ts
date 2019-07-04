@@ -10,9 +10,9 @@ import { HomeComponent } from './features/home/home.component';
 import { BranchHoursComponent } from './features/branch-hours/branch-hours.component';
 import { RcUiModule } from '@realcommerce/rc-packages';
 import { NgSelectModule } from '@ng-select/ng-select';
-
 import { SearchComponent } from './features/search/search.component';
 import {FormsModule} from '@angular/forms';
+import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import {FormsModule} from '@angular/forms';
     BranchListComponent,
     HomeComponent,
     BranchHoursComponent,
+    NoLocationPermissionsComponent
     SearchComponent
   ],
   imports: [
