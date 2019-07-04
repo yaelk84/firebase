@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoLocationPermissionsComponent implements OnInit {
 
+  showBox = true;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  activateLocation() {
+    console.log('activating location services');
+  }
+
+  dismiss() {
+    this.showBox = false;
   }
 
 }

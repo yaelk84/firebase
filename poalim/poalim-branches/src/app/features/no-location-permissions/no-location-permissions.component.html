@@ -1,4 +1,4 @@
-<div class="box-wrapper">
+<div class="box-wrapper" *ngIf="showBox">
   <div class="no-permissions-icon">
     <img src="../../../assets/media/icons/no-location-permissions.svg" alt="">
   </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="btn-wrapper">
-    <button class="outlined-btn">{{'confirmLocation' | rcTranslate}}</button>
+    <button class="outlined-btn" (click)="activateLocation()">{{'confirmLocation' | rcTranslate}}</button>
   </div>
-  <button class="close-btn"></button>
+  <button class="close-btn" (click)="dismiss()"></button>
 </div>
