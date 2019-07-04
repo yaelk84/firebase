@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {RcValidators} from '@realcommerce/rc-packages';
+import {BranchObj} from '../../core/models/branch-model';
+import {BranchDataService} from '../../core/services/branch-data.service';
+import {ApiService} from '../../core/services/api.service';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -17,45 +21,65 @@ export class SearchComponent implements OnInit {
   searchFocused: boolean;
   optionMouseOver: boolean;
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
-    this.initSearch();
+    // this.apiService.getBranches().subscribe((response) => {
+    //
+    // });
+    this.loadData();
+
   }
 
-  initSearch() {
-    // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data)
+  loadData() {
+    forkJoin(this.apiService.getBranches()/*, promise2() todo: add cities getData*/)
+      .subscribe(results => {
+
+        const [branchesData /*, promise2Result*/] = results;
+        this.initSearch(branchesData.data);
+      });
+  }
+
+  initSearch(branchesData) {
+    // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data from stub)
     //  need to sort by distance if possible, else sort by branch name -> street -> city (cities go first then branches)
     this.items = [];
     this.openDropdown = false;
-    let tempCities = [];
     let tempBranches = [];
+    let tempCities = [];
     for (let i = 0; i < 25; i++) {
       if (i % 2 == 0) {
         tempCities.push({
           id: i,
-          name: 'רון' + i,
-          address: 'צל שדג רון שדג',
+          name: 'אשדוד' + i,
           type: 'city'
         });
-      } else if (i % 3 == 0) {
-        tempBranches.push({
+      }
+      else if (i % 3 == 0) {
+        tempCities.push({
           id: i,
-          name: 'קפלן' + i,
-          address: 'צל שדג רון שדג',
-          type: 'branch'
-        });
-      } else if (i % 5 == 0) {
-        tempBranches.push({
-          id: i,
-          name: 'יעל' + i,
-          address: 'צל שדג רון שדג',
-          type: 'branch'
+          name: 'באר שבע' + i,
+          type: 'city'
         });
       }
-
-      this.items = tempCities.concat(tempBranches);
+      else if (i % 7 == 0) {
+        tempCities.push({
+          id: i,
+          name: 'חולון' + i,
+          type: 'city'
+        });
+      }
     }
+    for (const branch of branchesData) {
+      tempBranches.push({
+        id: branch._id,
+        type: 'branch',
+        name: branch.branchName,
+        address: branch.geographicAddress.streetName + ' ' + branch.geographicAddress.buildingNumber + ', ' + branch.geographicAddress.cityName
+      });
+    }
+    this.items = tempCities.concat(tempBranches);
+
   }
 
   onSearch($event) {
@@ -115,8 +139,11 @@ export class SearchComponent implements OnInit {
 
   searchFn(term, item) {
     if (term.length < 3) { return false; }
-    const flag = item.name.indexOf(term) > -1 || item.address.indexOf(term) > -1;
-    return flag;
+    if (item.type == 'city'){
+      return item.name.indexOf(term) > -1;
+    } else {
+      return item.name.indexOf(term) > -1 || item.address.indexOf(term) > -1;
+    }
   }
 
 }
