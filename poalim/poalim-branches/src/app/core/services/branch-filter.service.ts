@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {FilterBranch} from '../../core/models/filter-branch-model';
+import {FilterBranch} from "../models/filter-branch-model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,13 @@ export class BranchFilterService {
                                   {type: 'around', field: '' ,values: []},
                                   {type: 'open-now', field: '' , values: []},
                                   {type: 'open-friday', field: '' , values: []}];
-  private filters: any[]= [] ;
+  filters: any[]= [] ;
+  activeFilters: any[]= [] ;
   private filterWithPics = this.ismobile?2:7;
-
-  createFiltersByTipes() {
+ updateActiveFilters(filters){
+   this.activeFilters=filters;
+ }
+  createFiltersByTiypes() {
     let counter = 0;
     this.filtersTypes.forEach((value) => {
       this.filters.push(new FilterBranch( counter, value.type, '???', counter < this.filterWithPics, value.field , value.values, false))

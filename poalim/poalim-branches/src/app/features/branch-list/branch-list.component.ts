@@ -2,7 +2,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
+import {BranchFilterService} from '../../core/services/branch-filter-service';
 import {catchError, map, mergeMap} from 'rxjs/operators';
+
 
 
 @Component({
@@ -11,11 +13,13 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
   styleUrls: ['./branch-list.component.scss']
 })
 export class BranchListComponent implements OnInit {
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,branchFilterService : BranchFilterService) {
   }
 
   data;
   branchNewArray: BranchObj[] = [];
+  filters=branchFilterService.filters;
+  activeFilters=branchFilterService.activeFilters;
 
   ngOnInit() {
 
