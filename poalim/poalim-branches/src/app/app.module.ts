@@ -21,7 +21,7 @@ import { NoLocationPermissionsComponent } from './features/no-location-permissio
     BranchListComponent,
     HomeComponent,
     BranchHoursComponent,
-    NoLocationPermissionsComponent
+    NoLocationPermissionsComponent,
     SearchComponent
   ],
   imports: [
