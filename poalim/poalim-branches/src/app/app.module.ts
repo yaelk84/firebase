@@ -9,6 +9,7 @@ import { BranchListComponent } from './features/branch-list/branch-list.componen
 import { HomeComponent } from './features/home/home.component';
 import { BranchHoursComponent } from './features/branch-hours/branch-hours.component';
 import {RcUiModule} from '@realcommerce/rc-packages';
+import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {RcUiModule} from '@realcommerce/rc-packages';
     BranchBoxComponent,
     BranchListComponent,
     HomeComponent,
-    BranchHoursComponent
+    BranchHoursComponent,
+    NoLocationPermissionsComponent
   ],
   imports: [
     BrowserModule,
