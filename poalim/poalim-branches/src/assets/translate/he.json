@@ -35,6 +35,8 @@
   "openInDay": "יפתח ביום ",
   "openHoursPensionService": "שעות פתיחה ייעוץ פנסיוני",
   "noBranchesFound": "לא נמצא הסניף לבקשתכם. נסו שוב.",
+  "city": "יישוב",
+  "autocompleteNoResults": "לא נמצאו תוצאות",
   "Sunday": "ראשון",
   "Monday": "שני",
   "Tuesday": "שלישי",

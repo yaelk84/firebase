@@ -1,0 +1,81 @@
+<div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
+
+<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem}">
+  <ng-select [(ngModel)]="selectedItem"
+             [items]="items"
+             class="autocomplete-search"
+             bindLabel="name"
+             bindValue="name"
+             placeholder="{{'placeInputSearch' | rcTranslate}}"
+             notFoundText="{{'autocompleteNoResults' | rcTranslate}}"
+             [markFirst]="true"
+             [closeOnSelect]="true"
+             [searchFn] = "searchFn"
+             [isOpen]="openDropdown"
+             (search)="onSearch($event)"
+             (close)="onClose()"
+             (focus)="onFocus($event)"
+             (clear)="onClear()"
+             (blur)="onBlur($event)"
+             (change)="onChange($event)"
+  >
+    <ng-template ng-label-tmp let-item="item">
+      <div *ngIf="item.type == 'city'">
+        <span>{{item.name}}</span>
+      </div>
+      <div *ngIf="item.type == 'branch'">
+        <span>{{item.name}}, {{item.address}}</span>
+      </div>
+    </ng-template>
+    <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+<!-- todo: add the icons and complete the template according to city/branch -->
+      <div *ngIf="shouldShow(item)"
+           class="option-wrapper"
+           (mouseenter)="item.optionMouseOver = true"
+           (mouseleave)="item.optionMouseOver = false">
+        <div *ngIf="item.type == 'city'">
+          <div class="row">
+            <div class="col-9">
+              <div [ngOptionHighlight]="search">{{item.name}}</div>
+
+            </div>
+            <div class="col-3">
+              <div class="distance-wrapper">
+                <span>{{'city' | rcTranslate}}</span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="item.type == 'branch'">
+          <div class="row">
+            <div class="col-9">
+              <div> <span [ngOptionHighlight]="search">{{item.name}}, </span> <span [ngOptionHighlight]="search">{{item.address}}</span> </div>
+<!--              <div [ngOptionHighlight]="search"></div>-->
+            </div>
+            <div class="col-3" *ngIf="true">
+              <div class="distance-wrapper">
+                <img class="location-icon" *ngIf="!item.optionMouseOver" src="../../../assets/media/icons/location.svg" alt="">
+                <img class="location-icon" *ngIf="item.optionMouseOver" src="../../../assets/media/icons/location-white.svg" alt="">
+
+                <span class="distance">
+                  17.3 {{ 'km' | rcTranslate}}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ng-select>
+  <div class="search-btn-wrapper">
+    <button class="search-btn"
+            [disabled]="!openDropdown && !selectedItem"
+            [ngClass]="{
+            'can-click': openDropdown || selectedItem,
+            'cant-click': searchTerm && searchTerm.length < 3}">
+      <img class="search-btn-icon" src="../../../assets/media/icons/search-white.svg" alt="">
+    </button>
+  </div>
+</div>
+

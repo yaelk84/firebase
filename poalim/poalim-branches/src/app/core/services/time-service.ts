@@ -53,7 +53,6 @@ export class TimeService extends RcTimeService {
    return parseFloat(num.replace(':', '.'));
   }
   hoursDiff(date, end) {
-    debugger;
     const startTime = this.momentRef(date).format('HH:mm');
     const diffNum = this.timeToDecimal(end) - this.timeToDecimal(startTime)
     return diffNum;
