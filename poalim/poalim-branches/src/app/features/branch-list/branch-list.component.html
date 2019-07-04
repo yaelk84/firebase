@@ -1,6 +1,6 @@
 <div>
-
-  <div *ngFor="let branch of  branchNewArray | FilterBranchPipe:'ss'" style="width: 448px;margin-right: 30px">
+  activeFilters:{{activeFilters}}
+  <div *ngFor=" let branch of  branchNewArray | FilterBranchPipe: activeFilters" style="width: 448px;margin-right: 30px">
     <app-branch-box [branchData]="branch"></app-branch-box>
   </div>
 

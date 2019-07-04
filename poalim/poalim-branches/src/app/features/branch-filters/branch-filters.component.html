@@ -1,6 +1,7 @@
 <div class="filter-box-cointener container">
   <div class="filter-box-wrapper">
-    <div class="filter-box"  [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id)> 0}" (click)="toggleFilter(filter.id)"  *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
+
+    <div class="filter-box"  [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id) != -1}" (click)="toggleFilter(filter.id)"  *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
 
       <div class="wrapper-icon-filter">
         <div class="icon-filter" [ngClass]="'cube-'+ i">
@@ -16,6 +17,7 @@
 </div>
 
 </div>
+arrayOfActiveFilterIds:{{arrayOfActiveFilterIds.length}}
 
 
 

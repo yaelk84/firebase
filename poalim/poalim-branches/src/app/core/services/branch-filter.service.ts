@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {FilterBranch} from "../models/filter-branch-model";
+import {BehaviorSubject} from 'rxjs';
 
 
 @Injectable({
@@ -20,10 +21,17 @@ export class BranchFilterService {
                                   {type: 'open-now', field: '' , values: []},
                                   {type: 'open-friday', field: '' , values: []}];
   filters: any[]= [] ;
-  activeFilters: any[]= [] ;
-  private filterWithPics = this.ismobile?2:7;
- updateActiveFilters(filters){
+ filterWithPics = this.ismobile?2:7;
+
+  private activeFilter: BehaviorSubject<number []> = new BehaviorSubject<number [] >([]);
+  activeFilters$  = this.activeFilter.asObservable();
+  activeFilters: number[]=new Array();
+
+
+  updateActiveFilters(filters){
+   this.activeFilters$=filters;
    this.activeFilters=filters;
+    this.activeFilter.next(filters);
  }
   createFiltersByTiypes() {
     let counter = 0;
@@ -34,6 +42,21 @@ export class BranchFilterService {
 
     return this.filters;
   }
+  toggleFilter(id:number) {
+debugger;
+      const indexOfId = this.activeFilters.indexOf(id)
+    if ( indexOfId > -1) {
+      this.activeFilters.splice(indexOfId, 1);
+
+    }
+    else {
+
+      this.activeFilters.push(id)
+    }
+    this.updateActiveFilters(this.activeFilters)
+
+  }
+
 
   constructor() { }
 }

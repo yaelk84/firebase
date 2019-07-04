@@ -2,8 +2,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
-import {BranchFilterService} from '../../core/services/branch-filter-service';
+import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {catchError, map, mergeMap} from 'rxjs/operators';
+import {Subscription} from "rxjs";
 
 
 
@@ -13,17 +14,24 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
   styleUrls: ['./branch-list.component.scss']
 })
 export class BranchListComponent implements OnInit {
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,branchFilterService : BranchFilterService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService) {
   }
 
   data;
   branchNewArray: BranchObj[] = [];
-  filters=branchFilterService.filters;
-  activeFilters=branchFilterService.activeFilters;
+  filters=[];
+  activeFilters:number[] =[];
 
+  subscription: Subscription;
   ngOnInit() {
+    this.subscription = this.branchFilterService.activeFilters$.subscribe(
 
-    return this.apiService.getBranches().subscribe((response) => {
+      activeFilters => {this.activeFilters=activeFilters ;debugger});
+
+
+
+    this.filters= this.branchFilterService.filters;
+        return this.apiService.getBranches().subscribe((response) => {
       response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
         this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
@@ -33,7 +41,9 @@ export class BranchListComponent implements OnInit {
       console.log('fff', this.branchNewArray);
 
 
-    });
+    })
+          console.log("update");
+
 
 
   }
