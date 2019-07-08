@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
-import {Subscription} from "rxjs";
+import {CONSTANTS} from '../../constants';
+import {DeviceService} from "../../core/services/device.service";
+import {FormControl} from '@angular/forms';
+import {FunctionsService} from "../../core/services/functions.service";
+
+
 
 @Component({
   selector: 'app-branch-filters',
@@ -10,16 +15,34 @@ import {Subscription} from "rxjs";
 export class BranchFiltersComponent implements OnInit {
   arrayOfActiveFilterIds: any[]=new Array();
   branchFiltersWithIcon;
-  constructor( private filterService: BranchFilterService) { }
+  checkBoxValues: any;
+ 
 
+  @Input() activeFilters;
+
+
+  constructor( private filterService: BranchFilterService,private deviceService: DeviceService) { }
+  public formControl = new FormControl();
   toggleFilter(id:number) {
     this.filterService.toggleFilter(id);
     this.arrayOfActiveFilterIds=this.filterService.activeFilters;
   }
+  dropDownSelected(){
+      console.log('obj');
+  }
   ngOnInit() {
-    const size= 7;//todo
-    const branchFilters = this.filterService.createFiltersByTiypes();
+    const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
+    //btn filter
+    const branchFilters = this.filterService.createFiltersByTypes();
     this.branchFiltersWithIcon = branchFilters.slice(0, size);
+    // dropdown filter
+
+    this.checkBoxValues = this.filterService.createCheckBoxArray(branchFilters.slice(size+1,branchFilters.length));
+
+
+
+
+
 
 
 

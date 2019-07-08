@@ -1,0 +1,25 @@
+.custom-control  {
+  display: flex;
+  color: white;
+  &.custom-checkbox  {
+    color: #0a294c;
+
+    .custom-control-description{
+      margin-#{$default-start}: 25px;
+    }
+    .custom-control-input[type="checkbox"]~ .custom-control-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: solid 1px $marine-two;
+      background-color: $white;
+    }
+    .custom-control-input[type="checkbox"]:checked ~ .custom-control-indicator {
+      background-color: $marine-two;
+    }
+
+
+  }
+
+
+}

@@ -1,7 +1,8 @@
 <div class="filter-box-cointener container">
   <div class="filter-box-wrapper">
 
-    <div class="filter-box"  [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id) != -1}" (click)="toggleFilter(filter.id)"  *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
+    <div class="filter-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id) != -1}"
+         (click)="toggleFilter(filter.id)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
 
       <div class="wrapper-icon-filter">
         <div class="icon-filter" [ngClass]="'cube-'+ i">
@@ -10,14 +11,30 @@
       </div>
       {{filter.text}}
     </div>
-      </div>
-  <div class="filter-btn"><div class="icon-filter-btn"></div></div>
-<div>
+  </div>
+  <div class="filter-btn">
+    <div class="icon-filter-btn"></div>
+  </div>
+  <div>
+
+  </div>
 
 </div>
 
+
+<div class="aaa" *ngFor="let checkBox of  checkBoxValues; let checkIndex = index">
+  <lib-rc-checkbox [elementId]="'my_checkbox_index_' + checkIndex"
+                   [control]="checkBox.formControl">
+
+    dfdfd {{checkBox.formControl.value}}
+
+
+  </lib-rc-checkbox>
 </div>
-arrayOfActiveFilterIds:{{arrayOfActiveFilterIds.length}}
+
+
+
+
 
 
 

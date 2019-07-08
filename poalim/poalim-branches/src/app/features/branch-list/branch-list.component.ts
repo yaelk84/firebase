@@ -4,7 +4,7 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {catchError, map, mergeMap} from 'rxjs/operators';
-import {Subscription} from "rxjs";
+
 
 
 
@@ -20,15 +20,16 @@ export class BranchListComponent implements OnInit {
   data;
   branchNewArray: BranchObj[] = [];
   filters=[];
-  activeFilters:number[] =[];
+  // activeFilters:number[] =[];
 
-  subscription: Subscription;
+
+
+  get activeFilters() {
+    console.log('activeFilters !!!!!!')
+    return this.branchFilterService.getActiveFilters();
+  }
+
   ngOnInit() {
-    this.subscription = this.branchFilterService.activeFilters$.subscribe(
-
-      activeFilters => {this.activeFilters=activeFilters ;debugger});
-
-
 
     this.filters= this.branchFilterService.filters;
         return this.apiService.getBranches().subscribe((response) => {
@@ -42,7 +43,7 @@ export class BranchListComponent implements OnInit {
 
 
     })
-          console.log("update");
+
 
 
 
