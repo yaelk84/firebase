@@ -12,6 +12,7 @@ import {RcUiModule} from '@realcommerce/rc-packages';
 import { BranchBoxSummarizeComponent } from './features/branch-box-summarize/branch-box-summarize.component';
 import { BranchFiltersComponent } from './features/branch-filters/branch-filters.component';
 import { FilterBranchPipe} from './core/filters/branch-filter.pipe';
+import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-filter.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FilterBranchPipe} from './core/filters/branch-filter.pipe';
     BranchHoursComponent,
     BranchBoxSummarizeComponent,
     BranchFiltersComponent,
-    FilterBranchPipe
+    FilterBranchPipe,
+    CheckBoxFilterComponent
   ],
   imports: [
     BrowserModule,

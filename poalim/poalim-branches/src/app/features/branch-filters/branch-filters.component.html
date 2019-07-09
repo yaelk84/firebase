@@ -12,25 +12,23 @@
       {{filter.text}}
     </div>
   </div>
-  <div class="filter-btn">
-    <div class="icon-filter-btn"></div>
+  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="toggleDropDown()">
+    <div class="badge-btn"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
+    <div  class="icon-filter-btn"></div>
   </div>
+  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="filters-list-wrapper">
+    <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
+
+  </div>
+
+
+
   <div>
 
   </div>
 
 </div>
 
-
-<div class="aaa" *ngFor="let checkBox of  checkBoxValues; let checkIndex = index">
-  <lib-rc-checkbox [elementId]="'my_checkbox_index_' + checkIndex"
-                   [control]="checkBox.formControl">
-
-    dfdfd {{checkBox.formControl.value}}
-
-
-  </lib-rc-checkbox>
-</div>
 
 
 
