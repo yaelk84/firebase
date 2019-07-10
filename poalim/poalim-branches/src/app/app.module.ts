@@ -32,7 +32,7 @@ import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-f
     HttpClientModule,
     RcUiModule
   ],
-  providers: [],
+  providers: [FilterBranchPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

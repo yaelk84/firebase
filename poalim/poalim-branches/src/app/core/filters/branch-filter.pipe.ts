@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {BranchFilterService} from "../services/branch-filter.service";
 
 @Pipe({
-  name: 'FilterBranchPipe',
-  pure :false
+  name: 'FilterBranchPipe'
+
 
 })
 export class FilterBranchPipe implements PipeTransform {
@@ -17,18 +17,18 @@ export class FilterBranchPipe implements PipeTransform {
 
   transform(value: any, propName: number[]): any {
         console.log('activeFilters',propName);
-
-    const filterString=  propName.length? 'ddd': 'rrr';
-     if (value.length === 0 ) {
+debugger
+    const doSomething=  propName.length;
+     if (!doSomething) {
       return value;
     }
 
     const resultArray = [];
-   /* for (const item of value) {
-      if (propName.length) === filterString) {
+    for (const item of value) {
+      if (item.branchSummarize.address.includes('ע')) {
         resultArray.push(item);
       }
-    }*/
+    }
     return resultArray;
   }
 

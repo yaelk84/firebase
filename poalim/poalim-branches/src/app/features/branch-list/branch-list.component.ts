@@ -5,6 +5,9 @@ import {ApiService} from '../../core/services/api.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {catchError, map, mergeMap} from 'rxjs/operators';
 import {Subscription} from "rxjs";
+import {FilterBranchPipe} from "../../core/filters/branch-filter.pipe";
+import {RcEventBusService} from "@realcommerce/rc-packages";
+import {CONSTANTS} from '../../constants';
 
 
 
@@ -14,20 +17,22 @@ import {Subscription} from "rxjs";
   styleUrls: ['./branch-list.component.scss']
 })
 export class BranchListComponent implements OnInit {
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService, private pipe:FilterBranchPipe, private events:RcEventBusService) {
   }
 
   data;
   branchNewArray: BranchObj[] = [];
   filters=[];
+  branchNewArrayFilter:BranchObj[]=[];
 
-  get activeFilters() {
-    console.log('activeFilters !!!!!!')
-    return this.branchFilterService.getActiveFilters();
-  }
 
   ngOnInit() {
-
+    this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
+      console.log("update",filters);
+      const activeFilter = this.branchFilterService.getActiveFilters();
+      console.log('activeFilters !!!!!!', activeFilter);
+     this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, activeFilter);
+    });
 
     this.filters= this.branchFilterService.filters;
         return this.apiService.getBranches().subscribe((response) => {
@@ -36,12 +41,12 @@ export class BranchListComponent implements OnInit {
         this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
           branchFetched.phone));
       });
+       this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, []);
 
-      console.log('fff', this.branchNewArray);
 
 
     })
-          console.log("update");
+
 
 
 

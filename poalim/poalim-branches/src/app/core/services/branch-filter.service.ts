@@ -3,6 +3,8 @@ import {FilterBranch} from "../models/filter-branch-model";
 import {BehaviorSubject} from 'rxjs';
 import {FunctionsService} from "./functions.service";
 import {FormControl, Validators} from "@angular/forms";
+import {RcEventBusService} from "@realcommerce/rc-packages";
+import {CONSTANTS} from '../../constants';
 
 
 
@@ -11,7 +13,9 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class BranchFilterService {
 
-  constructor(private functionsService: FunctionsService) {
+
+
+  constructor(private functionsService: FunctionsService, private events:RcEventBusService) {
   }
   private filtersTypes = // use object type for easy pipe
     {
@@ -35,6 +39,7 @@ export class BranchFilterService {
   }
   updateActiveFilters(filters) {
     this.activeFilters = filters;
+    this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,filters)
   }
   createFiltersByTypes() {
     this.filtersTypesArray = this.functionsService.sortArrayByKey(this.functionsService.convertObjToArray(this.filtersTypes,'type'), 'id',false);
