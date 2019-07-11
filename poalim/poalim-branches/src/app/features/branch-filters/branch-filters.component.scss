@@ -162,6 +162,7 @@
   left: 0;
   top:135px;
   opacity: 0;
+  padding: 30px 23px;
   &.slideDown{
     opacity: 1;
   }
@@ -190,6 +191,23 @@
   margin-left: -6px;
   border-width: 6px;
 }
+
+@media  (max-width: $mobile_view) {
+
+  .filter-box{
+    margin: 0 2px;
+    cursor: pointer;
+    &:last-child {
+      margin-#{$default-end}: 0px;
+    }
+  }
+  .filter-btn{
+    width: 22px;
+    height: 73px;
+
+  }
+}
+
 
 
 

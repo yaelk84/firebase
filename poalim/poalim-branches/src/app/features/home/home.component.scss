@@ -5,3 +5,9 @@
   padding: 100px 31px;
 
 }
+@media (max-width: $mobile_view) {
+  .branches-header {
+    padding:100px  0;
+  }
+
+}

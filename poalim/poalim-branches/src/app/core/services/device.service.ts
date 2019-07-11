@@ -15,7 +15,8 @@ export class DeviceService extends RcDeviceService {
    * @return boolean
    */
   public isMobile(): boolean {
-    return this.windowWidth < this.lg;
+    debugger
+    return this.isMobileDeviceBySize() ;
   }
 }
 

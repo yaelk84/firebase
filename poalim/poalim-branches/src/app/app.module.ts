@@ -13,6 +13,7 @@ import { BranchBoxSummarizeComponent } from './features/branch-box-summarize/bra
 import { BranchFiltersComponent } from './features/branch-filters/branch-filters.component';
 import { FilterBranchPipe} from './core/filters/branch-filter.pipe';
 import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-filter.component';
+import {GeneralPopupComponent} from './features/general-popup/general-popup.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-f
     BranchBoxSummarizeComponent,
     BranchFiltersComponent,
     FilterBranchPipe,
-    CheckBoxFilterComponent
+    CheckBoxFilterComponent,
+    GeneralPopupComponent
   ],
   imports: [
     BrowserModule,

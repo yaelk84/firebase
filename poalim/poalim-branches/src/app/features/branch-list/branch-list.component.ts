@@ -8,6 +8,7 @@ import {Subscription} from "rxjs";
 import {FilterBranchPipe} from "../../core/filters/branch-filter.pipe";
 import {RcEventBusService} from "@realcommerce/rc-packages";
 import {CONSTANTS} from '../../constants';
+import {FormControl} from '@angular/forms';
 
 
 
@@ -24,7 +25,7 @@ export class BranchListComponent implements OnInit {
   branchNewArray: BranchObj[] = [];
   filters=[];
   branchNewArrayFilter:BranchObj[]=[];
-
+  public formControl = new FormControl();
 
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{

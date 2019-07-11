@@ -1,6 +1,8 @@
 <div class="filter-box-cointener container">
   <div class="filter-box-wrapper">
-
+    <lib-rc-popup-wrapper (closeCallback)="closePopup()" *ngIf="openPOPup" [customClass]="'full-width'">
+    <app-general-popup><app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter></app-general-popup>
+    </lib-rc-popup-wrapper>
     <div class="filter-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id) != -1}"
          (click)="toggleFilter(filter.id)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
 
@@ -12,7 +14,7 @@
       {{filter.text}}
     </div>
   </div>
-  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="toggleDropDown()">
+  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse()">
     <div class="badge-btn"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
     <div  class="icon-filter-btn"></div>
   </div>
