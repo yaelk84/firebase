@@ -1,0 +1,15 @@
+@import "../../../assets/scss/style";
+.check-box-line{
+  margin-bottom: 22px;
+  margin-top: 19px;
+}
+.check-box-list{
+  margin-bottom: 22px;
+}
+
+
+@media only screen and (max-width: $mobile_view) {
+  .check-box-list{
+    margin-bottom: 84px;
+  }
+}

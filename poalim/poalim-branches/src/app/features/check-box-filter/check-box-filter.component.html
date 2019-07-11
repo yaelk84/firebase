@@ -1,0 +1,17 @@
+<div ng-if="checkBocValues" class="check-box-list">
+  <div class="check-box-line" *ngFor="let checkBox of  filterList; let checkIndex = index">
+    <lib-rc-checkbox [elementId]="'my_checkbox_index_' + checkIndex"
+                     [control]="checkBox.formControl"
+    >
+
+      dfdfd {{checkBox.formControl.value}}
+
+
+    </lib-rc-checkbox>
+  </div>
+</div>
+
+
+<button  class="btn" (click)="submitCheckboxes()"><span class="btn-text">
+  אין בעד מה
+</span></button>
