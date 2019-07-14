@@ -1,13 +1,9 @@
 @import "../../../assets/scss/style";
 
-.hours{
+.branch-hours{
   font-size: 18px;
   font-weight: normal;
-  &:hover{
-    border: 1px solid rebeccapurple;
-    background-color: $greyish-brown;
-  }
-}
+ }
 
 .open-today{
   display: flex;
@@ -15,10 +11,14 @@
   .title-open-today{
     color:  $true-green;
     margin-#{$default-end}: 8px;
+      border-radius: 16px;
+      background-color: rgba(10, 41, 76, 0.08);
+
   }
 }
 .future-date{
   color: $lipstick-two;
+
 }
 .was-change{
   color:$true-yellow ;

@@ -17,6 +17,7 @@ import {GeneralPopupComponent} from './features/general-popup/general-popup.comp
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { SingleBranchDisplayComponent } from './features/single-branch-display/single-branch-display.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -33,7 +34,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BranchFiltersComponent,
     FilterBranchPipe,
     CheckBoxFilterComponent,
-    GeneralPopupComponent
+    GeneralPopupComponent,
+    SingleBranchDisplayComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import {CONSTANTS} from '../../constants';
 import {FormControl} from '@angular/forms';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { ActivatedRoute } from '@angular/router';
+import {isNullOrUndefined} from 'util';
 
 
 
@@ -31,28 +32,43 @@ export class BranchListComponent implements OnInit {
   branchNewArray: BranchObj[] = [];
   filters=[];
   branchNewArrayFilter:BranchObj[]=[];
-  public formControl = new FormControl();
+  formControl = new FormControl();
+  branchSelectedIndex:number;
+  showSelectedBranch = false;
+  selectBranch(id) {
+    debugger
+    this.branchSelectedIndex = id;
+    if (isNullOrUndefined(id)) {
+      this.showSelectedBranch = false;
+    }
+       else {
+        this.showSelectedBranch = true;
+      }
 
-  ngOnInit() {
+    }
+    ngOnInit() {
     this.activeRoute.queryParams.subscribe((queryParams) => {
       console.log('queryParams', queryParams);
     })
    // this.city = this.route.snapshot.paramMap.get("city");
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
-      console.log("update",filters);
+      debugger
+     this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
       console.log('activeFilters !!!!!!', activeFilter);
      this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, activeFilter);
+
     });
 
     this.filters= this.branchFilterService.filters;
-        return this.apiService.getBranches().subscribe((response) => {
+     return this.apiService.getBranches().subscribe((response) => {
       response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
         this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
           branchFetched.phone));
       });
        this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, []);
+
 
 
 

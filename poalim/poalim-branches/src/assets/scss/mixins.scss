@@ -1,3 +1,24 @@
+.wrapper-icon {
+
+  padding-left: 24px;
+  margin-top: 15px;
+
+  .branch-icon {
+    text-align: center;
+    float: $default-start;
+    width: 26px;
+    height: 26px;
+    background: $lipstick-two;;
+    border-radius: 5px;
+    transform: rotate(45deg);
+
+    .icon-val {
+      color: $white;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
 .custom-control {
   display: flex;
   color: white;
@@ -82,7 +103,7 @@
 }
 /deep/
 perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
-  right: 20px !important; ;
+  right: 15px !important; ;
   width: 2px;
   opacity: 1;
   background-color: $pale-grey;

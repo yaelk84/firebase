@@ -38,9 +38,14 @@
     }
   }
 }
+
+.list-wrapper{
+  max-width: 488px;
+}
 .branch-list-header{
   display:flex ;
   justify-content: space-between;
+  justify-items: center;
   padding: 15px;
   font-family: Poalim;
   text-align: $default-start;
@@ -55,4 +60,14 @@ font-size: 20px;
 }
 
 
+}
+.branch-list-scroll{
+
+  max-height: 427px;
+  position: relative
+}
+.map-wrapper{
+  margin-right: 25px;
+  max-width: 619px;
+  borde:1px solide $pale-grey
 }

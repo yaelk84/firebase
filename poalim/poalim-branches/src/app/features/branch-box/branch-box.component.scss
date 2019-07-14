@@ -1,49 +1,29 @@
 @import "../../../assets/scss/style";
 
 .branch-box-wrapper{
-  padding-right: 22px;
+  padding-right: 15px;
 
 
 }
 .branch-box{
+  margin-right: 25px;
   border-top:1px solid $pale-grey;
   border-bottom:1px solid $pale-grey;
   padding: 10px 0;
-}
-.inner-box {
-  display: flex;
-  padding: 31px 20px  28px 12px;
-  border-radius: 11px;
   &:first-child{
     border-top: none;
   }
-  .inner-branch-box{
+}
+.inner-box {
+  cursor: pointer;
+  display: flex;
+  padding: 13px 20px  13px 12px;
+  border-radius: 11px;
 
 
 
-  }
-  .wrapper-icon {
-
-    padding-left: 24px;
-    margin-top: 15px;
-
-    .branch-icon {
-text-align: center;
-      float: $default-start;
-      width: 26px;
-      height: 26px;
-      background: $lipstick-two;;
-      border-radius: 5px;
-      transform: rotate(45deg);
-
-      .icon-val {
-        color: $white;
-        transform: rotate(-45deg);
-      }
-    }
-  }
   &:hover{
-    background-color: $pale-grey ;
+   background-color: $pale-grey;
   }
 
 

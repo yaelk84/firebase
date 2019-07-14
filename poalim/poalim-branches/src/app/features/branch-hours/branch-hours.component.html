@@ -1,6 +1,6 @@
 
-<div [ngSwitch]="typeHours">
-  <div *ngSwitchCase="'Bankat'">{{ 'alwaysOpen' | rcTranslate}}</div>
+<div class="branch-hours" [ngSwitch]="typeHours">
+  <div class="clearfix" *ngSwitchCase="'Bankat'">{{ 'alwaysOpen' | rcTranslate}}</div>
   <div class="was-change" *ngSwitchCase="'wasChange'">{{'changeHours'| rcTranslate}</div>
   <div class="open-today" *ngSwitchCase="'today'">
     <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
