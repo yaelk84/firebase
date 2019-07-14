@@ -1,14 +1,14 @@
+import {BranchSummarize} from './branch-summarize-model';
+
 export class BranchObj {
 
 
 constructor(private id: number,
-            private  branchNum: number,
-            private  branchName: string,
-            private  address: string,
-            private distance: number,
-            private openAndCloseHours: Object
-
-           ) {
+            private  branchSummarize: BranchSummarize,
+            private  branchService: [],
+            private  fax: string,
+            private phone: string,
+                       ) {
 
   }
 }

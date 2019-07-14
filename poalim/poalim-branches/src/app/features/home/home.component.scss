@@ -1,0 +1,13 @@
+@import "../../../assets/scss/style";
+.branches-header {
+  background-color:$pale-grey;
+  min-height: 554px;
+  padding: 100px 31px;
+
+}
+@media (max-width: $mobile_view) {
+  .branches-header {
+    padding:100px  0;
+  }
+
+}

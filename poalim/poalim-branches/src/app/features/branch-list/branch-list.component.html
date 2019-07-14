@@ -1,7 +1,9 @@
-<div>
+<div class="branch-list" id="branch_id">
 
-  <div *ngFor="let branch of  branchNewArray" style="width: 448px;margin-right: 30px">
+  <div *ngFor=" let branch of  branchNewArrayFilter " style="max-width: 448px;margin-right: 30px">
     <app-branch-box [branchData]="branch"></app-branch-box>
   </div>
+   <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
+   </lib-rc-switcher>
 </div>

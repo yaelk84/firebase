@@ -9,6 +9,11 @@ import { BranchListComponent } from './features/branch-list/branch-list.componen
 import { HomeComponent } from './features/home/home.component';
 import { BranchHoursComponent } from './features/branch-hours/branch-hours.component';
 import {RcUiModule} from '@realcommerce/rc-packages';
+import { BranchBoxSummarizeComponent } from './features/branch-box-summarize/branch-box-summarize.component';
+import { BranchFiltersComponent } from './features/branch-filters/branch-filters.component';
+import { FilterBranchPipe} from './core/filters/branch-filter.pipe';
+import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-filter.component';
+import {GeneralPopupComponent} from './features/general-popup/general-popup.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +21,12 @@ import {RcUiModule} from '@realcommerce/rc-packages';
     BranchBoxComponent,
     BranchListComponent,
     HomeComponent,
-    BranchHoursComponent
+    BranchHoursComponent,
+    BranchBoxSummarizeComponent,
+    BranchFiltersComponent,
+    FilterBranchPipe,
+    CheckBoxFilterComponent,
+    GeneralPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +34,7 @@ import {RcUiModule} from '@realcommerce/rc-packages';
     HttpClientModule,
     RcUiModule
   ],
-  providers: [],
+  providers: [FilterBranchPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

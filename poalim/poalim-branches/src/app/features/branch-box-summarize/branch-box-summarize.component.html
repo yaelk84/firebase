@@ -1,0 +1,17 @@
+<div class="branch-details">
+  <div class="name-and-number">
+    <span class="num-branch">{{branchDataSummarize.branchNum}}</span>
+    <span class="name-branch">{{branchDataSummarize.branchName}}</span>
+    <span class="separator">|</span>
+    <span class="wrapper-icon-accessibility">
+        <div class="icon-accessibility"></div>
+      </span>
+
+  </div>
+  <div class="address"> <span>{{branchDataSummarize.address}}</span></div>
+  <div class="location"></div>
+  <div class="hours">
+    <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours"></app-branch-hours>
+  </div>
+
+</div>

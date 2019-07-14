@@ -1,0 +1,66 @@
+.custom-control {
+  display: flex;
+  color: white;
+
+  &.custom-checkbox {
+    display: flex;
+    align-items: center;
+    color: #0a294c;
+
+    .custom-control-description {
+      margin-#{$default-start}: 25px;
+    }
+
+    .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: solid 1px $marine-two;
+      background-color: $white;
+    }
+
+    .custom-control-input[type="checkbox"]:checked ~ .custom-control-indicator {
+      background-color: $marine-two;
+    }
+
+
+  }
+
+
+}
+
+.rc-popup-wrapper {
+  /deep/
+  .modal-dialog {
+    &.full-width {
+      height: 100%;
+      margin: 0;
+      /deep/
+      .modal-content {
+        border: none;
+        border-radius: inherit;
+        height: 100%;
+      }
+
+    }
+  }
+
+}
+
+
+.btn {
+  border-radius: 21.5px;
+  border: solid 1px $marine-two;
+  padding: 9px 35px;
+  font-family: Poalim;
+  font-size: 20px;
+  font-weight: normal;
+  text-align: center;
+  color: $marine-two;
+  line-height: 1;
+
+
+}
+
+
+
