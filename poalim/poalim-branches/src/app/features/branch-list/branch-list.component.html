@@ -1,9 +1,18 @@
+<div class="branch-list-header">
+  <div class="branch-result">{{'branchFound' | rcTranslate}}</div>
+  <div class="hours">{{'filterHours' | rcTranslate}}</div>
+</div>
 <div class="branch-list" id="branch_id">
-
+  <perfect-scrollbar style="max-width: 600px; max-height: 400px;position: relative" [config]="config">
   <div *ngFor=" let branch of  branchNewArrayFilter " style="max-width: 448px;margin-right: 30px">
     <app-branch-box [branchData]="branch"></app-branch-box>
   </div>
+  </perfect-scrollbar>
    <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
    </lib-rc-switcher>
+
+
+
+
 </div>

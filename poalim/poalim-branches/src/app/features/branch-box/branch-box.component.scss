@@ -1,13 +1,31 @@
 @import "../../../assets/scss/style";
 
-.branch-box {
+.branch-box-wrapper{
+  padding-right: 22px;
+
+
+}
+.branch-box{
+  border-top:1px solid $pale-grey;
+  border-bottom:1px solid $pale-grey;
+  padding: 10px 0;
+}
+.inner-box {
   display: flex;
-  padding: 31px 25px 28px 12px;
+  padding: 31px 20px  28px 12px;
+  border-radius: 11px;
+  &:first-child{
+    border-top: none;
+  }
+  .inner-branch-box{
 
 
 
+  }
   .wrapper-icon {
+
     padding-left: 24px;
+    margin-top: 15px;
 
     .branch-icon {
 text-align: center;
@@ -24,9 +42,10 @@ text-align: center;
       }
     }
   }
-&:hover{
-  background-color: $pale-grey ;
-}
+  &:hover{
+    background-color: $pale-grey ;
+  }
+
 
 
 

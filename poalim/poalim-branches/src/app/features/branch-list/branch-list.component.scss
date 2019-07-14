@@ -1,5 +1,7 @@
 @import "../../../assets/scss/style";
 
+
+
 #branch_id {
   /deep/
   lib-rc-switcher{
@@ -35,4 +37,22 @@
       }
     }
   }
+}
+.branch-list-header{
+  display:flex ;
+  justify-content: space-between;
+  padding: 15px;
+  font-family: Poalim;
+  text-align: $default-start;
+  font-size: 25px;
+  color: $greyish-brown;
+
+  .branch-result{
+       font-size: 25px;
+  }
+  .hours{
+font-size: 20px;
+}
+
+
 }

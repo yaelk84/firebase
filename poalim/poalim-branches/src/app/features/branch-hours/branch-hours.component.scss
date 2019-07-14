@@ -3,7 +3,12 @@
 .hours{
   font-size: 18px;
   font-weight: normal;
+  &:hover{
+    border: 1px solid rebeccapurple;
+    background-color: $greyish-brown;
+  }
 }
+
 .open-today{
   display: flex;
   align-items: center;

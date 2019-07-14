@@ -1,9 +1,12 @@
 @import "../../../assets/scss/style";
 .branches-header {
   background-color:$pale-grey;
-  min-height: 554px;
+  min-height: 420px;
   padding: 100px 31px;
 
+}
+.branch-container{
+  padding-top: 46px;
 }
 @media (max-width: $mobile_view) {
   .branches-header {

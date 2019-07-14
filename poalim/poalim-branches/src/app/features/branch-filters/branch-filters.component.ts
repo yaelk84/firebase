@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {CONSTANTS} from '../../constants';
-import {DeviceService} from "../../core/services/device.service";
+import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
 import {FunctionsService} from "../../core/services/functions.service";
 
@@ -13,12 +13,12 @@ import {FunctionsService} from "../../core/services/functions.service";
   styleUrls: ['./branch-filters.component.scss']
 })
 export class BranchFiltersComponent implements OnInit {
-  arrayOfActiveFilterIds: any[]=new Array();
+  arrayOfActiveFilterIds = [];
   branchFiltersWithIcon;
   checkBoxValues: any;
-  openDropDown:boolean=false;
-  openPOPup:boolean=false;
-  dropDownCheckLength:number=0;
+  openDropDown = false;
+  openPOPup = false;
+  dropDownCheckLength = 0;
 
 
 
@@ -71,18 +71,6 @@ export class BranchFiltersComponent implements OnInit {
     // dropdown filter
 
     this.checkBoxValues = this.filterService.createCheckBoxArray(branchFilters.slice(size+1,branchFilters.length));
-
-
-
-
-
-
-
-
-
-
-
-
 
   }
 

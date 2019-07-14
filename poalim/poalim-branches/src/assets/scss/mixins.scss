@@ -63,4 +63,31 @@
 }
 
 
+/deep/
+.ps__rail-y{
+  opacity: 1;
+  background-color: $pale-grey;
+
+  &:hover > .ps__thumb-y, .ps__rail-y:focus > .ps__thumb-y, .ps__rail-y.ps--clicking .ps__thumb-y{
+    width:5px;
+    background-color: $marine-two;
+  }
+  .ps__thumb-y{
+    width:5px;
+    background-color: $marine-two;
+    right: -1.7px;
+
+  }
+
+}
+/deep/
+perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
+  right: 20px !important; ;
+  width: 2px;
+  opacity: 1;
+  background-color: $pale-grey;
+&:hover, perfect-scrollbar > .ps.ps--active-y > .ps__rail-y.ps--clicking{
+  width: 2px;
+}}
+
 

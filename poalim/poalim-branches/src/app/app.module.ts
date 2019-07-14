@@ -14,6 +14,13 @@ import { BranchFiltersComponent } from './features/branch-filters/branch-filters
 import { FilterBranchPipe} from './core/filters/branch-filter.pipe';
 import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-filter.component';
 import {GeneralPopupComponent} from './features/general-popup/general-popup.component';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 @NgModule({
   declarations: [
@@ -32,9 +39,13 @@ import {GeneralPopupComponent} from './features/general-popup/general-popup.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RcUiModule
+    RcUiModule,
+    PerfectScrollbarModule
   ],
-  providers: [FilterBranchPipe],
+  providers: [FilterBranchPipe, {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

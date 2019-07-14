@@ -1,11 +1,17 @@
-<div class="branch-box ">
-  <div class="wrapper-icon">
-    <div class="branch-icon">
-      <div class="icon-val" > {{branchData.id}}</div>
 
+<div class="branch-box-wrapper ">
+  <div class="branch-box ">
+    <div class="inner-box">
+      <div class="wrapper-icon">
+        <div class="branch-icon">
+          <div class="icon-val" >{{branchData.id}}</div>
+
+        </div>
+      </div>
+
+      <app-branch-box-summarize  [branchDataSummarize]="branchData.branchSummarize"></app-branch-box-summarize>
     </div>
+
+
   </div>
-
-  <app-branch-box-summarize  [branchDataSummarize]="branchData.branchSummarize"></app-branch-box-summarize>
-
 </div>

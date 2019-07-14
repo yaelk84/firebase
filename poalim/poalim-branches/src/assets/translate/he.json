@@ -40,5 +40,7 @@
   "Wednesday": "רביעי",
   "Thursday": "חמישי",
   "Friday": "שישי",
-  "tomorrow": "מחר"
+  "tomorrow": "מחר",
+  "branchFound": "נמצאו X  סניפים קרובים ",
+  "filterHours": "סינון לפי שעות"
 }

@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {FilterBranch} from "../models/filter-branch-model";
-import {BehaviorSubject} from 'rxjs';
 import {FunctionsService} from "./functions.service";
 import {FormControl, Validators} from "@angular/forms";
-import {RcEventBusService} from "@realcommerce/rc-packages";
+import {RcEventBusService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 
 
@@ -34,17 +33,20 @@ export class BranchFilterService {
   private filtersTypesArray: any[] = [] ;// convert to array for sorting
   filters: any[] = [];
   activeFilters: number[] = [];
-  public getActiveFilters() {
+
+  getActiveFilters() {
     return this.activeFilters;
   }
+
   updateActiveFilters(filters) {
     this.activeFilters = filters;
     this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,filters)
   }
+
   createFiltersByTypes() {
     this.filtersTypesArray = this.functionsService.sortArrayByKey(this.functionsService.convertObjToArray(this.filtersTypes,'type'), 'id',false);
      this.filtersTypesArray.forEach((value) => {
-      this.filters.push(new FilterBranch(value.id, value.type,value.text, value.field, value.values));
+      this.filters.push(new FilterBranch(value.id, value.type, value.text, value.field, value.values));
     });
     return this.filters;
   }
@@ -83,10 +85,10 @@ export class BranchFilterService {
   }
   createCheckBoxArray(arr){
     {
-      let checkBoxValues:any[]=[];
+      let checkBoxValues = [];
 
       arr.forEach((val)=>{
-        checkBoxValues.push({key: val.type, value: val.text, isCheck: false, formControl: new FormControl()})
+        checkBoxValues.push({key: val.type, value: val.text, formControl: new FormControl()});
       })
       return checkBoxValues;
     }

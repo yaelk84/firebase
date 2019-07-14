@@ -9,6 +9,9 @@ import {FilterBranchPipe} from "../../core/filters/branch-filter.pipe";
 import {RcEventBusService} from "@realcommerce/rc-packages";
 import {CONSTANTS} from '../../constants';
 import {FormControl} from '@angular/forms';
+import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 
@@ -18,7 +21,10 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./branch-list.component.scss']
 })
 export class BranchListComponent implements OnInit {
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService, private pipe:FilterBranchPipe, private events:RcEventBusService) {
+
+  public config: PerfectScrollbarConfigInterface = {}
+  private city: string;
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService, private pipe:FilterBranchPipe, private events: RcEventBusService,private activeRoute:ActivatedRoute) {
   }
 
   data;
@@ -28,6 +34,10 @@ export class BranchListComponent implements OnInit {
   public formControl = new FormControl();
 
   ngOnInit() {
+    this.activeRoute.queryParams.subscribe((queryParams) => {
+      console.log('queryParams', queryParams);
+    })
+   // this.city = this.route.snapshot.paramMap.get("city");
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
       console.log("update",filters);
       const activeFilter = this.branchFilterService.getActiveFilters();
