@@ -2,6 +2,7 @@ export const CONSTANTS = {
   EVENTS:{
     UPDATE_FILTER:"UPDATE_FILTER"
   },
+  SERVICES_NUM:4,
   ROUTES: {
     HOME: {
       BASE: ''

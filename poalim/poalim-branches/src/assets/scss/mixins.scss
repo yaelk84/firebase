@@ -68,8 +68,20 @@
 
 }
 
+.icon-separation {
+  margin: 0 5px;
+  text-align: center;
+  float: $default-start;
+  width: 5px;
+  height: 5px;
+  background: $marine-two;;
+  border-radius: 5px;
+  transform: rotate(45deg);
 
+
+}
 .btn {
+  cursor: pointer;
   border-radius: 21.5px;
   border: solid 1px $marine-two;
   padding: 9px 35px;
@@ -79,6 +91,14 @@
   text-align: center;
   color: $marine-two;
   line-height: 1;
+  &.white-btn{
+      border-radius: 21.6px;
+      box-shadow: 0 3px 5px 0 rgba(3, 41, 76, 0.05);
+      background-color: $white;
+    color: $lipstick-two;
+    border-color: transparent;
+
+  }
 
 
 }
@@ -103,7 +123,7 @@
 }
 /deep/
 perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
-  right: 15px !important; ;
+  right: 24px !important; ;
   width: 2px;
   opacity: 1;
   background-color: $pale-grey;

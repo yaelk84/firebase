@@ -66,6 +66,24 @@ font-size: 20px;
   max-height: 427px;
   position: relative
 }
+.back-to-results{
+  font-size: 20px;
+  color: $greyish-brown;
+
+  cursor: pointer;
+
+}
+.back-to-results-wrapper{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-right: 60px;
+}
+.go-back{
+  font-size: 30px;
+  color:$lipstick-two;
+  margin-left:13px;
+}
 .map-wrapper{
   margin-right: 25px;
   max-width: 619px;

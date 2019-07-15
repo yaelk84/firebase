@@ -112,6 +112,7 @@ export class BranchDataService {
   }
   createSingleBranch(data) {
     console.log('data', data);
+    debugger;
     //const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
     const address = data.geographicAddress[0];
     const contactAddress= this.craeteContactAddress(data.contactAddress);
@@ -123,18 +124,18 @@ export class BranchDataService {
       distance: 0,
       openAndCloseHours: {},
       branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
-      branchService:this.craeteBrancServices(data.branchService),
-      fax: contactAddress.fax,
-      phone: contactAddress.phone
-    };
+      branchService:this.craeteBrancServices(data.branchService)
+            };
       const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distance, branchData.openAndCloseHours);
       return{
         id: 1,
         branchSummarize: branchSummarize,
         branchService:  branchData.branchService,
-        fax:  branchData.fax,
-        phone:  branchData.phone,
+        fax:  contactAddress.fax,
+        phone:  contactAddress.phone,
+        branchManagerName: data.branchManagerName,
+        comment: data.comment
       };
   }
 

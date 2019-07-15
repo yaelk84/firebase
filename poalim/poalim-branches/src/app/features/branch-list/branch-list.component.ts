@@ -35,6 +35,9 @@ export class BranchListComponent implements OnInit {
   formControl = new FormControl();
   branchSelectedIndex:number;
   showSelectedBranch = false;
+  backToResults(){
+    this.showSelectedBranch= false;
+  }
   selectBranch(id) {
     debugger
     this.branchSelectedIndex = id;
@@ -65,7 +68,7 @@ export class BranchListComponent implements OnInit {
       response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
         this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-          branchFetched.phone));
+          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment));
       });
        this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, []);
 

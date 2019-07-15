@@ -8,6 +8,8 @@ constructor(private id: number,
             private  branchService: [],
             private  fax: string,
             private phone: string,
+            private branchManagerName: string,
+            private comment:string
                        ) {
 
   }

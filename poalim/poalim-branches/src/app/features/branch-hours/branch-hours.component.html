@@ -5,7 +5,7 @@
   <div class="open-today" *ngSwitchCase="'today'">
     <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
     <span> {{hours.morninigHours}}</span>
-    <span ng-if="hours.nooonHours"> <div  class="icon-hours"></div></span>
+    <span ng-if="hours.nooonHours"> <div  class="icon-separation"></div></span>
 
     <span ng-if="hours.nooonHours"> {{hours.nooonHours}}</span>
   </div>

@@ -1,6 +1,9 @@
 <div class="list-wrapper">
 
   <div *ngIf="showSelectedBranch" >
+    <span  class="back-to-results-wrapper"(click)="backToResults()">
+      <span class="go-back"> < </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+    </span>
     <app-single-branch-display [dataBranchSelected]="branchNewArrayFilter[branchSelectedIndex]" [selectedIndex]="branchSelectedIndex"></app-single-branch-display>
 
   </div>

@@ -42,5 +42,16 @@
   "Friday": "שישי",
   "tomorrow": "מחר",
   "branchFound": "נמצאו X  סניפים קרובים ",
-  "filterHours": "סינון לפי שעות"
+  "filterHours": "סינון לפי שעות",
+  "share": "שתף",
+  "servicesTitle": "שירותים הניתנים בסניפים",
+  "showMore": "הצג עוד",
+  "phone": "טלפון:",
+  "fax": "פקס:",
+  "manager": "מנהל:",
+  "note": "הערות:",
+  "order": "זימון תור",
+  "worngData": "דיווח על נתון שגוי",
+  "backToResults": "חזור לתוצאות"
+
 }
