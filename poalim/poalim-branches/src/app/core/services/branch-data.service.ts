@@ -6,6 +6,7 @@ import {BranchHours} from '../interface/branch-hours';
 import {isNullOrUndefined} from 'util';
 import {BranchObj} from '../models/branch-model';
 import {BranchSummarize} from '../models/branch-summarize-model';
+import {HoursService} from './hours.service';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import {BranchSummarize} from '../models/branch-summarize-model';
 export class BranchDataService {
   private config = this.appService.appConfig;
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService) {
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService) {
     const curTime = this.timeService.getCurrentTime();
     const dayName = this.timeService.getDayName(curTime);
     const tomarrowDay = this.timeService.addDays(1, curTime);
@@ -113,7 +114,7 @@ export class BranchDataService {
   createSingleBranch(data) {
     console.log('data', data);
     debugger;
-    //const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
+    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandart.weekDaysSpecification);
     const address = data.geographicAddress[0];
     const contactAddress= this.craeteContactAddress(data.contactAddress);
     const branchData = {

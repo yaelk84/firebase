@@ -13,6 +13,7 @@ export class BranchHoursComponent implements OnInit {
   constructor(private translate: RcTranslateService) { }
   @Input() hours: any;
   ngOnInit() {
+    console.log("hours")
       if ( this.hours.Bankat){
       this.typeHours = 'Bankat';
     }

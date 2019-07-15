@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+  DAY_IN_WEEK:7,
   EVENTS:{
     UPDATE_FILTER:"UPDATE_FILTER"
   },
