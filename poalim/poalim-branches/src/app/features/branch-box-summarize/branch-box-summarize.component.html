@@ -14,9 +14,24 @@
     <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours" [isSingleDisplay]="isSingleDisplay"></app-branch-hours>
     <div *ngIf="branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay" class="icon-arrow" (click)="dropClick()"></div>
     <div class="popover-wrapper hours-list " [ngClass]="{'slideDown':openHoursDrop}">
-      dddddddd
-      ddddddddddd
-      dddddddddd
+    <div *ngFor=" let dayHours of hoursList" class="drop-line">
+      <span class="drop-label"> <span>{{'dropdownLabel' | rcTranslate}}</span> <span> {{dayHours.dayName}}:</span>
+        </span>
+      <span class="drop-val" >
+        <span *ngIf="dayHours.openToday" class="have-day-val">
+             <span *ngIf="dayHours.label.morning">
+
+        <span> {{dayHours.label.morning}}</span>
+        </span>
+
+        <span *ngIf="dayHours.label.noon && dayHours.label.morning"> <div  class="icon-separation"></div></span>
+
+        <span *ngIf="dayHours.label.noon">{{dayHours.label.noon}}</span>
+        </span>
+        <span *ngIf="!dayHours.openToday" class="closed">{{'closed'| rcTranslate}}</span>
+
+      </span>
+    </div>
     </div>
   </div>
 
