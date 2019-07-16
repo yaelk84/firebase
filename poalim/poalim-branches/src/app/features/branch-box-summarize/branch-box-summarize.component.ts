@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {HoursService} from '../../core/services/hours.service';
 
 @Component({
   selector: 'app-branch-box-summarize',
@@ -6,17 +7,21 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./branch-box-summarize.component.scss']
 })
 export class BranchBoxSummarizeComponent implements OnInit {
+  hoursList: any[] = [];
   openAndCloseHours;
   openHoursDrop = false;
-  constructor() { }
+  constructor(private hoursFunc: HoursService) { }
   @Input() branchDataSummarize: any;
   @Input() isSingleDisplay: boolean;
+
   dropClick(){
     this.openHoursDrop =!this.openHoursDrop;
   }
   ngOnInit() {
-    debugger
+
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
-  }
+    this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
+    console.log('this.hoursList',this.hoursList)
+     }
 
 }

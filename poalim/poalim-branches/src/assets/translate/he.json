@@ -40,6 +40,7 @@
   "Wednesday": "רביעי",
   "Thursday": "חמישי",
   "Friday": "שישי",
+  "Saturday": "שבת",
   "tomorrow": "מחר",
   "branchFound": "נמצאו X  סניפים קרובים ",
   "filterHours": "סינון לפי שעות",
@@ -52,6 +53,8 @@
   "note": "הערות:",
   "order": "זימון תור",
   "worngData": "דיווח על נתון שגוי",
-  "backToResults": "חזור לתוצאות"
+  "backToResults": "חזור לתוצאות",
+  "dropdownLabel": "יום",
+  "closed": "סגור"
 
 }

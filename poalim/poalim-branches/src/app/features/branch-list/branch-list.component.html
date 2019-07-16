@@ -15,7 +15,7 @@
     </div>
     <div class="branch-list" id="branch_id">
       <perfect-scrollbar class="branch-list-scroll"  [config]="config">
-        <div *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
+        <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
           <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch($event)" [branchData]="branch"></app-branch-box>
         </div>
       </perfect-scrollbar>

@@ -1,7 +1,8 @@
 
-<div class="branch-box-wrapper ">
-  <div class="branch-box ">
-    <div class="inner-box" (click)="selectBranch()">
+
+  <div class="branch-box " (click)="selectBranch()">
+    <div class="inner-box" >
+
       <div class="wrapper-icon">
         <div class="branch-icon">
           <div class="icon-val" >{{branchData.id}}</div>
@@ -10,8 +11,9 @@
       </div>
 
       <app-branch-box-summarize  [branchDataSummarize]="branchData.branchSummarize"></app-branch-box-summarize>
+      <div class="clearfix"></div>
     </div>
 
 
   </div>
-</div>
+
