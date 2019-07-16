@@ -11,7 +11,14 @@
   <div class="address"> <span>{{branchDataSummarize.address}}</span></div>
   <div class="location"></div>
   <div class="hours">
-    <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours"></app-branch-hours>
+    <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours" [isSingleDisplay]="isSingleDisplay"></app-branch-hours>
+    <div *ngIf="branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay" class="icon-arrow" (click)="dropClick()"></div>
+    <div class="popover-wrapper hours-list " [ngClass]="{'slideDown':openHoursDrop}">
+      dddddddd
+      ddddddddddd
+      dddddddddd
+    </div>
   </div>
+
 
 </div>

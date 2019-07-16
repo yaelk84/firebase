@@ -39,8 +39,7 @@ export class BranchListComponent implements OnInit {
     this.showSelectedBranch= false;
   }
   selectBranch(id) {
-    debugger
-    this.branchSelectedIndex = id;
+        this.branchSelectedIndex = id;
     if (isNullOrUndefined(id)) {
       this.showSelectedBranch = false;
     }
@@ -55,8 +54,7 @@ export class BranchListComponent implements OnInit {
     })
    // this.city = this.route.snapshot.paramMap.get("city");
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
-      debugger
-     this.selectBranch(null);
+           this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
       console.log('activeFilters !!!!!!', activeFilter);
      this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, activeFilter);

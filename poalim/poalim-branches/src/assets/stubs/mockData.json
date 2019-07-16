@@ -429,12 +429,12 @@
           "Monday": {
             "branchOpeningHours": [
               {
-                "startHour": "08:30",
+                "startHour": "",
                 "endHour": "13:00",
                 "openingHoursDescription": "שעות פתיחה בבוקר"
               },
               {
-                "startHour": "16:00",
+                "startHour": "",
                 "endHour": "18:30",
                 "openingHoursDescription": "שעות פתיחה אחהצ"
               }
@@ -443,7 +443,7 @@
           "Tuesday": {
             "branchOpeningHours": [
               {
-                "startHour": "08:30",
+                "startHour": "",
                 "endHour": "13:30",
                 "openingHoursDescription": "שעות פתיחה בבוקר"
               },

@@ -84,6 +84,7 @@ export class BranchDataService {
           objectHours.openNow = openNow;
           objectHours.changeHours = false;// todo
           break;
+
         }
       } else {
         objectHours.openAt = sortedFilterArray[i].field_bod_open_hours;
@@ -112,9 +113,9 @@ export class BranchDataService {
             fax: contactAddress[1].contactAddressInfo};
   }
   createSingleBranch(data) {
-    console.log('data', data);
-    debugger;
-    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandart.weekDaysSpecification);
+
+
+    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandart.weekDaysSpecification , false , false);
     const address = data.geographicAddress[0];
     const contactAddress= this.craeteContactAddress(data.contactAddress);
     const branchData = {
@@ -123,7 +124,7 @@ export class BranchDataService {
       branchName: data.branchName,
       address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) + + this.replaceNullOrUndefinedInEmpty(address.streetName),
       distance: 0,
-      openAndCloseHours: {},
+      openAndCloseHours: hours,
       branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
       branchService:this.craeteBrancServices(data.branchService)
             };

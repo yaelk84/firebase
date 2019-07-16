@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RcTranslateService} from '@realcommerce/rc-packages';
+import {HoursService} from '../../core/services/hours.service';
 
 
 @Component({
@@ -10,10 +11,13 @@ import {RcTranslateService} from '@realcommerce/rc-packages';
 export class BranchHoursComponent implements OnInit {
   typeHours : string ="";
   textHours : string ="";
-  constructor(private translate: RcTranslateService) { }
+  constructor(private translate: RcTranslateService , private hoursFunc: HoursService) { }
   @Input() hours: any;
+  @Input() isSingleDisplay: boolean;
   ngOnInit() {
-    console.log("hours")
+    this.hoursFunc.creatHoursWeekList(this.hours);
+    debugger
+    console.log("hours" , this.hours)
       if ( this.hours.Bankat){
       this.typeHours = 'Bankat';
     }

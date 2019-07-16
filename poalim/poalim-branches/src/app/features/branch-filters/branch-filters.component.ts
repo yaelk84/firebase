@@ -28,7 +28,7 @@ export class BranchFiltersComponent implements OnInit {
   constructor( private filterService: BranchFilterService,private deviceService: DeviceService) { }
   public formControl = new FormControl();
   closePopup() {
-    console.log("close");
+
   }
   getActiveCheckBox(){
     return  this.checkBoxValues.filter(key =>{return (key.formControl && key.formControl.value=== true)})

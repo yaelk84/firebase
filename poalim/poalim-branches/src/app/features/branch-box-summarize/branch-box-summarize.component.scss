@@ -36,3 +36,20 @@
 
   }
 }
+.hours{
+  position: relative;
+  display: flex;
+  align-items:center ;
+}
+/deep/
+.icon-arrow{
+  margin-right: 10px;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+
+}
+/deep/
+.popover-wrapper.hours-list {
+  top:27px;
+  left:-27px;
+}

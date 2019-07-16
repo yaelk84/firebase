@@ -1,17 +1,31 @@
 
-<div class="branch-hours" [ngSwitch]="typeHours">
-  <div class="clearfix" *ngSwitchCase="'Bankat'">{{ 'alwaysOpen' | rcTranslate}}</div>
-  <div class="was-change" *ngSwitchCase="'wasChange'">{{'changeHours'| rcTranslate}</div>
-  <div class="open-today" *ngSwitchCase="'today'">
-    <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
-    <span> {{hours.morninigHours}}</span>
-    <span ng-if="hours.nooonHours"> <div  class="icon-separation"></div></span>
+<div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
+  <div class="clearfix" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
+  <div class="clearfix" *ngIf="!hours.isBankat">
 
-    <span ng-if="hours.nooonHours"> {{hours.nooonHours}}</span>
+    <div class="clearfix" *ngIf="hours.wasChange">
+      <div class="was-change">{{'changeHours'| rcTranslate}</div>
+    </div>
+    <div class="clearfix" *ngIf="!hours.wasChange">
+      <div class="open-today" *ngIf="hours.openCurrentDay">
+        <span *ngIf="hours.label.morning">
+            <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
+        <span> {{hours.label.morning}}</span>
+        </span>
+
+        <span ng-if="hours.noon"> <div  class="icon-separation"></div></span>
+
+        <span ng-if="hours.noon">{{hours.label.morning}}</span>
+      </div>
+      <div class="future-date" *ngIf="!hours.openCurrentDay">
+        {{hours.label.textHours}}
+      </div>
+    </div>
+
   </div>
-  <div class="future-date" *ngSwitchCase="'future-date'">
-    {{textHours}}
-  </div>
+
+
+
 
 
 </div>

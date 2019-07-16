@@ -21,7 +21,7 @@ export class SingleBranchDisplayComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("init",this.dataBranchSelected)
+
   }
 
 }

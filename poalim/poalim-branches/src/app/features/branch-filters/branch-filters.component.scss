@@ -153,45 +153,6 @@
 
 
 
-.filters-list-wrapper {
-  width: 300px;
-   border-radius: 5px;
-  box-shadow: 0 14px 24px 0 rgba(132, 169, 204, 0.24);
-  border: solid 1px rgba(82, 82, 82, 0.17);
-  background-color:$white;
-  position: absolute;
-  left: 0;
-  top:135px;
-  opacity: 0;
-  padding: 30px 23px;
-  &.slideDown{
-    opacity: 1;
-  }
-
-
-
-}
-
-.filters-list-wrapper:after, .filters-list-wrapper:before {
-  bottom: 100%;
-  left: 29px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  border-color: rgba(255, 255, 255, 0);
-}
-.filters-list-wrapper:before {
-  border-bottom-color: rgba(82, 82, 82, 0.17);
-  margin-left: -7px;
-  border-width: 7px;
-}
-.filters-list-wrapper:after {
-  border-bottom-color:$white !important;
-  margin-left: -6px;
-  border-width: 6px;
-}
 
 @media  (max-width: $mobile_view) {
 

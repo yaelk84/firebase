@@ -17,7 +17,6 @@ export class FilterBranchPipe implements PipeTransform {
 
   transform(value: any, propName: number[]): any {
         console.log('activeFilters',propName);
-debugger
     const doSomething=  propName.length;
      if (!doSomething) {
       return value;

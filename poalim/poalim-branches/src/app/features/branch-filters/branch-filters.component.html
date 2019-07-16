@@ -19,7 +19,7 @@
     <div class="badge-btn"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
     <div  class="icon-filter-btn"></div>
   </div>
-  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="filters-list-wrapper">
+  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper">
     <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
 
   </div>
