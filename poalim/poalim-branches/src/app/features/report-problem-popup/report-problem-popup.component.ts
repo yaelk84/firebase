@@ -22,4 +22,8 @@ export class ReportProblemPopupComponent implements OnInit {
     console.log('report bad Address');
   }
 
+  sendServiceReport(serviceReportInput) {
+    console.dir(serviceReportInput);
+  }
+
 }

@@ -50,6 +50,9 @@
   "chooseProblem": "בחרו את הנתון השגוי:",
   "badOpenHours": "שעות פעילות שגויות",
   "badAddress": "כתובת לא מעודכנת",
-  "badServices": "שירותים לא מעודכנים"
+  "badServices": "שירותים לא מעודכנים",
+  "serviceReportInputPlaceholder" : "תוכלו להוסיף כאן כמה מילים (רק אם תרצו)",
+  "maxChars": "עד 250 תווים",
+  "send": "שלח"
 
 }
