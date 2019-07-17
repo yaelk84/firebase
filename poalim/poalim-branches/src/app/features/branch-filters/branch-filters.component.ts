@@ -4,6 +4,8 @@ import {CONSTANTS} from '../../constants';
 import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
 import {FunctionsService} from "../../core/services/functions.service";
+import {ApiService} from '../../core/services/api.service';
+
 
 
 
@@ -25,7 +27,7 @@ export class BranchFiltersComponent implements OnInit {
   @Input() activeFilters;
 
 
-  constructor( private filterService: BranchFilterService,private deviceService: DeviceService) { }
+  constructor( private filterService: BranchFilterService,private deviceService: DeviceService , private  apiService: ApiService) { }
   public formControl = new FormControl();
   closePopup() {
 
@@ -64,6 +66,13 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
   ngOnInit() {
+
+    return this.apiService.getFilters().subscribe((response) => {
+      response.forEach(obj => {
+        console.log('obj' , obj)
+      });
+    })
+
     const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
     //btn filter
     const branchFilters = this.filterService.createFiltersByTypes();

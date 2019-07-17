@@ -32,7 +32,7 @@ export class BranchFilterService {
     };
   private filtersTypesArray: any[] = [] ;// convert to array for sorting
   filters: any[] = [];
-  activeFilters: number[] = [];
+  activeFilters: any[] = [];
 
   getActiveFilters() {
     return this.activeFilters;
@@ -50,7 +50,7 @@ export class BranchFilterService {
     });
     return this.filters;
   }
-  toggleFilter(id: number) {
+  toggleFilter(id: any) {
 
     const indexOfId = this.activeFilters.indexOf(id)
     if (indexOfId > -1) {

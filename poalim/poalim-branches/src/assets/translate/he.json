@@ -55,6 +55,15 @@
   "worngData": "דיווח על נתון שגוי",
   "backToResults": "חזור לתוצאות",
   "dropdownLabel": "יום",
-  "closed": "סגור"
+  "closed": "סגור",
+  "title": "סינון לפי השעות שנוחות לי",
+  "titleDays": "בחירת ימים",
+  "titleHours": "בחירת שעות",
+  "openMorning": "פתוח בבוקר",
+  "openNoon":"פתוח אחה\"צ",
+  "clean": "נקה",
+  "startFilter": "החל סינון"
+
+
 
 }

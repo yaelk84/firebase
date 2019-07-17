@@ -42,9 +42,18 @@
   padding-right: 15px;
 
 
+
+
 }
 .list-wrapper{
   max-width: 510px;
+  /deep/
+  .popover-wrapper{
+    width: 335px;
+    padding: 30px;
+    left: 100px;
+
+  }
 }
 .branch-list-header{
   display:flex ;
@@ -93,3 +102,5 @@ font-size: 20px;
   max-width: 619px;
   borde:1px solide $pale-grey
 }
+
+

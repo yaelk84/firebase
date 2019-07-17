@@ -18,6 +18,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SingleBranchDisplayComponent } from './features/single-branch-display/single-branch-display.component';
+import { HoursFilerComponent } from './features/hours-filer/hours-filer.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -35,7 +36,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FilterBranchPipe,
     CheckBoxFilterComponent,
     GeneralPopupComponent,
-    SingleBranchDisplayComponent
+    SingleBranchDisplayComponent,
+    HoursFilerComponent
   ],
   imports: [
     BrowserModule,
