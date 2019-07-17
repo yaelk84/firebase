@@ -1,0 +1,94 @@
+@import "../../../assets/scss/style";
+.hours-filter {
+text-align: center;
+
+  h4, h2 {
+
+    color: $greyish-brown;
+    font-weight: 300;
+    font-size: 20px;
+
+  }
+
+  h2 {
+
+    font-weight: normal;
+margin-bottom: 30px;
+  }
+  h4{
+    margin-bottom: 5px;
+  }
+
+  .day-wrapper {
+    margin-bottom:14px;
+    display: flex;
+    justify-content: space-around;
+
+
+    .day-box {
+      display: flex;
+      justify-content: center;
+      width: 35px;
+      height: 33px;
+      border-radius: 5px;
+      border: solid 1px $marine-two;
+      color: $marine-two;
+      font-size: 20px;
+      font-weight: 300;
+      cursor: pointer;
+      &.selected{
+        border-color: $lipstick-two;
+        color: $lipstick-two;
+      }
+
+
+      span {
+        color: $marine-two;
+      }
+
+    }
+  }
+
+  .hours-wrapper {
+    display: flex;
+    justify-content: space-around;
+    .morning,.noon{text-align: center;
+      width: 127px;
+      height: 33px;
+      border-radius: 5px;
+      border: solid 1px $marine-two;
+      font-weight: 300;
+      cursor: pointer;
+      &.selected{
+        border-color: $lipstick-two;
+        color: $lipstick-two;
+      }
+
+    }
+
+    color: $marine-two;
+    font-size: 20px;
+
+  }
+
+  .btn-wrapper {
+
+    display: flex;
+    justify-content: space-evenly;
+    font-weight: normal;
+    color: $marine-two;
+    font-size: 18px;
+    margin-top: 35px;
+    /deep/
+    .btn{
+      cursor: pointer;
+      padding: 12px 28px;
+    }
+    .clean{
+      display: flex;
+      align-self: center;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

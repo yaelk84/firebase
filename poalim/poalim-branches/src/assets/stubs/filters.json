@@ -1,0 +1,80 @@
+ [
+    {
+      "serviceType": "100",
+      "serviceLabel":  "בסביבה שלי",
+      "ServiceImg":  "cube-0",
+      "order":  "0",
+      "isCustom": true
+    },
+    {
+      "serviceType": "101",
+      "serviceLabel":   "פתוח עכשיו",
+      "ServiceImg":  "cube-1",
+      "order":  "1",
+      "isCustom": true
+    },
+    {
+      "serviceType": "102",
+      "serviceLabel":  "פתוח בשישי",
+      "ServiceImg":  "cube-2",
+      "order":  "2",
+      "isCustom": true
+    },
+    {
+      "serviceType": "3",
+      "serviceLabel":  "מרכז ייעוץ פנסיוני",
+      "ServiceImg":  "cube-3",
+      "order":  "3",
+      "isCustom": false
+    },
+    {
+      "serviceType": "4",
+      "serviceLabel":  "פועלים הייטקי",
+      "ServiceImg":  "cube-4",
+      "order":  "4",
+      "isCustom": false
+    },
+    {
+      "serviceType": "5",
+      "serviceLabel":  "פועלים לעסקים לשירות עצמי ",
+      "ServiceImg":  "cube-5",
+      "order":  "5",
+      "isCustom": false
+    },
+    {
+      "serviceType": "6",
+      "serviceLabel":  "בנקט עם שטרות של 20 שח",
+      "ServiceImg":  "cube-6",
+      "order":  "6",
+      "isCustom": false
+    },
+    {
+      "serviceType": "7",
+      "serviceLabel":  "כספת",
+      "ServiceImg":  "cube-7",
+      "order":  "7",
+      "isCustom": false
+    },    {
+      "serviceType": "8",
+      "serviceLabel":  "סניף דיגיטל ",
+      "ServiceImg":  "cube-8",
+      "order":  "8",
+      "isCustom": false
+    },
+    {
+      "serviceType": "9",
+      "serviceLabel":  "בנקט עם שטרות של 20 שח",
+      "ServiceImg":  "cube-6",
+      "order":  "9",
+      "isCustom": false
+    },
+    {
+      "serviceType": "10",
+      "serviceLabel":  "מכונה להפקדת הצקים",
+      "ServiceImg":  "cube-7",
+      "order":  "10",
+      "isCustom": false
+    }
+
+  ]
+
