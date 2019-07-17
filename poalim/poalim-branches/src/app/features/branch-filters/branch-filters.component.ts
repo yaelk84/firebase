@@ -3,7 +3,6 @@ import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {CONSTANTS} from '../../constants';
 import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
-import {FunctionsService} from "../../core/services/functions.service";
 import {ApiService} from '../../core/services/api.service';
 
 
@@ -39,12 +38,12 @@ export class BranchFiltersComponent implements OnInit {
    this.dropDownCheckLength= this.getActiveCheckBox().length;
 
   }
-  toggleFilter(id:number) {
+  toggleFilter(id: string) {
     this.filterService.toggleFilter(id);
-    this.arrayOfActiveFilterIds=this.filterService.activeFilters;
+    this.arrayOfActiveFilterIds = this.filterService.activeFilters;
   }
   togglePluse(){
-    debugger
+
     if (this.deviceService.isMobile()){
       this.openPOPup = !this.openPOPup ;
     }
@@ -66,20 +65,20 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
   ngOnInit() {
-
+    const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
     return this.apiService.getFilters().subscribe((response) => {
-      response.forEach(obj => {
-        console.log('obj' , obj)
-      });
+      this.filterService.createFiltersByTypes(response);
+      this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
+      console.log('branchFiltersWithIcon', this.branchFiltersWithIcon)
+      this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size+1,this.filterService.filters.length));
+      // dropdown filter
+
+
     })
 
-    const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
-    //btn filter
-    const branchFilters = this.filterService.createFiltersByTypes();
-    this.branchFiltersWithIcon = branchFilters.slice(0, size);
-    // dropdown filter
 
-    this.checkBoxValues = this.filterService.createCheckBoxArray(branchFilters.slice(size+1,branchFilters.length));
+
+
 
   }
 

@@ -33,8 +33,10 @@
   }
 
   .wrapper-icon-filter {
+   height: 50px;
     display: flex;
-    align-self: center;
+    flex-direction: column;
+    justify-content: center;
 
     .icon-filter {
       background-repeat: no-repeat;
@@ -88,6 +90,11 @@
 
 
     }
+  }
+  .label-wrapper{
+    line-height: 16px;
+    text-align: center;
+    height: 32px;
   }
 
   &:first-child {

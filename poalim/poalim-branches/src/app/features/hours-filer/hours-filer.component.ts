@@ -21,17 +21,26 @@ export class HoursFilerComponent implements OnInit {
   selectHours(key) {
     this.selectedHours = key;
   }
-  submit(){
+
+  /**
+   * on submit add type fileter to active filters( remove old first)
+   * and update the selected  hours day value on service
+   */
+  submit() {
+
+    this.filters.removeFilterCheckBoxValues([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
+
     debugger
-    this.filters.removeFilterCheckBoxValues(['hours', 'days']);
+    this.filters.selectedHours = this.selectedHours;
+    this.filters.selectedDays = this.selectedDay;
     if( this.selectedDay.length){
-      this.filters.toggleFilter('days');
-     }
+      this.filters.toggleFilter( CONSTANTS.FILTER_BY_DAYS);
+    }
 
     if( this.selectedHours.length){
-      this.filters.toggleFilter('hours');
+      this.filters.toggleFilter(CONSTANTS.FILTER_BY_HOURS);
     }
-    //to do update values in filters
+
   }
   clear(){
     this.selectedDay = '';
