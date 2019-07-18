@@ -69,7 +69,7 @@ export class BranchFiltersComponent implements OnInit {
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
-      console.log('branchFiltersWithIcon', this.branchFiltersWithIcon)
+
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size+1,this.filterService.filters.length));
       // dropdown filter
 

@@ -94,6 +94,9 @@ export class HoursService {
 
           dataObjWithData.dayInWeek[key].noon = dataObj[key].branchOpeningHours[1];
         }
+        dataObjWithData.dayInWeek[key].specificDayValue = this.createLabelWithOpenAndClose(dataObjWithData.dayInWeek[key]) ;
+        debugger
+        dataObjWithData.dayInWeek[key].specificDayLabel = this.translate.getText('openInDayWithVal', [this.translate.getText(key)]);
       }
     );
     return dataObjWithData;
@@ -128,7 +131,7 @@ export class HoursService {
 
       label.textHours = this.translate.getText('openTomarrow', [this.openAt(currLabel)]);
     } else {
-      debugger;
+
       label.textHours = this.translate.getText('openAnotherDay', [this.translate.getText(dataObj.closestOpenDay), this.openAt(currLabel)]);
     }
     return label;
@@ -169,8 +172,7 @@ export class HoursService {
     const tomorrowIndex = arrayOfDays.findIndex(x => x.day === tomorrow);
     const nextDays = arrayOfDays.slice(tomorrowIndex, tomorrowIndex.length);
     nextDays.forEach((value) => {
-      debugger
-      value.label = this.createLabelWithOpenAndClose(value);
+            value.label = this.createLabelWithOpenAndClose(value);
       value.dayName = this.translate.getText(value.day);
 
     });

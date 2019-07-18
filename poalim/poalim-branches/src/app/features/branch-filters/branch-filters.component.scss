@@ -33,7 +33,7 @@
   }
 
   .wrapper-icon-filter {
-   height: 50px;
+   height: 59px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -95,6 +95,7 @@
     line-height: 16px;
     text-align: center;
     height: 32px;
+    max-width:110px
   }
 
   &:first-child {

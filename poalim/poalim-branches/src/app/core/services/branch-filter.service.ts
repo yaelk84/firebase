@@ -27,10 +27,15 @@ export class BranchFilterService {
   set selectedHours(hours: string) {
     this.selectedHoursValue = hours;
   }
-  set   selectedDays(day: string) {
-    debugger
+  set  selectedDays(day: string) {
+
     this.selectedDaysValue = day;
   }
+  get selectedDays() {
+
+    return  this.selectedDaysValue;
+  }
+
 
 
 
@@ -77,6 +82,16 @@ export class BranchFilterService {
 
        }
      })
+    this.updateActiveFilters(this.activeFilters);
+  }
+  removeFilterRadio(arr){
+    arr.forEach((val)=>{
+      const indexOfId = this.activeFilters.indexOf(val)
+      if (indexOfId > -1) {
+        this.activeFilters.splice(indexOfId, 1);
+
+      }
+    })
     this.updateActiveFilters(this.activeFilters);
   }
   addFiltersCheckBoxValues(arr){

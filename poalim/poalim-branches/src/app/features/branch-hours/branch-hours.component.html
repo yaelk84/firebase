@@ -1,4 +1,4 @@
-
+34343 {{dayName}}
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
   <div class="clearfix" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
   <div class="clearfix" *ngIf="!hours.isBankat">
@@ -13,9 +13,9 @@
         <span> {{hours.label.morning}}</span>
         </span>
 
-        <span ng-if="hours.noon"> <div  class="icon-separation"></div></span>
+        <span *ngIf="hours.label.noon"> <div  class="icon-separation"></div></span>
 
-        <span ng-if="hours.noon">{{hours.label.noon}}</span>
+        <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
       </div>
       <div class="future-date" *ngIf="!hours.openCurrentDay">
         {{hours.label.textHours}}

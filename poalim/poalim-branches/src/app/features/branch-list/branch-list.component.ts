@@ -16,6 +16,8 @@ import {isNullOrUndefined} from 'util';
 
 
 
+
+
 @Component({
   selector: 'app-branch-list',
   templateUrl: './branch-list.component.html',
@@ -35,6 +37,8 @@ export class BranchListComponent implements OnInit {
   formControl = new FormControl();
   branchSelectedIndex:number;
   showSelectedBranch = false;
+  filterByDay = false;
+  dayName='';
   backToResults(){
     this.showSelectedBranch= false;
   }
@@ -48,6 +52,11 @@ export class BranchListComponent implements OnInit {
       }
 
     }
+  handleFilterChange(activeFilter){
+         this.filterByDay = activeFilter.indexOf(CONSTANTS.FILTER_BY_DAYS) > -1;
+    this.dayName = this.branchFilterService.selectedDays;
+
+  }
     ngOnInit() {
     this.activeRoute.queryParams.subscribe((queryParams) => {
       console.log('queryParams', queryParams);
@@ -57,9 +66,15 @@ export class BranchListComponent implements OnInit {
            this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
       console.log('activeFilters !!!!!!', activeFilter);
-     this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, activeFilter);
+      this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
+      this.handleFilterChange(activeFilter);
+
+
 
     });
+
+
+      console.log('45454545' , this.dayName )
 
     this.filters= this.branchFilterService.filters;
      return this.apiService.getBranches().subscribe((response) => {

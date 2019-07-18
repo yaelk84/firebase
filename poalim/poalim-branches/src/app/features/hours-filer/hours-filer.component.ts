@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 
@@ -10,15 +10,28 @@ import {BranchFilterService} from '../../core/services/branch-filter.service';
 export class HoursFilerComponent implements OnInit {
   selectedDay: string = '';
   selectedHours: string = '';
-  hours: any = {noon: {star: CONSTANTS.NOON.START , end: CONSTANTS.NOON.END}, morning: {star: CONSTANTS.MORNING.START , end: CONSTANTS.MORNING.END}};
+  hours: any = {
+    noon: {star: CONSTANTS.NOON.START, end: CONSTANTS.NOON.END},
+    morning: {star: CONSTANTS.MORNING.START, end: CONSTANTS.MORNING.END}
+  };
   days: any[] = [{key: 'Sunday', label: 'א'}, {key: 'Monday', label: 'ב'}, {key: 'Tuesday', label: 'ג'}, {
-    key: 'Wednesday',    label: 'ד' }, {key: 'Thursday', label: 'ה'}, {key: 'Friday', label: 'ו'}, {key: 'זSaturday', label: 'ז'}];
+    key: 'Wednesday', label: 'ד'
+  }, {key: 'Thursday', label: 'ה'}, {key: 'Friday', label: 'ו'}, {key: 'Saturday', label: 'ז'}];
 
 
   selectDay(day) {
+    if (day.key === this.selectedDay) {
+      this.selectedDay = '';
+      return;
+    }
     this.selectedDay = day.key;
   }
+
   selectHours(key) {
+    if (key == this.selectedHours) {
+      this.selectedHours ='';
+      return;
+    }
     this.selectedHours = key;
   }
 
@@ -27,28 +40,33 @@ export class HoursFilerComponent implements OnInit {
    * and update the selected  hours day value on service
    */
   submit() {
-
-    this.filters.removeFilterCheckBoxValues([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
-
-    debugger
     this.filters.selectedHours = this.selectedHours;
     this.filters.selectedDays = this.selectedDay;
-    if( this.selectedDay.length){
-      this.filters.toggleFilter( CONSTANTS.FILTER_BY_DAYS);
+    this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
+
+
+    if (this.selectedDay.length) {
+      this.filters.toggleFilter(CONSTANTS.FILTER_BY_DAYS);
     }
 
-    if( this.selectedHours.length){
+    if (this.selectedHours.length) {
       this.filters.toggleFilter(CONSTANTS.FILTER_BY_HOURS);
     }
 
   }
-  clear(){
+
+  clear() {
     this.selectedDay = '';
     this.selectedHours = '';
+    this.filters.selectedHours = this.selectedHours;
+    this.filters.selectedDays = this.selectedDay;
+    this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
 
 
   }
-  constructor(private filters: BranchFilterService) { }
+
+  constructor(private filters: BranchFilterService) {
+  }
 
   ngOnInit() {
   }

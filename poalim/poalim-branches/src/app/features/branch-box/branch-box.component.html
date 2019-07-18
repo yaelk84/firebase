@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <app-branch-box-summarize  [branchDataSummarize]="branchData.branchSummarize"></app-branch-box-summarize>
+      <app-branch-box-summarize  *ngIf="branchData.branchSummarize" [branchDataSummarize]="branchData.branchSummarize" [filterByDay]="filterByDay"></app-branch-box-summarize>
       <div class="clearfix"></div>
     </div>
 

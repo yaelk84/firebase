@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RcTranslateService} from '@realcommerce/rc-packages';
+import {BranchFilterService} from '../../core/services/branch-filter.service';
 
 
 
@@ -9,14 +10,18 @@ import {RcTranslateService} from '@realcommerce/rc-packages';
   styleUrls: ['./branch-hours.component.scss']
 })
 export class BranchHoursComponent implements OnInit {
-  typeHours : string ="";
-  textHours : string ="";
 
-  constructor(private translate: RcTranslateService ) { }
+  constructor(private translate: RcTranslateService ,private  branchFilter: BranchFilterService) { }
   @Input() hours: any;
   @Input() isSingleDisplay: boolean;
-  ngOnInit() {
+  @Input() filterByDay: boolean
 
+  get dayName() {
+    return this.branchFilter.selectedDays;
+  }
+
+  ngOnInit() {
+console.log('dayName' , this.dayName )
 
   }
 

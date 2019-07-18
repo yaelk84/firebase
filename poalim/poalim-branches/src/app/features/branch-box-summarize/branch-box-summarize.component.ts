@@ -13,6 +13,7 @@ export class BranchBoxSummarizeComponent implements OnInit {
   constructor(private hoursFunc: HoursService) { }
   @Input() branchDataSummarize: any;
   @Input() isSingleDisplay: boolean;
+  @Input()  filterByDay: boolean;
 
   dropClick(){
     this.openHoursDrop =!this.openHoursDrop;
@@ -21,7 +22,7 @@ export class BranchBoxSummarizeComponent implements OnInit {
 
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
     this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
-    console.log('this.hoursList',this.hoursList)
+
      }
 
 }

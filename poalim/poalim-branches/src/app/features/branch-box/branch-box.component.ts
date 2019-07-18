@@ -14,6 +14,7 @@ export class BranchBoxComponent implements OnInit {
 
   @Input() branchData: any;
   @Input() branchIndex: number;
+  @Input() filterByDay: boolean;
   @Output() branchClick = new EventEmitter();
 
   selectBranch(){
@@ -23,6 +24,7 @@ export class BranchBoxComponent implements OnInit {
 
   ngOnInit() {
 
+console.log("inittt")
 
   }
 
