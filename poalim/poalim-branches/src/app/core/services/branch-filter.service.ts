@@ -23,11 +23,13 @@ export class BranchFilterService {
   activeFilters: any[] = [];
   selectedHoursValue: string ='';
   selectedDaysValue:  string = '';
+  selectedBranchValue: any = '';
+  selectedCityValue: any = '';
 
   set selectedHours(hours: string) {
     this.selectedHoursValue = hours;
   }
-  set  selectedDays(day: string) {
+  set selectedDays(day: string) {
 
     this.selectedDaysValue = day;
   }
@@ -35,17 +37,20 @@ export class BranchFilterService {
 
     return  this.selectedDaysValue;
   }
+  set selectedBranch(val) {
 
-
-
-
-
-  getActiveFilters() {
+    this.selectedBranchValue = val;
+  }
+  set selectedCity(val: any) {
+    this.selectedCityValue = val;
+  }
+     getActiveFilters() {
     return this.activeFilters;
   }
 
   updateActiveFilters(filters) {
     this.activeFilters = filters;
+    console.log("666666666666")
     this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,filters)
   }
 
@@ -61,8 +66,41 @@ export class BranchFilterService {
 
   }
 
-  toggleFilter(id: any) {
+  removeOtherFiltersIfOnlyOneFilterCanSelected(selectedFilters ){
 
+ const removeItem = (id) => {
+   const indexOfId = this.activeFilters.indexOf(id)
+   if (indexOfId > -1) {
+     this.activeFilters.splice(indexOfId, 1);
+
+   }
+ };
+ switch (selectedFilters) {
+      case CONSTANTS.FILTER_OPEN_NOW :
+        removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
+        removeItem(CONSTANTS.FILTER_BY_HOURS);
+        removeItem(CONSTANTS.FILTER_BY_DAYS);
+        this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS);
+        break;
+   case CONSTANTS.FILTER_OPEN_FRIDAY :
+     removeItem(CONSTANTS.FILTER_OPEN_NOW);
+     removeItem(CONSTANTS.FILTER_BY_HOURS);
+     removeItem(CONSTANTS.FILTER_BY_DAYS);
+     this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS);
+     break;
+   case CONSTANTS.FILTER_BY_DAYS :
+     removeItem(CONSTANTS.FILTER_OPEN_NOW);
+     removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
+     break;
+   case CONSTANTS.FILTER_BY_HOURS :
+     removeItem(CONSTANTS.FILTER_OPEN_NOW);
+     removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
+     break;
+    }
+
+  }
+  toggleFilter(id: any) {
+    this.removeOtherFiltersIfOnlyOneFilterCanSelected(id)
     const indexOfId = this.activeFilters.indexOf(id)
     if (indexOfId > -1) {
       this.activeFilters.splice(indexOfId, 1);

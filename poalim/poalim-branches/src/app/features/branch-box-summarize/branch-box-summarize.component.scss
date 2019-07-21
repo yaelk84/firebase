@@ -1,4 +1,18 @@
 @import "../../../assets/scss/style";
+
+.wrapper-branch-hours{
+  display: flex;
+  align-items: center;
+
+  &.withdropdown{
+    padding: 0 10px;
+    margin-right: -10px;
+    &:hover{
+      border-radius: 16px;
+      background-color: rgba(10, 41, 76, 0.08);
+    }
+  }
+}
 .branch-details {
   color: $marine-two;
   .name-and-number {
@@ -48,13 +62,16 @@
   transform: rotate(90deg);
 
 }
-/deep/
-.popover-wrapper.hours-list {
-  top:27px;
-  left:-27px;
-  padding: 30px 15px;
-  min-width: 330px;
+.hours{
+  /deep/
+  .popover-wrapper.hours-list {
+    top:27px;
+    left:-27px;
+    padding: 30px 15px;
+    min-width: 330px;
+  }
 }
+
 .drop-line{
   display: flex;
   color: $greyish-brown;
@@ -63,6 +80,9 @@
   line-height: 1;
   font-weight: 300;
 border-bottom: 1px solid $pale-grey;
+  &:last-child{
+    border: none;
+  }
   .drop-val{
     display: flex;
     align-items: center;

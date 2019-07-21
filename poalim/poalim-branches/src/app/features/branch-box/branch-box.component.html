@@ -4,13 +4,14 @@
     <div class="inner-box" >
 
       <div class="wrapper-icon">
-        <div class="branch-icon">
-          <div class="icon-val" >{{branchData.id}}</div>
+        <div class="branch-icon" [ngClass]="{'bankat':branchData.isBankat}">
+          <div class="icon-val"  *ngIf="!branchData.isBankat">{{branchIndex +1}}</div>
+          <div class="icon-val" *ngIf="branchData.isBankat"> ₪ </div>
 
         </div>
       </div>
 
-      <app-branch-box-summarize  *ngIf="branchData.branchSummarize" [branchDataSummarize]="branchData.branchSummarize" [filterByDay]="filterByDay"></app-branch-box-summarize>
+      <app-branch-box-summarize  *ngIf="branchData.branchSummarize" [branchDataSummarize]="branchData.branchSummarize" ></app-branch-box-summarize>
       <div class="clearfix"></div>
     </div>
 

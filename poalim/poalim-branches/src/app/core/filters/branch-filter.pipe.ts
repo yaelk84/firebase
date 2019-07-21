@@ -12,7 +12,16 @@ import {isNullOrUndefined} from 'util';
 })
 export class FilterBranchPipe implements PipeTransform {
 
+  services(value, serviceType){
+    return value.serviceType.indexOf(serviceType) > -1 ;
+  }
 
+  openFriday(value) {
+         return  !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.morning) || !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.morning) ;
+      }
+  openNow(value) {
+    return value.branchSummarize.openAndCloseHours.openCurrentHours ;
+  }
   dayFunction(value){
 
     const slectedDayInFilter =  this.branchFilter.selectedDaysValue;
@@ -47,7 +56,15 @@ export class FilterBranchPipe implements PipeTransform {
         case CONSTANTS.FILTER_BY_HOURS :
           return this.hoursFunction(values);
           break;
+        case CONSTANTS.FILTER_OPEN_NOW :
+          return this.openNow(values);
+          break
+        case CONSTANTS.FILTER_OPEN_FRIDAY :
+          return this.openFriday(values);
+          break
         default:
+          return this.services(values , filter );
+          break
 
       }
     }

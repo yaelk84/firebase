@@ -22,6 +22,7 @@ export class BranchBoxSummarizeComponent implements OnInit {
 
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
     this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
+    console.log(this.branchDataSummarize,"branchDataSummarize")
 
      }
 
