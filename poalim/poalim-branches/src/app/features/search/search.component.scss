@@ -1,0 +1,164 @@
+@import "../../../assets/scss/shared_param";
+@import "../../../assets/scss/colors";
+
+.overlay {
+  position: fixed;
+  top: 0;
+  #{$default-end}: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(47, 47, 67, 0.0); /*dim the background*/
+  transition: all .4s ease;
+}
+.overlay.on {
+  background-color: rgba(47, 47, 67, 0.4); /*dim the background*/
+  z-index: 10;
+}
+.search-wrapper {
+  border: 1px solid;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+  padding: 1rem 2rem;
+  position: relative;
+  z-index: 11;
+  background: $white;
+  box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+  max-width: 749px;
+
+  /deep/
+  .autocomplete-search {
+    margin-bottom: 0;
+    .ng-select-container {
+      flex-flow: row-reverse;
+      .ng-clear-wrapper {
+        margin-#{$default-end}: 1rem;
+        .ng-clear {
+          display: none;
+        }
+      }
+      .ng-clear-wrapper:after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        #{$default-end}: 0;
+        #{$default-start}: 0;
+        content: "\2573";
+        font-family: Segoe UI Symbol;
+        font-size: 1rem;
+        color: black;
+        line-height: 1.4;
+        text-align: center;
+      }
+      .ng-value-container {
+
+        .ng-value {
+          font-size: 20px;
+          color: $marine-two;
+          margin-top: -0.4rem;
+        }
+        .ng-placeholder {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 1;
+          transition: all .4s ease;
+
+        }
+        .ng-input {
+          width: 95%;
+          input {
+            color: $marine-two;
+            font-size: 20px;
+            line-height: 1;
+            margin-top: -.4rem;
+          }
+
+        }
+
+      }
+    }
+    .ng-dropdown-panel {
+      margin-top: 1.7rem;
+      color: $marine-two;
+      background-color: $white;
+      border-radius: 9px;
+      box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+      padding: .5rem;
+      #{$default-end}: 0;
+      .ng-option {
+        border-radius: 4px;
+
+        .option-wrapper {
+          padding: 1rem;
+          border-radius: 4px;
+          font-size: 20px;
+          font-weight: lighter;
+          transition: all .4s ease;
+          .highlighted {
+            font-weight: bold;
+            text-decoration: none;
+          }
+          .distance-wrapper {
+            text-align: $default-end;
+            font-size: 1.1rem;
+
+            .location-icon {
+              height: 1rem;
+              margin-bottom: 0.1rem;
+              margin-#{$default-end}: 0.5rem;
+            }
+          }
+        }
+
+      }
+      .ng-option:hover {
+        background: $marine-two;
+        color: $white;
+      }
+      .ng-option-marked {
+        background: $marine-two;
+        color: $white;
+      }
+    }
+  }
+
+  .search-btn-wrapper {
+    position: absolute;
+    #{$default-end}: -1px;
+    top: -1px;
+    z-index: 1002;
+
+    .search-btn {
+      background-color: $lipstick-two;
+      border: none;
+      height: 3.6rem;
+      width: 3.6rem;
+      -webkit-border-radius: 100%;
+      -moz-border-radius: 100%;
+      border-radius: 100%;
+      transition: all .4s ease;
+      cursor: not-allowed;
+      .search-btn-icon {
+        padding: .6em;
+      }
+    }
+    .search-btn.cant-click {
+      opacity: .5;
+
+    }
+    .search-btn.can-click {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+}
+.search-wrapper.focused {
+  /deep/
+  .ng-placeholder {
+    display: none;
+  }
+}
+
+

@@ -1,0 +1,125 @@
+@import "../../../assets/scss/shared_param";
+@import "../../../assets/scss/colors";
+
+.report-problem-wrapper {
+  text-align: center;
+  padding: 2rem;
+
+  .image-wrapper {
+    margin-bottom: 1rem;
+    transition: all ease .4s;
+    overflow: hidden;
+    height: auto;
+    max-height: 1000px;
+  }
+  .image-wrapper.shrink {
+    max-height: 0;
+  }
+
+  .msg-wrapper {
+    margin-bottom: 1rem;
+
+    .msg-header {
+      font-size: 25px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      color: $greyish-brown;
+    }
+    .msg-text {
+      font-size: 18px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      color: $greyish-brown;
+      transition: all ease .4s;
+      overflow: hidden;
+      height: auto;
+      max-height: 600px;
+    }
+    .msg-text.shrink {
+      max-height: 0;
+    }
+  }
+
+  .choose-problem-wrapper {
+    .choose-problem-header {
+      margin-bottom: 1rem;
+      font-size: 20px;
+      color: $greyish-brown;
+      transition: all ease .4s;
+      overflow: hidden;
+      height: auto;
+      max-height: 600px;
+    }
+    .choose-problem-header.shrink {
+      max-height: 0;
+    }
+    .choose-problem-btns {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      .outlined-btn {
+        width: 177px;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .report-service-wrapper {
+    margin-top: 2rem;
+    transition: all ease .4s;
+    overflow: hidden;
+    height: auto;
+    max-height: 1000px;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    .report-service-text-box-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+      textarea::placeholder {
+        font-size: 18px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 0.89;
+        letter-spacing: normal;
+        color: $marine-two;
+
+      }
+      .report-service-textarea {
+        width: 562px;
+        height: 117px;
+        border-radius: 4px;
+        background-color: $pale-grey;
+        border: none;
+        border-bottom: 1px solid $marine-two;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        resize: none;
+        padding-right: 16px;
+        padding-top: 14px;
+      }
+      .report-service-text-box-note {
+        position: absolute;
+        bottom: -10px;
+        right: 70px;
+        font-size: 14px;
+        font-weight: 300;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 0.86;
+        letter-spacing: normal;
+      }
+    }
+  }
+  .report-service-wrapper.shrink {
+    max-height: 0;
+  }
+}

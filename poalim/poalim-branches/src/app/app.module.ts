@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {HttpClient, HttpHeaders,HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BranchBoxComponent } from './features/branch-box/branch-box.component';
@@ -23,6 +23,12 @@ import { HoursFilerComponent } from './features/hours-filer/hours-filer.componen
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
+import { RcUiModule } from '@realcommerce/rc-packages';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { SearchComponent } from './features/search/search.component';
+import {FormsModule} from '@angular/forms';
+import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
+import { ReportProblemPopupComponent } from './features/report-problem-popup/report-problem-popup.component';
 
 @NgModule({
   declarations: [
@@ -38,11 +44,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     GeneralPopupComponent,
     SingleBranchDisplayComponent,
     HoursFilerComponent
+    BranchHoursComponent,
+    NoLocationPermissionsComponent,
+    SearchComponent,
+    ReportProblemPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RcUiModule,
+    NgSelectModule,
+    FormsModule
     RcUiModule,
     PerfectScrollbarModule
   ],

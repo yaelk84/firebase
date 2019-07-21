@@ -5,6 +5,7 @@
   "branchesAndATM": "סניפים וכספומטים",
   "placeInputSearch": "חיפוש ישוב, רחוב או סניף",
   "buttonLocation":  "קרוב אלי",
+  "confirmLocation": "אשר מיקום",
   "closesToYou": "קרובים אלי",
   "mostClose": "הכי קרוב",
   "servicesProvided": "השירותים הניתנים בסניף",
@@ -35,6 +36,8 @@
   "openInDayWithVal": "פתוח ביום {0}",
   "openHoursPensionService": "שעות פתיחה ייעוץ פנסיוני",
   "noBranchesFound": "לא נמצא הסניף לבקשתכם. נסו שוב.",
+  "city": "יישוב",
+  "autocompleteNoResults": "לא נמצאו תוצאות",
   "Sunday": "ראשון",
   "Monday": "שני",
   "Tuesday": "שלישי",
@@ -66,5 +69,17 @@
   "startFilter": "החל סינון"
 
 
+
+  "tomorrow": "מחר",
+  "reportProblemHeader": "דיווח על בעיה בנתונים",
+  "reportProblemMsg1": "נתון שגוי? חסר מידע?",
+  "reportProblemMsg2": "נשמח אם תדווח על הבעיה ואנו נטפל בה בהקדם.",
+  "chooseProblem": "בחרו את הנתון השגוי:",
+  "badOpenHours": "שעות פעילות שגויות",
+  "badAddress": "כתובת לא מעודכנת",
+  "badServices": "שירותים לא מעודכנים",
+  "serviceReportInputPlaceholder" : "תוכלו להוסיף כאן כמה מילים (רק אם תרצו)",
+  "maxChars": "עד 250 תווים",
+  "send": "שלח"
 
 }

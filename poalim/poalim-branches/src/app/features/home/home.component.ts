@@ -9,6 +9,8 @@ export class HomeComponent implements OnInit {
 
   public activeFilters = [];
 
+  openPopup = true;
+
   constructor() { }
 
   ngOnInit() {
