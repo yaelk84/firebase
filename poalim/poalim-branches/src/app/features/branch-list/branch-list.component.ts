@@ -39,6 +39,24 @@ export class BranchListComponent implements OnInit {
   showSelectedBranch = false;
   filterByDay = false;
   dayName='';
+  showDaysHoursFilter = false;
+  private buildFilterByQuery(queryParams){
+
+    if (!isNullOrUndefined(queryParams.branch && queryParams.branch .length )) {
+      this.branchFilterService.selectedBranch = queryParams.branch;
+      this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_BRANCH);
+    } else if ( !isNullOrUndefined(queryParams.city && queryParams.city .length )) {
+      this.branchFilterService.selectedCity = queryParams.city;
+      this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_CITY);
+    }
+
+
+  }
+  private callQueryParam(){
+    this.activeRoute.queryParams.subscribe((queryParams) => {
+      this.buildFilterByQuery(queryParams);
+    })
+  }
   backToResults(){
     this.showSelectedBranch= false;
   }
@@ -57,10 +75,12 @@ export class BranchListComponent implements OnInit {
     this.dayName = this.branchFilterService.selectedDays;
 
   }
+  toggleDropDown(){
+    console.log("toogle")
+    this.showDaysHoursFilter =! this.showDaysHoursFilter;
+  }
     ngOnInit() {
-    this.activeRoute.queryParams.subscribe((queryParams) => {
-      console.log('queryParams', queryParams);
-    })
+
    // this.city = this.route.snapshot.paramMap.get("city");
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
            this.selectBranch(null);
@@ -74,20 +94,16 @@ export class BranchListComponent implements OnInit {
     });
 
 
-      console.log('45454545' , this.dayName )
 
     this.filters= this.branchFilterService.filters;
      return this.apiService.getBranches().subscribe((response) => {
       response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
-        this.branchNewArray.push(new BranchObj(branchFetched.id, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment));
+        this.branchNewArray.push(new BranchObj( branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
+          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment , branchFetched.servicesType));
       });
-       this.branchNewArrayFilter= this.pipe.transform(this.branchNewArray, []);
-
-
-
-
+       this.callQueryParam();
+       this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
     })
 
 

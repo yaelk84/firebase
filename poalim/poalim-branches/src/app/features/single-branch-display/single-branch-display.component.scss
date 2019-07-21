@@ -12,6 +12,7 @@
   }
 
   .selected-branch-header {
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 18px;
@@ -23,6 +24,9 @@
     }
 
     .share {
+      position: absolute;
+      top:18px;
+    #{$default-end}:15px;
       /deep/
       .btn {
         font-size: 16px;

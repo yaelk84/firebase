@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
+import {RcEventBusService} from '@realcommerce/rc-packages';
 
 @Component({
   selector: 'app-hours-filer',
@@ -8,6 +9,8 @@ import {BranchFilterService} from '../../core/services/branch-filter.service';
   styleUrls: ['./hours-filer.component.scss']
 })
 export class HoursFilerComponent implements OnInit {
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() close: EventEmitter<any> = new EventEmitter();
   selectedDay: string = '';
   selectedHours: string = '';
   hours: any = {
@@ -43,6 +46,7 @@ export class HoursFilerComponent implements OnInit {
     this.filters.selectedHours = this.selectedHours;
     this.filters.selectedDays = this.selectedDay;
     this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
+    this.close.emit([]);
 
 
     if (this.selectedDay.length) {
@@ -65,10 +69,13 @@ export class HoursFilerComponent implements OnInit {
 
   }
 
-  constructor(private filters: BranchFilterService) {
+  constructor(private filters: BranchFilterService , private events: RcEventBusService) {
   }
 
   ngOnInit() {
+    this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS,()=>{
+    this.clear();
+    })
   }
 
 }

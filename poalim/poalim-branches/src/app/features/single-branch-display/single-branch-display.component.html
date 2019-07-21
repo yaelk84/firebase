@@ -3,9 +3,10 @@
     <div class="part-wrapper">
       <div class="selected-branch-header">
         <div class="branch-data">
-          <div class="wrapper-icon">
-            <div class="branch-icon">
-              <div class="icon-val" >{{selectedIndex}}</div>
+          <div class="wrapper-icon"  >
+            <div class="branch-icon" [ngClass]="{'bankat':dataBranchSelected.isBankat}">
+              <div class="icon-val" *ngIf="!dataBranchSelected.isBankat" >{{selectedIndex +1}}</div>
+              <div class="icon-val" *ngIf="dataBranchSelected.isBankat"> ₪ </div>
 
             </div>
           </div>

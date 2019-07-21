@@ -17,10 +17,11 @@ export class SingleBranchDisplayComponent implements OnInit {
   addMore(){
     this.end = this.dataBranchSelected.branchService.length;
 
+
   }
 
   ngOnInit() {
-
+    console.log('dfdfd' , this.dataBranchSelected)
 
   }
 

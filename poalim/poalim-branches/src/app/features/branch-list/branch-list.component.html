@@ -1,7 +1,7 @@
 <div class="list-wrapper">
-  <div class="popover-wrapper slideDown">
+  <div class="popover-wrapper "  [ngClass]="{'slideDown' :showDaysHoursFilter}" >
 
-    <app-hours-filer></app-hours-filer>
+    <app-hours-filer (close)="toggleDropDown()"> </app-hours-filer>
   </div>
 
   <div *ngIf="showSelectedBranch" >
@@ -15,13 +15,13 @@
 
     <div class="branch-list-header">
       <div class="branch-result">{{'branchFound' | rcTranslate :  [branchNewArrayFilter.length]}}</div>
-      <div class="hours">{{'filterHours' | rcTranslate}} {{filterByDay}}</div>
+      <div (click)="toggleDropDown()" class="hours">{{'filterHours' | rcTranslate}} {{filterByDay}}</div>
     </div>
     <div class="branch-list" id="branch_id">
 
       <perfect-scrollbar class="branch-list-scroll"  [config]="config">
         <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
-          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch($event)" [branchData]="branch" [filterByDay]="filterByDay"></app-branch-box>
+          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch($event)" [branchData]="branch" ></app-branch-box>
         </div>
       </perfect-scrollbar>
       <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">

@@ -60,6 +60,7 @@ export class HoursService {
         dataObj.closestOpenDay = dayToCheck;
         if (i === 0) {
           dataObj.openCurrentDay = true;
+          dataObj.openCurrentHours = true;
         } else if (i === 1) {
           dataObj.openCurrentTomorrow = true;
         }

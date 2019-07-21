@@ -14,14 +14,16 @@ export class BranchHoursComponent implements OnInit {
   constructor(private translate: RcTranslateService ,private  branchFilter: BranchFilterService) { }
   @Input() hours: any;
   @Input() isSingleDisplay: boolean;
-  @Input() filterByDay: boolean
+
+
+
 
   get dayName() {
     return this.branchFilter.selectedDays;
   }
 
   ngOnInit() {
-console.log('dayName' , this.dayName )
+
 
   }
 

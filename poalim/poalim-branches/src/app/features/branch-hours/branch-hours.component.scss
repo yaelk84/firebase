@@ -3,17 +3,22 @@
 .branch-hours{
   font-size: 18px;
   font-weight: normal;
-  &.single-display{
-    padding: 0 5px;
-    margin-right: -5px;
-    &:hover{
-      border-radius: 16px;
-      background-color: rgba(10, 41, 76, 0.08);
-    }
-  }
+
  }
 
-.open-today{
+.open-today,open-specific-day{
+  display: flex;
+  align-items: center;
+
+  .title-open-today{
+    color:  $true-green;
+
+
+
+  }
+}
+
+.open-specific-day{
   display: flex;
   align-items: center;
 

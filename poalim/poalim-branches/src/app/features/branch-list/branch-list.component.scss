@@ -46,12 +46,15 @@
 
 }
 .list-wrapper{
+  position: relative;
   max-width: 510px;
   /deep/
   .popover-wrapper{
+
     width: 335px;
     padding: 30px;
     left: 100px;
+    top:60px;
 
   }
 }

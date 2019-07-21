@@ -1,4 +1,4 @@
-34343 {{dayName}}
+
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
   <div class="clearfix" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
   <div class="clearfix" *ngIf="!hours.isBankat">
@@ -7,25 +7,35 @@
       <div class="was-change">{{'changeHours'| rcTranslate}</div>
     </div>
     <div class="clearfix" *ngIf="!hours.wasChange">
-      <div class="open-today" *ngIf="hours.openCurrentDay">
+      <div class="open-today" *ngIf="hours.openCurrentDay && !dayName">
         <span *ngIf="hours.label.morning">
             <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
         <span> {{hours.label.morning}}</span>
         </span>
 
-        <span *ngIf="hours.label.noon"> <div  class="icon-separation"></div></span>
+        <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
 
         <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
       </div>
-      <div class="future-date" *ngIf="!hours.openCurrentDay">
+      <div class="future-date" *ngIf="!dayName && !hours.filterByDay">
         {{hours.label.textHours}}
+      </div>
+      <div class="open-specific-day" *ngIf="dayName">
+
+             <span *ngIf="hours.dayInWeek[dayName].specificDayValue.morning">
+
+            <span class="title-open-today"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>
+        <span> {{hours.dayInWeek[dayName].specificDayValue.morning}}</span>
+        </span>
+
+        <span *ngIf="hours.dayInWeek[dayName].specificDayValue.noon"> <div class="icon-separation"></div></span>
+
+        <span *ngIf="hours.dayInWeek[dayName].specificDayValue.noon">{{hours.dayInWeek[dayName].specificDayValue.noon}}</span>
       </div>
     </div>
 
   </div>
 
 
-
-
-
 </div>
+

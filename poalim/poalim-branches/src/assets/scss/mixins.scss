@@ -11,12 +11,17 @@
     background: $lipstick-two;;
     border-radius: 5px;
     transform: rotate(45deg);
+    &.bankat{
+      background: $marine-two;;
+
+    }
 
     .icon-val {
       color: $white;
       transform: rotate(-45deg);
     }
   }
+
 }
 
 .custom-control {
@@ -154,6 +159,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   padding: 30px 23px;
   &.slideDown{
     opacity: 1;
+    z-index: 99;
   }
 
 
