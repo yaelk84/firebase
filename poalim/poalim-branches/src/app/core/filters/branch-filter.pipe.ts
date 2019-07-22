@@ -26,6 +26,19 @@ export class FilterBranchPipe implements PipeTransform {
 
     const slectedDayInFilter =  this.branchFilter.selectedDaysValue;
     return  (!isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek[slectedDayInFilter]) && value.branchSummarize.openAndCloseHours.dayInWeek[slectedDayInFilter].openToday );}
+    addIndexes(matches){
+    let newMatches = [];
+      let  conunter = 1 ;
+      matches.forEach((value) => {
+        if(!value.isBankat){
+          value.indexNoBankat = conunter;
+          conunter++;
+        }
+        newMatches.push(value);
+
+      })
+      return newMatches;
+    }
     
   hoursFunction(value){
     const slectedDayInFilter =  this.branchFilter.selectedDaysValue;
@@ -78,7 +91,9 @@ export class FilterBranchPipe implements PipeTransform {
       return  fileredBranches
   };
     if (!filters.length){
-       return  branches;
+      debugger
+      matches = this.addIndexes(branches);
+      return  matches
     }
     // Loop through each item in the filters
     for (let i = 0; i < filters.length; i++) {
@@ -86,6 +101,7 @@ export class FilterBranchPipe implements PipeTransform {
 
          }
 
+    matches = this.addIndexes(matches);
     return matches;
   }
 

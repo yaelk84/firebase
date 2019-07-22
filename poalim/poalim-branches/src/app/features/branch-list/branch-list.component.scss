@@ -48,18 +48,20 @@
 .list-wrapper{
   position: relative;
   max-width: 510px;
-  /deep/
+  overflow: hidden;
+    /deep/
   .popover-wrapper{
 
     width: 335px;
     padding: 30px;
-    left: 100px;
+    left: 0px;
     top:60px;
 
   }
 }
 .branch-list-header{
   display:flex ;
+  align-items: center;
   justify-content: space-between;
   justify-items: center;
   padding: 15px;
@@ -72,16 +74,26 @@
        font-size: 25px;
   }
   .hours{
+    display: flex;
 font-size: 20px;
+    align-items: center;
+    line-height: 20px;
 }
 
 
 }
-.branch-list-scroll{
+.branch-list{
+  height: 427px;
+  position: relative;
 
-  max-height: 427px;
-  position: relative
+
+  .branch-list-scroll{
+
+
+    position: relative
+  }
 }
+
 .back-to-results{
   font-size: 20px;
   color: $greyish-brown;
@@ -104,6 +116,16 @@ font-size: 20px;
   margin-right: 25px;
   max-width: 619px;
   borde:1px solide $pale-grey
+}
+.img-wrapper{
+  cursor: pointer;
+  width: 16px;
+  margin-right: 6px;
+
+  img{
+    width: 100%;
+  }
+;
 }
 
 

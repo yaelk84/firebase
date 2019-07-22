@@ -4,6 +4,7 @@ import {CONSTANTS} from '../../constants';
 import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
 import {ApiService} from '../../core/services/api.service';
+import {isNullOrUndefined} from 'util';
 
 
 
@@ -31,6 +32,10 @@ export class BranchFiltersComponent implements OnInit {
   closePopup() {
 
   }
+  closeDropDownServices() {
+    console.log("dfdfdfdf")
+    this.openDropDown = false;
+  }
   getActiveCheckBox(){
     return  this.checkBoxValues.filter(key =>{return (key.formControl && key.formControl.value=== true)})
   }
@@ -41,13 +46,19 @@ export class BranchFiltersComponent implements OnInit {
   toggleFilter(id: string) {
     this.filterService.toggleFilter(id);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
+        if ( id === CONSTANTS.FILTER_OPEN_FRIDAY ) {
+      const valueToChange =  this.arrayOfActiveFilterIds.indexOf(id) > -1 ? CONSTANTS.FRIDAY : '';
+      this.filterService.selectedDays = valueToChange;
+    }
   }
-  togglePluse(){
+  togglePluse( e?: Event) {
+    if (!isNullOrUndefined(e)) {  e.stopPropagation();}
 
     if (this.deviceService.isMobile()){
       this.openPOPup = !this.openPOPup ;
     }
     else {
+
       this.openDropDown = !this.openDropDown;
     }
    }

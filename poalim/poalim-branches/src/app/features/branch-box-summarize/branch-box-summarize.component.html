@@ -13,10 +13,10 @@
   <div class="hours">
     <div class="wrapper-branch-hours" [ngClass]="{'withdropdown':branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay}">
       <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours" [isSingleDisplay]="isSingleDisplay" ></app-branch-hours>
-      <div *ngIf="branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay" class="icon-arrow" (click)="dropClick()"></div>
+      <div *ngIf="branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay" class="icon-arrow" (click)="dropClick($event)"></div>
     </div>
 
-    <div class="popover-wrapper hours-list " [ngClass]="{'slideDown':openHoursDrop}">
+    <div class="popover-wrapper hours-list "    lib-rc-click-outside (clickOutside)="closeDropDown($event)"*ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
     <div *ngFor=" let dayHours of hoursList" class="drop-line">
       <span class="drop-label"> <span>{{'dropdownLabel' | rcTranslate}}</span> <span> {{dayHours.dayName}}:</span>
         </span>

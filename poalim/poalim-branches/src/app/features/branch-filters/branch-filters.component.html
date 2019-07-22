@@ -19,11 +19,11 @@
 
     </div>
   </div>
-  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse()">
+  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse($event)">
     <div class="badge-btn"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
     <div  class="icon-filter-btn"></div>
   </div>
-  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper">
+  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper"   lib-rc-click-outside (clickOutside)="closeDropDownServices()">
     <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
 
   </div>

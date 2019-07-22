@@ -19,6 +19,7 @@ export class BranchHoursComponent implements OnInit {
 
 
   get dayName() {
+
     return this.branchFilter.selectedDays;
   }
 

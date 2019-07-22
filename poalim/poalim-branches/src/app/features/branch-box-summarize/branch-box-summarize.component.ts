@@ -14,15 +14,18 @@ export class BranchBoxSummarizeComponent implements OnInit {
   @Input() branchDataSummarize: any;
   @Input() isSingleDisplay: boolean;
   @Input()  filterByDay: boolean;
-
-  dropClick(){
+  closeDropDown(){
+    this.openHoursDrop=false;
+  }
+  dropClick(e){
+    e.stopPropagation();
     this.openHoursDrop =!this.openHoursDrop;
   }
   ngOnInit() {
 
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
     this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
-    console.log(this.branchDataSummarize,"branchDataSummarize")
+
 
      }
 

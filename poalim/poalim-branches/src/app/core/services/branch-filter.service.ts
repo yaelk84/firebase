@@ -50,7 +50,6 @@ export class BranchFilterService {
 
   updateActiveFilters(filters) {
     this.activeFilters = filters;
-    console.log("666666666666")
     this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,filters)
   }
 

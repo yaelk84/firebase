@@ -1,112 +1,134 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
-import {catchError, map, mergeMap} from 'rxjs/operators';
-import {Subscription} from "rxjs";
-import {FilterBranchPipe} from "../../core/filters/branch-filter.pipe";
-import {RcEventBusService} from "@realcommerce/rc-packages";
+import {FilterBranchPipe} from '../../core/filters/branch-filter.pipe';
+import {RcEventBusService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 import {FormControl} from '@angular/forms';
-import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { ActivatedRoute } from '@angular/router';
+import {PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
+import {ActivatedRoute} from '@angular/router';
+
 import {isNullOrUndefined} from 'util';
-
-
-
-
 
 
 @Component({
   selector: 'app-branch-list',
   templateUrl: './branch-list.component.html',
   styleUrls: ['./branch-list.component.scss']
-})
-export class BranchListComponent implements OnInit {
+}) 
+export class BranchListComponent implements OnInit, AfterViewInit {
 
-  public config: PerfectScrollbarConfigInterface = {}
+  public config: PerfectScrollbarConfigInterface = {};
   private city: string;
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,private branchFilterService : BranchFilterService, private pipe:FilterBranchPipe, private events: RcEventBusService,private activeRoute:ActivatedRoute) {
+
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute) {
   }
 
   data;
   branchNewArray: BranchObj[] = [];
-  filters=[];
-  branchNewArrayFilter:BranchObj[]=[];
+  filters = [];
+  branchNewArrayFilter: BranchObj[] = [];
   formControl = new FormControl();
-  branchSelectedIndex:number;
+  branchSelectedIndex: number;
   showSelectedBranch = false;
   filterByDay = false;
-  dayName='';
+  filterByHours = false;
+  dayName = '';
   showDaysHoursFilter = false;
-  private buildFilterByQuery(queryParams){
+   filterWithHours = '/assets/media/hour-filter.svg';
+   filterWithNoHours = '/assets/media/no-filter-hours.svg';
+  filterIcon = this.filterWithNoHours;
 
-    if (!isNullOrUndefined(queryParams.branch && queryParams.branch .length )) {
+  private buildFilterByQuery(queryParams) {
+
+    if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
       this.branchFilterService.selectedBranch = queryParams.branch;
       this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_BRANCH);
-    } else if ( !isNullOrUndefined(queryParams.city && queryParams.city .length )) {
+    } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
       this.branchFilterService.selectedCity = queryParams.city;
       this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_CITY);
     }
 
 
   }
-  private callQueryParam(){
+
+  private callQueryParam() {
     this.activeRoute.queryParams.subscribe((queryParams) => {
       this.buildFilterByQuery(queryParams);
-    })
+    });
   }
-  backToResults(){
-    this.showSelectedBranch= false;
+
+   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+
+  closeDropDown(){
+        this.showDaysHoursFilter = false;
   }
+  backToResults() {
+    this.showSelectedBranch = false;
+  }
+
   selectBranch(id) {
-        this.branchSelectedIndex = id;
+    this.branchSelectedIndex = id;
     if (isNullOrUndefined(id)) {
       this.showSelectedBranch = false;
+    } else {
+      this.showSelectedBranch = true;
     }
-       else {
-        this.showSelectedBranch = true;
-      }
 
-    }
-  handleFilterChange(activeFilter){
-         this.filterByDay = activeFilter.indexOf(CONSTANTS.FILTER_BY_DAYS) > -1;
+  }
+
+  handleFilterChange(activeFilter) {
+    this.filterByHours = activeFilter.indexOf(CONSTANTS.FILTER_BY_HOURS) > -1;
+    this.filterByDay = activeFilter.indexOf(CONSTANTS.FILTER_BY_DAYS) > -1;
     this.dayName = this.branchFilterService.selectedDays;
 
   }
-  toggleDropDown(){
-    console.log("toogle")
-    this.showDaysHoursFilter =! this.showDaysHoursFilter;
-  }
-    ngOnInit() {
 
-   // this.city = this.route.snapshot.paramMap.get("city");
-    this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER,(filters)=>{
-           this.selectBranch(null);
+  toggleDropDown(e) {
+    e.stopPropagation();
+      this.showDaysHoursFilter = !this.showDaysHoursFilter;
+
+
+
+  }
+
+  ngOnInit() {
+
+    // this.city = this.route.snapshot.paramMap.get("city");
+    this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
+      this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
       console.log('activeFilters !!!!!!', activeFilter);
       this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
       this.handleFilterChange(activeFilter);
+
+            // this.componentRef.directiveRef.ps().update();
+
 
 
 
     });
 
 
-
-    this.filters= this.branchFilterService.filters;
-     return this.apiService.getBranches().subscribe((response) => {
+    this.filters = this.branchFilterService.filters;
+    return this.apiService.getBranches().subscribe((response) => {
       response.forEach(obj => {
         const branchFetched = this.branchDataServices.createSingleBranch(obj);
-        this.branchNewArray.push(new BranchObj( branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment , branchFetched.servicesType));
+        this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
+          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
       });
-       this.callQueryParam();
-       this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
-    })
+      this.callQueryParam();
+      this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
+      console.log('this.branchNewArrayFilter', this.branchNewArrayFilter)
+    });
 
 
+  }
+
+  ngAfterViewInit() {
+    this.componentRef.directiveRef.ps().update();
 
 
   }
