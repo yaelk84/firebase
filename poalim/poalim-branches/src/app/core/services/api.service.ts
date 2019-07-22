@@ -152,7 +152,7 @@ export class ApiService extends RcApiService {
 
 
   public getBranches(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/mockDataBranches.json', {}, true);
+    return this.apiGet('../assets/stubs/mockData.json', {}, true);
   }
 
   public getFilters(params = {}, force: boolean = true) {

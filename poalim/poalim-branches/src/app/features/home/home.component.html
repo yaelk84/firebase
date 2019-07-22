@@ -1,5 +1,9 @@
 <div style="max-width:1100px; margin: 0 auto">
   <div class="branches-header">
+    <div class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
+    <app-no-location-permissions></app-no-location-permissions>
+    <app-search></app-search>
+    <div class="choose-title title">{{'chooseTitle' | rcTranslate}} </div>
     <app-branch-filters></app-branch-filters>
   </div>
   <div class="branch-container">
@@ -9,8 +13,13 @@
 
   </div>
 
+  <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+    <app-report-problem-popup></app-report-problem-popup>
+  </lib-rc-popup-wrapper>
 
 </div>
+
+
 
 
 

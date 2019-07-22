@@ -19,16 +19,17 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { SingleBranchDisplayComponent } from './features/single-branch-display/single-branch-display.component';
 import { HoursFilerComponent } from './features/hours-filer/hours-filer.component';
-
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
-};
-import { RcUiModule } from '@realcommerce/rc-packages';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { SearchComponent } from './features/search/search.component';
 import {FormsModule} from '@angular/forms';
 import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
 import { ReportProblemPopupComponent } from './features/report-problem-popup/report-problem-popup.component';
+
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { ReportProblemPopupComponent } from './features/report-problem-popup/rep
     CheckBoxFilterComponent,
     GeneralPopupComponent,
     SingleBranchDisplayComponent,
-    HoursFilerComponent
+    HoursFilerComponent,
     BranchHoursComponent,
     NoLocationPermissionsComponent,
     SearchComponent,
@@ -55,8 +56,7 @@ import { ReportProblemPopupComponent } from './features/report-problem-popup/rep
     HttpClientModule,
     RcUiModule,
     NgSelectModule,
-    FormsModule
-    RcUiModule,
+    FormsModule,
     PerfectScrollbarModule
   ],
   providers: [FilterBranchPipe, {

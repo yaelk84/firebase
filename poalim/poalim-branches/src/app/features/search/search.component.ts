@@ -78,11 +78,12 @@ export class SearchComponent implements OnInit {
         address: branch.geographicAddress.streetName + ' ' + branch.geographicAddress.buildingNumber + ', ' + branch.geographicAddress.cityName
       });
     }
-    this.items = tempCities.concat(tempBranches);
+    this.items = [5,6,7,8,];
 
   }
 
   onSearch($event) {
+    debugger
     this.searchTerm = $event.term;
     this.sortFilteredItems($event.items);
     if ($event.term.length > 2) {
@@ -97,6 +98,7 @@ export class SearchComponent implements OnInit {
   }
 
   sortFilteredItems(items) {
+    debugger
     let cities = [];
     let branches = [];
     for (const item of items) {
@@ -131,6 +133,7 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
+    debugger
     console.log($event);
     this.openDropdown = false;
     this.searchTerm = '';
@@ -138,6 +141,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchFn(term, item) {
+    debugger
     if (term.length < 3) { return false; }
     if (item.type == 'city'){
       return item.name.indexOf(term) > -1;

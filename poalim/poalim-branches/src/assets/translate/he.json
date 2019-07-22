@@ -66,10 +66,7 @@
   "openMorning": "פתוח בבוקר",
   "openNoon":"פתוח אחה\"צ",
   "clean": "נקה",
-  "startFilter": "החל סינון"
-
-
-
+  "startFilter": "החל סינון",
   "tomorrow": "מחר",
   "reportProblemHeader": "דיווח על בעיה בנתונים",
   "reportProblemMsg1": "נתון שגוי? חסר מידע?",
@@ -80,6 +77,8 @@
   "badServices": "שירותים לא מעודכנים",
   "serviceReportInputPlaceholder" : "תוכלו להוסיף כאן כמה מילים (רק אם תרצו)",
   "maxChars": "עד 250 תווים",
-  "send": "שלח"
+  "send": "שלח",
+  "branchesTitle": "איתור סניפים",
+  "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:"
 
 }
