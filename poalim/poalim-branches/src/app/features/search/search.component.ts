@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch($event) {
-    debugger
+
     this.searchTerm = $event.term;
     this.sortFilteredItems($event.items);
     if ($event.term.length > 2) {
