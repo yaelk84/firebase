@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {CONSTANTS} from '../../constants';
-import {DeviceService} from "../../core/services/device.service";
+import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
-import {FunctionsService} from "../../core/services/functions.service";
+import {FunctionsService} from '../../core/services/functions.service';
 
 
 
@@ -13,48 +13,47 @@ import {FunctionsService} from "../../core/services/functions.service";
   styleUrls: ['./branch-filters.component.scss']
 })
 export class BranchFiltersComponent implements OnInit {
-  arrayOfActiveFilterIds: any[]=new Array();
+  arrayOfActiveFilterIds: any[] = new Array();
   branchFiltersWithIcon;
   checkBoxValues: any;
-  openDropDown:boolean=false;
-  openPOPup:boolean=false;
-  dropDownCheckLength:number=0;
+  openDropDown = false;
+  openPOPup = false;
+  dropDownCheckLength = 0;
 
 
 
   @Input() activeFilters;
 
 
-  constructor( private filterService: BranchFilterService,private deviceService: DeviceService) { }
+  constructor( private filterService: BranchFilterService, private deviceService: DeviceService) { }
   public formControl = new FormControl();
   closePopup() {
-    console.log("close");
+    console.log('close');
   }
-  getActiveCheckBox(){
-    return  this.checkBoxValues.filter(key =>{return (key.formControl && key.formControl.value=== true)})
+  getActiveCheckBox() {
+    return  this.checkBoxValues.filter(key => (key.formControl && key.formControl.value === true));
   }
-  privateUpdateNum(){
-   this.dropDownCheckLength= this.getActiveCheckBox().length;
+  privateUpdateNum() {
+   this.dropDownCheckLength = this.getActiveCheckBox().length;
 
   }
-  toggleFilter(id:number) {
+  toggleFilter(id: number) {
     this.filterService.toggleFilter(id);
-    this.arrayOfActiveFilterIds=this.filterService.activeFilters;
+    this.arrayOfActiveFilterIds = this.filterService.activeFilters;
   }
-  togglePluse(){
-    debugger
-    if (this.deviceService.isMobile()){
+  togglePluse() {
+    // debugger;
+    if (this.deviceService.isMobile()) {
       this.openPOPup = !this.openPOPup ;
-    }
-    else {
+    } else {
       this.openDropDown = !this.openDropDown;
     }
    }
-  dropDownSelected(){
+  dropDownSelected() {
       this.privateUpdateNum();
-     this.filterService.removeFilterCheckBoxValues(this.checkBoxValues);
-    this.filterService.addFiltersCheckBoxValues(this.getActiveCheckBox());
-     this.togglePluse();
+      this.filterService.removeFilterCheckBoxValues(this.checkBoxValues);
+      this.filterService.addFiltersCheckBoxValues(this.getActiveCheckBox());
+      this.togglePluse();
   }
   popupSelected() {
     this.privateUpdateNum();
@@ -64,13 +63,13 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
   ngOnInit() {
-    const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
-    //btn filter
+    const size = this.deviceService.isMobile() ? CONSTANTS.BRANCH_FILTER_NUM.MOBILE : CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
+    // btn filter
     const branchFilters = this.filterService.createFiltersByTypes();
     this.branchFiltersWithIcon = branchFilters.slice(0, size);
     // dropdown filter
 
-    this.checkBoxValues = this.filterService.createCheckBoxArray(branchFilters.slice(size+1,branchFilters.length));
+    this.checkBoxValues = this.filterService.createCheckBoxArray(branchFilters.slice(size + 1, branchFilters.length));
 
 
 

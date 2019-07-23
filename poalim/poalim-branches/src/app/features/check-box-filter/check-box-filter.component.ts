@@ -7,12 +7,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class CheckBoxFilterComponent implements OnInit {
 
-  @Input() filterList :any[];
+  @Input() filterList: any[];
   @Output() valueChange = new EventEmitter();
 
 
   constructor() { }
-  submitCheckboxes(){
+  submitCheckboxes() {
 
     this.valueChange.emit();
   }

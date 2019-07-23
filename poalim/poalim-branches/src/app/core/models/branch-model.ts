@@ -7,7 +7,8 @@ constructor(private id: number,
             private  branchSummarize: BranchSummarize,
             private  branchService: [],
             private  fax: string,
-            private phone: string,
+            private phone: string
+
                        ) {
 
   }

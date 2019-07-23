@@ -1,5 +1,7 @@
-export interface BranchBox{
-  id:number;
-  name:string;
-  email:string;
+export interface BranchBox {
+  id: number;
+  name: string;
+  email: string;
 }
+
+

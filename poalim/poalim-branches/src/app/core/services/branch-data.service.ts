@@ -41,12 +41,11 @@ export class BranchDataService {
       .sort((a, b) => {
         return a.dayDifferent < b.dayDifferent ? -1 : 1;
       });
-    ;
     return filteredAndSortedData;
   }
 
   private returnOpenHoursForCurrentDay(dayObject, currentTime, waasChange) {
-    let hours = {morninigHours: '', nooonHours: ''};
+    const hours = {morninigHours: '', nooonHours: ''};
     if (isNullOrUndefined(dayObject)) {
       return hours;
     }
@@ -64,7 +63,7 @@ export class BranchDataService {
       }
     }
     return hours;
-  };
+  }
 
   private createOpeningAndClosingHours(dataObj, IsHourChange) {
     let objectHours: any = {};
@@ -81,16 +80,15 @@ export class BranchDataService {
         if (openAndCloseHours.morninigHours) {
           objectHours = openAndCloseHours;
           objectHours.openNow = openNow;
-          objectHours.changeHours = false;// todo
+          objectHours.changeHours = false; // todo
           break;
         }
       } else {
         objectHours.openAt = sortedFilterArray[i].field_bod_open_hours;
         if ( sortedFilterArray[i].dayDifferent === 1) {
           objectHours.tomorrow = true;
-          objectHours.dayName=this.translate.getText('tomorrow');
-        }
-        else {
+          objectHours.dayName = this.translate.getText('tomorrow');
+        } else {
           objectHours.dayName = this.translate.getText(this.config.daysHe[sortedFilterArray[i].field_bod_day].en);
         }
         break;
@@ -98,7 +96,7 @@ export class BranchDataService {
 
     }
     return objectHours;
-  };
+  }
   private  replaceNullOrUndefinedInEmpty(val) {
     const  str = isNullOrUndefined(val) || val === 'null' ? '' : val;
     return str;
@@ -112,26 +110,26 @@ export class BranchDataService {
   }
   createSingleBranch(data) {
     console.log('data', data);
-    //const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
+    // const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
     const address = data.geographicAddress[0];
-    const contactAddress= this.craeteContactAddress(data.contactAddress);
+    const contactAddress = this.craeteContactAddress(data.contactAddress);
     const branchData = {
-
       branchNum: data.branchNumber,
       branchName: data.branchName,
-      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) + + this.replaceNullOrUndefinedInEmpty(address.streetName),
+      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' '
+        + this.replaceNullOrUndefinedInEmpty(address.streetName) + + this.replaceNullOrUndefinedInEmpty(address.streetName),
       distance: 0,
       openAndCloseHours: {},
       branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
-      branchService:this.craeteBrancServices(data.branchService),
+      branchService: this.craeteBrancServices(data.branchService),
       fax: contactAddress.fax,
       phone: contactAddress.phone
     };
-      const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
+    const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distance, branchData.openAndCloseHours);
-      return{
+    return{
         id: 1,
-        branchSummarize: branchSummarize,
+        branchSummarize,
         branchService:  branchData.branchService,
         fax:  branchData.fax,
         phone:  branchData.phone,

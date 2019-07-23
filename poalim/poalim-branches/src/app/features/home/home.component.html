@@ -2,7 +2,10 @@
   <div class="branches-header">
     <app-branch-filters></app-branch-filters>
   </div>
-  <app-branch-list></app-branch-list>
+  <div class="branch-map">
+    <app-branch-list></app-branch-list>
+    <app-map [branches]="branches" *ngIf="branches"></app-map>
+  </div>
 </div>
 
 

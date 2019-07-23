@@ -1,0 +1,9 @@
+<agm-map [latitude]="geoCoordinateX" [longitude]="geoCoordinateY" [zoom]="zoom">
+    <agm-marker [latitude]="mapBranches.lat" [longitude]="mapBranches.lng"></agm-marker>
+  <ng-container *ngFor="let branchPoint of branchesMapMarker">
+    <agm-marker
+      [latitude]="branchPoint.geoCoordinateX"
+      [longitude]="branchPoint.geoCoordinateY">
+    </agm-marker>
+  </ng-container>
+</agm-map>

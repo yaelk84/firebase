@@ -1,6 +1,6 @@
 export const CONSTANTS = {
-  EVENTS:{
-    UPDATE_FILTER:"UPDATE_FILTER"
+  EVENTS: {
+    UPDATE_FILTER: 'UPDATE_FILTER'
   },
   ROUTES: {
     HOME: {
@@ -10,9 +10,9 @@ export const CONSTANTS = {
   LANGUAGE: {
     EN: 'en'
   },
-  BRANCH_FILTER_NUM :{
-    MOBILE:3,
-    DESKTOP:7,
+  BRANCH_FILTER_NUM : {
+    MOBILE: 3,
+    DESKTOP: 7,
 
   },
 };

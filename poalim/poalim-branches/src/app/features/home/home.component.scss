@@ -5,6 +5,11 @@
   padding: 100px 31px;
 
 }
+
+.branch-map {
+  display: flex;
+  justify-content: space-between;
+}
 @media (max-width: $mobile_view) {
   .branches-header {
     padding:100px  0;
