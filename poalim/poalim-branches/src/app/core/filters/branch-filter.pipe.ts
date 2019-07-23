@@ -91,7 +91,7 @@ export class FilterBranchPipe implements PipeTransform {
       return  fileredBranches
   };
     if (!filters.length){
-      debugger
+
       matches = this.addIndexes(branches);
       return  matches
     }

@@ -10,8 +10,10 @@ export class TimeService extends RcTimeService {
 
   constructor() {super(); }
 
-  getCurrentTime() {
-    return this.momentRef().format();
+  getCurrentTime( time ) {
+    console.log(this.momentRef(time).format('MMMM Do YYYY, h:mm:ss'))
+    return this.momentRef(time);
+
   }
 
   getDayName(date) {
@@ -41,7 +43,6 @@ export class TimeService extends RcTimeService {
 
     const startTime = this.momentRef(start, 'HH:mm');
     const endTime = this.momentRef(end, 'HH:mm');
-    const aa =  startTime.diff(endTime, 'hours');
     const amIBetween = this.momentRef(date).isBetween(startTime , endTime);
     return amIBetween;   //  returns false.  if date ignored I expect TRUE
 
@@ -52,9 +53,8 @@ export class TimeService extends RcTimeService {
    return parseFloat(num.replace(':', '.'));
   }
   hoursDiff(date, end) {
-
-    const startTime = this.momentRef(date).format('HH:mm');
-    const diffNum = this.timeToDecimal(end) - this.timeToDecimal(startTime)
+    const now = this.momentRef(date).format('HH:mm');
+    const diffNum = this.timeToDecimal(end) - this.timeToDecimal(now)
     return diffNum;
      }
 

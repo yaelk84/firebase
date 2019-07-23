@@ -17,7 +17,7 @@ export class BranchDataService {
   private config = this.appService.appConfig;
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService) {
-    const curTime = this.timeService.getCurrentTime();
+    const curTime = this.hursService.time;
     const dayName = this.timeService.getDayName(curTime);
     const tomarrowDay = this.timeService.addDays(1, curTime);
     const afterTomarrowDay = this.timeService.addDays(2, curTime);
@@ -70,7 +70,7 @@ export class BranchDataService {
   createSingleBranch(data) {
 
     const isBankat = data.channelGroupCode ===  CONSTANTS.BANKAT;
-    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandart.weekDaysSpecification , false , isBankat );
+    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification , false , isBankat );
     const address = data.geographicAddress[0];
     const contactAddress = this.craeteContactAddress(data.contactAddress);
     const branchData = {

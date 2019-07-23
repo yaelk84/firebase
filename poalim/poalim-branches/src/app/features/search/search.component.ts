@@ -98,7 +98,7 @@ export class SearchComponent implements OnInit {
   }
 
   sortFilteredItems(items) {
-    debugger
+
     let cities = [];
     let branches = [];
     for (const item of items) {
@@ -133,7 +133,7 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
-    debugger
+
     console.log($event);
     this.openDropdown = false;
     this.searchTerm = '';
@@ -141,7 +141,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchFn(term, item) {
-    debugger
+
     if (term.length < 3) { return false; }
     if (item.type == 'city'){
       return item.name.indexOf(term) > -1;

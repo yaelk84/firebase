@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {map} from 'rxjs/operators';
+import {of} from 'rxjs';
+import {ApiService} from '../../core/services/api.service';
+import {HoursService} from '../../core/services/hours.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,13 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  public activeFilters = [];
+   activeFilters = [];
+   servicesLoaded = false;
+   openPopup = true;
 
-  openPopup = true;
-
-  constructor() { }
+  constructor( private  apiService: ApiService , private  hours: HoursService) { }
 
   ngOnInit() {
+    console.log("on init")
+    this.apiService.getGetCurrentTimeStamp()
+      .subscribe((response) => {
+          console.log( 'respose' , response)
+          this.hours.updateTime  = response.time;
+          this.servicesLoaded = true;
+
+          return of({});
+        });
   }
 
 }

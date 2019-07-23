@@ -11,6 +11,7 @@ import {PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-pe
 import {ActivatedRoute} from '@angular/router';
 
 import {isNullOrUndefined} from 'util';
+import {interval} from 'rxjs';
 
 
 @Component({
@@ -40,6 +41,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
    filterWithHours = '/assets/media/hour-filter.svg';
    filterWithNoHours = '/assets/media/no-filter-hours.svg';
   filterIcon = this.filterWithNoHours;
+  private branchData: [];
 
   private buildFilterByQuery(queryParams) {
 
@@ -94,6 +96,17 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   }
 
+  init(){
+    if( isNullOrUndefined(this.branchData)) return;
+    this.branchData.forEach(obj => {
+      const branchFetched = this.branchDataServices.createSingleBranch(obj);
+      this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
+        branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
+    });
+    this.callQueryParam();
+    this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
+
+  }
   ngOnInit() {
 
     // this.city = this.route.snapshot.paramMap.get("city");
@@ -110,19 +123,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
 
     });
-
-
     this.filters = this.branchFilterService.filters;
     return this.apiService.getBranches().subscribe((response) => {
-      response.forEach(obj => {
-        const branchFetched = this.branchDataServices.createSingleBranch(obj);
-        this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-          branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
-      });
-      this.callQueryParam();
-      this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
-      console.log('this.branchNewArrayFilter', this.branchNewArrayFilter)
+      this.branchData = response;
+      this.init();
+
     });
+
 
 
   }
@@ -130,7 +137,12 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.componentRef.directiveRef.ps().update();
 
-
+    interval(1000 * 60 ).subscribe(x => {
+           this.init();
+    })
   }
+
+
+
 
 }

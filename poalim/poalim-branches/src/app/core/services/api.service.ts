@@ -159,6 +159,10 @@ export class ApiService extends RcApiService {
     return this.apiGet('../assets/stubs/filters.json', {}, true);
   }
 
+  public getGetCurrentTimeStamp(params = {}, force: boolean = true) {
+    return this.apiGet('../assets/stubs/GetCurrentTimeStamp.json', {}, true);
+  }
+
 
 
 

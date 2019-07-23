@@ -15,9 +15,19 @@ export class HoursService {
   constructor(private timeService: TimeService, private appService: AppService, private translate: RcTranslateService, private functions: FunctionsService) {
   }
 
-  private currentTime = this.timeService.getCurrentTime();
+
+  private currentTime ;
   private order = {Sunday: 1, Monday: 2, Tuesday: 3, Wednesday: 4, Thursday: 5, Friday: 6, Saturday: 7};
-  private curTime = this.timeService.getCurrentTime();
+
+  set updateTime(time) {
+
+    this.currentTime =  this.timeService.getCurrentTime(time);
+
+  }
+
+  get time(){
+    return this.currentTime;
+  }
 
   private openInMorninig(obj) {
     return (!isNullOrUndefined(obj.branchOpeningHours[0].startHour)) && obj.branchOpeningHours[0].startHour.length;
@@ -36,7 +46,7 @@ export class HoursService {
   }
 
   private openNow(dayObject) {
-
+      console.log("is opwn")
     return this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[0].endHour) > 0 ||
       this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[1].endHour) > 0;
   }
@@ -55,7 +65,8 @@ export class HoursService {
   private findNextOpenDay(dataObj) {
     let time;
     let dayToCheck = this.timeService.getDayName(this.currentTime);
-    for (let i = 0; i < 100; i++) { //todo
+    for (let i = 0; i < 100; i++) { //
+
       if (!isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openToday) && (i > 0 || !isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openNow))) {
         dataObj.closestOpenDay = dayToCheck;
         if (i === 0) {
@@ -84,6 +95,7 @@ export class HoursService {
         dataObjWithData.dayInWeek[key] = {};
         if (this.checkIfOpen(dataObj[key])) {
           dataObjWithData.dayInWeek[key].openToday = true;
+
           if (this.openNow(dataObj[key])) {
             dataObjWithData.dayInWeek[key].openNow = true;
           }
@@ -96,7 +108,7 @@ export class HoursService {
           dataObjWithData.dayInWeek[key].noon = dataObj[key].branchOpeningHours[1];
         }
         dataObjWithData.dayInWeek[key].specificDayValue = this.createLabelWithOpenAndClose(dataObjWithData.dayInWeek[key]) ;
-        debugger
+
         dataObjWithData.dayInWeek[key].specificDayLabel = this.translate.getText('openInDayWithVal', [this.translate.getText(key)]);
       }
     );
@@ -104,6 +116,7 @@ export class HoursService {
   }
 
   private openAt(currLabel) {
+
     if (!isNullOrUndefined(currLabel.morning)) {
       return currLabel.morning.startHour;
 
@@ -123,6 +136,9 @@ export class HoursService {
   private createLable(dataObj) {
     let label: any = {};
     const currLabel = dataObj.dayInWeek[dataObj.closestOpenDay];
+    if (isNullOrUndefined(currLabel)){
+      return '';
+    }
     if (dataObj.openCurrentDay) {
       label = this.createLabelWithOpenAndClose(currLabel);
 
