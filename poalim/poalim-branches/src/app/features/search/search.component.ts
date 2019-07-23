@@ -36,7 +36,7 @@ export class SearchComponent implements OnInit {
       .subscribe(results => {
 
         const [branchesData /*, promise2Result*/] = results;
-        this.initSearch(branchesData.data);
+        this.initSearch(branchesData);
       });
   }
 
@@ -78,7 +78,7 @@ export class SearchComponent implements OnInit {
         address: branch.geographicAddress.streetName + ' ' + branch.geographicAddress.buildingNumber + ', ' + branch.geographicAddress.cityName
       });
     }
-    this.items = [5,6,7,8,];
+    this.items = tempCities.concat(tempBranches);
 
   }
 
