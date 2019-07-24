@@ -1,26 +1,34 @@
 
 
-  <div style="max-width:1100px; margin: 0 auto">
-    <div *ngIf="servicesLoaded">
-        <div class="branches-header">
-          <div class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
-          <app-no-location-permissions></app-no-location-permissions>
-          <app-search></app-search>
-          <div class="choose-title title">{{'chooseTitle' | rcTranslate}} </div>
-          <app-branch-filters></app-branch-filters>
-        </div>
-        <div class="branch-container">
-          <div>
-            <app-branch-list></app-branch-list>
-          </div>
-
-        </div>
+<div style="max-width:1100px; margin: 0 auto">
+  <div *ngIf="servicesLoaded">
+    <div class="branches-header">
+      <div class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
+      <app-no-location-permissions></app-no-location-permissions>
+      <app-search></app-search>
+      <div class="choose-title title">{{'chooseTitle' | rcTranslate}} </div>
+      <app-branch-filters></app-branch-filters>
     </div>
-    <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
-      <app-report-problem-popup></app-report-problem-popup>
-    </lib-rc-popup-wrapper>
+    <div class="branch-container">
+      <div>
 
+          <div class="branch-map">
+            <app-branch-list></app-branch-list>
+            <ng-container>
+              ddd
+              <app-map [branches]="branches" *ngIf="branches"></app-map>
+            </ng-container>
+          </div>
+        </div>
+
+
+    </div>
   </div>
+  <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+    <app-report-problem-popup></app-report-problem-popup>
+  </lib-rc-popup-wrapper>
+
+</div>
 
 
 

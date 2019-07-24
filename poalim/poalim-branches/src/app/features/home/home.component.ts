@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {map} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {ApiService} from '../../core/services/api.service';
 import {HoursService} from '../../core/services/hours.service';
-
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 // import {GeoLocationObject} from "../../core/interface/coordinates";
@@ -20,11 +18,13 @@ export class HomeComponent implements OnInit {
    openPopup = true;
    branches: Array<object> = null;
 
-  constructor( private  apiService: ApiService , private  hours: HoursService) { }
+  constructor( private  apiService: ApiService , private  hours: HoursService, private mapBranches: MapBranchesService ) { }
 
   ngOnInit() {
-    console.log("on init")
-    this.mapBranches.getMyLocation().subscribe(res => {
+    this.apiService.getBranches().subscribe((data) => {
+      this.branches = data;
+    });
+      this.mapBranches.getMyLocation().subscribe(res => {
       if (this.mapBranches.checkIfHaveLocation(res)) {
         this.mapBranches.hasLocationPermission = true;
       }
