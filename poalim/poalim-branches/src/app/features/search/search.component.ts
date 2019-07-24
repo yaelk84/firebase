@@ -134,9 +134,10 @@ export class SearchComponent implements OnInit {
 
   onChange($event) {
 
-    console.log($event);
+    console.log($event , 'select');
     this.openDropdown = false;
     this.searchTerm = '';
+
     // todo: handle item selected
   }
 

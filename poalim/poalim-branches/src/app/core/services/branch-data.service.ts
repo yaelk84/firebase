@@ -64,7 +64,7 @@ export class BranchDataService {
      })
    }
   private  craeteContactAddressFax(contactAddress) {
-    debugger
+
     const contactAddressFax = contactAddress.filter((value) => {
       return value.contactChannelTypeCode === CONSTANTS.HAVE_FAX ;
     });

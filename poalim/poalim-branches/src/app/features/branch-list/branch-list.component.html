@@ -21,7 +21,7 @@
 
       </div>
     </div>
-    <div class="branch-list" id="branch_id">
+    <div class="branch-list" id="branch_id" *ngIf=" branchDataDisplayt && branchDataDisplayt.length">
 
       <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
         <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
@@ -46,3 +46,4 @@
 <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
 </lib-rc-switcher>
+{{branchNewArrayFilter.length}}

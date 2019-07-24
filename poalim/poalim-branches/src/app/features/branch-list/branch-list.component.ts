@@ -12,6 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 
 import {isNullOrUndefined} from 'util';
 import {interval} from 'rxjs';
+import {MapBranchesService} from '../../core/services/map-branches.service';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   public config: PerfectScrollbarConfigInterface = {};
   private city: string;
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute , private  mapServices: MapBranchesService) {
   }
 
   data;
@@ -42,7 +43,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
    filterWithNoHours = '/assets/media/no-filter-hours.svg';
    branchResultTitle: string = 'branchFound';
   filterIcon = this.filterWithNoHours;
-  private branchData: [];
+  private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
 
@@ -102,6 +103,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   init(){
     if( isNullOrUndefined(this.branchData)) return;
+    this.branchNewArray = [];
     this.branchData.forEach(obj => {
       const branchFetched = this.branchDataServices.createSingleBranch(obj);
       this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
@@ -111,6 +113,15 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
 
   }
+  get branchDataDisplayt() {
+    console.log(' this.mapServices.sliceBranches' , this.mapServices.sliceBranches)
+    this.branchData = this.mapServices.sliceBranches;
+    if (this.branchData.length){
+      debugger
+      this.init();
+    }
+    return this.mapServices.sliceBranches;
+     }
   ngOnInit() {
 
     // this.city = this.route.snapshot.paramMap.get("city");
@@ -128,18 +139,19 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     });
     this.filters = this.branchFilterService.filters;
-    return this.apiService.getBranches().subscribe((response) => {
-      this.branchData = response;
-      this.init();
+    this.branchData = this.mapServices.sortedBranches ;
 
-    });
+    this.init();
+
+
+
 
 
 
   }
 
   ngAfterViewInit() {
-    this.componentRef.directiveRef.ps().update();
+    //this.componentRef.directiveRef.ps().update();
 
     interval(1000 * 60 ).subscribe(x => {
            this.init();
