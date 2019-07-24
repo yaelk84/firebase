@@ -63,16 +63,20 @@ export class BranchDataService {
              return obj.branchServiceTypeCode;
      })
    }
-  private  craeteContactAddress(contactAddress) {
-    return {phone: contactAddress[0].contactAddressInfo,
-            fax: contactAddress[1].contactAddressInfo};
+  private  craeteContactAddressFax(contactAddress) {
+    debugger
+    const contactAddressFax = contactAddress.filter((value) => {
+      return value.contactChannelTypeCode === CONSTANTS.HAVE_FAX ;
+    });
+    if(!contactAddressFax.length){return ''}
+    return (!isNullOrUndefined(contactAddressFax[0].contactAddressInfo) ? contactAddressFax[0].contactAddressInfo : '' );
   }
   createSingleBranch(data) {
 
     const isBankat = data.channelGroupCode ===  CONSTANTS.BANKAT;
     const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification , false , isBankat );
     const address = data.geographicAddress[0];
-    const contactAddress = this.craeteContactAddress(data.contactAddress);
+    const fax = this.craeteContactAddressFax(data.contactAddress);
     const branchData = {
 
       branchNum: data.branchNumber,
@@ -91,8 +95,8 @@ export class BranchDataService {
         isBankat: data.channelGroupCode ===  CONSTANTS.BANKAT,
         branchSummarize: branchSummarize,
         branchService:  branchData.branchService,
-        fax:  contactAddress.fax,
-        phone:  contactAddress.phone,
+        fax: fax,
+        phone: CONSTANTS.PHONE,
         branchManagerName: data.branchManagerName,
         comment: data.comment,
         servicesType: this.onlyServicesTypeArray(branchData.branchService)

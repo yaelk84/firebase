@@ -19,17 +19,22 @@
 
       </div>
     </div>
-    <div class="part-wrapper">
-      <div class="selected-branches-services">
-        <h1>{{'servicesTitle' | rcTranslate}}</h1>
-        <div  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
-          <span class="icon-separation"></span>
-          <span class="service-label">{{service.branchServiceTypeDescription}}</span>
+    <div class="part-wrapper services">
+      <div class="wrapper-service-and-btn">
+        <div class="selected-branches-services">
+          <h1>{{'servicesTitle' | rcTranslate}}</h1>
+          <div  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
+            <span class="icon-separation"></span>
+            <span class="service-label">{{service.branchServiceTypeDescription}}</span>
+          </div>
+          <div *ngIf="end !== dataBranchSelected.branchService.length" class="add-more" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
         </div>
-        <div *ngIf="end !== dataBranchSelected.branchService.length" class="add-more" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
+        <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
       </div>
+
     </div>
-    <div class="part-wrapper">
+
+    <div class="part-wrapper" *ngIf="!dataBranchSelected.isBankat">
       <div class="selected-branch-data">
 
         <div class="line-data">
@@ -37,7 +42,7 @@
           <span class="label">{{'phone'| rcTranslate}}</span>
           <span class="value">{{dataBranchSelected.phone}}</span>
         </div>
-        <div class="line-data">
+        <div class="line-data" *ngIf="dataBranchSelected.fax">
           <span class="icon fax-icon" ></span>
           <span class="label">{{'fax'| rcTranslate}}</span>
           <span class="value">{{dataBranchSelected.fax}}</span>
@@ -55,7 +60,7 @@
 
       </div>
       <div class="selected-branch-buttons">
-        <span class="btn white-btn" role="button">{{'order' |rcTranslate}}</span>
+
         <span class="worng-data">
          <span class="wrong-data-text" role="button">{{'worngData'|rcTranslate }}</span>
       <span class="goto"> > </span>
