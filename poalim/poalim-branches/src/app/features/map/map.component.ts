@@ -2,8 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
-import {timeout} from "rxjs/operators";
-import {logger} from "codelyzer/util/logger";
 
 
 @Component({
@@ -14,8 +12,8 @@ import {logger} from "codelyzer/util/logger";
 export class MapComponent implements OnInit {
 
   @Input() branches: any;
-  geoCoordinateX = 32.064041;
-  geoCoordinateY = 34.77539;
+  geoCoordinateY = 32.0853;
+  geoCoordinateX = 34.7818;
   zoom = 14;
   hasAccessToMyLocation = false;
   branchesMapMarker = [];
@@ -44,26 +42,24 @@ export class MapComponent implements OnInit {
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService ) { }
 
    ngOnInit() {
-      this.mapBranches.defaultFilter().subscribe((centerBranches) => {
-        console.log('centerBranches', centerBranches);
-        console.log('aaa');
-        this.branchesMapMarker = this.mapBranches.branchesPointsMap;
-      });
       this.mapBranches.getMyLocation().subscribe(geolocation => {
          this.hasAccessToMyLocation = true;
-         this.geoCoordinateX = (geolocation as GeoLocationObject).lat;
-         this.geoCoordinateY = (geolocation as GeoLocationObject).lng;
-         this.mapBranches.myLocationFilter({lat: this.geoCoordinateX, lng: this.geoCoordinateY},
+         this.geoCoordinateY = (geolocation as GeoLocationObject).lat;
+         this.geoCoordinateX = (geolocation as GeoLocationObject).lng;
+         this.mapBranches.myLocationFilter({lat: this.geoCoordinateY, lng: this.geoCoordinateX},
            this.branches).subscribe((response) => {
-           console.log('response', response);
-           setTimeout(() => {
-             this.mapBranches.getGeoCoordinateArray(response).subscribe(near => {
-               this.branchesMapMarker = (near as Array<any>);
-             });
-           }, 500);
-
+           console.log('response!!!!!!!!!!!!!!!!!!!', response);
+           this.mapBranches.getGeoCoordinateArray(response).subscribe(near => {
+             this.branchesMapMarker = (near as Array<any>);
+           });
            // this.branchesMapMarker = this.mapBranches.getGeoCoordinateArray(response);
          });
-     });
+     }, error => {
+        this.mapBranches.defaultFilter().subscribe((centerBranches) => {
+          console.log('centerBranches', centerBranches);
+          console.log('aaa');
+          this.branchesMapMarker = this.mapBranches.branchesPointsMap;
+        });
+      });
    }
 }

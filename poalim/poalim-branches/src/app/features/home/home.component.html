@@ -10,11 +10,9 @@
           <app-branch-filters></app-branch-filters>
         </div>
         <div class="branch-container">
-          this.mapBranches.getMyLocation().subscribe(res => {
-          if (this.mapBranches.checkIfHaveLocation(res)) {
-          this.mapBranches.hasLocationPermission = true;
-          }
-          }, (error1 => this.mapBranches.hasLocationPermission = false));
+          <div>
+            <app-branch-list></app-branch-list>
+          </div>
 
         </div>
     </div>
