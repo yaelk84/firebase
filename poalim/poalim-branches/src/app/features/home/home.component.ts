@@ -20,13 +20,10 @@ export class HomeComponent implements OnInit {
   constructor( private  apiService: ApiService , private  hours: HoursService, private mapBranches: MapBranchesService) { }
 
   ngOnInit() {
-    console.log("on init")
     this.apiService.getGetCurrentTimeStamp()
       .subscribe((response) => {
-          console.log( 'respose' , response)
           this.hours.updateTime  = response.time;
           this.servicesLoaded = true;
-
           return of({});
         });
     this.apiService.getBranches().subscribe((data) => {
@@ -36,7 +33,10 @@ export class HomeComponent implements OnInit {
       if (this.mapBranches.checkIfHaveLocation(res)) {
         this.mapBranches.hasLocationPermission = true;
       }
-    }, (error1 => this.mapBranches.hasLocationPermission = false));
+    }, (error1 => {
+      this.mapBranches.hasLocationPermission = false;
+      console.log(error1);
+    }));
   }
 
 }

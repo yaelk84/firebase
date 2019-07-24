@@ -45,7 +45,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FilterBranchPipe,
     CheckBoxFilterComponent,
     GeneralPopupComponent,
-    MapComponent
+    MapComponent,
     GeneralPopupComponent,
     SingleBranchDisplayComponent,
     HoursFilerComponent,
@@ -61,7 +61,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RcUiModule,
     NgSelectModule,
     FormsModule,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
     RcUiModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',

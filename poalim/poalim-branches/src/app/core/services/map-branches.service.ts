@@ -4,6 +4,7 @@ import {ApiService} from './api.service';
 import {MapsAPILoader} from '@agm/core';
 import {Observable} from 'rxjs';
 import {GeoLocationObject} from '../interface/coordinates';
+import {error} from "@angular/compiler/src/util";
 
 
 @Injectable({
@@ -13,6 +14,7 @@ export class MapBranchesService {
 
   branchesPointsMap = [];
   filteredMarkers = [];
+  sortedBranches = [];
   hasLocationPermission: boolean;
   lat: number;
   lng: number;
@@ -36,8 +38,8 @@ export class MapBranchesService {
         // observer.next(this.branchesPointsMap);
         this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {
           this.branchesPointsMap = (geoArray as Array<any>);
+          console.log('this.branchesPointsMap!!!!!!!!!!!!!!!!!!!!', this.branchesPointsMap); //
           observer.next(this.branchesPointsMap);
-
         });
       });
     });
@@ -67,21 +69,24 @@ export class MapBranchesService {
 
   // will get my location
    getMyLocation() {
-    // debugger;
      const myGeoLocation = new Observable(observer => {
        let c = {};
        if (navigator.geolocation) {
          navigator.geolocation.getCurrentPosition((position: Position) => {
-             if (position) {
+           if (position) {
                c = {
                  lat:  position.coords.latitude,
                  lng:  position.coords.longitude
                };
              }
-             observer.next(c);
+           observer.next(c);
+         }, err => {
+           console.log('erooooooooooor1');
+           observer.error();
          });
        } else {
-         alert('Geolocation is not supported by this browser.');
+         console.log('erooooooooooor2');
+         // observer.error();
        }
      });
      return myGeoLocation;
@@ -89,13 +94,14 @@ export class MapBranchesService {
 
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = []): any {
-    const nearestBranches = new Observable(observer => {
+    const nearestBranchesObserveble = new Observable(observer => {
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {
+        // debugger;
         const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
         this.filteredMarkers = this.branchesPointsMap.filter(m => {
-          const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate.geoCoordinateX,
-            m.geographicAddress[0].geographicCoordinate.geoCoordinateY);
+          const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate.geoCoordinateY,
+            m.geographicAddress[0].geographicCoordinate.geoCoordinateX);
           const  distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
           m.geographicAddress[0].distanceInKm = distanceInKm;
           if (distanceInKm < 25.0) {
@@ -103,12 +109,14 @@ export class MapBranchesService {
           }
         });
         console.log('this.branchesPointsMap m34', this.branchesPointsMap);
-        observer.next(this.filteredMarkers.sort((a, b) => {
-         return a.geographicAddress[0].distanceInKm - b.geographicAddress[0].distanceInKm;
-        }).slice(0, 10));
+        const nearestBranches = this.filteredMarkers.sort((a, b) => {
+          return a.geographicAddress[0].distanceInKm - b.geographicAddress[0].distanceInKm;
+        }).slice(0, 10);
+
+        observer.next(nearestBranches);
       });
     });
-    return nearestBranches;
+    return nearestBranchesObserveble;
   }
 
   // a function which calculate the distance between two points
@@ -118,9 +126,8 @@ export class MapBranchesService {
     const distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination);
     console.log(distance / 1000);
   }
-  checkIfHaveLocation(res){
+  checkIfHaveLocation(res) {
     return (res as GeoLocationObject).lat && (res as GeoLocationObject).lng;
   }
-
 }
 
