@@ -14,7 +14,7 @@
   <div *ngIf="!showSelectedBranch" >
 
     <div class="branch-list-header">
-      <div class="branch-result">{{'branchFound' | rcTranslate :  [branchNewArrayFilter.length]}}</div>
+      <div class="branch-result">{{branchResultTitle | rcTranslate :  [branchNewArrayFilter.length]}}</div>
       <div (click)="toggleDropDown($event)" class="hours">
         <span>{{'filterHours' | rcTranslate}} </span>
         <div class="img-wrapper"><img [src]="(filterByDay || filterByHours)?filterWithHours:filterWithNoHours" alt=""></div>

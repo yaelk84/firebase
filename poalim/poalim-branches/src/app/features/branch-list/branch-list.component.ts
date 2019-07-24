@@ -40,6 +40,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   showDaysHoursFilter = false;
    filterWithHours = '/assets/media/hour-filter.svg';
    filterWithNoHours = '/assets/media/no-filter-hours.svg';
+   branchResultTitle: string = 'branchFound';
   filterIcon = this.filterWithNoHours;
   private branchData: [];
 
@@ -60,6 +61,9 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.activeRoute.queryParams.subscribe((queryParams) => {
       this.buildFilterByQuery(queryParams);
     });
+  }
+  private buildTitleBranchList() {
+
   }
 
    @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
