@@ -13,11 +13,11 @@ export class MapBranchesService {
 
   branchesPointsMap = [];
   filteredMarkers = [];
-  // hasAccessToMyLocation: boolean;
-  // lat: number;
-  // lng: number;
-  lat = 32.064041;
-  lng = 34.77539;
+  hasLocationPermission: boolean;
+  lat: number;
+  lng: number;
+  // lat = 32.064041;
+  // lng = 34.77539;
 
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader) { }
@@ -32,52 +32,60 @@ export class MapBranchesService {
           }
         });
         console.log('filteredByCity', filteredByCity);
-        this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
-        console.log('branchPoint', this.branchesPointsMap);
-        // return this.branchesPointsMap;
-        observer.next(this.branchesPointsMap);
+        // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
+        // observer.next(this.branchesPointsMap);
+        this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {
+          this.branchesPointsMap = (geoArray as Array<any>);
+          observer.next(this.branchesPointsMap);
+
+        });
       });
     });
     return sixCenterBranches;
   }
 
   getGeoCoordinateArray(arr: Array<any>) {
-    const newGeoArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
-      newGeoArr.push(cityPoint);
-    }
-    return newGeoArr;
+    const geocoordsArray = new Observable(observer => {
+      const newGeoArr = [];
+      for (let i = 0; i < arr.length; i++) {
+        const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
+        newGeoArr.push(cityPoint);
+      }
+      observer.next(newGeoArr);
+    });
+    return geocoordsArray;
   }
 
+  // getGeoCoordinateArray(arr: Array<any>) {
+  //   const newGeoArr = [];
+  //   for (let i = 0; i < arr.length; i++) {
+  //     const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
+  //     newGeoArr.push(cityPoint);
+  //   }
+  //   return newGeoArr;
+  // }
+
   // will get my location
-   get myLocation() {
+   getMyLocation() {
     // debugger;
-    //  const myGeoLocation = new Observable(observer => {})
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: Position) => {
-          if (position) {
-            // console.log('Latitude: ' + position.coords.latitude +
-            //   ' Longitude: ' + position.coords.longitude);
-            this.lat = position.coords.latitude;
-            this.lng = position.coords.longitude;
-            console.log('myLat', this.lat);
-            console.log('myLng', this.lng);
-          }
-          return {
-            latitude: this.lat,
-            longitude: this.lng
-          };
-        },
-        (error: PositionError) => console.log(error));
-      return {
-        lat: this.lat,
-        lng: this.lng
-      };
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
- }
+     const myGeoLocation = new Observable(observer => {
+       let c = {};
+       if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition((position: Position) => {
+             if (position) {
+               c = {
+                 lat:  position.coords.latitude,
+                 lng:  position.coords.longitude
+               };
+             }
+             observer.next(c);
+         });
+       } else {
+         alert('Geolocation is not supported by this browser.');
+       }
+     });
+     return myGeoLocation;
+   }
 
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = []): any {
@@ -109,6 +117,9 @@ export class MapBranchesService {
     const destination = new google.maps.LatLng(32.082227, 34.781046);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination);
     console.log(distance / 1000);
+  }
+  checkIfHaveLocation(res){
+    return (res as GeoLocationObject).lat && (res as GeoLocationObject).lng;
   }
 
 }
