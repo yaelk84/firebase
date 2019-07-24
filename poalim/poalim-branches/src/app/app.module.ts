@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BranchBoxComponent } from './features/branch-box/branch-box.component';
@@ -30,6 +30,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+import { MapComponent } from './features/map/map.component';
+import { AgmCoreModule  } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NoLocationPermissionsComponent,
     SearchComponent,
     ReportProblemPopupComponent
+    GeneralPopupComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     NgSelectModule,
     FormsModule,
     PerfectScrollbarModule
+    RcUiModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',
+      libraries: ['geometry']
+      // AIzaSyDDTZwjyoMs46iFEvwssnCNppYxAjBJVT8
+    })
   ],
   providers: [FilterBranchPipe, {
     provide: PERFECT_SCROLLBAR_CONFIG,

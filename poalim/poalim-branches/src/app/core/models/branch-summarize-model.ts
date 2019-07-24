@@ -4,8 +4,7 @@ export class BranchSummarize {
               private  branchName: string,
               private  address: string,
               private distance: number,
-              private openAndCloseHours: Object
-
+              private openAndCloseHours: object
   ) {
 
   }

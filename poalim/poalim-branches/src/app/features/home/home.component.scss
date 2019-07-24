@@ -24,6 +24,11 @@
 .branch-container{
   padding-top: 46px;
 }
+
+.branch-map {
+  display: flex;
+  justify-content: space-between;
+}
 @media (max-width: $mobile_view) {
   .branches-header {
     padding:100px  0;
