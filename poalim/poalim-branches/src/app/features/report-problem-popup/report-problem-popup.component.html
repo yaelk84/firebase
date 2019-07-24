@@ -1,0 +1,33 @@
+<div class="report-problem-wrapper">
+  <div class="image-wrapper" [ngClass]="{'shrink': reportBadServiceToggle}">
+    <img src="../../../assets/media/images/report-problem-img.svg" alt="">
+  </div>
+  <div class="msg-wrapper" >
+    <div class="msg-header">
+      {{'reportProblemHeader' | rcTranslate}}
+    </div>
+    <div class="msg-text" [ngClass]="{'shrink': reportBadServiceToggle}">
+      <span>{{'reportProblemMsg1' | rcTranslate}}</span> <br>
+      <span>{{'reportProblemMsg2' | rcTranslate}}</span>
+    </div>
+  </div>
+  <div class="choose-problem-wrapper">
+    <div class="choose-problem-header" [ngClass]="{'shrink': reportBadServiceToggle}">
+      {{'chooseProblem' | rcTranslate}}
+    </div>
+    <div class="choose-problem-btns">
+      <button class="outlined-btn" [disabled]="reportBadServiceToggle" (click)="reportBadHours()">{{'badOpenHours' | rcTranslate}}</button>
+      <button class="outlined-btn" [disabled]="reportBadServiceToggle" (click)="reportBadAddress()">{{'badAddress' | rcTranslate}}</button>
+      <button class="outlined-btn" [ngClass]="{'active': reportBadServiceToggle}" (click)="reportBadServiceToggle = !reportBadServiceToggle">{{ 'badServices' | rcTranslate}}</button>
+    </div>
+  </div>
+  <div class="report-service-wrapper" [ngClass]="{'shrink': !reportBadServiceToggle}">
+    <div class="report-service-text-box-wrapper">
+      <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250" class="report-service-textarea" #serviceReportInput ></textarea>
+      <span class="report-service-text-box-note">{{ 'maxChars' | rcTranslate}}</span>
+    </div>
+    <div>
+      <button class="outlined-btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
+    </div>
+  </div>
+</div>

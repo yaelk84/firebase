@@ -1,24 +1,29 @@
-<div class="filter-box-cointener container">
+<div class="filter-box-cointener">
   <div class="filter-box-wrapper">
     <lib-rc-popup-wrapper (closeCallback)="closePopup()" *ngIf="openPOPup" [customClass]="'full-width'">
+      <div closeButton class="close-button">----</div>
     <app-general-popup><app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter></app-general-popup>
     </lib-rc-popup-wrapper>
-    <div class="filter-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.id) != -1}"
-         (click)="toggleFilter(filter.id)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
+    <div class="filter-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"
+         (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
 
       <div class="wrapper-icon-filter">
         <div class="icon-filter" [ngClass]="'cube-'+ i">
 
         </div>
       </div>
-      {{filter.text}}
+      <div>
+        <div class="label-wrapper"> {{filter.serviceLabel}}</div>
+      </div>
+
+
     </div>
   </div>
-  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse()">
+  <div class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse($event)">
     <div class="badge-btn"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
     <div  class="icon-filter-btn"></div>
   </div>
-  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="filters-list-wrapper">
+  <div  ng-if="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper"   lib-rc-click-outside (clickOutside)="closeDropDownServices()">
     <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
 
   </div>

@@ -1,10 +1,12 @@
 
 export class FilterBranch {
-  constructor(private id: number,
-              private  type: string,
-              private  text: string,
-               private field: string,
-              private values: Array<string>
+
+
+  constructor(private serviceType: string,
+              private  serviceLabel: string,
+              private  ServiceImg: string,
+               private order: string,
+              private isCustom: boolean
 
   ) {
 

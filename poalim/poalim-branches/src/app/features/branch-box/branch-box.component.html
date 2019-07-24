@@ -1,11 +1,20 @@
-<div class="branch-box ">
-  <div class="wrapper-icon">
-    <div class="branch-icon">
-      <div class="icon-val" > {{branchData.id}}</div>
 
+
+  <div class="branch-box " (click)="selectBranch()">
+    <div class="inner-box" >
+
+      <div class="wrapper-icon">
+        <div class="branch-icon" [ngClass]="{'bankat':branchData.isBankat}">
+          <div class="icon-val"  *ngIf="!branchData.isBankat">{{branchData.indexNoBankat}}</div>
+          <div class="icon-val" *ngIf="branchData.isBankat"> ₪ </div>
+
+        </div>
+      </div>
+
+      <app-branch-box-summarize  *ngIf="branchData.branchSummarize" [branchDataSummarize]="branchData.branchSummarize" ></app-branch-box-summarize>
+      <div class="clearfix"></div>
     </div>
+
+
   </div>
 
-  <app-branch-box-summarize  [branchDataSummarize]="branchData.branchSummarize"></app-branch-box-summarize>
-
-</div>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 
 @Component({
@@ -13,10 +13,19 @@ export class BranchBoxComponent implements OnInit {
   }
 
   @Input() branchData: any;
+  @Input() branchIndex: number;
+
+  @Output() branchClick = new EventEmitter();
+
+  selectBranch(){
+
+    this.branchClick.emit(this.branchIndex);
+  }
 
   ngOnInit() {
 
-      console.log('branchgdate', this.branchData);
+console.log("inittt", this.branchData)
+
   }
 
 }

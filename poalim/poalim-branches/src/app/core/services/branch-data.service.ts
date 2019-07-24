@@ -6,6 +6,8 @@ import {BranchHours} from '../interface/branch-hours';
 import {isNullOrUndefined} from 'util';
 import {BranchObj} from '../models/branch-model';
 import {BranchSummarize} from '../models/branch-summarize-model';
+import {HoursService} from './hours.service';
+import {CONSTANTS} from '../../constants';
 
 
 @Injectable({
@@ -14,38 +16,18 @@ import {BranchSummarize} from '../models/branch-summarize-model';
 export class BranchDataService {
   private config = this.appService.appConfig;
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService) {
-    const curTime = this.timeService.getCurrentTime();
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService) {
+    const curTime = this.hursService.time;
     const dayName = this.timeService.getDayName(curTime);
     const tomarrowDay = this.timeService.addDays(1, curTime);
     const afterTomarrowDay = this.timeService.addDays(2, curTime);
 
   }
 
-  private sortAndFilterArrayByDayMostCloseToCurrent(data, currentDay) {
-    const cuurentDayObj = this.config.daysEn[currentDay];
-    const filteredAndSortedData = data
-      .filter((keyword) => {
-        const dayObject = this.config.daysHe[keyword.field_bod_day];
-        if (isNullOrUndefined(dayObject)) {
-          return null;
-        }
-        let dayDifferent = (dayObject.index - cuurentDayObj.index);
-        if (dayDifferent < 0) {
-          dayDifferent = Math.abs(dayDifferent) + data.length;
-        }
 
-        keyword.dayDifferent = dayDifferent;
-        return keyword;
-      })
-      .sort((a, b) => {
-        return a.dayDifferent < b.dayDifferent ? -1 : 1;
-      });
-    return filteredAndSortedData;
-  }
 
   private returnOpenHoursForCurrentDay(dayObject, currentTime, waasChange) {
-    const hours = {morninigHours: '', nooonHours: ''};
+    let hours = {morninigHours: '', nooonHours: ''};
     if (isNullOrUndefined(dayObject)) {
       return hours;
     }
@@ -63,76 +45,57 @@ export class BranchDataService {
       }
     }
     return hours;
-  }
+  };
 
-  private createOpeningAndClosingHours(dataObj, IsHourChange) {
-    let objectHours: any = {};
-    if (IsHourChange) {
-      return objectHours;
-    }
-    const currentTime = this.timeService.getCurrentTime();
-    const dayToCheck = this.timeService.getDayName(currentTime);
-    const sortedFilterArray = this.sortAndFilterArrayByDayMostCloseToCurrent(dataObj, dayToCheck);
-    for (let i = 0; i < sortedFilterArray.length; i++) {
-      const openNow = sortedFilterArray[i].dayDifferent === 0;
-      if (openNow) {
-        const openAndCloseHours = this.returnOpenHoursForCurrentDay(sortedFilterArray[i], currentTime, false);
-        if (openAndCloseHours.morninigHours) {
-          objectHours = openAndCloseHours;
-          objectHours.openNow = openNow;
-          objectHours.changeHours = false; // todo
-          break;
-        }
-      } else {
-        objectHours.openAt = sortedFilterArray[i].field_bod_open_hours;
-        if ( sortedFilterArray[i].dayDifferent === 1) {
-          objectHours.tomorrow = true;
-          objectHours.dayName = this.translate.getText('tomorrow');
-        } else {
-          objectHours.dayName = this.translate.getText(this.config.daysHe[sortedFilterArray[i].field_bod_day].en);
-        }
-        break;
-      }
 
-    }
-    return objectHours;
-  }
   private  replaceNullOrUndefinedInEmpty(val) {
     const  str = isNullOrUndefined(val) || val === 'null' ? '' : val;
     return str;
   }
   private  craeteBrancServices(services) {
-        return services;
-  }
+
+    return services.filter((value) => {
+       return value.serviceSwitch === CONSTANTS.yes ;
+    });
+     }
+   private onlyServicesTypeArray(services){
+    return  services.map(obj =>{
+             return obj.branchServiceTypeCode;
+     })
+   }
   private  craeteContactAddress(contactAddress) {
     return {phone: contactAddress[0].contactAddressInfo,
             fax: contactAddress[1].contactAddressInfo};
   }
   createSingleBranch(data) {
-    console.log('data', data);
-    // const hours: BranchHours = this.createOpeningAndClosingHours(data.field_branch_open_days, false);
+
+    const isBankat = data.channelGroupCode ===  CONSTANTS.BANKAT;
+    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification , false , isBankat );
     const address = data.geographicAddress[0];
     const contactAddress = this.craeteContactAddress(data.contactAddress);
     const branchData = {
+
       branchNum: data.branchNumber,
       branchName: data.branchName,
-      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' '
-        + this.replaceNullOrUndefinedInEmpty(address.streetName) + + this.replaceNullOrUndefinedInEmpty(address.streetName),
+      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) +' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber),
       distance: 0,
-      openAndCloseHours: {},
+      openAndCloseHours: hours,
       branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
       branchService: this.craeteBrancServices(data.branchService),
-      fax: contactAddress.fax,
-      phone: contactAddress.phone
-    };
-    const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
+
+            };
+
+      const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distance, branchData.openAndCloseHours);
-    return{
-        id: 1,
-        branchSummarize,
+         return{
+        isBankat: data.channelGroupCode ===  CONSTANTS.BANKAT,
+        branchSummarize: branchSummarize,
         branchService:  branchData.branchService,
-        fax:  branchData.fax,
-        phone:  branchData.phone,
+        fax:  contactAddress.fax,
+        phone:  contactAddress.phone,
+        branchManagerName: data.branchManagerName,
+        comment: data.comment,
+        servicesType: this.onlyServicesTypeArray(branchData.branchService)
       };
   }
 

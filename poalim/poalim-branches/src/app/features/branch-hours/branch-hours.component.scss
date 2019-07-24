@@ -1,32 +1,39 @@
 @import "../../../assets/scss/style";
 
-.hours{
+.branch-hours{
   font-size: 18px;
   font-weight: normal;
-}
-.open-today{
+
+ }
+
+.open-today,open-specific-day{
   display: flex;
   align-items: center;
+
   .title-open-today{
     color:  $true-green;
-    margin-#{$default-end}: 8px;
+
+
+
+  }
+}
+
+.open-specific-day{
+  display: flex;
+  align-items: center;
+
+  .title-open-today{
+    color:  $true-green;
+
+
+
   }
 }
 .future-date{
   color: $lipstick-two;
+
 }
 .was-change{
   color:$true-yellow ;
 }
-.icon-hours {
-  margin: 0 5px;
-  text-align: center;
-  float: $default-start;
-  width: 5px;
-  height: 5px;
-  background: $marine-two;;
-  border-radius: 5px;
-  transform: rotate(45deg);
 
-
-}

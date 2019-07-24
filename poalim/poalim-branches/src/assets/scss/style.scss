@@ -5,3 +5,28 @@
 @import 'fonts';
 @import "mixins";
 
+.outlined-btn {
+  height: 44px;
+  border-radius: 24px;
+  background-color: transparent;
+  border: 1px solid $marine-two;
+  color: $marine-two;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 0.95;
+  letter-spacing: normal;
+  min-width: 148px;
+  padding-bottom: .4rem;
+}
+
+.outlined-btn.active {
+  background: $marine-two;
+  color: $white;
+}
+.outlined-btn:disabled {
+  color: $greyish-brown;
+  border-color: $greyish-brown;
+}
+

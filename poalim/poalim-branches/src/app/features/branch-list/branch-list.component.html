@@ -1,9 +1,48 @@
-<div class="branch-list" id="branch_id">
+<div class="list-wrapper">
+  <div class="popover-wrapper "   lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >
 
-  <div *ngFor=" let branch of  branchNewArrayFilter " style="max-width: 448px;margin-right: 30px">
-    <app-branch-box [branchData]="branch"></app-branch-box>
+    <app-hours-filer (close)="toggleDropDown($event)"> </app-hours-filer>
   </div>
-   <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
-   </lib-rc-switcher>
+  <div *ngIf="showSelectedBranch" >
+    <span  class="back-to-results-wrapper"(click)="backToResults()">
+      <span class="go-back"> < </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+    </span>
+    <app-single-branch-display [dataBranchSelected]="branchNewArrayFilter[branchSelectedIndex]" [selectedIndex]="branchSelectedIndex"></app-single-branch-display>
+
+  </div>
+  <div *ngIf="!showSelectedBranch" >
+
+    <div class="branch-list-header">
+      <div class="branch-result">{{branchResultTitle | rcTranslate :  [branchNewArrayFilter.length]}}</div>
+      <div (click)="toggleDropDown($event)" class="hours">
+        <span>{{'filterHours' | rcTranslate}} </span>
+        <div class="img-wrapper"><img [src]="(filterByDay || filterByHours)?filterWithHours:filterWithNoHours" alt=""></div>
+
+      </div>
+    </div>
+    <div class="branch-list" id="branch_id">
+
+      <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
+        <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
+          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch($event)" [branchData]="branch" ></app-branch-box>
+        </div>
+      </perfect-scrollbar>
+
+
+
+
+
+    </div>
+
+    <div class="map-wrapper">
+
+    </div>
+  </div>
+
 </div>
+
+
+<lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
+
+</lib-rc-switcher>

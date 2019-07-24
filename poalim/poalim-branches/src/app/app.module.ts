@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import {HttpClient, HttpHeaders, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpHeaders,HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BranchBoxComponent } from './features/branch-box/branch-box.component';
@@ -16,6 +16,22 @@ import { CheckBoxFilterComponent } from './features/check-box-filter/check-box-f
 import {GeneralPopupComponent} from './features/general-popup/general-popup.component';
 import { MapComponent } from './features/map/map.component';
 import { AgmCoreModule  } from '@agm/core';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { SingleBranchDisplayComponent } from './features/single-branch-display/single-branch-display.component';
+import { HoursFilerComponent } from './features/hours-filer/hours-filer.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { SearchComponent } from './features/search/search.component';
+import {FormsModule} from '@angular/forms';
+import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
+import { ReportProblemPopupComponent } from './features/report-problem-popup/report-problem-popup.component';
+
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 
 @NgModule({
   declarations: [
@@ -30,11 +46,22 @@ import { AgmCoreModule  } from '@agm/core';
     CheckBoxFilterComponent,
     GeneralPopupComponent,
     MapComponent
+    GeneralPopupComponent,
+    SingleBranchDisplayComponent,
+    HoursFilerComponent,
+    BranchHoursComponent,
+    NoLocationPermissionsComponent,
+    SearchComponent,
+    ReportProblemPopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    RcUiModule,
+    NgSelectModule,
+    FormsModule,
+    PerfectScrollbarModule
     RcUiModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',
@@ -42,7 +69,10 @@ import { AgmCoreModule  } from '@agm/core';
       // AIzaSyDDTZwjyoMs46iFEvwssnCNppYxAjBJVT8
     })
   ],
-  providers: [FilterBranchPipe],
+  providers: [FilterBranchPipe, {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,169 @@
+@import "../../../assets/scss/style";
+.single-scroll{
+  max-height: 427px;
+  position: relative;
+}
+.single-branch-display {
+  margin-right: 50px;
+  background-color: $pale-grey;
+
+  .part-wrapper {
+    border-bottom: 0.3px solid rgba(10, 41, 76, 0.5);
+  }
+
+  .selected-branch-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px;
+    padding-right: 21px;
+
+    .branch-data {
+      display: flex;
+      justify-items: baseline
+    }
+
+    .share {
+      position: absolute;
+      top:18px;
+    #{$default-end}:15px;
+      /deep/
+      .btn {
+        font-size: 16px;
+        padding:9px 28px;
+      }
+    }
+  }
+
+  .selected-branches-services {
+    padding: 18px;
+
+    h1 {
+      font-size: 20px;
+      color: $marine-two;
+    }
+  ;
+
+    .service-list {
+      display: flex;
+      align-items: center;
+      margin-top: 17px;
+
+      /deep/
+      .icon-separation {
+        width: 9px;
+        height: 9px;
+
+      }
+
+      .service-label {
+        margin-right: 10px;
+      }
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+
+    .add-more {
+      cursor: pointer;
+      margin-top: 17px;
+      margin-right: 5px;
+      font-size: 18px;
+      font-weight: normal;
+      text-decoration: underline;
+    }
+  }
+
+  .selected-branch-data {
+    padding: 18px;
+
+    ul {
+      padding: 0;
+      margin: 0
+    }
+
+    .line-data {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+
+      .icon {
+        align-self: center;
+        background-size: contain;
+        margin-left: 13px;
+
+        &.phone-icon {
+          width: 13px;
+          height: 13px;
+          background-image: url('~src/assets/media/phone-icon.svg');
+        }
+
+        &.fax-icon {
+          width: 15px;
+          height: 13px;
+          background-image: url('~src/assets/media/fax-icon.svg');
+        }
+
+        &.manager-icon {
+          width: 15px;
+          height: 14px;
+          background-image: url('~src/assets/media/manager-icon.svg');
+        }
+
+        &.note-icon {
+          width: 16px;
+          height: 16px;
+
+          background-image: url('~src/assets/media/note-icon.svg');
+        }
+      }
+
+      .label {
+        line-height: 1;
+        font-size: 18px;
+        color: $marine-two;
+        font-weight: normal;
+        margin-left: 3px;
+      }
+
+      .value {
+        line-height: 1;
+        font-size: 18px;
+        color: $marine-two;
+        font-weight: 300;
+      }
+    }
+
+    &:first-child {
+      margin-top: 0px;
+    }
+  }
+  .selected-branch-buttons{
+    margin-bottom: 46px;
+    margin-top: 38px;
+    font-size: 18px;
+    justify-content:center;
+    align-items: center;
+    display: flex;
+    .btn{
+      margin-left: 15px;
+    }
+    .wrong-data-text{
+color: $marine-two;
+    }
+    .worng-data{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+    .goto{
+      font-size: 30px;
+      color:$lipstick-two;
+      margin-right:13px;
+    }
+  }
+}
+
+

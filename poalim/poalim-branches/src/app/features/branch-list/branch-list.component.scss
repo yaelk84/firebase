@@ -1,5 +1,7 @@
 @import "../../../assets/scss/style";
 
+
+
 #branch_id {
   /deep/
   lib-rc-switcher{
@@ -36,3 +38,94 @@
     }
   }
 }
+.branch-box-wrapper{
+  padding-right: 15px;
+
+
+
+
+}
+.list-wrapper{
+  position: relative;
+  max-width: 510px;
+  overflow: hidden;
+    /deep/
+  .popover-wrapper{
+
+    width: 335px;
+    padding: 30px;
+    left: 0px;
+    top:60px;
+
+  }
+}
+.branch-list-header{
+  display:flex ;
+  align-items: center;
+  justify-content: space-between;
+  justify-items: center;
+  padding: 15px;
+  font-family: Poalim;
+  text-align: $default-start;
+  font-size: 25px;
+  color: $greyish-brown;
+
+  .branch-result{
+       font-size: 25px;
+  }
+  .hours{
+    display: flex;
+font-size: 20px;
+    align-items: center;
+    line-height: 20px;
+}
+
+
+}
+.branch-list{
+  height: 427px;
+  position: relative;
+
+
+  .branch-list-scroll{
+
+
+    position: relative
+  }
+}
+
+.back-to-results{
+  font-size: 20px;
+  color: $greyish-brown;
+
+  cursor: pointer;
+
+}
+.back-to-results-wrapper{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-right: 60px;
+}
+.go-back{
+  font-size: 30px;
+  color:$lipstick-two;
+  margin-left:13px;
+}
+.map-wrapper{
+  margin-right: 25px;
+  max-width: 619px;
+  borde:1px solide $pale-grey
+}
+.img-wrapper{
+  cursor: pointer;
+  width: 16px;
+  margin-right: 6px;
+
+  img{
+    width: 100%;
+  }
+;
+}
+
+

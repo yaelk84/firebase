@@ -1,3 +1,29 @@
+.wrapper-icon {
+
+  padding-left: 24px;
+  margin-top: 15px;
+
+  .branch-icon {
+    text-align: center;
+    float: $default-start;
+    width: 26px;
+    height: 26px;
+    background: $lipstick-two;;
+    border-radius: 5px;
+    transform: rotate(45deg);
+    &.bankat{
+      background: $marine-two;;
+
+    }
+
+    .icon-val {
+      color: $white;
+      transform: rotate(-45deg);
+    }
+  }
+
+}
+
 .custom-control {
   display: flex;
   color: white;
@@ -47,8 +73,20 @@
 
 }
 
+.icon-separation {
+  margin: 0 5px;
+  text-align: center;
+  float: $default-start;
+  width: 5px;
+  height: 5px;
+  background: $marine-two;;
 
+  transform: rotate(45deg);
+
+
+}
 .btn {
+  cursor: pointer;
   border-radius: 21.5px;
   border: solid 1px $marine-two;
   padding: 9px 35px;
@@ -58,9 +96,94 @@
   text-align: center;
   color: $marine-two;
   line-height: 1;
+  &.white-btn{
+      border-radius: 21.6px;
+      box-shadow: 0 3px 5px 0 rgba(3, 41, 76, 0.05);
+      background-color: $white;
+    color: $lipstick-two;
+    border-color: transparent;
+
+  }
 
 
 }
 
 
+/deep/
+.ps__rail-y{
+  opacity: 1;
+  background-color: $pale-grey;
+
+  &:hover > .ps__thumb-y, .ps__rail-y:focus > .ps__thumb-y, .ps__rail-y.ps--clicking .ps__thumb-y{
+    width:5px;
+    background-color: $marine-two;
+  }
+  .ps__thumb-y{
+    width:5px;
+    background-color: $marine-two;
+    right: -1.7px;
+
+  }
+
+}
+/deep/
+perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
+  right: 24px !important; ;
+  width: 2px;
+  opacity: 1;
+  background-color: $pale-grey;
+&:hover, perfect-scrollbar > .ps.ps--active-y > .ps__rail-y.ps--clicking{
+  width: 2px;
+}}
+
+.icon-arrow{
+  width: 8px;
+  height: 13px;
+  background-repeat: no-repeat;
+  background-image: url('~src/assets/media/greenArrow.svg');
+  cursor: pointer;
+
+}
+
+
+.popover-wrapper {
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 14px 24px 0 rgba(132, 169, 204, 0.24);
+  border: solid 1px rgba(82, 82, 82, 0.17);
+  background-color:$white;
+  position: absolute;
+  left: 0;
+  top:135px;
+  opacity: 0;
+  padding: 30px 23px;
+  &.slideDown{
+    opacity: 1;
+    z-index: 99;
+  }
+
+
+
+}
+
+.popover-wrapper:after, .popover-wrapper:before {
+  bottom: 100%;
+  left: 29px;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  border-color: rgba(255, 255, 255, 0);
+}
+.popover-wrapper:before {
+  border-bottom-color: rgba(82, 82, 82, 0.17);
+  margin-left: -7px;
+  border-width: 7px;
+}
+.popover-wrapper:after {
+  border-bottom-color:$white !important;
+  margin-left: -6px;
+  border-width: 6px;
+}
 
