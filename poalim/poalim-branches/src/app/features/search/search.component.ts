@@ -4,7 +4,9 @@ import {RcValidators} from '@realcommerce/rc-packages';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
-import {forkJoin} from 'rxjs';
+import {AppService} from '../../core/services/app.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-search',
@@ -20,64 +22,36 @@ export class SearchComponent implements OnInit {
   openDropdown: boolean;
   searchFocused: boolean;
   optionMouseOver: boolean;
+  cities: []
 
-  constructor(private apiService: ApiService) { }
 
+  constructor(private apiService: ApiService , private appService: AppService , private  router: Router, private  activeRoute: ActivatedRoute) { }
+ set updateCities(data) {
+    this.cities = data;
+ }
   ngOnInit() {
-    // this.apiService.getBranches().subscribe((response) => {
-    //
-    // });
-    this.loadData();
+
+    this.initSearch()
 
   }
 
-  loadData() {
-    forkJoin(this.apiService.getBranches()/*, promise2() todo: add cities getData*/)
-      .subscribe(results => {
 
-        const [branchesData /*, promise2Result*/] = results;
-        this.initSearch(branchesData);
-      });
-  }
 
-  initSearch(branchesData) {
+  initSearch() {
     // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data from stub)
     //  need to sort by distance if possible, else sort by branch name -> street -> city (cities go first then branches)
     this.items = [];
     this.openDropdown = false;
-    let tempBranches = [];
-    let tempCities = [];
-    for (let i = 0; i < 25; i++) {
-      if (i % 2 == 0) {
-        tempCities.push({
-          id: i,
-          name: 'אשדוד' + i,
-          type: 'city'
-        });
-      }
-      else if (i % 3 == 0) {
-        tempCities.push({
-          id: i,
-          name: 'באר שבע' + i,
-          type: 'city'
-        });
-      }
-      else if (i % 7 == 0) {
-        tempCities.push({
-          id: i,
-          name: 'חולון' + i,
-          type: 'city'
-        });
-      }
-    }
-    for (const branch of branchesData) {
-      tempBranches.push({
-        id: branch._id,
-        type: 'branch',
-        name: branch.branchName,
-        address: branch.geographicAddress.streetName + ' ' + branch.geographicAddress.buildingNumber + ', ' + branch.geographicAddress.cityName
-      });
-    }
+    const tempBranches = this.appService.branches.map((obj) => {
+      obj.type = 'branch';
+      obj.name = obj.branchName;
+      return obj;
+    });
+    const tempCities: any[] = [];
+    this.appService.cities.map((obj) => {
+         tempCities.push({type: 'city', nameLabel: '333333', name: obj});
+         });
+
     this.items = tempCities.concat(tempBranches);
 
   }
@@ -137,8 +111,12 @@ export class SearchComponent implements OnInit {
     console.log($event , 'select');
     this.openDropdown = false;
     this.searchTerm = '';
-
     // todo: handle item selected
+    const  param  = $event && $event.branchNumber ? $event.branchNumber : "";
+    if (param){
+      this.router.navigate(['/home'], { queryParams: { branch: param } ,  relativeTo: this.activeRoute });
+    }
+
   }
 
   searchFn(term, item) {
@@ -147,7 +125,7 @@ export class SearchComponent implements OnInit {
     if (item.type == 'city'){
       return item.name.indexOf(term) > -1;
     } else {
-      return item.name.indexOf(term) > -1 || item.address.indexOf(term) > -1;
+      return item.branchName.indexOf(term) > -1 || item.geographicAddress[0].cityName.indexOf(term) > -1;
     }
   }
 

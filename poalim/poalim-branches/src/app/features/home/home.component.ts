@@ -24,22 +24,28 @@ export class HomeComponent implements OnInit {
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService) {
   }
 
-  public getBranches() {
-    return this.apiService.getBranches().subscribe((response) => {
-      this.branches = response;
-      console.log('response', response);
-      return of({});
-    });
-  }
+
 
 
 
 
   ngOnInit() {
-      this.appService.init().subscribe((response) => {
+      this.appService.init().subscribe((response: any) => {
+
+        this.mapBranches.myLocationFilter(response.location, response.branche).subscribe((res =>{
+          this.servicesLoaded = true;
+        }))
+        console.log('yyyyyyyyyyyyyyyyyy')
        this.hours.updateTime = response.time;
       this.branches = response.branches;
-      this.servicesLoaded = true;
+        const cities = response.branches.map(obj =>{
+          return obj.geographicAddress[0].cityName;
+        })
+        debugger
+        const  uniquset = new Set(cities);
+        const backArray = uniquset["entries"]();
+
+
           }, (err) => {
       console.log(err);
 

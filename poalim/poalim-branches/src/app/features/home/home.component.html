@@ -24,7 +24,7 @@
 
     </div>
   </div>
-  <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+  <lib-rc-popup-wrapper *ngIf="openPopup && false" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
     <app-report-problem-popup></app-report-problem-popup>
   </lib-rc-popup-wrapper>
 

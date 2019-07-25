@@ -5,6 +5,8 @@ import {MapsAPILoader} from '@agm/core';
 import {Observable, of} from 'rxjs';
 import {GeoLocationObject} from '../interface/coordinates';
 import {error} from '@angular/compiler/src/util';
+import {RcEventBusService} from '@realcommerce/rc-packages';
+import {CONSTANTS} from '../../constants';
 
 
 @Injectable({
@@ -22,10 +24,10 @@ export class MapBranchesService {
   // lng = 34.77539;
 
 
-  constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader) {
+  constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader , private events: RcEventBusService) {
   }
-    get sliceBranches() {
-            return this.sortedBranches;
+    updateSliceBranches() {
+      this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP,[]);
     }
 
 
@@ -74,29 +76,31 @@ export class MapBranchesService {
   // }
 
   // will get my location
-  getMyLocation() {
-    const myGeoLocation = new Observable(observer => {
-      let c = {};
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position: Position) => {
-          if (position) {
-            c = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-          }
-          observer.next(c);
-        }, err => {
-
-          observer.error();
-        });
-      } else {
-
-        // observer.error();
-      }
-    });
-    return (myGeoLocation);
-  }
+   getMyLocation(): Observable<any> {
+     const myGeoLocation = new Observable(observer => {
+       let c = {};
+       console.log('rrrrrrrrrrrrrr')
+       if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition((position: Position) => {
+           if (position) {
+               c = {
+                 lat:  position.coords.latitude,
+                 lng:  position.coords.longitude
+               };
+             }
+           observer.next(c);
+           observer.complete();
+         }, err => {
+           console.log('erooooooooooor1');
+           observer.error();
+         });
+       } else {
+         console.log('erooooooooooor2');
+         // observer.error();
+       }
+     });
+     return myGeoLocation;
+   }
 
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = []): any {
@@ -119,9 +123,12 @@ export class MapBranchesService {
         const nearestBranches = this.filteredMarkers.sort((a, b) => {
           return a.geographicAddress[0].distanceInKm - b.geographicAddress[0].distanceInKm;
         }).slice(0, 10);
-        console.log('10')
-          this.sortedBranches = nearestBranches;
+        console.log('10');
+         this.sortedBranches = nearestBranches;
+        // this.updateSliceBranches()
         observer.next(nearestBranches);
+         observer.complete()
+
       });
 
     });

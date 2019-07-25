@@ -13,8 +13,7 @@ export class SingleBranchDisplayComponent implements OnInit {
   start = 0;
   end = CONSTANTS.SERVICES_NUM;
   @Input() dataBranchSelected: any;
-  @Input() selectedIndex: number;
-  addMore(){
+   addMore(){
     this.end = this.dataBranchSelected.branchService.length;
 
 
