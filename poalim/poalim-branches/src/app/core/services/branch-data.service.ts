@@ -26,28 +26,6 @@ export class BranchDataService {
 
 
 
-  private returnOpenHoursForCurrentDay(dayObject, currentTime, waasChange) {
-    let hours = {morninigHours: '', nooonHours: ''};
-    if (isNullOrUndefined(dayObject)) {
-      return hours;
-    }
-    if (dayObject.field_bod_close_hour) {
-      const currentHours = this.timeService.hoursDiff(currentTime, dayObject.field_bod_close_hour) > 0;
-      if (currentHours) {
-        hours.morninigHours = dayObject.field_bod_open_hours + '  - ' + dayObject.field_bod_close_hour;
-
-      }
-    }
-    if (dayObject.field_bod_noon_close) {
-      const currentHoursNoon = this.timeService.hoursDiff(currentTime, dayObject.field_bod_noon_close) > 0;
-      if (currentHoursNoon) {
-        hours.nooonHours = dayObject.field_bod_noon_open + ' - ' + dayObject.field_bod_noon_close;
-      }
-    }
-    return hours;
-  };
-
-
   private  replaceNullOrUndefinedInEmpty(val) {
     const  str = isNullOrUndefined(val) || val === 'null' ? '' : val;
     return str;

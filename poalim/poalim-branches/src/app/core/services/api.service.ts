@@ -163,6 +163,12 @@ export class ApiService extends RcApiService {
     return this.apiGet('../assets/stubs/GetCurrentTimeStamp.json', {}, true);
   }
 
+  public getGetCities(params = {}, force: boolean = true) {
+    return this.apiGet('../assets/stubs/cities.json', {}, true);
+  }
+
+
+
 
 
 

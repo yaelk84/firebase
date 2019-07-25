@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {RcTranslateService} from '@realcommerce/rc-packages';
-import {Observable, of, Subject, Subscription, throwError} from 'rxjs';
-import {catchError, map, switchMap} from 'rxjs/operators';
+import {BehaviorSubject, Observable, of, Subject, Subscription, throwError} from 'rxjs';
+import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {forkJoin} from 'rxjs';
 import {MapBranchesService} from './map-branches.service';
 
@@ -16,6 +16,11 @@ export class AppService {
   }
 
   public appConfig;
+  public cities = [];
+  public branches = [];
+  public queryParam = {};
+  private firstObsSubscription: Subscription;
+
 
   initApp(): Observable<any> {
     return forkJoin([this.loadTranslation(), this.loadConfig()]).pipe(
@@ -44,19 +49,50 @@ export class AppService {
   }
 
 
-  init() {
+init() {
 
-    return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches()]).pipe(
+
+    const customIntervalObservable = Observable.create(observer => {
+      let count = 0;
+      setTimeout(() => {
+        observer.next(count);
+        observer.complete();
+        count++;
+      }, 1000);
+    });
+
+
+    this.firstObsSubscription = customIntervalObservable.pipe(filter(data => {
+      return data > 0;
+    }), map((data: number) => {
+      return 'Round: ' + (data + 1);
+    })).subscribe(data => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+      alert(error.message);
+    }, () => {
+      console.log('Completed!');
+    });
+
+
+
+
+  return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches(), this.apiService.getGetCities(), customIntervalObservable , this.mapBranches.getMyLocation()]).pipe(
       switchMap((results: any) => {
-        const  objResult = {
-          time: {}, branches: [] ,location: {}
+        console.log('returnnnnnnnnnnnnnnnnn', results);
+        const objResult = {
+          time: {}, branches: [], location: {}, cities: []
         };
         objResult.time = results[0];
         objResult.branches = results[1];
-        this.mapBranches.getMyLocation().subscribe((res: any) => {  /* call the location to know location updated*/
-          objResult.location = res;
-        });
-        return of(objResult);
+        this.branches = results[1];
+      objResult.cities = results[2];
+        this.cities = results[2].cities;
+        objResult.location = results[2];
+
+      return of(objResult)
+
       }),
       catchError((error: any) => {
         console.log(error);
@@ -65,5 +101,6 @@ export class AppService {
       })
     );
   }
+
 
 }

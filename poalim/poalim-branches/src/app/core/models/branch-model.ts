@@ -6,7 +6,7 @@ export class BranchObj {
 
 constructor(
             private  isBankat: boolean,
-            private  branchSummarize: BranchSummarize,
+            public  branchSummarize: BranchSummarize,
             private  branchService: [],
             private  fax: string,
             private phone: string,
