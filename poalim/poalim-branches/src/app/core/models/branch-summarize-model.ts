@@ -3,7 +3,7 @@ export class BranchSummarize {
               private  branchNum: number,
               private  branchName: string,
               private  address: string,
-              private distance: number,
+              private distanceInKm: number,
               private openAndCloseHours: object
   ) {
 

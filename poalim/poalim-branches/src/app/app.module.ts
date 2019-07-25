@@ -24,14 +24,13 @@ import { SearchComponent } from './features/search/search.component';
 import {FormsModule} from '@angular/forms';
 import { NoLocationPermissionsComponent } from './features/no-location-permissions/no-location-permissions.component';
 import { ReportProblemPopupComponent } from './features/report-problem-popup/report-problem-popup.component';
-
+import { MapComponent } from './features/map/map.component';
+import { AgmCoreModule  } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-
-import { MapComponent } from './features/map/map.component';
-import { AgmCoreModule  } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -67,8 +66,8 @@ import { AgmCoreModule  } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',
       libraries: ['geometry']
-      // AIzaSyDDTZwjyoMs46iFEvwssnCNppYxAjBJVT8
-    })
+    }),
+    AgmSnazzyInfoWindowModule
   ],
   providers: [FilterBranchPipe, {
     provide: PERFECT_SCROLLBAR_CONFIG,

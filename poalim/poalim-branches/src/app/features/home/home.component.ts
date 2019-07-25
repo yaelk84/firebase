@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
     }, (error1 => this.mapBranches.hasLocationPermission = false));
     this.apiService.getGetCurrentTimeStamp()
       .subscribe((response) => {
-          console.log( 'respose' , response)
+          // console.log( 'respose' , response)
           this.hours.updateTime  = response.time;
           this.servicesLoaded = true;
 

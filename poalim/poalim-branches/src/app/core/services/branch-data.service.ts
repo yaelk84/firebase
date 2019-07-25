@@ -64,7 +64,6 @@ export class BranchDataService {
      })
    }
   private  craeteContactAddressFax(contactAddress) {
-    debugger
     const contactAddressFax = contactAddress.filter((value) => {
       return value.contactChannelTypeCode === CONSTANTS.HAVE_FAX ;
     });
@@ -82,7 +81,7 @@ export class BranchDataService {
       branchNum: data.branchNumber,
       branchName: data.branchName,
       address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) +' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber),
-      distance: 0,
+      distanceInKm: 0,
       openAndCloseHours: hours,
       branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
       branchService: this.craeteBrancServices(data.branchService),
@@ -90,7 +89,7 @@ export class BranchDataService {
             };
 
       const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
-      branchData.distance, branchData.openAndCloseHours);
+      branchData.distanceInKm, branchData.openAndCloseHours);
          return{
         isBankat: data.channelGroupCode ===  CONSTANTS.BANKAT,
         branchSummarize: branchSummarize,

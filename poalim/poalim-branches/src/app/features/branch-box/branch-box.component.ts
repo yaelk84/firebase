@@ -24,7 +24,7 @@ export class BranchBoxComponent implements OnInit {
 
   ngOnInit() {
 
-console.log("inittt", this.branchData)
+// console.log("inittt", this.branchData)
 
   }
 

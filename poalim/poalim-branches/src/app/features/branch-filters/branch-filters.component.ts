@@ -33,7 +33,7 @@ export class BranchFiltersComponent implements OnInit {
 
   }
   closeDropDownServices() {
-    console.log("dfdfdfdf")
+    // console.log("dfdfdfdf")
     this.openDropDown = false;
   }
   getActiveCheckBox(){

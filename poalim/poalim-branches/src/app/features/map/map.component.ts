@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
+import {BranchDataService} from '../../core/services/branch-data.service';
 
 
 @Component({
@@ -17,10 +18,17 @@ export class MapComponent implements OnInit {
   zoom = 14;
   hasAccessToMyLocation = false;
   branchesMapMarker = [];
+  summarizedBranchesArr = [];
+  distancesArr = [];
+  labelData = {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    text: '1'
+  };
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
     scaledSize: {
-      width: 25,
+      width: 35,
       height: 45
     }
   };
@@ -35,11 +43,11 @@ export class MapComponent implements OnInit {
     url: 'assets/media/bankat-marker.svg',
     scaledSize: {
       width: 50,
-      height: 70
+      height: 50,
     }
   };
 
-  constructor(private apiService: ApiService, private mapBranches: MapBranchesService ) { }
+  constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private branchData: BranchDataService) { }
 
    ngOnInit() {
       this.mapBranches.getMyLocation().subscribe(geolocation => {
@@ -48,18 +56,43 @@ export class MapComponent implements OnInit {
          this.geoCoordinateX = (geolocation as GeoLocationObject).lng;
          this.mapBranches.myLocationFilter({lat: this.geoCoordinateY, lng: this.geoCoordinateX},
            this.branches).subscribe((response) => {
-           console.log('response!!!!!!!!!!!!!!!!!!!', response);
-           this.mapBranches.getGeoCoordinateArray(response).subscribe(near => {
+             response.forEach((d, index) => {
+               d = response[index].geographicAddress[0].distanceInKm;
+               this.distancesArr.push(d);
+             });
+             console.log('distancesArr', this.distancesArr); //
+             // console.log('#################', response);
+             response.forEach((branchDataSum) => {
+               const branchSumObj = this.branchData.createSingleBranch(branchDataSum);
+               // console.log('branchSumObj',  branchSumObj); //
+               if (branchSumObj.isBankat) {
+                 // branchSumObj.isBankat = true;
+                 this.branchIcon = this.bankatIcon;
+               }
+               // console.log(branchSumObj);
+               this.summarizedBranchesArr.push(branchSumObj.branchSummarize);
+             });
+             this.mapBranches.getGeoCoordinateArray(response).subscribe(near => {
              this.branchesMapMarker = (near as Array<any>);
+             // console.log('branchesMapMarker!!!!', this.branchesMapMarker); //
            });
+             this.summarizedBranchesArr.map((bs, i) => {
+             bs.coords = this.branchesMapMarker[i];
+             bs.distanceInKm = this.distancesArr[i];
+           });
+             console.log('summarizedBranchesArr', this.summarizedBranchesArr);
            // this.branchesMapMarker = this.mapBranches.getGeoCoordinateArray(response);
          });
      }, error => {
         this.mapBranches.defaultFilter().subscribe((centerBranches) => {
-          console.log('centerBranches', centerBranches);
-          console.log('aaa');
           this.branchesMapMarker = this.mapBranches.branchesPointsMap;
         });
       });
+   }
+
+   createBranchLabel(arr: Array<any>) {
+    arr.forEach((b) => {
+      this.branchData.createSingleBranch(b);
+    });
    }
 }

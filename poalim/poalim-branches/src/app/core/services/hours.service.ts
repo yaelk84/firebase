@@ -46,7 +46,7 @@ export class HoursService {
   }
 
   private openNow(dayObject) {
-      console.log("is opwn")
+      // console.log("is opwn")
     return this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[0].endHour) > 0 ||
       this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[1].endHour) > 0;
   }

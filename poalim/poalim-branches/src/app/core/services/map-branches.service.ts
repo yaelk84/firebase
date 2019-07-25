@@ -108,12 +108,12 @@ export class MapBranchesService {
             return m;
           }
         });
-        console.log('this.branchesPointsMap m34', this.branchesPointsMap);
+        // console.log('this.branchesPointsMap m34', this.branchesPointsMap);
         const nearestBranches = this.filteredMarkers.sort((a, b) => {
           return a.geographicAddress[0].distanceInKm - b.geographicAddress[0].distanceInKm;
         }).slice(0, 10);
-
-        observer.next(nearestBranches);
+        this.sortedBranches = nearestBranches;
+        observer.next(this.sortedBranches);
       });
     });
     return nearestBranchesObserveble;
