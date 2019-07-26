@@ -89,7 +89,7 @@ init() {
         this.branches = results[1];
       objResult.cities = results[2];
         this.cities = results[2].cities;
-        objResult.location = results[2];
+        objResult.location = results[4];
 
       return of(objResult)
 

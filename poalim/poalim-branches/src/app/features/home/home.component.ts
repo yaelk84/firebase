@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
       this.appService.init().subscribe((response: any) => {
-
-        this.mapBranches.myLocationFilter(response.location, response.branche).subscribe((res =>{
+console.log('what the res , re' , response)
+        this.mapBranches.myLocationFilter(response.location, response.branches).subscribe((res =>{
           this.servicesLoaded = true;
         }))
         console.log('yyyyyyyyyyyyyyyyyy')

@@ -125,9 +125,9 @@ export class MapBranchesService {
         }).slice(0, 10);
         console.log('10');
          this.sortedBranches = nearestBranches;
-        // this.updateSliceBranches()
+         this.updateSliceBranches()
         observer.next(nearestBranches);
-         observer.complete()
+
 
       });
 
