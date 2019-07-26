@@ -82,6 +82,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   backToResults() {
     this.showSelectedBranch = false;
+    this.router.navigate(['/home'], {queryParams: {}, relativeTo: this.activeRoute});
+    debugger
   }
 
   selectBranch(id) {
@@ -120,7 +122,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
         branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
     });
-    this.callQueryParam();
+    //this.callQueryParam();
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
   }
 
@@ -157,14 +159,17 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.init();
 
 
+
   }
 
   ngAfterViewInit() {
     //this.componentRef.directiveRef.ps().update();
-
+    this.callQueryParam();
     interval(1000 * 60).subscribe(x => {
       this.init();
+
     })
+
   }
 
 
