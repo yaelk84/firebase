@@ -1,6 +1,6 @@
 export class BranchSummarize {
   constructor(
-              private  branchNum: number,
+              public  branchNum: number,
               private  branchName: string,
               private  address: string,
               private distanceInKm: number,

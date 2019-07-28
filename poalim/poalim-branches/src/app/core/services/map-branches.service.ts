@@ -72,9 +72,16 @@ export class MapBranchesService {
   // will get my location
    getMyLocation() {
      const myGeoLocation = new Observable(observer => {
+       let id;
+
        let c = {};
        if (navigator.geolocation) {
+         setTimeout(() => {console.log('choose');
+                           observer.next({});
+
+                           }, 7000);
          navigator.geolocation.getCurrentPosition((position: Position) => {
+           debugger
            if (position) {
                c = {
                  lat:  position.coords.latitude,
@@ -82,9 +89,11 @@ export class MapBranchesService {
                };
              }
            observer.next(c);
+
          }, err => {
            console.log('erooooooooooor1');
-           // observer.error();
+           observer.error(err);
+
          });
        } else {
          console.log('erooooooooooor2');

@@ -24,32 +24,43 @@ export class HomeComponent implements OnInit {
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService) {
   }
 
-
-
-
-
-
-  ngOnInit() {
-      this.appService.init().subscribe((response: any) => {
-console.log('what the res , re' , response)
-        this.mapBranches.myLocationFilter(response.location, response.branches).subscribe((res =>{
-          this.servicesLoaded = true;
-        }))
-        console.log('yyyyyyyyyyyyyyyyyy')
-       this.hours.updateTime = response.time;
-      this.branches = response.branches;
-        const cities = response.branches.map(obj =>{
-          return obj.geographicAddress[0].cityName;
-        })
-
-        const  uniquset = new Set(cities);
-        const backArray = uniquset["entries"]();
-
-
-          }, (err) => {
-      console.log(err);
-
+getServicers(){
+  this.appService.init().subscribe((response: any) => {
+    console.log('what the res , re', response);
+    this.mapBranches.myLocationFilter(response.location, response.branches).subscribe((res => {
+      this.servicesLoaded = true;
+    }));
+    console.log('yyyyyyyyyyyyyyyyyy');
+    this.hours.updateTime = response.time;
+    this.branches = response.branches;
+    const cities = response.branches.map(obj => {
+      return obj.geographicAddress[0].cityName;
     });
+
+    const uniquset = new Set(cities);
+    const backArray = uniquset['entries']();
+
+
+  }, (err) => {
+    console.log(err);
+
+  });
+}
+  ngOnInit() {
+    return this.mapBranches.getMyLocation()
+      .subscribe(x => {
+          console.log('Observer got a next value: ' + x);
+         // this.getServicers();
+        },
+        (err) => {
+         // this.getServicers();
+              console.error('Observer got an error: ');
+        },
+        () => {
+          console.log('Observer got a complete notification');
+        });
+
+
 
   }
 }
