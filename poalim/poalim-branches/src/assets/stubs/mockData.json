@@ -55317,7 +55317,7 @@
     "geographicAddress": [
       {
         "cityName": "תל אביב-יפו",
-        "streetName": "null",
+        "streetName": "שכונת התקוה",
         "buildingNumber": 63,
         "postOfficeBox": 19032,
         "zipCode": 67721,
@@ -70232,7 +70232,7 @@
       {
         "cityName": "תל אביב-יפו",
         "streetName": "null",
-        "buildingNumber": 2,
+        "buildingNumber": "",
         "postOfficeBox": 20053,
         "zipCode": 61200,
         "geographicCoordinate": {

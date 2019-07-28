@@ -1,12 +1,14 @@
 @import "../../../assets/scss/style";
 .branches-header {
   background-color:$pale-grey;
-  padding: 100px 31px;
-  padding-top: 20px;
+  padding:31px;
+  padding-top: 10px;
+  padding-bottom: 55px;
 .title{
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 17px;
   font-weight: normal;
+  line-height: normal;
   color: $greyish-brown;
 }
   .branch-title{
@@ -18,7 +20,7 @@
   }
   .choose-title{
     font-size: 20px;
-    margin-top: 37px;
+    margin-top: 32px;
   }
 }
 .branch-container{

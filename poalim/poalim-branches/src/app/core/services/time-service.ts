@@ -11,7 +11,7 @@ export class TimeService extends RcTimeService {
   constructor() {super(); }
 
   getCurrentTime( time ) {
-    console.log(this.momentRef(time).format('MMMM Do YYYY, h:mm:ss'))
+
     return this.momentRef(time);
 
   }

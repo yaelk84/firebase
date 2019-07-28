@@ -27,7 +27,7 @@
             <span class="icon-separation"></span>
             <span class="service-label">{{service.branchServiceTypeDescription}}</span>
           </div>
-          <div *ngIf="end !== dataBranchSelected.branchService.length" class="add-more" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
+          <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
         </div>
         <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
       </div>

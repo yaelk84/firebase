@@ -1,10 +1,12 @@
 @import "../../../assets/scss/style";
 
 .wrapper-branch-hours{
+
   display: flex;
   align-items: center;
 
   &.withdropdown{
+    cursor: pointer;
     padding: 0 10px;
     margin-right: -10px;
     &:hover{
@@ -65,10 +67,16 @@
 .hours{
   /deep/
   .popover-wrapper.hours-list {
-    top:27px;
-    left:-27px;
-    padding: 30px 15px;
+    top:29px;
+    right: 0;
+    padding: 25px 15px;
     min-width: 330px;
+    &:after
+    {margin-left: 40%;
+    border-width:7px}
+    &:before
+    {margin-left: 40%;
+    }
   }
 }
 

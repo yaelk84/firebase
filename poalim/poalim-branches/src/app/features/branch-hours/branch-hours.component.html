@@ -1,6 +1,6 @@
 
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
-  <div class="clearfix" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
+  <div class="clearfix is-bankat" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
   <div class="clearfix" *ngIf="!hours.isBankat">
 
     <div class="clearfix" *ngIf="hours.wasChange">

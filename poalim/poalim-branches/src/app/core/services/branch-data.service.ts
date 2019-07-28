@@ -52,14 +52,14 @@ export class BranchDataService {
     const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification , false , isBankat );
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
+    const comma  =this.replaceNullOrUndefinedInEmpty(address.streetName) ||this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : ''
     const branchData = {
 
       branchNum: data.branchNumber,
       branchName: data.branchName,
-      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) +' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber),
+      address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
       distance: 0,
       openAndCloseHours: hours,
-      branchCity: this.replaceNullOrUndefinedInEmpty(address.cityName),
       branchService: this.craeteBrancServices(data.branchService),
 
             };

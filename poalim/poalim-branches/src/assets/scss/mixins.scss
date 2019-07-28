@@ -74,11 +74,13 @@
 }
 
 .icon-separation {
-  margin: 0 5px;
+
+  margin: 0 8px;
+  margin-top:3px;
   text-align: center;
   float: $default-start;
-  width: 5px;
-  height: 5px;
+  width: 4px;
+  height: 4px;
   background: $marine-two;;
 
   transform: rotate(45deg);
@@ -96,6 +98,10 @@
   text-align: center;
   color: $marine-two;
   line-height: 1;
+  &:hover{
+    border: solid 1px $lipstick-two;
+    color: $lipstick-two; ;
+  }
   &.white-btn{
       border-radius: 21.6px;
       box-shadow: 0 3px 5px 0 rgba(3, 41, 76, 0.05);
@@ -106,6 +112,11 @@
   }
 
 
+}
+.link-underline{
+  &:hover{
+    color: $lipstick-two;
+  }
 }
 
 
@@ -140,7 +151,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   width: 8px;
   height: 13px;
   background-repeat: no-repeat;
-  background-image: url('~src/assets/media/greenArrow.svg');
+  background-image: url('~src/assets/media/blueArrow.svg');
   cursor: pointer;
 
 }
@@ -154,6 +165,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
 
 
 .popover-wrapper {
+  display: none;
   width: 300px;
   border-radius: 5px;
   box-shadow: 0 14px 24px 0 rgba(132, 169, 204, 0.24);
@@ -167,6 +179,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   &.slideDown{
     opacity: 1;
     z-index: 99;
+    display: block;
   }
 
 

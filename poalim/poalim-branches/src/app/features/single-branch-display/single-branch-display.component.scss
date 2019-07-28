@@ -1,11 +1,12 @@
 @import "../../../assets/scss/style";
 
 .single-scroll {
-  max-height: 427px;
+  height: 427px;
   position: relative;
 }
 
 .single-branch-display {
+ min-height: 427px;
   margin-right: 50px;
   background-color: $pale-grey;
 .name-branch{
@@ -69,19 +70,20 @@
   ;
 
     .service-list {
+      line-height: normal;
       display: flex;
       align-items: center;
-      margin-top: 17px;
+      margin-top: 12px;
 
       /deep/
       .icon-separation {
-        width: 9px;
-        height: 9px;
+        width: 7px;
+        height: 7px;
 
       }
 
       .service-label {
-        margin-right: 10px;
+        margin-right: 5px;
       }
 
       &:first-child {
@@ -91,6 +93,7 @@
     }
 
     .add-more {
+      margin-right: 26px;
       cursor: pointer;
       margin-top: 17px;
       margin-right: 5px;

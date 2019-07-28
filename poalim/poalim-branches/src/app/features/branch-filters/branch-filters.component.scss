@@ -1,5 +1,18 @@
 @import "../../../assets/scss/style";
 
+/deep/
+.popover-wrapper{
+  &.more-services{
+padding:25px;
+    &:before{
+      margin-left: -19px;
+    }
+    &:after{
+      margin-left: -19px;
+    }
+
+  }
+}
 .filter-box-cointener {
 
   display: flex;

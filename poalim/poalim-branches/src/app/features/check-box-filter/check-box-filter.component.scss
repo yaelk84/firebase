@@ -2,6 +2,9 @@
 .check-box-line{
   margin-bottom: 22px;
   margin-top: 19px;
+  &:first-child{
+    margin-top: 0;
+  }
 }
 .check-box-list{
   margin-bottom: 22px;
