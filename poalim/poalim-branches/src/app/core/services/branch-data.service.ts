@@ -18,9 +18,6 @@ export class BranchDataService {
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService) {
     const curTime = this.hursService.time;
-    const dayName = this.timeService.getDayName(curTime);
-    const tomarrowDay = this.timeService.addDays(1, curTime);
-    const afterTomarrowDay = this.timeService.addDays(2, curTime);
 
   }
 
