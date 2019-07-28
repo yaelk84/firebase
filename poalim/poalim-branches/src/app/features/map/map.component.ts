@@ -3,6 +3,8 @@ import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
 import {BranchDataService} from '../../core/services/branch-data.service';
+import {FilterBranchPipe} from '../../core/filters/branch-filter.pipe';
+import {BranchFilterService} from "../../core/services/branch-filter.service";
 
 
 @Component({
@@ -20,11 +22,13 @@ export class MapComponent implements OnInit {
   branchesMapMarker = [];
   summarizedBranchesArr = [];
   distancesArr = [];
-  labelData = {
-    color: '#ffffff',
-    fontWeight: 'bold',
-    text: '1'
-  };
+  // labelOptions = {
+  //   color: 'white',
+  //   fontFamily: '',
+  //   fontSize: '14px',
+  //   fontWeight: 'bold',
+  //   text: '1'
+  // };
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
     scaledSize: {
@@ -47,7 +51,8 @@ export class MapComponent implements OnInit {
     }
   };
 
-  constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private branchData: BranchDataService) { }
+  constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private branchData: BranchDataService,
+              private filterBranchPipe: FilterBranchPipe, private branchFilterService: BranchFilterService) { }
 
    ngOnInit() {
       this.mapBranches.getMyLocation().subscribe(geolocation => {
@@ -64,7 +69,7 @@ export class MapComponent implements OnInit {
              // console.log('#################', response);
              response.forEach((branchDataSum) => {
                const branchSumObj = this.branchData.createSingleBranch(branchDataSum);
-               // console.log('branchSumObj',  branchSumObj); //
+               // console.log('branchSumObj',  branchSumObj);
                if (branchSumObj.isBankat) {
                  // branchSumObj.isBankat = true;
                  this.branchIcon = this.bankatIcon;
@@ -83,11 +88,13 @@ export class MapComponent implements OnInit {
              console.log('summarizedBranchesArr', this.summarizedBranchesArr);
            // this.branchesMapMarker = this.mapBranches.getGeoCoordinateArray(response);
          });
+         // const activeFilter = this.branchFilterService.getActiveFilters();
      }, error => {
         this.mapBranches.defaultFilter().subscribe((centerBranches) => {
           this.branchesMapMarker = this.mapBranches.branchesPointsMap;
         });
       });
+     // this.labelData = this.filterBranchPipe.addIndexes(this.labelData);
    }
 
    createBranchLabel(arr: Array<any>) {

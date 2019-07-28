@@ -1,4 +1,4 @@
-<agm-map [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom">
+<agm-map dir="ltr" [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom">
 <!--  <agm-marker-->
 <!--    [latitude]="mapBranches.lat"-->
 <!--    [longitude]="mapBranches.lng"-->
@@ -17,7 +17,12 @@
       [latitude]="branchPoint.coords.geoCoordinateY"
       [longitude]="branchPoint.coords.geoCoordinateX"
       [iconUrl]="branchIcon"
-      [label]="labelData">
+      [label]="{
+      color: 'white',
+      fontFamily: '',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      text: (i+1)+''}">
       <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
         <ng-template>
           <app-branch-box-summarize [branchDataSummarize]="branchPoint">
