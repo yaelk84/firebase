@@ -21,7 +21,7 @@ export class HoursService {
 
   set updateTime(time) {
 
-    this.currentTime =  this.timeService.getCurrentTime(time);
+     this.currentTime =  this.timeService.getCurrentTime(time);
 
   }
 

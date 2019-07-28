@@ -19,7 +19,7 @@ export class HoursFilerComponent implements OnInit {
   };
   days: any[] = [{key: 'Sunday', label: 'א'}, {key: 'Monday', label: 'ב'}, {key: 'Tuesday', label: 'ג'}, {
     key: 'Wednesday', label: 'ד'
-  }, {key: 'Thursday', label: 'ה'}, {key: 'Friday', label: 'ו'}, {key: 'Saturday', label: 'ז'}];
+  }, {key: 'Thursday', label: 'ה'}, {key: 'Friday', label: 'ו'}];
 
 
   selectDay(day) {

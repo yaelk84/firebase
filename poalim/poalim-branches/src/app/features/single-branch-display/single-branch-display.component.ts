@@ -10,18 +10,22 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-per
 export class SingleBranchDisplayComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {}
   constructor() { }
+  arrow =  '/assets/media/left.svg';
   start = 0;
   end = CONSTANTS.SERVICES_NUM;
+  openPopup = false;
   @Input() dataBranchSelected: any;
    addMore(){
     this.end = this.dataBranchSelected.branchService.length;
 
-
   }
 
   ngOnInit() {
-    console.log('dfdfd' , this.dataBranchSelected)
 
+
+  }
+  openReportproblem(){
+    this.openPopup = true;
   }
 
 }

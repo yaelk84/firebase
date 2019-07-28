@@ -62,8 +62,9 @@
       <div class="selected-branch-buttons">
 
         <span class="worng-data">
-         <span class="wrong-data-text" role="button">{{'worngData'|rcTranslate }}</span>
-      <span class="goto"> > </span>
+         <span class="wrong-data-text" (click)="openReportproblem()" role="button">{{'worngData'|rcTranslate }}</span>
+
+           <span class="go-back"> <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span>
       </span>
 
       </div>
@@ -74,4 +75,6 @@
 </perfect-scrollbar>
 
 
-
+<lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+  <app-report-problem-popup></app-report-problem-popup>
+</lib-rc-popup-wrapper>

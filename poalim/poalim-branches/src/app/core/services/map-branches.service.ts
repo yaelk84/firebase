@@ -105,10 +105,10 @@ export class MapBranchesService {
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = []): any {
     const nearestBranchesObserveble = new Observable(observer => {
-      debugger
+
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {
-        // debugger;
+
         const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
         this.filteredMarkers = this.branchesPointsMap.filter(m => {
           const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate.geoCoordinateY,

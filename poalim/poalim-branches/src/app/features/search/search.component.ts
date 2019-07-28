@@ -114,7 +114,7 @@ export class SearchComponent implements OnInit {
     // todo: handle item selected
     const  param  = $event && $event.branchNumber ? $event.branchNumber : "";
     if (param){
-      this.router.navigate(['/home'], { queryParams: { branch: param } ,  relativeTo: this.activeRoute });
+      this.router.navigate([], { queryParams: { branch: param } ,  relativeTo: this.activeRoute });
     }
 
   }

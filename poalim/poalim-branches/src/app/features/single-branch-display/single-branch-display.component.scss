@@ -1,20 +1,29 @@
 @import "../../../assets/scss/style";
-.single-scroll{
+
+.single-scroll {
   max-height: 427px;
   position: relative;
 }
+
 .single-branch-display {
   margin-right: 50px;
   background-color: $pale-grey;
-
+.name-branch{
+  margin-left: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
   .part-wrapper {
     border-bottom: 0.3px solid rgba(10, 41, 76, 0.5);
-    &.services{
 
-      .white-btn{
+    &.services {
+
+      .white-btn {
         line-height: normal;
-        padding:4px 16px ;
-height: 36px;
+        padding: 4px 16px;
+        height: 36px;
       }
     }
   }
@@ -33,17 +42,18 @@ height: 36px;
 
     .share {
       position: absolute;
-      top:18px;
-    #{$default-end}:15px;
+      top: 18px;
+      #{$default-end}: 15px;
+
       /deep/
       .btn {
         font-size: 16px;
-        padding:9px 28px;
+        padding: 9px 28px;
       }
     }
   }
 
-  .wrapper-service-and-btn{
+  .wrapper-service-and-btn {
     padding: 18px;
     display: flex;
     justify-content: space-between;
@@ -91,7 +101,7 @@ height: 36px;
   }
 
   .selected-branch-data {
-padding: 18px;
+    padding: 18px;
 
     ul {
       padding: 0;
@@ -154,27 +164,46 @@ padding: 18px;
       margin-top: 0px;
     }
   }
-  .selected-branch-buttons{
+
+  .selected-branch-buttons {
     margin-bottom: 46px;
     margin-top: 38px;
     font-size: 18px;
-  padding: 0 18px;
+    padding: 0 18px;
     display: flex;
-    .btn{
+
+    .btn {
       margin-left: 15px;
     }
-    .wrong-data-text{
-color: $marine-two;
+
+    .wrong-data-text {
+      color: $marine-two;
     }
-    .worng-data{
+
+    .worng-data {
       display: flex;
       align-items: center;
       cursor: pointer;
     }
-    .goto{
+
+    .goto {
       font-size: 30px;
-      color:$lipstick-two;
-      margin-right:13px;
+      color: $lipstick-two;
+      margin-right: 13px;
+    }
+  }
+  .back-to-results-wrapper{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 42px;
+  }
+  .go-back{
+    display: flex;
+    align-items: center;
+    margin-right: 9px;
+    img{
+      transform: rotate(90deg);
     }
   }
 }

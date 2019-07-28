@@ -144,6 +144,13 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   cursor: pointer;
 
 }
+.icon-arrow-red{
+  width: 8px;
+  height: 13px;
+  background-repeat: no-repeat;
+  background-image: url('~src/assets/media/left.svg');
+  cursor: pointer;
+}
 
 
 .popover-wrapper {
