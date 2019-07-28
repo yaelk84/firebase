@@ -17,18 +17,13 @@ export class MapComponent implements OnInit {
   @Input() branches: any;
   geoCoordinateY = 32.0853;
   geoCoordinateX = 34.7818;
-  zoom = 14;
+  zoom = 15;
   hasAccessToMyLocation = false;
   branchesMapMarker = [];
   summarizedBranchesArr = [];
   distancesArr = [];
-  // labelOptions = {
-  //   color: 'white',
-  //   fontFamily: '',
-  //   fontSize: '14px',
-  //   fontWeight: 'bold',
-  //   text: '1'
-  // };
+  centerCoordsArr = [];
+  centerBranchesMarker = [];
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
     scaledSize: {
@@ -55,7 +50,26 @@ export class MapComponent implements OnInit {
               private filterBranchPipe: FilterBranchPipe, private branchFilterService: BranchFilterService) { }
 
    ngOnInit() {
-      this.mapBranches.getMyLocation().subscribe(geolocation => {
+
+     this.mapBranches.defaultFilter().subscribe((centerBranches: Array<any>) => {
+       console.log('centerrrrr', centerBranches);
+       this.mapBranches.getGeoCoordinateArray(centerBranches).subscribe(geoCoordsArr => {
+         this.centerCoordsArr = (geoCoordsArr as Array<any>);
+       });
+       console.log('centeredCoords', this.centerCoordsArr); //
+       centerBranches.forEach((centered) => {
+         const centeredBranchesSum = this.branchData.createSingleBranch(centered);
+         console.log('centeredBranchesSum', centeredBranchesSum);
+         this.centerBranchesMarker.push(centeredBranchesSum.branchSummarize);
+       });
+       this.centerBranchesMarker.map((cb, i) => {
+         cb.coords = this.centerCoordsArr[i];
+       });
+       console.log('qqqqq', this.centerBranchesMarker);
+       // this.branchesMapMarker = this.mapBranches.branchesPointsMap;
+     });
+     // this.labelData = this.filterBranchPipe.addIndexes(this.labelData);
+     this.mapBranches.getMyLocation().subscribe(geolocation => {
          this.hasAccessToMyLocation = true;
          this.geoCoordinateY = (geolocation as GeoLocationObject).lat;
          this.geoCoordinateX = (geolocation as GeoLocationObject).lng;
@@ -66,7 +80,7 @@ export class MapComponent implements OnInit {
                this.distancesArr.push(d);
              });
              console.log('distancesArr', this.distancesArr); //
-             // console.log('#################', response);
+             // console.log('#################', typeof response);
              response.forEach((branchDataSum) => {
                const branchSumObj = this.branchData.createSingleBranch(branchDataSum);
                // console.log('branchSumObj',  branchSumObj);
@@ -90,11 +104,8 @@ export class MapComponent implements OnInit {
          });
          // const activeFilter = this.branchFilterService.getActiveFilters();
      }, error => {
-        this.mapBranches.defaultFilter().subscribe((centerBranches) => {
-          this.branchesMapMarker = this.mapBranches.branchesPointsMap;
-        });
+        console.log(error);
       });
-     // this.labelData = this.filterBranchPipe.addIndexes(this.labelData);
    }
 
    createBranchLabel(arr: Array<any>) {

@@ -31,5 +31,28 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
+
+  <ng-container *ngIf="!hasAccessToMyLocation">
+    <ng-container *ngFor="let centerBranchMarker of centerBranchesMarker; let i = index">
+      <agm-marker
+        [latitude]="centerBranchMarker.coords.geoCoordinateY"
+        [longitude]="centerBranchMarker.coords.geoCoordinateX"
+        [iconUrl]="branchIcon"
+        [label]="{
+      color: 'white',
+      fontFamily: '',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      text: (i+1)+''}">
+        <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
+          <ng-template>
+            <app-branch-box-summarize [branchDataSummarize]="centerBranchMarker">
+            </app-branch-box-summarize>
+          </ng-template>
+        </agm-snazzy-info-window>
+      </agm-marker>
+    </ng-container>
+  </ng-container>
+
 </agm-map>
 {{summarizedBranchesArr.length}}

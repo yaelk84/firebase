@@ -34,14 +34,16 @@ export class MapBranchesService {
           }
         });
         console.log('filteredByCity', filteredByCity);
+        this.branchesPointsMap = filteredByCity.slice(0, 6);
         // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
         // observer.next(this.branchesPointsMap);
-        this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {
-          this.branchesPointsMap = (geoArray as Array<any>);
-          console.log('this.branchesPointsMap!!!!!!!!!!!!!!!!!!!!', this.branchesPointsMap); //
-          observer.next(this.branchesPointsMap);
-        });
-      });
+        // this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {
+        //   this.branchesPointsMap = (geoArray as Array<any>);
+        //   console.log('this.branchesPointsMap!!!!!!!!!!!!!!!!!!!!', this.branchesPointsMap); //
+        //   observer.next(this.branchesPointsMap);
+        // });
+        observer.next(this.branchesPointsMap);
+    });
     });
     return sixCenterBranches;
   }
@@ -82,7 +84,7 @@ export class MapBranchesService {
            observer.next(c);
          }, err => {
            console.log('erooooooooooor1');
-           observer.error();
+           // observer.error();
          });
        } else {
          console.log('erooooooooooor2');
