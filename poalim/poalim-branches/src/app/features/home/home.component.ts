@@ -41,7 +41,7 @@ console.log('what the res , re' , response)
         const cities = response.branches.map(obj =>{
           return obj.geographicAddress[0].cityName;
         })
-        debugger
+
         const  uniquset = new Set(cities);
         const backArray = uniquset["entries"]();
 

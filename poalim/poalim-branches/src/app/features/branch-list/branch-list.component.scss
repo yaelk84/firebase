@@ -47,7 +47,7 @@
 }
 .list-wrapper{
   position: relative;
-  max-width: 510px;
+  width: 510px;
   overflow: hidden;
     /deep/
   .popover-wrapper{
@@ -60,11 +60,13 @@
   }
 }
 .branch-list-header{
+  line-height: normal;
   display:flex ;
   align-items: center;
   justify-content: space-between;
   justify-items: center;
-  padding: 15px;
+  padding: 0 28px;
+  padding-bottom: 15px;
   font-family: Poalim;
   text-align: $default-start;
   font-size: 25px;
@@ -97,6 +99,7 @@ font-size: 20px;
 .back-to-results{
   font-size: 20px;
   color: $greyish-brown;
+  margin-right: 12px;
 
   cursor: pointer;
 
@@ -105,12 +108,14 @@ font-size: 20px;
   display: flex;
   align-items: center;
   margin-bottom: 20px;
-  margin-right: 60px;
+  margin-right: 42px;
 }
 .go-back{
-  font-size: 30px;
-  color:$lipstick-two;
-  margin-left:13px;
+ display: flex;
+  align-items: center;
+  img{
+    transform: rotate(90deg);
+  }
 }
 .map-wrapper{
   margin-right: 25px;

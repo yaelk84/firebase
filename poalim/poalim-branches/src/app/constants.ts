@@ -1,6 +1,6 @@
 export const CONSTANTS = {
   FRIDAY:'Friday',
-  BANKAT: '899',
+  BANKAT: 899,
   yes:'yes',
   FILTER_BY_CITY: '300',
   FILTER_BY_BRANCH: '301',

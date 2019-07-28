@@ -51,7 +51,7 @@ export class BranchDataService {
   }
   createSingleBranch(data) {
 
-    const isBankat = data.channelGroupCode ===  CONSTANTS.BANKAT;
+    const isBankat = data.channelsGroupCode ===  CONSTANTS.BANKAT;
     const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification , false , isBankat );
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
@@ -70,7 +70,7 @@ export class BranchDataService {
       const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distance, branchData.openAndCloseHours);
          return{
-        isBankat: data.channelGroupCode ===  CONSTANTS.BANKAT,
+        isBankat: isBankat,
         branchSummarize: branchSummarize,
         branchService:  branchData.branchService,
         fax: fax,

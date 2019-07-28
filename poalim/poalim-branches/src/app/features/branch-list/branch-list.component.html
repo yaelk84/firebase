@@ -6,7 +6,7 @@
 
   <div *ngIf="showSelectedBranch" >
     <span  class="back-to-results-wrapper"(click)="backToResults()">
-      <span class="go-back"> < </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+      <span class="go-back">   <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
     <app-single-branch-display [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
 
@@ -43,7 +43,7 @@
 </div>
 
 
-<lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
+<lib-rc-switcher style="display: none" [control]="formControl" [elementId]="'mySwitcherID'">
 
 </lib-rc-switcher>
-{{branchNewArrayFilter.length}}
+

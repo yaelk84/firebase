@@ -39,6 +39,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   showDaysHoursFilter = false;
   filterWithHours = '/assets/media/hour-filter.svg';
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
+  arrow =  '/assets/media/left.svg';
   branchResultTitle: string = 'branchFound';
   filterIcon = this.filterWithNoHours;
   private branchData: any[];
@@ -64,9 +65,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   private callQueryParam() {
     this.activeRoute.queryParams.subscribe((queryParams) => {
-      console.log('query', queryParams);
-      debugger
-        this.buildFilterByQuery(queryParams);
+         this.buildFilterByQuery(queryParams);
     });
   }
 
@@ -82,17 +81,19 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   backToResults() {
     this.showSelectedBranch = false;
-    this.router.navigate(['/home'], {queryParams: {}, relativeTo: this.activeRoute});
-    debugger
+    this.selectBranch(null);
+
   }
 
   selectBranch(id) {
 
     if (isNullOrUndefined(id)) {
       this.showSelectedBranch = false;
+      this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
     } else {
-      this.router.navigate(['/home'], {queryParams: {branch: id}, relativeTo: this.activeRoute});
-      debugger
+      this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
+
+
 
     }
 
@@ -106,8 +107,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   toggleDropDown(e) {
-    e.stopPropagation();
-    this.showDaysHoursFilter = !this.showDaysHoursFilter;
+
+    if (!isNullOrUndefined(e) && Object.keys(e).length){
+      e.stopPropagation();
+    }
+     this.showDaysHoursFilter = !this.showDaysHoursFilter;
   }
 
   init() {
@@ -124,6 +128,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     });
     //this.callQueryParam();
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
+   console.log('gg',this.branchNewArrayFilter);
   }
 
   updateBranchAfterChangeMap() {
@@ -134,13 +139,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }
 
   }
+  addEvents(){
 
-  ngOnInit() {
-
-    // this.city = this.route.snapshot.paramMap.get("city");
     this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
       this.updateBranchAfterChangeMap();
-    });
+    },true);
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
 
       this.selectBranch(null);
@@ -153,7 +156,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       // this.componentRef.directiveRef.ps().update();
 
 
-    });
+    },true);
+  }
+
+  ngOnInit() {
+
+    // this.city = this.route.snapshot.paramMap.get("city");
+    this.addEvents();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
     this.init();
