@@ -58,14 +58,15 @@ export class BranchDataService {
       branchNum: data.branchNumber,
       branchName: data.branchName,
       address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
-      distance: 0,
+      address: this.replaceNullOrUndefinedInEmpty(address.cityName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.streetName) +' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber),
+      distanceInKm: 0,
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),
 
             };
 
       const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
-      branchData.distance, branchData.openAndCloseHours);
+      branchData.distanceInKm, branchData.openAndCloseHours);
          return{
         isBankat: isBankat,
         branchSummarize: branchSummarize,
