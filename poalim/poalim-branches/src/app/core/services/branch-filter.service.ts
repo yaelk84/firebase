@@ -67,7 +67,7 @@ export class BranchFilterService {
 
   removeOtherFiltersIfOnlyOneFilterCanSelected(selectedFilters ){
 
- const removeItem = (id) => {
+   const removeItem = (id) => {
    const indexOfId = this.activeFilters.indexOf(id)
    if (indexOfId > -1) {
      this.activeFilters.splice(indexOfId, 1);
@@ -79,13 +79,15 @@ export class BranchFilterService {
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
         removeItem(CONSTANTS.FILTER_BY_HOURS);
         removeItem(CONSTANTS.FILTER_BY_DAYS);
-        this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS);
+        this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS); // that remove the day from friday because it clean specific day
         break;
    case CONSTANTS.FILTER_OPEN_FRIDAY :
      removeItem(CONSTANTS.FILTER_OPEN_NOW);
      removeItem(CONSTANTS.FILTER_BY_HOURS);
      removeItem(CONSTANTS.FILTER_BY_DAYS);
      this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS);
+     const valueToChange =  this.activeFilters.indexOf(selectedFilters)  === -1 ? CONSTANTS.FRIDAY : ''; // the opposite because the filter dont enter the array yet
+     this.selectedDays = valueToChange;
      break;
    case CONSTANTS.FILTER_BY_DAYS :
      removeItem(CONSTANTS.FILTER_OPEN_NOW);
@@ -106,9 +108,9 @@ export class BranchFilterService {
 
     } else {
 
-      this.activeFilters.push(id)
+      this.activeFilters.push(id);
     }
-    this.updateActiveFilters(this.activeFilters)
+    this.updateActiveFilters(this.activeFilters);
 
   }
   removeFilterCheckBoxValues(arr){

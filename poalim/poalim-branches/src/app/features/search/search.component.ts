@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {RcValidators} from '@realcommerce/rc-packages';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
 import {AppService} from '../../core/services/app.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {MapBranchesService} from '../../core/services/map-branches.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 @Component({
@@ -22,19 +23,21 @@ export class SearchComponent implements OnInit {
   openDropdown: boolean;
   searchFocused: boolean;
   optionMouseOver: boolean;
-  cities: []
+  cities: [];
 
 
-  constructor(private apiService: ApiService , private appService: AppService , private  router: Router, private  activeRoute: ActivatedRoute) { }
- set updateCities(data) {
-    this.cities = data;
- }
-  ngOnInit() {
-
-    this.initSearch()
-
+  constructor(private apiService: ApiService, private appService: AppService, private  router: Router, private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService) {
   }
 
+  set updateCities(data) {
+    this.cities = data;
+  }
+
+  ngOnInit() {
+
+    this.initSearch();
+
+  }
 
 
   initSearch() {
@@ -49,8 +52,8 @@ export class SearchComponent implements OnInit {
     });
     const tempCities: any[] = [];
     this.appService.cities.map((obj) => {
-         tempCities.push({type: 'city', nameLabel: '333333', name: obj});
-         });
+      tempCities.push({type: 'city', nameLabel: '333333', name: obj});
+    });
 
     this.items = tempCities.concat(tempBranches);
 
@@ -108,21 +111,30 @@ export class SearchComponent implements OnInit {
 
   onChange($event) {
 
-    console.log($event , 'select');
+    console.log($event, 'select');
     this.openDropdown = false;
     this.searchTerm = '';
     // todo: handle item selected
-    const  param  = $event && $event.branchNumber ? $event.branchNumber : "";
-    if (param){
-      this.router.navigate([], { queryParams: { branch: param } ,  relativeTo: this.activeRoute });
+    const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
+    if (branchNumber) {
+      this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
+    }
+    const city = $event && $event.city ? $event.city : '';
+    if (city) {
+      const branches = this.appService.branches.filter((branch) => {
+        return branch.city === city;
+      });
+      //this.mapSEervice.myLocationFilter( this.mapSEervice.position,  this.appService.branches);
     }
 
   }
 
   searchFn(term, item) {
 
-    if (term.length < 3) { return false; }
-    if (item.type == 'city'){
+    if (term.length < 3) {
+      return false;
+    }
+    if (item.type === 'city') {
       return item.name.indexOf(term) > -1;
     } else {
       return item.branchName.indexOf(term) > -1 || item.geographicAddress[0].cityName.indexOf(term) > -1;

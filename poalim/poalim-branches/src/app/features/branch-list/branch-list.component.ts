@@ -142,8 +142,9 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   addEvents(){
 
     this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
+      console.log('updated');
       this.updateBranchAfterChangeMap();
-    },true);
+    }, true);
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
 
       this.selectBranch(null);

@@ -58,7 +58,7 @@ export class BranchDataService {
       branchNum: data.branchNumber,
       branchName: data.branchName,
       address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
-       distanceInKm: 0,
+       distanceInKm:  data.geographicAddress[0].distanceInKm,
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),
 

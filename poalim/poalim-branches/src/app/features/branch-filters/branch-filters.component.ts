@@ -33,7 +33,7 @@ export class BranchFiltersComponent implements OnInit {
 
   }
   closeDropDownServices() {
-
+    console.log("dfdfdfdf")
     this.openDropDown = false;
   }
   getActiveCheckBox(){
@@ -46,10 +46,7 @@ export class BranchFiltersComponent implements OnInit {
   toggleFilter(id: string) {
     this.filterService.toggleFilter(id);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
-        if ( id === CONSTANTS.FILTER_OPEN_FRIDAY ) {
-      const valueToChange =  this.arrayOfActiveFilterIds.indexOf(id) > -1 ? CONSTANTS.FRIDAY : '';
-      this.filterService.selectedDays = valueToChange;
-    }
+
   }
   togglePluse( e?: Event) {
     if (!isNullOrUndefined(e)) {  e.stopPropagation();}

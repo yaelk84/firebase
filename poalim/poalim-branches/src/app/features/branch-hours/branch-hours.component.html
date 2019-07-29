@@ -8,6 +8,7 @@
     </div>
     <div class="clearfix" *ngIf="!hours.wasChange">
       <div class="open-today" *ngIf="hours.openCurrentDay && !dayName">
+
         <span *ngIf="hours.label.morning">
             <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
         <span> {{hours.label.morning}}</span>

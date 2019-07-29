@@ -139,7 +139,7 @@
 }
 /deep/
 perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
-  right: 24px !important; ;
+  right: 2px !important; ;
   width: 2px;
   opacity: 1;
   background-color: $pale-grey;
@@ -148,10 +148,10 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
 }}
 
 .icon-arrow{
-  width: 8px;
-  height: 13px;
+  width: 13px;
+  height: 8px;
   background-repeat: no-repeat;
-  background-image: url('~src/assets/media/blueArrow.svg');
+  background-image: url('~src/assets/media/down.svg');
   cursor: pointer;
 
 }

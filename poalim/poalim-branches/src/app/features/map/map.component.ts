@@ -50,31 +50,29 @@ export class MapComponent implements OnInit {
               private filterBranchPipe: FilterBranchPipe, private branchFilterService: BranchFilterService) { }
 
    ngOnInit() {
+       if ( !this.mapBranches.hasLocationPermission ){
+         const centerBranches = this.mapBranches.sortedBranches;
+         this.mapBranches.getGeoCoordinateArray(centerBranches).subscribe(geoCoordsArr => {
+           this.centerCoordsArr = (geoCoordsArr as Array<any>);
+         });
+         centerBranches.forEach((centered) => {
+           const centeredBranchesSum = this.branchData.createSingleBranch(centered);
+           this.centerBranchesMarker.push(centeredBranchesSum.branchSummarize);
+         });
+         this.centerBranchesMarker.map((cb, i) => {
+           cb.coords = this.centerCoordsArr[i];
+         });
+         console.log('qqqqq', this.centerBranchesMarker);
+         // this.branchesMapMarker = this.mapBranches.branchesPointsMap;
 
-     this.mapBranches.defaultFilter().subscribe((centerBranches: Array<any>) => {
-       console.log('centerrrrr', centerBranches);
-       this.mapBranches.getGeoCoordinateArray(centerBranches).subscribe(geoCoordsArr => {
-         this.centerCoordsArr = (geoCoordsArr as Array<any>);
-       });
-       console.log('centeredCoords', this.centerCoordsArr); //
-       centerBranches.forEach((centered) => {
-         const centeredBranchesSum = this.branchData.createSingleBranch(centered);
-         console.log('centeredBranchesSum', centeredBranchesSum);
-         this.centerBranchesMarker.push(centeredBranchesSum.branchSummarize);
-       });
-       this.centerBranchesMarker.map((cb, i) => {
-         cb.coords = this.centerCoordsArr[i];
-       });
-       console.log('qqqqq', this.centerBranchesMarker);
-       // this.branchesMapMarker = this.mapBranches.branchesPointsMap;
-     });
-     // this.labelData = this.filterBranchPipe.addIndexes(this.labelData);
-     this.mapBranches.getMyLocation().subscribe(geolocation => {
-         this.hasAccessToMyLocation = true;
-         this.geoCoordinateY = (geolocation as GeoLocationObject).lat;
-         this.geoCoordinateX = (geolocation as GeoLocationObject).lng;
-         this.mapBranches.myLocationFilter({lat: this.geoCoordinateY, lng: this.geoCoordinateX},
-           this.branches).subscribe((response) => {
+         // this.labelData = this.filterBranchPipe.addIndexes(this.labelData);
+               } else {
+         this.mapBranches.getMyLocation().subscribe(geolocation => {
+           this.hasAccessToMyLocation = true;
+           this.geoCoordinateY = (geolocation as GeoLocationObject).lat;
+           this.geoCoordinateX = (geolocation as GeoLocationObject).lng;
+           this.mapBranches.myLocationFilter({lat: this.geoCoordinateY, lng: this.geoCoordinateX},
+             this.branches).subscribe((response) => {
              response.forEach((d, index) => {
                d = response[index].geographicAddress[0].distanceInKm;
                this.distancesArr.push(d);
@@ -92,20 +90,23 @@ export class MapComponent implements OnInit {
                this.summarizedBranchesArr.push(branchSumObj.branchSummarize);
              });
              this.mapBranches.getGeoCoordinateArray(response).subscribe(near => {
-             this.branchesMapMarker = (near as Array<any>);
-             // console.log('branchesMapMarker!!!!', this.branchesMapMarker); //
-           });
+               this.branchesMapMarker = (near as Array<any>);
+               // console.log('branchesMapMarker!!!!', this.branchesMapMarker); //
+             });
              this.summarizedBranchesArr.map((bs, i) => {
-             bs.coords = this.branchesMapMarker[i];
-             bs.distanceInKm = this.distancesArr[i];
-           });
+               bs.coords = this.branchesMapMarker[i];
+               bs.distanceInKm = this.distancesArr[i];
+             });
              console.log('summarizedBranchesArr', this.summarizedBranchesArr);
-           // this.branchesMapMarker = this.mapBranches.getGeoCoordinateArray(response);
+             // this.branchesMapMarker = this.mapBranches.getGeoCoordinateArray(response);
+           });
+           // const activeFilter = this.branchFilterService.getActiveFilters();
+         }, error => {
+           console.log(error);
          });
-         // const activeFilter = this.branchFilterService.getActiveFilters();
-     }, error => {
-        console.log(error);
-      });
+       }
+     
+  
    }
 
    createBranchLabel(arr: Array<any>) {

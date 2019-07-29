@@ -2,12 +2,12 @@
 
 
 .branch-box{
-  max-height: 139px;
+
   position: relative;
   margin-right: 35px;
   border-top:1px solid $pale-grey;
   border-bottom:1px solid $pale-grey;
-  padding: 10px 0;
+  padding: 8px 0;
   &:first-child{
     border-top: none;
   }
