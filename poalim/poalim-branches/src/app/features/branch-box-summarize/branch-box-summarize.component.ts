@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HoursService} from '../../core/services/hours.service';
+import {MapBranchesService} from '../../core/services/map-branches.service';
 
 @Component({
   selector: 'app-branch-box-summarize',
@@ -10,7 +11,8 @@ export class BranchBoxSummarizeComponent implements OnInit {
   hoursList: any[] = [];
   openAndCloseHours;
   openHoursDrop = false;
-  constructor(private hoursFunc: HoursService) { }
+  haveLocation;
+  constructor(private hoursFunc: HoursService , private mapService: MapBranchesService) { }
   @Input() branchDataSummarize: any;
   @Input() isSingleDisplay: boolean;
   @Input()  filterByDay: boolean;
@@ -22,7 +24,7 @@ export class BranchBoxSummarizeComponent implements OnInit {
     this.openHoursDrop =!this.openHoursDrop;
   }
   ngOnInit() {
-
+   this.haveLocation = this.mapService.hasLocationPermission;
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
     this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
 

@@ -9,7 +9,7 @@
 
   </div>
   <div class="address"> <span>{{branchDataSummarize.address}}</span></div>
-  <div class="location">{{branchDataSummarize.distanceInKm | number:'1.0-1'}} ק"מ<img class="location-icon" src="../../../assets/media/icons/location.svg"></div>
+  <div *ngIf="haveLocation" class="location">{{branchDataSummarize.distanceInKm | number:'1.0-1'}} ק"מ<img class="location-icon" src="../../../assets/media/icons/location.svg"></div>
   <div class="hours">
     <div class="wrapper-branch-hours" (click)="branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay && dropClick($event)" [ngClass]="{'withdropdown':branchDataSummarize.openAndCloseHours.openCurrentDay && isSingleDisplay}">
       <app-branch-hours [hours]="branchDataSummarize.openAndCloseHours" [isSingleDisplay]="isSingleDisplay" ></app-branch-hours>

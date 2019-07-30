@@ -4,6 +4,8 @@ import {angularCoreEnv} from '@angular/core/src/render3/jit/environment';
 import {CONSTANTS} from '../../constants';
 
 import {isNullOrUndefined} from 'util';
+import {MapBranchesService} from '../services/map-branches.service';
+import {AppService} from '../services/app.service';
 
 @Pipe({
   name: 'FilterBranchPipe'
@@ -59,7 +61,7 @@ export class FilterBranchPipe implements PipeTransform {
 
   }
 
-  constructor(private branchFilter: BranchFilterService) {
+  constructor(private branchFilter: BranchFilterService , private mapService: MapBranchesService, private appService: AppService) {
   }
 
   transform(branches: any, filters: number[]): any {
@@ -81,6 +83,10 @@ export class FilterBranchPipe implements PipeTransform {
           return this.openFriday(values);
           break;
         case CONSTANTS.FILTER_lOCATION :
+          console.log('what the filter' , filters);
+          if(filters.indexOf( filter)  === -1 ){
+            this.mapService.defaultFilter(this.appService.branches)
+          }
           return values;
           break;
         default:
