@@ -1,11 +1,16 @@
 agm-map {
   height: 460px;
   width: 532px;
+
+  /deep/.gm-style {
+    font:inherit;
+  }
 }
 
-/deep/.si-content-wrapper {
+  /deep/.si-content-wrapper {
   width: 320px;
   direction: rtl;
+    padding: 15px 25px 15px 5px;
 }
 
 /deep/.si-content {
@@ -22,20 +27,21 @@ agm-map {
 
 /deep/.name-branch,
 /deep/.num-branch {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 /deep/.name-branch {
   font-weight: bold;
+  max-width: 120px;
 }
 
 /deep/.address span,
 /ddep/.location {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 /deep/.open-today span span {
-  //font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
 }
 

@@ -151,7 +151,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
       this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
-      console.log('activeFilters !!!!!!', activeFilter);
+      // console.log('activeFilters !!!!!!', activeFilter);
       this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
       this.handleFilterChange(activeFilter);
 

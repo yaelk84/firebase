@@ -52,11 +52,11 @@ export class AppService {
 
 init() {
 
-  
+
 
   return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches(), this.apiService.getGetCities() ]).pipe(
       switchMap((results: any) => {
-        console.log('returnnnnnnnnnnnnnnnnn', results);
+        // console.log('returnnnnnnnnnnnnnnnnn', results);
         const objResult = {
           time: {}, branches: [], location: {}, cities: []
         };

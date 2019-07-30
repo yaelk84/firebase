@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   getServicers() {
     this.appService.init().subscribe((response: any) => {
-      console.log('what the res , re', response);
+      // console.log('what the res , re', response);
       this.hours.updateTime = response.time;
       this.branches = response.branches;
       const cities = response.branches.map(obj => {
@@ -38,11 +38,11 @@ export class HomeComponent implements OnInit {
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
                    this.servicesLoaded = true;
                }));
-        console.log('with location');
+        // console.log('with location');
       } else {
         this.mapBranches.defaultFilter(this.branches);
         this.servicesLoaded = true;
-        console.log('with out location');
+        // console.log('with out location');
       }
 
 
@@ -55,10 +55,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     return this.mapBranches.getMyLocation()
       .subscribe(x => {
-          console.log('Observer got a next value: ' + x);
+          // console.log('Observer got a next value: ' + x);
           this.getServicers();
           this.location = x;
-          console.log('success')
+          console.log('success');
         },
         (err) => {
           this.getServicers();

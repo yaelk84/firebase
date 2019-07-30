@@ -36,7 +36,7 @@ export class MapBranchesService {
         return branch;
       }
     });
-    console.log('filteredByCity', filteredByCity);
+    // console.log('filteredByCity', filteredByCity);
     this.sortedBranches = filteredByCity.slice(0, 6);
     // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
     // observer.next(this.branchesPointsMap);
@@ -136,7 +136,7 @@ export class MapBranchesService {
     const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
     const destination = new google.maps.LatLng(32.082227, 34.781046);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination);
-    console.log(distance / 1000);
+    // console.log(distance / 1000);
   }
 
   checkIfHaveLocation(res) {

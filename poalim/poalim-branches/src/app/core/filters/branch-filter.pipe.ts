@@ -66,7 +66,6 @@ export class FilterBranchPipe implements PipeTransform {
 
     let matches: any[] = branches;
     const checkSpecificFilter = (values, filter) => {
-      debugger
       switch (filter) {
         case CONSTANTS.FILTER_BY_DAYS :
           return this.dayFunction(values);

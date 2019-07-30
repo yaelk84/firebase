@@ -75,7 +75,6 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
   updateBranchAfterChangeMap(){
-    debugger
     this.filterService.removeFilterRadio(this.arrayOfActiveFilterIds);
     const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
     this.toggleFilter(defaultFilter);
