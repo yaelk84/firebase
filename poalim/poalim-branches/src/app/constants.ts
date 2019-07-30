@@ -2,6 +2,7 @@ export const CONSTANTS = {
   FRIDAY:'Friday',
   BANKAT: 899,
   yes:'yes',
+  FILTER_lOCATION:'100',
   FILTER_BY_CITY: '300',
   FILTER_BY_BRANCH: '301',
   FILTER_BY_HOURS: '201',

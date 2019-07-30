@@ -111,8 +111,10 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     if (!isNullOrUndefined(e) && Object.keys(e).length){
       e.stopPropagation();
     }
-     this.showDaysHoursFilter = !this.showDaysHoursFilter;
+    this.showDaysHoursFilter = !this.showDaysHoursFilter;
   }
+
+
 
   init() {
 
@@ -128,7 +130,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     });
     //this.callQueryParam();
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
-   console.log('gg',this.branchNewArrayFilter);
+
   }
 
   updateBranchAfterChangeMap() {

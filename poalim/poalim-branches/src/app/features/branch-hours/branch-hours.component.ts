@@ -19,7 +19,6 @@ export class BranchHoursComponent implements OnInit {
 
 
   get dayName() {
-console.log('select dat', this.branchFilter.selectedDays)
     return this.branchFilter.selectedDays;
   }
 

@@ -77,9 +77,8 @@ export class MapBranchesService {
       let c = {};
       if (navigator.geolocation) {
         setTimeout(() => {
-          console.log('time out pass');
           observer.next({});
-        }, 7000);
+        }, 100);
         navigator.geolocation.getCurrentPosition((position: Position) => {
           if (position) {
             c = {

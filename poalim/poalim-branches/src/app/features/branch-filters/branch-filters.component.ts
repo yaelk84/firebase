@@ -5,6 +5,8 @@ import {DeviceService} from '../../core/services/device.service';
 import {FormControl} from '@angular/forms';
 import {ApiService} from '../../core/services/api.service';
 import {isNullOrUndefined} from 'util';
+import {MapBranchesService} from '../../core/services/map-branches.service';
+import {RcEventBusService} from '@realcommerce/rc-packages';
 
 
 
@@ -27,7 +29,7 @@ export class BranchFiltersComponent implements OnInit {
   @Input() activeFilters;
 
 
-  constructor( private filterService: BranchFilterService,private deviceService: DeviceService , private  apiService: ApiService) { }
+  constructor( private filterService: BranchFilterService,private deviceService: DeviceService , private  apiService: ApiService , private mapService: MapBranchesService , private events: RcEventBusService) { }
   public formControl = new FormControl();
   closePopup() {
 
@@ -72,14 +74,24 @@ export class BranchFiltersComponent implements OnInit {
     this.openPOPup = true;
     this.togglePluse();
   }
+  updateBranchAfterChangeMap(){
+    debugger
+    this.filterService.removeFilterRadio(this.arrayOfActiveFilterIds);
+    const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
+    this.toggleFilter(defaultFilter);
+  }
   ngOnInit() {
-    const size=this.deviceService.isMobile()?CONSTANTS.BRANCH_FILTER_NUM.MOBILE:CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
+    const size=this.deviceService.isMobile() ? CONSTANTS.BRANCH_FILTER_NUM.MOBILE :CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
-
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size+1,this.filterService.filters.length));
-      // dropdown filter
+      const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW
+      this.toggleFilter(defaultFilter);
+      this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
+        console.log('updated');
+        this.updateBranchAfterChangeMap();
+      }, true);
 
 
     })
