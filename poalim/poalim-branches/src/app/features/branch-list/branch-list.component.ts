@@ -40,7 +40,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterWithHours = '/assets/media/hour-filter.svg';
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
   arrow =  '/assets/media/left.svg';
-  branchResultTitle: string = 'branchFound';
+  branchResultTitle: string ;
   filterIcon = this.filterWithNoHours;
   private branchData: any[];
 
@@ -117,7 +117,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
 
   init() {
-
+    this.branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
     this.branchData = this.mapServices.sortedBranches;
     if (isNullOrUndefined(this.branchData)) {
       return;
@@ -144,7 +144,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   addEvents(){
 
     this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
-      console.log('updated');
+
       this.updateBranchAfterChangeMap();
     }, true);
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {

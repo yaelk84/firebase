@@ -1,32 +1,32 @@
-<div *ngIf="servicesLoaded" >
-  <div style="max-width:1140px; margin: 0 auto">
-    <div >
-      <div class="branches-header col-12">
+<div *ngIf="servicesLoaded">
+  <div>
+    <div class="header-bg">
+      <div class="branches-header container">
         <div class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
         <app-no-location-permissions></app-no-location-permissions>
         <app-search></app-search>
         <div class="choose-title title">{{'chooseTitle' | rcTranslate}} </div>
         <app-branch-filters></app-branch-filters>
       </div>
-      <div class="branch-container col-12">
-        <div>
+    </div>
+<div class="bg-branches">
+  <div class="branch-container container">
+    <div>
 
-          <div class="branch-map">
-            <app-branch-list></app-branch-list>
-            <ng-container>
+      <div class="branch-map">
+        <app-branch-list></app-branch-list>
+        <ng-container>
 
-              <app-map [branches]="branches" *ngIf="branches"></app-map>
-            </ng-container>
-          </div>
-        </div>
-
-
+          <app-map [branches]="branches" *ngIf="branches"></app-map>
+        </ng-container>
       </div>
     </div>
 
 
   </div>
+</div>
 
+  </div>
 </div>
 
 

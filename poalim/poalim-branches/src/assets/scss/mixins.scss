@@ -47,6 +47,9 @@
 
     .custom-control-input[type="checkbox"]:checked ~ .custom-control-indicator {
       background-color: $marine-two;
+      background-image: url('~src/assets/media/check.svg');
+      background-position: center;
+      background-repeat:no-repeat;
     }
 
 

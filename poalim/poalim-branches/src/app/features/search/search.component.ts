@@ -7,6 +7,8 @@ import {ApiService} from '../../core/services/api.service';
 import {AppService} from '../../core/services/app.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {GeoLocationObject} from '../../core/interface/coordinates';
+import {isNullOrUndefined} from 'util';
 
 
 @Component({
@@ -116,15 +118,28 @@ export class SearchComponent implements OnInit {
     this.searchTerm = '';
     // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
-    if (branchNumber) {
-      this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
-    }
-    const city = $event && $event.city ? $event.city : '';
-    if (city) {
-      const branches = this.appService.branches.filter((branch) => {
-        return branch.city === city;
+    if (isNullOrUndefined($event)) {
+      this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, this.appService.branches).subscribe((res) => {
+        console.log('res' , res)
       });
-      //this.mapSEervice.myLocationFilter( this.mapSEervice.position,  this.appService.branches);
+
+    }
+    else{
+      if ($event.type === 'branch') {
+        this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
+      }
+
+      if ($event.type === 'city') {
+        const city = $event && $event.name ? $event.name : '';
+        const branches = this.appService.branches.filter((branch) => {
+          return branch.geographicAddress[0].cityName === city;
+        });
+        debugger;
+        this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, branches).subscribe((res) => {
+          console.log('res' , res)
+        });
+      }
+
     }
 
   }

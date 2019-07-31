@@ -11,6 +11,7 @@ export class SingleBranchDisplayComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {}
   constructor() { }
   arrow =  '/assets/media/left.svg';
+  share = '/assets/media/share.svg';
   start = 0;
   end = CONSTANTS.SERVICES_NUM;
   openPopup = false;

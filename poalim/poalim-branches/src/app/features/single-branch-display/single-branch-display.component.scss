@@ -42,14 +42,21 @@
     }
 
     .share {
+      padding: 0;
       position: absolute;
       top: 18px;
       #{$default-end}: 15px;
 
       /deep/
       .btn {
-        font-size: 16px;
-        padding: 9px 28px;
+        background-repeat: no-repeat;
+         background-position: center;
+        height: 35px;
+        width: 42px;
+        background-image:  url('~src/assets/media/share.svg');
+        &:hover{
+          background-image:  url('~src/assets/media/share-red.svg');
+        }
       }
     }
   }
