@@ -37,7 +37,7 @@ export class MapBranchesService {
       }
     });
     // console.log('filteredByCity', filteredByCity);
-    this.sortedBranches = filteredByCity.slice(0, 6);
+    this.sortedBranches = filteredByCity.slice(6, 12);
     // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
     // observer.next(this.branchesPointsMap);
     // this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {

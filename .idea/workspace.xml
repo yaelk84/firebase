@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="98502c9e-df0a-46d1-bfee-8371f7973e54" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/filters/branch-filter.pipe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/filters/branch-filter.pipe.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/services/app.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/services/app.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/interface/marker.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/interface/marker.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/services/map-branches.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/core/services/map-branches.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/branch-filters/branch-filters.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/branch-filters/branch-filters.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/branch-list/branch-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/branch-list/branch-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/home/home.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/poalim/poalim-branches/src/app/features/map/map.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,6 +95,7 @@
       <workItem from="1563946271747" duration="39000" />
       <workItem from="1563946345882" duration="14610000" />
       <workItem from="1564490795175" duration="64000" />
+      <workItem from="1564490859935" duration="18033000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <created>1563862839835</created>

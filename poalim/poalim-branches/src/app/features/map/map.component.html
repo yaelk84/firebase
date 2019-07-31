@@ -16,13 +16,8 @@
     <agm-marker
       [latitude]="branchPoint.coords.geoCoordinateY"
       [longitude]="branchPoint.coords.geoCoordinateX"
-      [iconUrl]="branchIcon"
-      [label]="{
-      color: 'white',
-      fontFamily: '',
-      fontSize: '14px',
-      fontWeight: 'bold',
-      text: (i+1)+''}">
+      [iconUrl]="branchPoint.imgUrl"
+      [label]="branchPoint.label">
       <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
         <ng-template>
           <app-branch-box-summarize [branchDataSummarize]="branchPoint">
@@ -37,13 +32,8 @@
       <agm-marker
         [latitude]="centerBranchMarker.coords.geoCoordinateY"
         [longitude]="centerBranchMarker.coords.geoCoordinateX"
-        [iconUrl]="branchIcon"
-        [label]="{
-      color: 'white',
-      fontFamily: '',
-      fontSize: '14px',
-      fontWeight: 'bold',
-      text: (i+1)+''}">
+        [iconUrl]="centerBranchMarker.imgUrl"
+        [label]="centerBranchMarker.label">
         <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
           <ng-template>
             <app-branch-box-summarize [branchDataSummarize]="centerBranchMarker">
@@ -56,3 +46,12 @@
 
 </agm-map>
 
+<!--
+        [iconUrl]="branchIcon"
+        [label]="{
+      color: 'white',
+      fontFamily: '',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      text: (i+1)+''}"
+-->
