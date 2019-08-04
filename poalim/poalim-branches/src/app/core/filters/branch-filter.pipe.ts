@@ -6,6 +6,7 @@ import {CONSTANTS} from '../../constants';
 import {isNullOrUndefined} from 'util';
 import {MapBranchesService} from '../services/map-branches.service';
 import {AppService} from '../services/app.service';
+import {HoursService} from '../services/hours.service';
 
 @Pipe({
   name: 'FilterBranchPipe'
@@ -28,7 +29,7 @@ export class FilterBranchPipe implements PipeTransform {
 
   dayFunction(value) {
 
-    const slectedDayInFilter = this.branchFilter.selectedDaysValue;
+    const slectedDayInFilter = this.hours.selectedDaysValue;
     return (!isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek[slectedDayInFilter]) && value.branchSummarize.openAndCloseHours.dayInWeek[slectedDayInFilter].openToday);
   }
 
@@ -47,8 +48,8 @@ export class FilterBranchPipe implements PipeTransform {
   }
 
   hoursFunction(value) {
-    const slectedDayInFilter = this.branchFilter.selectedDaysValue;
-    const slectedHoursInFilter = this.branchFilter.selectedHoursValue;
+    const slectedDayInFilter = this.hours.selectedDaysValue;
+    const slectedHoursInFilter = this.hours.selectedHoursValue;
     const dayInWeek = isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek) ? {} : value.branchSummarize.openAndCloseHours.dayInWeek;
     if (slectedDayInFilter.length) { /*choose day and hours*/
       return !isNullOrUndefined(dayInWeek[slectedDayInFilter][slectedHoursInFilter]);
@@ -61,7 +62,7 @@ export class FilterBranchPipe implements PipeTransform {
 
   }
 
-  constructor(private branchFilter: BranchFilterService , private mapService: MapBranchesService, private appService: AppService) {
+  constructor(private hours: HoursService , private mapService: MapBranchesService, private appService: AppService) {
   }
 
   transform(branches: any, filters: number[]): any {

@@ -7,6 +7,8 @@ import {RcEventBusService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 import {MapBranchesService} from './map-branches.service';
 import {AppService} from './app.service';
+import {BranchDataService} from './branch-data.service';
+import {HoursService} from './hours.service';
 
 
 @Injectable({
@@ -15,36 +17,17 @@ import {AppService} from './app.service';
 export class BranchFilterService {
 
 
-  constructor(private functionsService: FunctionsService, private events: RcEventBusService, private  mapServices: MapBranchesService, private app: AppService) {
+  constructor(private functionsService: FunctionsService, private events: RcEventBusService, private  mapServices: MapBranchesService, private app: AppService ,private branchDataServices: BranchDataService, private hours: HoursService ) {
   }
 
-  private filtersTypesArray: any[] = [];// convert to array for sorting
+  private filtersTypesArray: any[] = []; // convert to array for sorting
   filters: any[] = [];
   activeFilters: any[] = [];
-  selectedHoursValue: string = '';
-  selectedDaysValue: string = '';
+
   selectedBranchValue: any = '';
   selectedCityValue: any = '';
   dirty = false;
 
-  set selectedHours(hours: string) {
-    this.selectedHoursValue = hours;
-  }
-
-  set selectedDays(day: string) {
-
-    this.selectedDaysValue = day;
-  }
-
-  get selectedDays() {
-
-    return this.selectedDaysValue;
-  }
-
-  set selectedBranch(val) {
-
-    this.selectedBranchValue = val;
-  }
 
   set selectedCity(val: any) {
     this.selectedCityValue = val;
@@ -72,12 +55,17 @@ export class BranchFilterService {
   }
 
   handaleRemoveLocation() {
+    this.mapServices.hasLocationPermission = false;
     this.mapServices.defaultFilter(this.app.branches);
+    this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapServices.sortedBranches));
+
   }
 
   handleAddLocation() {
     if (this.mapServices.hasLocationPermissionFromGeoLocation) {
       this.mapServices.changeFilterLoactionToTrue();
+      this.mapServices.hasLocationPermission = true;
+      this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapServices.sortedBranches));
     } else {
       this.mapServices.getMyLocation().subscribe((res)=>{console.log('res',res)})
 
@@ -106,7 +94,7 @@ export class BranchFilterService {
         removeItem(CONSTANTS.FILTER_BY_DAYS);
         this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS);
         const valueToChange = this.activeFilters.indexOf(selectedFilters) === -1 ? CONSTANTS.FRIDAY : ''; // the opposite because the filter dont enter the array yet
-        this.selectedDays = valueToChange;
+        this.hours.selectedDays = valueToChange;
         break;
       case CONSTANTS.FILTER_BY_DAYS :
         removeItem(CONSTANTS.FILTER_OPEN_NOW);

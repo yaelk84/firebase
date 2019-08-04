@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {RcEventBusService} from '@realcommerce/rc-packages';
+import {HoursService} from '../../core/services/hours.service';
 
 @Component({
   selector: 'app-hours-filer',
@@ -43,8 +44,8 @@ export class HoursFilerComponent implements OnInit {
    * and update the selected  hours day value on service
    */
   submit() {
-    this.filters.selectedHours = this.selectedHours;
-    this.filters.selectedDays = this.selectedDay;
+    this.hoursService.selectedHours = this.selectedHours;
+    this.hoursService.selectedDays = this.selectedDay;
     this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
     this.close.emit([]);
 
@@ -62,8 +63,8 @@ export class HoursFilerComponent implements OnInit {
   clear() {
     this.selectedDay = '';
     this.selectedHours = '';
-    this.filters.selectedHours = this.selectedHours;
-    this.filters.selectedDays = this.selectedDay;
+    this.selectedHours = this.selectedHours;
+    this.selectedDay = this.selectedDay;
     this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
     this.close.emit([]);
 
@@ -71,7 +72,7 @@ export class HoursFilerComponent implements OnInit {
 
   }
 
-  constructor(private filters: BranchFilterService , private events: RcEventBusService) {
+  constructor(private filters: BranchFilterService , private events: RcEventBusService, private hoursService: HoursService) {
   }
 
   ngOnInit() {

@@ -19,6 +19,24 @@ export class HoursService {
   private currentTime ;
   private order = {Sunday: 1, Monday: 2, Tuesday: 3, Wednesday: 4, Thursday: 5, Friday: 6, Saturday: 7};
 
+  selectedHoursValue: string = '';
+  selectedDaysValue: string = '';
+  set selectedHours(hours: string) {
+    this.selectedHoursValue = hours;
+  }
+
+  set selectedDays(day: string) {
+
+    this.selectedDaysValue = day;
+  }
+
+  get selectedDays() {
+
+    return this.selectedDaysValue;
+  }
+
+
+
   set updateTime(time) {
     this.currentTime =  this.timeService.getCurrentTime(time.time);
 

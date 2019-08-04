@@ -1,16 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {catchError, map, switchMap} from 'rxjs/operators';
-import {forkJoin, Observable, of, throwError} from 'rxjs';
 import {HoursService} from '../../core/services/hours.service';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
-import {logger} from 'codelyzer/util/logger';
 import {AppService} from '../../core/services/app.service';
-import {GeoLocationObject} from '../../core/interface/coordinates';
 import {BranchDataService} from '../../core/services/branch-data.service';
-import {FilterBranchPipe} from '../../core/filters/branch-filter.pipe';
 
-// import {GeoLocationObject} from "../../core/interface/coordinates";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +15,6 @@ export class HomeComponent implements OnInit {
 
   activeFilters = [];
   servicesLoaded = false;
-  openPopup = true;
   branches: Array<object> = null;
 
 
@@ -46,7 +39,6 @@ export class HomeComponent implements OnInit {
           this.mapBranches.nearsBranches = res;
           this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
                }));
-
       } else {
         this.mapBranches.defaultFilter(this.branches);
         this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));

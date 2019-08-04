@@ -18,20 +18,22 @@ import {BranchFilterService} from './branch-filter.service';
 export class BranchDataService {
   private config = this.appService.appConfig;
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private filterService: BranchFilterService, private  events: RcEventBusService) {
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
     const curTime = this.hursService.time;
 
   }
 
   branchNewArray: Array<object>;
-  branchNewArrayFilter: Array<object>;
+  branchNewArrayFilter: Array<any>;
 
   get branchesFilter() {
     return this.branchNewArrayFilter;
   }
 
   set branchesFilter(branches) {
-    this.branchNewArrayFilter = branches;
+    console.log('set set')
+    this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
+      this.branchNewArrayFilter = branches;
   }
 
   initBrnchesAndMap(branches) {
@@ -40,6 +42,7 @@ export class BranchDataService {
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
       this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
     });
+
 
 
   }
@@ -105,7 +108,7 @@ export class BranchDataService {
     };
   }
 
-  createDataArray(branchData: Array) {
+  createDataArray(branchData: Array<any>) {
     if (isNullOrUndefined(branchData)) {
       return;
     }
