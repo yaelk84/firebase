@@ -8,10 +8,31 @@ agm-map {
 }
 
   /deep/.si-content-wrapper {
-  width: 320px;
-  direction: rtl;
-    padding: 15px 25px 15px 5px;
+    //width: 320px;
+    direction: rtl;
+    //padding: 15px 25px 15px 5px;
+    padding: 30px 25px;
+    border: none !important;
+    box-shadow: 0 14px 24px 0 rgba(132, 169, 204, 0.24);
+
+
+    .si-close-button {
+      left: 0;
+      padding: 0 9px;
+      opacity: 0.7;
+      font-size: 30px;
+      outline: none;
+      color: #343a40;
+    }
 }
+
+  /deep/[class*='si-shadow-inner-pointer'] {
+    box-shadow: none;
+  }
+
+  /deep/.si-pointer-bg-top {
+    top: -1px !important;
+  }
 
 /deep/.si-content {
   overflow: hidden;
@@ -40,10 +61,16 @@ agm-map {
   font-size: 15px;
 }
 
+/deep/.branch-hours {
+  // the text will be changed from "פתוח ביום רביעי" to "פתוח ביום ד" and then the font fits to the window which open when click on branch marker
+  font-size: 16px !important;
+}
+
 /deep/.open-today span span {
   font-size: 14px;
   font-weight: bold;
 }
+
 
 
 

@@ -27,6 +27,7 @@ import { ReportProblemPopupComponent } from './features/report-problem-popup/rep
 import { MapComponent } from './features/map/map.component';
 import { AgmCoreModule  } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
+import { ShareBranchPopupComponent } from './features/share-branch-popup/share-branch-popup.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -51,7 +52,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     SearchComponent,
     ReportProblemPopupComponent,
     GeneralPopupComponent,
-    MapComponent
+    MapComponent,
+    ShareBranchPopupComponent,
   ],
   imports: [
     BrowserModule,
