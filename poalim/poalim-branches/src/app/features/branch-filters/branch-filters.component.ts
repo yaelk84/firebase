@@ -35,7 +35,7 @@ export class BranchFiltersComponent implements OnInit {
 
   }
   closeDropDownServices() {
-    console.log("dfdfdfdf")
+
     this.openDropDown = false;
   }
   getActiveCheckBox(){
@@ -45,8 +45,8 @@ export class BranchFiltersComponent implements OnInit {
    this.dropDownCheckLength= this.getActiveCheckBox().length;
 
   }
-  toggleFilter(id: string) {
-    this.filterService.toggleFilter(id);
+  toggleFilter(id: string, defaultVal?) {
+    this.filterService.toggleFilter(id, defaultVal);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
 
   }
@@ -75,9 +75,13 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
   updateBranchAfterChangeMap(){
-    this.filterService.removeFilterRadio(this.arrayOfActiveFilterIds);
-    const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
-    this.toggleFilter(defaultFilter);
+    console.log("map m,pa")
+    if(!this.filterService.dirty){
+      this.filterService.removeFilterRadio(this.arrayOfActiveFilterIds);
+      const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
+     // this.toggleFilter(defaultFilter , true);
+    }
+
   }
   ngOnInit() {
     const size=this.deviceService.isMobile() ? CONSTANTS.BRANCH_FILTER_NUM.MOBILE :CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
@@ -86,8 +90,9 @@ export class BranchFiltersComponent implements OnInit {
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size+1,this.filterService.filters.length));
       const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW
-      this.toggleFilter(defaultFilter);
-      this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
+      this.toggleFilter(defaultFilter ,true);
+      this.events.on(CONSTANTS.EVENTS.
+        UPDATE_BRANCH_FROM_MAP, () => {
         console.log('updated');
         this.updateBranchAfterChangeMap();
       }, true);

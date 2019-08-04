@@ -22,6 +22,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   public config: PerfectScrollbarConfigInterface = {};
   private city: string;
+  private branchNewArrayFilter1: any;
 
   constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router) {
   }
@@ -29,7 +30,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   data;
   branchNewArray: BranchObj[] = [];
   filters = [];
-  branchNewArrayFilter: BranchObj[] = [];
+  branchNewArrayFilter1: BranchObj[] = [];
   formControl = new FormControl();
   branchSelectedDisplay: object;
   showSelectedBranch = false;
@@ -39,18 +40,26 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   showDaysHoursFilter = false;
   filterWithHours = '/assets/media/hour-filter.svg';
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
-  arrow =  '/assets/media/left.svg';
-  branchResultTitle: string ;
+  arrow = '/assets/media/left.svg';
+  branchResultTitle: string;
   filterIcon = this.filterWithNoHours;
+
+  get branchNewArrayFilter() {
+    console.log('get get get', this.branchDataServices.branchesFilter);
+    return this.branchDataServices.branchesFilter;
+  }
+
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
 
     if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
-      this.branchSelectedDisplay = this.branchNewArrayFilter.filter((value) => {
-        return  String(value.branchSummarize.branchNum) === queryParams.branch;
+      this.branchSelectedDisplay = this.branchNewArrayFilter1.filter((value) => {
+        return String(value.branchSummarize.branchNum) === queryParams.branch;
       })[0];
-      if( isNullOrUndefined( this.branchSelectedDisplay)){return}
+      if (isNullOrUndefined(this.branchSelectedDisplay)) {
+        return;
+      }
       this.showSelectedBranch = true;
     } else {
       this.showSelectedBranch = false;
@@ -65,7 +74,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   private callQueryParam() {
     this.activeRoute.queryParams.subscribe((queryParams) => {
-         this.buildFilterByQuery(queryParams);
+      this.buildFilterByQuery(queryParams);
     });
   }
 
@@ -94,7 +103,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
 
 
-
     }
 
   }
@@ -106,30 +114,18 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   }
 
+
   toggleDropDown(e) {
 
-    if (!isNullOrUndefined(e) && Object.keys(e).length){
+    if (!isNullOrUndefined(e) && Object.keys(e).length) {
       e.stopPropagation();
     }
     this.showDaysHoursFilter = !this.showDaysHoursFilter;
   }
 
 
-
   init() {
     this.branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
-    this.branchData = this.mapServices.sortedBranches;
-    if (isNullOrUndefined(this.branchData)) {
-      return;
-    }
-    this.branchNewArray = [];
-    this.branchData.forEach(obj => {
-      const branchFetched = this.branchDataServices.createSingleBranch(obj);
-      this.branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-        branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
-    });
-    //this.callQueryParam();
-    this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
 
   }
 
@@ -141,7 +137,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }
 
   }
-  addEvents(){
+
+  addEvents() {
 
     this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
 
@@ -151,15 +148,15 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
       this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
-      // console.log('activeFilters !!!!!!', activeFilter);
-      this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
+      console.log('activeFilters !!!!!!', activeFilter);
+      // this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
       this.handleFilterChange(activeFilter);
 
 
       // this.componentRef.directiveRef.ps().update();
 
 
-    },true);
+    }, true);
   }
 
   ngOnInit() {
@@ -169,7 +166,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
     this.init();
-
+    console.log('ubur componenet');
 
 
   }
@@ -180,7 +177,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     interval(1000 * 60).subscribe(x => {
       this.init();
 
-    })
+    });
 
   }
 

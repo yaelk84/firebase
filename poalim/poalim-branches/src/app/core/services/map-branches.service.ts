@@ -19,7 +19,9 @@ export class MapBranchesService {
   filteredMarkers = [];
   sortedBranches = [];
   hasLocationPermission = false;
+  hasLocationPermissionFromGeoLocation = false;
   position: object;
+  nearsBranches: Array<object> ;
   lat: number;
   lng: number;
   // lat = 32.064041;
@@ -28,7 +30,10 @@ export class MapBranchesService {
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader , private  events: RcEventBusService) {
   }
-
+  changeFilterLoactionToTrue(){
+    this.sortedBranches = this.nearsBranches;
+    this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
+  }
   // will take the mockData and filter it by city name = 'תל אביב' and will display only the 6 nearest branches
   defaultFilter(branches) {
     const filteredByCity = branches.filter(branch => {
@@ -36,7 +41,7 @@ export class MapBranchesService {
         return branch;
       }
     });
-    console.log('filteredByCity', filteredByCity);
+
     this.sortedBranches = filteredByCity.slice(0, 6);
     this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
     // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
@@ -75,6 +80,7 @@ export class MapBranchesService {
   // will get my location
   getMyLocation() {
     const myGeoLocation = new Observable(observer => {
+      debugger
       let c = {};
       if (navigator.geolocation) {
         setTimeout(() => {
@@ -93,10 +99,12 @@ export class MapBranchesService {
           observer.complete();
 
         }, err => {
+          console.log('111111111', err)
           observer.error(err);
 
         });
       } else {
+        console.log('22222')
         observer.error();
       }
     });
@@ -123,7 +131,7 @@ export class MapBranchesService {
         const nearestBranches = this.filteredMarkers.sort((a, b) => {
           return a.geographicAddress[0].distanceInKm - b.geographicAddress[0].distanceInKm;
         }).slice(0, 10);
-        console.log('updte from service !!!!!!!!!!!!!!!!!!!!!')
+
         this.sortedBranches = nearestBranches;
         this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
         observer.next(this.sortedBranches);

@@ -7,6 +7,9 @@ import {MapBranchesService} from '../../core/services/map-branches.service';
 import {logger} from 'codelyzer/util/logger';
 import {AppService} from '../../core/services/app.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
+import {BranchDataService} from '../../core/services/branch-data.service';
+import {FilterBranchPipe} from '../../core/filters/branch-filter.pipe';
+
 // import {GeoLocationObject} from "../../core/interface/coordinates";
 
 @Component({
@@ -20,14 +23,16 @@ export class HomeComponent implements OnInit {
   servicesLoaded = false;
   openPopup = true;
   branches: Array<object> = null;
+
+
   location: any;
 
-  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService ) {
+  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService , private branchDataServices: BranchDataService) {
   }
 
   getServicers() {
     this.appService.init().subscribe((response: any) => {
-      // console.log('what the res , re', response);
+
       this.hours.updateTime = response.time;
       this.branches = response.branches;
       const cities = response.branches.map(obj => {
@@ -36,13 +41,17 @@ export class HomeComponent implements OnInit {
       if (this.mapBranches.hasLocationPermission) {
         this.servicesLoaded = false;
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
-                   this.servicesLoaded = true;
+          this.servicesLoaded = true;
+          this.mapBranches.hasLocationPermissionFromGeoLocation = true;
+          this.mapBranches.nearsBranches = res;
+          this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
                }));
-        // console.log('with location');
+
       } else {
         this.mapBranches.defaultFilter(this.branches);
+        this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
         this.servicesLoaded = true;
-        // console.log('with out location');
+
       }
 
 
@@ -56,6 +65,7 @@ export class HomeComponent implements OnInit {
     return this.mapBranches.getMyLocation()
       .subscribe(x => {
           // console.log('Observer got a next value: ' + x);
+
           this.getServicers();
           this.location = x;
           console.log('success');
