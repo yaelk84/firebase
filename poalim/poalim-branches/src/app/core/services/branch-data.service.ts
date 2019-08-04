@@ -54,7 +54,6 @@ export class BranchDataService {
     const fax = this.craeteContactAddressFax(data.contactAddress);
     const comma  =this.replaceNullOrUndefinedInEmpty(address.streetName) ||this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : ''
     const branchData = {
-
       branchNum: data.branchNumber,
       branchName: data.branchName,
       address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
@@ -67,15 +66,15 @@ export class BranchDataService {
       const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distanceInKm, branchData.openAndCloseHours);
          return{
-        isBankat: isBankat,
-        branchSummarize: branchSummarize,
-        branchService:  branchData.branchService,
-        fax: fax,
-        phone: CONSTANTS.PHONE,
-        branchManagerName: data.branchManagerName,
-        comment: data.comment,
-        servicesType: this.onlyServicesTypeArray(branchData.branchService)
-      };
+           isBankat: isBankat,
+           branchSummarize: branchSummarize,
+           branchService:  branchData.branchService,
+           fax: fax,
+           phone: CONSTANTS.PHONE,
+           branchManagerName: data.branchManagerName,
+           comment: data.comment,
+           servicesType: this.onlyServicesTypeArray(branchData.branchService),
+         };
   }
 
 

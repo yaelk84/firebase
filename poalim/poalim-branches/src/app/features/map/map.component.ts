@@ -22,23 +22,19 @@ export class MapComponent implements OnInit {
   @Input() branches: any;
   geoCoordinateY = 32.0853;
   geoCoordinateX = 34.7818;
-  zoom = 13;
+  zoom = 12;
   hasAccessToMyLocation = false;
-  // showBankatIcon = false;
-  branchesMapMarker = [];
   summarizedBranchesArr = [];
-  centerCoordsArr = [];
   centerBranchesMarker = [];
   distancesArr = [];
   branchesDataSumBasedOnLocationAccessArr = [];
-  markersBasedOnLocationAccessArr = [];
   isBankatArr = [];
   branchIcon = {
-    url: 'assets/media/branch-marker.svg',
+    url: 'assets/media/branchMarker.svg',
     scaledSize: {
-      width: 35,
-      height: 45
-    }
+      width: 32,
+      height: 32
+    },
   };
   myLocationIcon = {
     url: 'assets/media/myLocation-marker.svg',
@@ -50,11 +46,16 @@ export class MapComponent implements OnInit {
   bankatIcon = {
     url: 'assets/media/bankat-marker.svg',
     scaledSize: {
-      width: 35,
-      height: 45
+      width: 32,
+      height: 42,
     }
   };
   label = {};
+
+  // markersBasedOnLocationAccessArr = [];
+  // centerCoordsArr = [];
+  // showBankatIcon = false;
+  // branchesMapMarker = [];
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private branchData: BranchDataService,
               private filterBranchPipe: FilterBranchPipe, private events: RcEventBusService, private route: ActivatedRoute,
@@ -64,9 +65,9 @@ export class MapComponent implements OnInit {
     this.showBranchesBasedOnLocationAccess();
     this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
       this.showBranchesBasedOnLocationAccess();
-      this.zoom = 15;
       });
   }
+
 
   generateArrayOfBranchesBasedOnLocationAccess(markersBasedOnLocationAccessArr) {
     const arrDataTypeToDisplay = this.mapBranches.sortedBranches;
@@ -82,11 +83,11 @@ export class MapComponent implements OnInit {
     });
     arrDataTypeToDisplay.forEach((branchFilteredData) => {
       const branchesSumData = this.branchData.createSingleBranch(branchFilteredData);
+      console.log('check!!!!!!!!!!!!!!', branchesSumData);
       const checkIfIsBankat = branchesSumData.isBankat;
       this.isBankatArr.push(checkIfIsBankat);
       markersBasedOnLocationAccessArr.push(branchesSumData.branchSummarize);
     });
-    // debugger;
     if (this.isBankatArr.length >= 16) {
       const isBankatNearestBranchesArr = this.isBankatArr.slice(6, this.isBankatArr.length);
       console.log('11111', isBankatNearestBranchesArr);
@@ -105,9 +106,9 @@ export class MapComponent implements OnInit {
         text: this.markerCounter >= 10 ? this.labelIndexCount++ + '' : this.labelIndex++ + '',
         color: 'white',
         fontFamily: '',
-        fontSize: '14px',
+        fontSize: '16px',
         fontWeight: 'bold'
-      } ;
+      };
     });
   }
 
@@ -135,7 +136,7 @@ export class MapComponent implements OnInit {
 
   showBranchesBasedOnLocationAccess() {
     if (!this.mapBranches.hasLocationPermission) {
-      this.generateArrayOfBranchesBasedOnLocationAccess(this.centerBranchesMarker); //
+      this.generateArrayOfBranchesBasedOnLocationAccess(this.centerBranchesMarker);
       // const centerBranches = this.mapBranches.sortedBranches;
       // this.mapBranches.getGeoCoordinateArray(centerBranches).subscribe(geoCoordsArr => {
       //   this.centerCoordsArr = (geoCoordsArr as Array<any>);
@@ -157,7 +158,8 @@ export class MapComponent implements OnInit {
       const point = this.mapBranches.position;
       this.geoCoordinateY = (point as GeoLocationObject).lat;
       this.geoCoordinateX = (point as GeoLocationObject).lng;
-      this.generateArrayOfBranchesBasedOnLocationAccess(this.summarizedBranchesArr); //
+      this.generateArrayOfBranchesBasedOnLocationAccess(this.summarizedBranchesArr);
+      this.zoom = 14;
       // const response = this.mapBranches.sortedBranches;
       // response.forEach((d, index) => {
       //   d = response[index].geographicAddress[0].distanceInKm;
@@ -182,13 +184,4 @@ export class MapComponent implements OnInit {
       console.log('summarizedBranchesArr', this.summarizedBranchesArr);
     }
   }
-
-  showChosenBranch() {
-    // if (this.route.queryParams) {
-    // }
-    this.activatedRoute.queryParams.subscribe(params => {
-
-    });
-  }
-
 }

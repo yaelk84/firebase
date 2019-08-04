@@ -80,6 +80,8 @@
   "maxChars": "עד 250 תווים",
   "send": "שלח",
   "branchesTitle": "איתור סניפים",
-  "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:"
-
+  "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:",
+  "shareWithEmail": "אימייל",
+  "copyLinkToShare": "העתקת קישור",
+  "shareBranchPopupTitle": "שתף את סניף {branchNum} ב{branchName}"
 }

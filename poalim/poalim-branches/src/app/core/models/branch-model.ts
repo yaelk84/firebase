@@ -3,6 +3,7 @@ import {CONSTANTS} from '../../constants';
 
 export class BranchObj {
 
+  private isHovering: boolean;
 
 constructor(
             private  isBankat: boolean,
@@ -11,12 +12,12 @@ constructor(
             private  fax: string,
             private phone: string,
             private branchManagerName: string,
-            private comment:string,
+            private comment: string,
             private  serviceType: []
 
 
 ) {
-
+    this.isHovering = false;
   }
 }
 
