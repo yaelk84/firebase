@@ -27,8 +27,7 @@ export class BranchDataService {
   branchNewArrayFilter: Array<any>;
 
   get branchesFilter() {
-    // console.log('?????', this.branchNewArrayFilter);
-    return this.branchNewArrayFilter;
+     return this.branchNewArrayFilter;
   }
 
   set branchesFilter(branches) {
@@ -42,7 +41,7 @@ export class BranchDataService {
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []);
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
       this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
-    });
+    },true);
 
 
 

@@ -112,10 +112,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   addEvents() {
-    this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
-      this.selectBranch(null);
+    this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, (filters) => {
+      if(this.showSelectedBranch && this.branchFilterService.dirty){
+        this.selectBranch(null);
+      }
       const activeFilter = this.branchFilterService.getActiveFilters();
-      console.log('activeFilters !!!!!!', activeFilter);
       this.handleFilterChange(activeFilter);
 
     }, true);

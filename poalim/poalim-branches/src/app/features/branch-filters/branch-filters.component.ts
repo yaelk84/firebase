@@ -97,11 +97,11 @@ export class BranchFiltersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.filterService.clearFilter();
     const size = this.deviceService.isMobile() ? CONSTANTS.BRANCH_FILTER_NUM.MOBILE : CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
-      // tslint:disable-next-line:max-line-length
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size + 1, this.filterService.filters.length));
       const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
       this.toggleFilter(defaultFilter, true);

@@ -37,7 +37,9 @@ export class HomeComponent implements OnInit {
       if (this.mapBranches.hasLocationPermission) {
         this.servicesLoaded = false;
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
-          this.servicesLoaded = true;
+          setTimeout(()=>{
+            this.servicesLoaded = true;
+          },200)
           this.mapBranches.hasLocationPermissionFromGeoLocation = true;
           this.mapBranches.nearsBranches = res;
           this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
@@ -59,8 +61,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
+      this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
       this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
-        this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
+
     }, true);
     return this.mapBranches.getMyLocation()
       .subscribe(x => {

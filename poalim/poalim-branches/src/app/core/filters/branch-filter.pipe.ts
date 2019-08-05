@@ -20,7 +20,8 @@ export class FilterBranchPipe implements PipeTransform {
   }
 
   openFriday(value) {
-    return !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.morning) || !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.morning);
+    const friday = !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.specificDayValue.morning);
+    return friday;
   }
 
   openNow(value) {
@@ -69,7 +70,9 @@ export class FilterBranchPipe implements PipeTransform {
 
     let matches: any[] = branches;
     const checkSpecificFilter = (values, filter) => {
+
       switch (filter) {
+
         case CONSTANTS.FILTER_BY_DAYS :
           return this.dayFunction(values);
           break;
@@ -83,7 +86,7 @@ export class FilterBranchPipe implements PipeTransform {
           return this.openFriday(values);
           break;
         case CONSTANTS.FILTER_lOCATION :
-          // console.log('what the filter' , filters);
+
           if(filters.indexOf( filter)  === -1 ){
             this.mapService.defaultFilter(this.appService.branches)
           }

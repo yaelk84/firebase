@@ -48,16 +48,12 @@ export class HoursFilerComponent implements OnInit {
     this.hoursService.selectedDays = this.selectedDay;
     this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
     this.close.emit([]);
-
-
     if (this.selectedDay.length) {
       this.filters.toggleFilter(CONSTANTS.FILTER_BY_DAYS);
     }
-
     if (this.selectedHours.length) {
       this.filters.toggleFilter(CONSTANTS.FILTER_BY_HOURS);
     }
-
   }
 
   clear() {
@@ -77,7 +73,7 @@ export class HoursFilerComponent implements OnInit {
 
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS,()=>{
-    this.clear();
+          this.clear();
     })
   }
 

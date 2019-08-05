@@ -27,7 +27,9 @@ export class BranchFilterService {
   selectedBranchValue: any = '';
   selectedCityValue: any = '';
   dirty = false;
-
+  clearFilter(){
+    this.activeFilters = [];
+  }
 
   set selectedCity(val: any) {
     this.selectedCityValue = val;
@@ -39,6 +41,7 @@ export class BranchFilterService {
 
   updateActiveFilters(filters) {
     this.activeFilters = filters;
+    console.log('update filter');
     this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, filters);
   }
 
@@ -86,6 +89,7 @@ export class BranchFilterService {
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
         removeItem(CONSTANTS.FILTER_BY_HOURS);
         removeItem(CONSTANTS.FILTER_BY_DAYS);
+        this.hours.selectedDays = '';
         this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS); // that remove the day from friday because it clean specific day
         break;
       case CONSTANTS.FILTER_OPEN_FRIDAY :
