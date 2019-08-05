@@ -14,11 +14,11 @@
 <!--    <agm-marker *ngIf="!hasAccessToMyLocation" [latitude]="mapBranches.lat" [longitude]="mapBranches.lng" [iconUrl]="myLocationIcon"></agm-marker>-->
     <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
-      [latitude]="branchPoint.geographicAddress[0].geographicCoordinate.geoCoordinateY"
-      [longitude]="branchPoint.geographicAddress[0].geographicCoordinate.geoCoordinateX"
+      [latitude]="branchPoint.coords.lat"
+      [longitude]="branchPoint.coords.lng"
       [iconUrl]="branchIcon"
       [label]="{
-            text: i + '',
+            text: i+1 + '',
             color: 'white',
             fontFamily: '',
             fontSize: '14px',
@@ -26,7 +26,7 @@
       }">
       <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
         <ng-template>
-          <app-branch-box-summarize [branchDataSummarize]="branchPoint">
+          <app-branch-box-summarize [branchDataSummarize]="branchPoint.branchSummarize">
           </app-branch-box-summarize>
         </ng-template>
       </agm-snazzy-info-window>

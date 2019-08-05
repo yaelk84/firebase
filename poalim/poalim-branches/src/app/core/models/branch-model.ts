@@ -6,6 +6,7 @@ export class BranchObj {
   private isHovering: boolean;
 
 constructor(
+            private coords:any,
             private  isBankat: boolean,
             public  branchSummarize: BranchSummarize,
             private  branchService: [],

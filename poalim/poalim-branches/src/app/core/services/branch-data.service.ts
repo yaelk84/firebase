@@ -84,6 +84,7 @@ export class BranchDataService {
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
     const comma = this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
+    const coords = {lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY, lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX};
     const branchData = {
 
       branchNum: data.branchNumber,
@@ -97,6 +98,7 @@ export class BranchDataService {
     const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distanceInKm, branchData.openAndCloseHours);
     return {
+      coords: coords,
       isBankat: isBankat,
       branchSummarize: branchSummarize,
       branchService: branchData.branchService,
@@ -105,6 +107,7 @@ export class BranchDataService {
       branchManagerName: data.branchManagerName,
       comment: data.comment,
       servicesType: this.onlyServicesTypeArray(branchData.branchService),
+
     };
   }
 
@@ -115,7 +118,7 @@ export class BranchDataService {
     const branchNewArray = [];
     branchData.forEach(obj => {
       const branchFetched = this.createSingleBranch(obj);
-      branchNewArray.push(new BranchObj(branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
+      branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
         branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
     });
     return branchNewArray;

@@ -132,6 +132,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
 
 
+
   }
 
   ngAfterViewInit() {
