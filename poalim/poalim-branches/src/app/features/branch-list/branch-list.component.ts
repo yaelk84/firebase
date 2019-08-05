@@ -4,7 +4,7 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {FilterBranchPipe} from '../../core/filters/branch-filter.pipe';
-import {RcEventBusService} from '@realcommerce/rc-packages';
+import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 import {FormControl} from '@angular/forms';
 import {PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
@@ -25,7 +25,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   private city: string;
 
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router , private hours: HoursService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private translate: RcTranslateService) {
   }
 
   filters = [];
@@ -42,14 +42,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   branchResultTitle: string;
   filterIcon = this.filterWithNoHours;
   branchNewArrayFilter: any;
-
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
 
     if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
-      const branches =  this.branchDataServices.branchesFilter;
-      this.branchSelectedDisplay =  branches.filter((value) => {
+      const branches = this.branchDataServices.branchesFilter;
+      this.branchSelectedDisplay = branches.filter((value) => {
         return queryParams.branch === String(value.branchSummarize.branchNum);
       })[0];
       if (isNullOrUndefined(this.branchSelectedDisplay)) {
@@ -72,7 +71,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.buildFilterByQuery(queryParams);
     });
   }
-
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
@@ -106,7 +104,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   toggleDropDown(e) {
-    console.log('55',)
+    console.log('55',);
     if (!isNullOrUndefined(e) && Object.keys(e).length) {
       e.stopPropagation();
     }
@@ -114,9 +112,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   addEvents() {
-
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
-
       this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
       console.log('activeFilters !!!!!!', activeFilter);
@@ -124,10 +120,10 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     }, true);
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
-      this.branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
-      this.branchNewArrayFilter = this.branchDataServices.branchNewArrayFilter;
 
-
+      const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
+      this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
+      this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
     }, true);
   }
 
@@ -140,15 +136,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
 
 
-
-
   }
 
   ngAfterViewInit() {
     // this.componentRef.directiveRef.ps().update();
     this.callQueryParam();
     interval(1000 * 60).subscribe(x => {
-     // this.init();
+      // this.init();
 
     });
 

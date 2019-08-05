@@ -14,14 +14,14 @@
   <div *ngIf="!showSelectedBranch" >
 
     <div class="branch-list-header">
-      <div class="branch-result">{{branchResultTitle | rcTranslate :  [branchNewArrayFilter.length]}}</div>
+      <div class="branch-result">{{branchResultTitle}}</div>
       <div (click)="toggleDropDown($event)" class="hours">
         <span>{{'filterHours' | rcTranslate}} </span>
         <div class="img-wrapper"><img [src]="(filterByDay || filterByHours)?filterWithHours:filterWithNoHours" alt=""></div>
 
       </div>
     </div>
-    <div class="branch-list" id="branch_id" *ngIf=" branchData && branchData.length">
+    <div class="branch-list" id="branch_id" *ngIf=" branchNewArrayFilter && branchNewArrayFilter.length">
 
       <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
         <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
