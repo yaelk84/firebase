@@ -14,15 +14,23 @@
 <!--    <agm-marker *ngIf="!hasAccessToMyLocation" [latitude]="mapBranches.lat" [longitude]="mapBranches.lng" [iconUrl]="myLocationIcon"></agm-marker>-->
     <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
+      (mouseOver)="branchPoint.isHovering = true"
+      (mouseOut)="branchPoint.isHovering = false"
       [latitude]="branchPoint.coords.lat"
       [longitude]="branchPoint.coords.lng"
-      [iconUrl]="branchIcon"
-      [label]="{
-            text: i+1 + '',
-            color: 'white',
-            fontFamily: '',
-            fontSize: '14px',
-            fontWeight: 'bold'
+      [iconUrl]="branchPoint.isBankat || branchPoint.isHovering ? bankatAndHoverIcon : branchIcon"
+      [label]="branchPoint.isBankat ? {
+      text: '&#8362;',
+      color: 'white',
+      fontFamily: 'inherit',
+      fontSize: '16px',
+      fontWeight: 'normal'
+    } : {
+      text: branchPoint.indexNoBankat + '',
+      color: 'white',
+      fontFamily: '',
+      fontSize: '16px',
+      fontWeight: 'normal'
       }">
       <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
         <ng-template>

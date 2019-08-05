@@ -32,9 +32,9 @@ export class BranchDataService {
   }
 
   set branchesFilter(branches) {
-    console.log('set set')
+    console.log('set set');
     this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
-      this.branchNewArrayFilter = branches;
+    this.branchNewArrayFilter = branches;
   }
 
   initBrnchesAndMap(branches) {
@@ -98,16 +98,16 @@ export class BranchDataService {
     const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distanceInKm, branchData.openAndCloseHours);
     return {
-      coords: coords,
-      isBankat: isBankat,
-      branchSummarize: branchSummarize,
+      coords,
+      isBankat,
+      branchSummarize,
       branchService: branchData.branchService,
-      fax: fax,
+      fax,
       phone: CONSTANTS.PHONE,
       branchManagerName: data.branchManagerName,
       comment: data.comment,
       servicesType: this.onlyServicesTypeArray(branchData.branchService),
-
+      isHovering: false,
     };
   }
 
@@ -118,8 +118,9 @@ export class BranchDataService {
     const branchNewArray = [];
     branchData.forEach(obj => {
       const branchFetched = this.createSingleBranch(obj);
-      branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-        branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
+      branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize,
+        branchFetched.branchService, branchFetched.fax, branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment,
+        branchFetched.servicesType, branchFetched.isHovering));
     });
     return branchNewArray;
   }

@@ -16,10 +16,6 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./map.component.scss', '../branch-box-summarize/branch-box-summarize.component.scss']
 })
 export class MapComponent implements OnInit {
-  labelIndex = 1;
-  labelIndexCount = 1;
-  markerCounter: number;
-  isMapLoaded = false;
   @Input() branches: any;
   geoCoordinateY = 32.0853;
   geoCoordinateX = 34.7818;
@@ -28,8 +24,8 @@ export class MapComponent implements OnInit {
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
     scaledSize: {
-      width: 35,
-      height: 45
+      width: 32,
+      height: 32
     }
   };
   myLocationIcon = {
@@ -37,27 +33,29 @@ export class MapComponent implements OnInit {
     scaledSize: {
       width: 50,
       height: 70
-    }
+    },
+    isGetCounter: true
   };
-  bankatIcon = {
-    url: 'assets/media/bankat-marker.svg',
+  bankatAndHoverIcon = {
+    url: 'assets/media/bankat-shape.png',
     scaledSize: {
-      width: 35,
-      height: 45
-    }
+      width: 32,
+      height: 32
+    },
+    isGetCounter: false
   };
 
-  constructor(private apiService: ApiService, private mapBranches: MapBranchesService) {
+  constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService) {
   }
-
   ngOnInit() {
-    console.log('branchessssssssssssssssssssssssss from map',this.branches)
+    console.log('branchessssssssssssssssssssssssss from map', this.branches);
     this.showBranchesBasedOnLocationAccess();
     // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
     //   this.showBranchesBasedOnLocationAccess();
     //   this.zoom = 15;
     // });
   }
+
   // generateArrayOfBranchesBasedOnLocationAccess() {
   //     this.branches.map((dataToAddForEachBranchSum, i) => {
   //       dataToAddForEachBranchSum.mapData = {
@@ -79,13 +77,17 @@ export class MapComponent implements OnInit {
   // }
 
   showBranchesBasedOnLocationAccess() {
-    if (this.mapBranches.hasLocationPermission) {
-      this.hasAccessToMyLocation = true;
-      const point = this.mapBranches.position;
-      this.geoCoordinateY = (point as GeoLocationObject).lat;
-      this.geoCoordinateX = (point as GeoLocationObject).lng;
-    }
-    // this.generateArrayOfBranchesBasedOnLocationAccess();
+
+    this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
+      if (this.mapBranches.hasLocationPermission) {
+        this.hasAccessToMyLocation = true;
+        const point = this.mapBranches.position;
+        this.geoCoordinateY = (point as GeoLocationObject).lat;
+        this.geoCoordinateX = (point as GeoLocationObject).lng;
+      } else {
+        this.hasAccessToMyLocation = false;
+      }
+    });
   }
 
   // generateArrayOfBranchesBasedOnLocationAccess() {

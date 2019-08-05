@@ -39,7 +39,7 @@ export class MapBranchesService {
       }
     });
 
-    this.sortedBranches = filteredByCity.slice(6, 12);
+    this.sortedBranches = filteredByCity.slice(0, 6);
 
 
     return this.sortedBranches;
