@@ -83,7 +83,7 @@ export class FilterBranchPipe implements PipeTransform {
           return this.openFriday(values);
           break;
         case CONSTANTS.FILTER_lOCATION :
-          console.log('what the filter' , filters);
+          // console.log('what the filter' , filters);
           if(filters.indexOf( filter)  === -1 ){
             this.mapService.defaultFilter(this.appService.branches)
           }

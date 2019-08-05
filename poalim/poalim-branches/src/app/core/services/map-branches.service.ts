@@ -24,9 +24,6 @@ export class MapBranchesService {
   nearsBranches: Array<object> ;
   lat: number;
   lng: number;
-  // lat = 32.064041;
-  // lng = 34.77539;
-
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader , private  events: RcEventBusService) {
   }
@@ -42,15 +39,7 @@ export class MapBranchesService {
       }
     });
 
-    this.sortedBranches = filteredByCity.slice(0, 6);
-    this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
-    // this.branchesPointsMap = this.getGeoCoordinateArray(filteredByCity.slice(0, 6));
-    // observer.next(this.branchesPointsMap);
-    // this.getGeoCoordinateArray(filteredByCity.slice(0, 6)).subscribe(geoArray => {
-    //   this.branchesPointsMap = (geoArray as Array<any>);
-    //   console.log('this.branchesPointsMap!!!!!!!!!!!!!!!!!!!!', this.branchesPointsMap); //
-    //   observer.next(this.branchesPointsMap);
-    // });
+    this.sortedBranches = filteredByCity.slice(6, 12);
 
 
     return this.sortedBranches;
@@ -67,20 +56,9 @@ export class MapBranchesService {
     });
     return geocoordsArray;
   }
-
-  // getGeoCoordinateArray(arr: Array<any>) {
-  //   const newGeoArr = [];
-  //   for (let i = 0; i < arr.length; i++) {
-  //     const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
-  //     newGeoArr.push(cityPoint);
-  //   }
-  //   return newGeoArr;
-  // }
-
   // will get my location
   getMyLocation() {
     const myGeoLocation = new Observable(observer => {
-      debugger
       let c = {};
       if (navigator.geolocation) {
         setTimeout(() => {
@@ -138,18 +116,6 @@ export class MapBranchesService {
       });
     });
     return nearestBranchesObserveble;
-  }
-
-  // a function which calculate the distance between two points
-  getDistance(myLatLng: GeoLocationObject) {
-    const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
-    const destination = new google.maps.LatLng(32.082227, 34.781046);
-    const distance = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination);
-    // console.log(distance / 1000);
-  }
-
-  checkIfHaveLocation(res) {
-    return (res as GeoLocationObject).lat && (res as GeoLocationObject).lng;
   }
 }
 
