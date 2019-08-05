@@ -22,7 +22,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   public config: PerfectScrollbarConfigInterface = {};
   private city: string;
-  private branchNewArrayFilter1: any;
+  // private branchNewArrayFilter1: []any;
 
   constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router) {
   }
@@ -45,7 +45,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterIcon = this.filterWithNoHours;
 
   get branchNewArrayFilter() {
-    console.log('get get get', this.branchDataServices.branchesFilter);
+    // console.log('get get get', this.branchDataServices.branchesFilter);
     return this.branchDataServices.branchesFilter;
   }
 
@@ -126,7 +126,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   init() {
     this.branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
-
   }
 
   updateBranchAfterChangeMap() {
@@ -148,7 +147,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
       this.selectBranch(null);
       const activeFilter = this.branchFilterService.getActiveFilters();
-      console.log('activeFilters !!!!!!', activeFilter);
+      // console.log('activeFilters !!!!!!', activeFilter);
       // this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, activeFilter);
       this.handleFilterChange(activeFilter);
 

@@ -27,6 +27,7 @@ export class BranchDataService {
   branchNewArrayFilter: Array<object>;
 
   get branchesFilter() {
+    // console.log('?????', this.branchNewArrayFilter);
     return this.branchNewArrayFilter;
   }
 
@@ -88,7 +89,6 @@ export class BranchDataService {
       distanceInKm: data.geographicAddress[0].distanceInKm,
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),
-
     };
 
     const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
@@ -101,11 +101,11 @@ export class BranchDataService {
       phone: CONSTANTS.PHONE,
       branchManagerName: data.branchManagerName,
       comment: data.comment,
-      servicesType: this.onlyServicesTypeArray(branchData.branchService)
+      servicesType: this.onlyServicesTypeArray(branchData.branchService),
     };
   }
 
-  createDataArray(branchData: Array) {
+  createDataArray(branchData: Array<any>) {
     if (isNullOrUndefined(branchData)) {
       return;
     }
