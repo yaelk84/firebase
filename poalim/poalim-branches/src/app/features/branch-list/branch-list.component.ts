@@ -14,6 +14,7 @@ import {interval} from 'rxjs';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {HoursService} from '../../core/services/hours.service';
 
+
 @Component({
   selector: 'app-branch-list',
   templateUrl: './branch-list.component.html',
@@ -39,6 +40,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterWithHours = '/assets/media/hour-filter.svg';
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
   arrow = '/assets/media/left.svg';
+  showNoLocation = false;
 
   filterIcon = this.filterWithNoHours;
 
@@ -78,6 +80,10 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   closeDropDown() {
     this.showDaysHoursFilter = false;
+  }
+  closePopupLocation() {
+    console.log('777777777777')
+    this.showNoLocation = false;
   }
 
   backToResults() {
@@ -129,11 +135,9 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.addEvents();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
-
-
-
-
-
+    if (!this.mapServices.hasLocationPermissionFromGeoLocation){
+       this.showNoLocation = true;
+    }
   }
 
   ngAfterViewInit() {

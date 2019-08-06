@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-no-location-permissions',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoLocationPermissionsComponent implements OnInit {
 
-  showBox = true;
 
-  constructor() { }
+  @Output() close = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -19,7 +21,7 @@ export class NoLocationPermissionsComponent implements OnInit {
   }
 
   dismiss() {
-    this.showBox = false;
+    this.close.emit();
   }
 
 }

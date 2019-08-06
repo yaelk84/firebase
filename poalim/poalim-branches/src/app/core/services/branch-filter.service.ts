@@ -9,6 +9,7 @@ import {MapBranchesService} from './map-branches.service';
 import {AppService} from './app.service';
 import {BranchDataService} from './branch-data.service';
 import {HoursService} from './hours.service';
+import {GeoLocationObject} from '../interface/coordinates';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ import {HoursService} from './hours.service';
 export class BranchFilterService {
 
 
-  constructor(private functionsService: FunctionsService, private events: RcEventBusService, private  mapServices: MapBranchesService, private app: AppService ,private branchDataServices: BranchDataService, private hours: HoursService ) {
+  constructor(private functionsService: FunctionsService, private events: RcEventBusService, private  mapServices: MapBranchesService, private app: AppService, private branchDataServices: BranchDataService, private hours: HoursService) {
   }
 
   private filtersTypesArray: any[] = []; // convert to array for sorting
@@ -27,7 +28,8 @@ export class BranchFilterService {
   selectedBranchValue: any = '';
   selectedCityValue: any = '';
   dirty = false;
-  clearFilter(){
+
+  clearFilter() {
     this.activeFilters = [];
   }
 
@@ -41,7 +43,7 @@ export class BranchFilterService {
 
   updateActiveFilters(filters) {
     this.activeFilters = filters;
-    console.log('update filter');
+    console.log('update filter', filters);
     this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, filters);
   }
 
@@ -70,7 +72,17 @@ export class BranchFilterService {
       this.mapServices.hasLocationPermission = true;
       this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapServices.sortedBranches));
     } else {
-      this.mapServices.getMyLocation().subscribe((res)=>{console.log('res',res)})
+      this.mapServices.getMyLocation().subscribe((res) => {
+
+        if (!isNullOrUndefined(res  as GeoLocationObject).lat) {
+          this.mapServices.myLocationFilter((res  as GeoLocationObject), this.app.branches).subscribe(() => {
+             this.branchDataServices.onlyBranches = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
+             this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,this.activeFilters);
+          })
+
+        }
+        console.log('res', res);
+      });
 
     }
   }
@@ -119,12 +131,12 @@ export class BranchFilterService {
     }
     this.removeOtherFiltersIfOnlyOneFilterCanSelected(id);
     const indexOfId = this.activeFilters.indexOf(id);
-    if ( indexOfId > -1) {
+    if (indexOfId > -1) {
       this.activeFilters.splice(indexOfId, 1);
-      if (id === CONSTANTS.FILTER_lOCATION ){
+      if (id === CONSTANTS.FILTER_lOCATION) {
         this.handaleRemoveLocation();
       }
-         } else {
+    } else {
       if (id === CONSTANTS.FILTER_lOCATION) {
         this.handleAddLocation();
       }

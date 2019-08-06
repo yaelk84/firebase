@@ -1,17 +1,18 @@
-<div class="box-wrapper" *ngIf="showBox && false ">
-  <div class="no-permissions-icon">
+<div class="box-wrapper" >
+  <div class="no-permissions-icon" >
     <img src="../../../assets/media/icons/no-location-permissions.svg" alt="">
   </div>
   <div class="text-wrapper">
     <div class="msg-header">
-      <span>לא ניתן לאתר את מיקומך  <br> ולכן מוצגים בפניך סניפים באזור המרכז</span>
+      <span>{{'locationHeader2'|rcTranslate}}</span>
+      <div>{{'locationHeader'|rcTranslate}}</div>
     </div>
     <div class="msg-text">
-      <span>על מנת לאתר את סניפי הבנק הרלוונטיים עבורך, מומלץ להשתמש בכלי הסינון, בשורת החיפוש או לאשר את זיהוי מיקומך בהגדרות הדפדפן</span>
+      <span>{{'locationMsg'|rcTranslate}}</span>
     </div>
   </div>
   <div class="btn-wrapper">
-    <button class="outlined-btn" (click)="activateLocation()">{{'confirmLocation' | rcTranslate}}</button>
+    <button class="outlined-btn" (click)="dismiss()">{{'closed' | rcTranslate}}</button>
   </div>
-  <button class="close-btn" (click)="dismiss()"></button>
+  <button class="close-btn"  (click)="dismiss()"></button>
 </div>

@@ -51706,8 +51706,8 @@
           "Friday": {
             "branchOpeningHours": [
               {
-                "startHour": "",
-                "endHour": "",
+                "startHour": "08:00",
+                "endHour": "12:00",
                 "openingHoursDescription": "שעות פתיחה בבוקר"
               },
               {

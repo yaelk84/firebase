@@ -83,5 +83,8 @@
   "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:",
   "shareWithEmail": "אימייל",
   "copyLinkToShare": "העתקת קישור",
-  "shareBranchPopupTitle": "שתף את סניף {branchNum} ב{branchName}"
+  "shareBranchPopupTitle": "שתף את סניף {branchNum} ב{branchName}",
+  "locationHeader": "ולכן מוצגים בפניך סניפים באזור המרכז",
+  "locationHeader2": "לא ניתן לאתר את מיקומך",
+  "locationMsg": "על מנת לאתר את סניפי הבנק הרלוונטיים עבורך, מומלץ להשתמש בכלי הסינון, בשורת החיפוש או לאשר את זיהוי מיקומך בהגדרות הדפדפן"
 }

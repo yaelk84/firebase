@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
@@ -7,23 +7,52 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-per
   templateUrl: './single-branch-display.component.html',
   styleUrls: ['./single-branch-display.component.scss']
 })
-export class SingleBranchDisplayComponent implements OnInit {
-  public config: PerfectScrollbarConfigInterface = {}
+
+export class SingleBranchDisplayComponent implements OnInit , AfterViewInit {
+  public config: PerfectScrollbarConfigInterface = {} ;
+  @ViewChild('phone') elementView: ElementRef;
   constructor() { }
   arrow =  '/assets/media/left.svg';
   share = '/assets/media/share.svg';
   start = 0;
   end = CONSTANTS.SERVICES_NUM;
   openPopup = false;
+  @ViewChild('tooltip') tooltip: ElementRef;
+
   @Input() dataBranchSelected: any;
    addMore(){
     this.end = this.dataBranchSelected.branchService.length;
+
+  }
+  createTempInput(val: string){
+    let selBox = document.createElement('input');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+  copy(phone){
+     debugger
+    this.createTempInput("fffffffffff");
+
 
   }
 
   ngOnInit() {
 
 
+  }
+  ngAfterViewInit(){
+     debugger
+    const nativeElement =  this.tooltip.nativeElement;
+     //$(nativeElement).tooltip('show');
+console.log('6666666666666')
   }
   openReportproblem(){
     this.openPopup = true;

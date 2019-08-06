@@ -45,6 +45,25 @@
 
 
 }
+.no-location{
+  left:15px;
+top:37px;
+  box-shadow: 0 14px 34px 1px rgba(10, 41, 76, 0.16);
+  background-color: $white;
+  width: 461px;
+  max-height: 288px;
+  text-align: center;
+  padding: 1rem 2rem;
+  border:none;
+  position: absolute;
+  z-index: 9;
+  &:after{
+  content: none;
+}
+  &:before{
+    content: none;
+  }
+}
 .list-wrapper{
   position: relative;
   width: 510px;

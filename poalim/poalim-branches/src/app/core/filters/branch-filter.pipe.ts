@@ -21,6 +21,7 @@ export class FilterBranchPipe implements PipeTransform {
 
   openFriday(value) {
     const friday = !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.specificDayValue.morning);
+    console.log('friday', friday)
     return friday;
   }
 
@@ -107,6 +108,11 @@ export class FilterBranchPipe implements PipeTransform {
       }
       return fileredBranches;
     };
+    if (isNullOrUndefined(filters)) {
+
+      matches = this.addIndexes(branches);
+      return matches;
+    }
     if (!filters.length) {
 
       matches = this.addIndexes(branches);

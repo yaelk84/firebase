@@ -74,7 +74,7 @@ export class HoursFilerComponent implements OnInit {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS,()=>{
           this.clear();
-    })
+    },true)
   }
 
 }

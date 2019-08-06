@@ -1,8 +1,12 @@
 <div class="list-wrapper">
   <div class="popover-wrapper  filter-days"   lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >
-
     <app-hours-filer (close)="closeDropDown()"> </app-hours-filer>
   </div>
+
+  <div class="popover-wrapper  no-location"   lib-rc-click-outside (clickOutside)="closePopupLocation()"[ngClass]="{'slideDown' :showNoLocation}" >
+    <app-no-location-permissions (close)="closePopupLocation()" > </app-no-location-permissions>
+  </div>
+
 
   <div *ngIf="showSelectedBranch" >
     <span  class="back-to-results-wrapper"(click)="backToResults()">
