@@ -222,4 +222,22 @@
   }
 }
 
+// popup
+.rc-popup-wrapper {
+  /deep/.modal-content {
+    width: 750px;
+    height: 378px
+  }
+  /deep/.modal-body {
+    padding: 0;
+  }
+  /deep/.close {
+    width: 100%;
+    text-align: left;
+    padding: 0 20px;
+    margin-top: -6px;
+    outline: none;
+  }
+}
+
 

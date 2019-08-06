@@ -1,6 +1,6 @@
-<agm-map dir="ltr" [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" [fitBounds]="true">
+<agm-map dir="ltr" [fitBounds]="true" [draggable]="false">
+<!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
   <ng-container *ngIf="hasAccessToMyLocation">
-    <!-- [visible]="branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"-->
     <agm-marker
     [latitude]="geoCoordinateY"
     [longitude]="geoCoordinateX"
@@ -34,11 +34,14 @@
         [maxWidth]="350"
         [maxHeight]="200"
         [shadow]="true"
+        [latitude]="branchPoint.coords.lat"
+        [longitude]="branchPoint.coords.lng"
+        [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
+        <!--[isOpen]="(branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch || ShowSnazzyInfoWindow) || showSingleDisplay"-->
         <ng-template>
-          <app-branch-box-summarize
-            [branchDataSummarize]="branchPoint.branchSummarize"></app-branch-box-summarize>
+          <app-branch-box-summarize [branchDataSummarize]="branchPoint.branchSummarize"></app-branch-box-summarize>
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>

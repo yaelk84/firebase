@@ -68,6 +68,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }
 
     this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
+    this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
   }
 
   private callQueryParam() {

@@ -5,8 +5,7 @@ import {GeoLocationObject} from '../../core/interface/coordinates';
 import {RcEventBusService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AgmMap, AgmMarker} from "@agm/core";
-import {BranchDataService} from "../../core/services/branch-data.service";
+import {BranchDataService} from '../../core/services/branch-data.service';
 
 
 @Component({
@@ -61,19 +60,14 @@ export class MapComponent implements OnInit {
     console.log('MARKER WAS CLICKED!!!!!');
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
     console.log(this.activeRoute.snapshot.queryParams.branch);
-    this.listenToUrlChanges();
   }
-  grabCoords(e) {
-    console.log(e);
-  }
-  listenToUrlChanges() {
-    this.activeRoute.queryParams.subscribe((param: any) => {
-      this.singleDisplay = true;
-      console.log(this.singleDisplay);
-    });
-  }
-
+  // grabCoords(e) {
+  //   console.log(e);
+  // }
   get showSingleDisplay() {
     return this.branchDataServices.isSingleDisplay;
+  }
+  get ShowSnazzyInfoWindow() {
+    return this.branchDataServices.isShowSnazzyInfoWindow;
   }
 }

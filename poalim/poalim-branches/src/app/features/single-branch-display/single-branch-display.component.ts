@@ -8,6 +8,7 @@ import { PerfectScrollbarModule, PerfectScrollbarConfigInterface } from 'ngx-per
   styleUrls: ['./single-branch-display.component.scss']
 })
 export class SingleBranchDisplayComponent implements OnInit {
+  openShareBranchPopup = false;
   public config: PerfectScrollbarConfigInterface = {}
   constructor() { }
   arrow =  '/assets/media/left.svg';
