@@ -1,23 +1,21 @@
-<agm-map dir="ltr" [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom">
-<!--  <agm-marker-->
-<!--    [latitude]="mapBranches.lat"-->
-<!--    [longitude]="mapBranches.lng"-->
-<!--    [iconUrl]="myLocationIcon">-->
-<!--  </agm-marker>-->
+<agm-map dir="ltr" [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" [fitBounds]="true">
   <ng-container *ngIf="hasAccessToMyLocation">
-  <agm-marker
+    <!-- [visible]="branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"-->
+    <agm-marker
     [latitude]="geoCoordinateY"
     [longitude]="geoCoordinateX"
     [iconUrl]="myLocationIcon">
   </agm-marker>
   </ng-container>
-<!--    <agm-marker *ngIf="!hasAccessToMyLocation" [latitude]="mapBranches.lat" [longitude]="mapBranches.lng" [iconUrl]="myLocationIcon"></agm-marker>-->
     <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
+      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
       (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
+      [agmFitBounds]="true"
       [latitude]="branchPoint.coords.lat"
       [longitude]="branchPoint.coords.lng"
+      [visible]="branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch || !showSingleDisplay"
       [iconUrl]="branchPoint.isBankat || branchPoint.isHovering ? bankatAndHoverIcon : branchIcon"
       [label]="branchPoint.isBankat ? {
       text: '&#8362;',
@@ -32,40 +30,19 @@
       fontSize: '16px',
       fontWeight: 'normal'
       }">
-      <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">
+      <agm-snazzy-info-window
+        [maxWidth]="350"
+        [maxHeight]="200"
+        [shadow]="true"
+        [closeWhenOthersOpen]="true"
+        [openOnMarkerClick]="true">
         <ng-template>
-          <app-branch-box-summarize [branchDataSummarize]="branchPoint.branchSummarize">
-          </app-branch-box-summarize>
+          <app-branch-box-summarize
+            [branchDataSummarize]="branchPoint.branchSummarize"></app-branch-box-summarize>
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
-
-<!--  <ng-container *ngIf="!hasAccessToMyLocation">-->
-<!--    <ng-container *ngFor="let centerBranchMarker of centerBranchesMarker; let i = index">-->
-<!--      <agm-marker-->
-<!--        [latitude]="centerBranchMarker.coords.geoCoordinateY"-->
-<!--        [longitude]="centerBranchMarker.coords.geoCoordinateX"-->
-<!--        [iconUrl]="centerBranchMarker.imgUrl"-->
-<!--        [label]="centerBranchMarker.label">-->
-<!--        <agm-snazzy-info-window [maxWidth]="350" [maxHeight]="200" [shadow]="true" [closeWhenOthersOpen]="true" [openOnMarkerClick]="true">-->
-<!--          <ng-template>-->
-<!--            <app-branch-box-summarize [branchDataSummarize]="centerBranchMarker">-->
-<!--            </app-branch-box-summarize>-->
-<!--          </ng-template>-->
-<!--        </agm-snazzy-info-window>-->
-<!--      </agm-marker>-->
-<!--    </ng-container>-->
-<!--  </ng-container>-->
-
 </agm-map>
 
-<!--
-        [iconUrl]="branchIcon"
-        [label]="{
-      color: 'white',
-      fontFamily: '',
-      fontSize: '14px',
-      fontWeight: 'bold',
-      text: (i+1)+''}"
--->
+

@@ -17,6 +17,7 @@ import {BranchFilterService} from './branch-filter.service';
 })
 export class BranchDataService {
   private config = this.appService.appConfig;
+  isSingleDisplay = false;
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
     const curTime = this.hursService.time;

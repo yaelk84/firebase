@@ -67,7 +67,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_CITY);
     }
 
-
+    this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
   }
 
   private callQueryParam() {
