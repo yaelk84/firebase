@@ -52,5 +52,8 @@ export class SingleBranchDisplayComponent implements OnInit , AfterViewInit {
   openReportproblem(){
     this.openPopup = true;
   }
+  ngAfterViewInit(){
+
+  }
 
 }

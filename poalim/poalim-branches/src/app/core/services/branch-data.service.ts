@@ -2,19 +2,23 @@ import {Injectable} from '@angular/core';
 import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
 import {TimeService} from './time-service';
 import {AppService} from './app.service';
+import {BranchHours} from '../interface/branch-hours';
 import {isNullOrUndefined} from 'util';
 import {BranchObj} from '../models/branch-model';
 import {BranchSummarize} from '../models/branch-summarize-model';
 import {HoursService} from './hours.service';
 import {CONSTANTS} from '../../constants';
 import {FilterBranchPipe} from '../filters/branch-filter.pipe';
-
+import {BranchFilterService} from './branch-filter.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class BranchDataService {
+  private config = this.appService.appConfig;
+  isSingleDisplay = false;
+  isShowSnazzyInfoWindow = false
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
   }
@@ -131,6 +135,7 @@ export class BranchDataService {
       branchManagerName: data.branchManagerName,
       comment: data.comment,
       servicesType: this.onlyServicesTypeArray(branchData.branchService),
+      isHovering: false
 
     };
   }
@@ -146,8 +151,9 @@ export class BranchDataService {
     const branchNewArray = [];
     branchData.forEach(obj => {
       const branchFetched = this.createSingleBranch(obj);
-      branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize, branchFetched.branchService, branchFetched.fax,
-        branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment, branchFetched.servicesType));
+      branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize,
+        branchFetched.branchService, branchFetched.fax, branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment,
+        branchFetched.servicesType, branchFetched.isHovering));
     });
     return branchNewArray;
   }
