@@ -242,4 +242,29 @@
   }
 }
 
+// popup
+.rc-popup-wrapper {
+  /deep/.modal-content {
+    width: 750px;
+    height: 378px
+  }
+  /deep/.modal-body {
+    padding: 0;
+  }
+  /deep/.close {
+    width: 100%;
+    text-align: left;
+    padding: 0 20px;
+    margin-top: -10px;
+    outline: none;
+    font-weight: normal;
+    font-size: 40px;
+  }
+
+  /deep/.pointer:hover {
+    color: #343a40;
+    opacity: 0.6;
+  }
+}
+
 

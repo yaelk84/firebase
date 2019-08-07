@@ -1,5 +1,8 @@
  <div class="branch-box " (click)="selectBranch()">
-    <div class="inner-box">
+    <div class="inner-box"
+         (mouseover)="branchData.isHovering = true"
+         (mouseleave)="branchData.isHovering = false"
+          [ngClass]="{'hover-on-marker': branchData.isHovering}">
 
       <div class="wrapper-icon">
         <div class="branch-icon" [ngClass]="{'bankat':branchData.isBankat}">

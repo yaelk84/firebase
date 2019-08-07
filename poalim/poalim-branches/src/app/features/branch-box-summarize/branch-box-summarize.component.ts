@@ -27,8 +27,6 @@ export class BranchBoxSummarizeComponent implements OnInit {
    this.haveLocation = this.mapService.hasLocationPermission;
     this.openAndCloseHours = this.branchDataSummarize.openAndCloseHours;
     this.hoursList = this.hoursFunc.creatHoursWeekList(this.openAndCloseHours);
-
-
      }
 
 }

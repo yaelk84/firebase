@@ -1,22 +1,43 @@
+//.rc-popup-wrapper {
+//  /deep/.modal-content {
+//    width: 750px;
+//    height: 378px
+//  }
+//  /deep/.modal-body {
+//    padding: 0;
+//  }
+//  /deep/.close {
+//    width: 100%;
+//    text-align: left;
+//    padding: 0 20px;
+//    margin-top: -6px;
+//    outline: none;
+//  }
+//}
 .share-branch-popup-wrapper {
-  width: 753px;
+  width: 100%;
   height: 378px;
   border-radius: 9px;
   box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
 
-  .close {
+
+  .popup-content {
     width: 100%;
-    text-align: left;
-    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
   }
+  //.close {
+  //  width: 100%;
+  //  text-align: left;
+  //  padding: 0 15px;
+  //}
 
   .share-branch-popup-icon {
     position: relative;
-    bottom: 5px;
+    top: 15px;
   }
 
   .share-branch-popup-content {
@@ -57,6 +78,7 @@
       //margin: 20px;
       background-repeat: no-repeat;
       background-position: center;
+      outline: none;
 
       &:hover {
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);

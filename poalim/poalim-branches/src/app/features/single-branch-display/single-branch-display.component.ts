@@ -18,6 +18,7 @@ export class SingleBranchDisplayComponent implements OnInit , AfterViewInit {
   end = CONSTANTS.SERVICES_NUM;
   openPopup = false;
   @ViewChild('tooltip') tooltip: ElementRef;
+  openShareBranchPopup = false;
 
   @Input() dataBranchSelected: any;
    addMore(){
@@ -47,12 +48,6 @@ export class SingleBranchDisplayComponent implements OnInit , AfterViewInit {
   ngOnInit() {
 
 
-  }
-  ngAfterViewInit(){
-     debugger
-    const nativeElement =  this.tooltip.nativeElement;
-     //$(nativeElement).tooltip('show');
-console.log('6666666666666')
   }
   openReportproblem(){
     this.openPopup = true;

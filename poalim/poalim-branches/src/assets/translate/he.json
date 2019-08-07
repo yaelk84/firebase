@@ -83,6 +83,7 @@
   "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:",
   "shareWithEmail": "אימייל",
   "copyLinkToShare": "העתקת קישור",
+  "shareBranchPopupTitle": "שתף את סניף {0} ב{1}"
   "shareBranchPopupTitle": "שתף את סניף {branchNum} ב{branchName}",
   "locationHeader": "ולכן מוצגים בפניך סניפים באזור המרכז",
   "locationHeader2": "לא ניתן לאתר את מיקומך",

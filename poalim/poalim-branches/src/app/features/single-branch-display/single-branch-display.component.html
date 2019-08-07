@@ -14,7 +14,13 @@
         </div>
 
         <div class="share">
-          <div class=" btn"></div>
+          <div class="btn" (click)="openShareBranchPopup = true"></div>
+          <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
+            <app-share-branch-popup
+              [branchName]="dataBranchSelected.branchSummarize.branchName"
+              [branchNum]="dataBranchSelected.branchSummarize.branchNum">
+            </app-share-branch-popup>
+          </lib-rc-popup-wrapper>
         </div>
 
       </div>

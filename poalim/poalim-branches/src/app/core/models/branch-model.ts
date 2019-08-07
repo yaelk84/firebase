@@ -3,7 +3,7 @@ import {CONSTANTS} from '../../constants';
 
 export class BranchObj {
 
-  private isHovering: boolean;
+  // private isHovering: boolean;
 
 constructor(
             private coords:any,
@@ -14,7 +14,8 @@ constructor(
             private phone: string,
             private branchManagerName: string,
             private comment: string,
-            private  serviceType: []
+            private  serviceType: [],
+            private isHovering: boolean
 
 
 ) {
