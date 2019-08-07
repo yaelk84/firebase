@@ -235,8 +235,15 @@
     width: 100%;
     text-align: left;
     padding: 0 20px;
-    margin-top: -6px;
+    margin-top: -10px;
     outline: none;
+    font-weight: normal;
+    font-size: 40px;
+  }
+
+  /deep/.pointer:hover {
+    color: #343a40;
+    opacity: 0.6;
   }
 }
 

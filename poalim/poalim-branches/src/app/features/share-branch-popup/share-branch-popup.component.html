@@ -10,11 +10,11 @@
       </div>
       <div class="share-branch-popup-buttons">
         <div class="flex-btn">
-          <button type="button" class="email"></button>
+          <button type="button" class="email" (click)="ShareBranchLinkByMail()"></button>
           <p class="text-btn">{{'shareWithEmail' | rcTranslate}}</p>
         </div>
         <div class="flex-btn">
-          <button type="button" class="copy-link"></button>
+          <button type="button" class="copy-link" (click)="copyLink()"></button>
           <p class="text-btn">{{'copyLinkToShare' | rcTranslate}}</p>
         </div>
       </div>
