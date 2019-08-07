@@ -72,6 +72,7 @@ export class BranchFilterService {
 
   /**  user add location by filter click */
   handleAddLocation() {
+    this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
     if (this.mapServices.hasLocationPermissionFromGeoLocation) {
       this.mapServices.changeFilterLoactionToTrue();
       this.mapServices.hasLocationPermission = true;
@@ -83,8 +84,8 @@ export class BranchFilterService {
           this.mapServices.myLocationFilter((res as GeoLocationObject), this.app.branches).subscribe(() => {
         const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
             this.branchDataServices.initBranchesAndApplyFilters(branchesFilter,this.activeFilters)
-            //this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, this.activeFilters);
-            //this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
+
+
           });
 
         }
@@ -129,6 +130,10 @@ export class BranchFilterService {
       case CONSTANTS.FILTER_BY_HOURS :
         removeItem(CONSTANTS.FILTER_OPEN_NOW);
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
+        break;
+      case  CONSTANTS.FILTER_lOCATION:
+        console.log('location' , )
+               // this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
         break;
     }
 
