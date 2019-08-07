@@ -125,40 +125,41 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
-
-    console.log($event, 'select');
+    if (isNullOrUndefined($event)) {
+      return; }
+     console.log($event, 'select');
     this.openDropdown = false;
     this.searchTerm = '';
     // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
-    if (isNullOrUndefined($event)) {
-      this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, this.appService.branches).subscribe((res) => {
-        const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches);
-        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.filterServics.activeFilters);
-      });
+    if ($event.type === 'branch') {
+      this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
+      return;
+    }
 
-    } else {
-
-      if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
-         this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION)
-      }
-      if ($event.type === 'branch') {
-        this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
-      }
-
-      if ($event.type === 'city') {
+         if ($event.type === 'city') {
+        if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+          this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION)
+        }
         const city = $event && $event.name ? $event.name : '';
         const branches = this.appService.branches.filter((branch) => {
           return branch.geographicAddress[0].cityName === city;
         });
-        debugger;
-        this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, branches).subscribe((res) => {
-          const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches);
+        if ( this.mapSEervice.hasLocationPermission){
+          this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, branches).subscribe((res) => {
+            const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches);
+            this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.filterServics.activeFilters);
+          });
+        }
+        else{
+          this.mapSEervice.sortedBranches = branches;
+          const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches).slice(0, 10);
           this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.filterServics.activeFilters);
-        });
+        }
+
       }
 
-    }
+
 
   }
 

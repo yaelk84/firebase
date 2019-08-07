@@ -52,6 +52,7 @@ export class BranchFiltersComponent implements OnInit {
   }
 
   toggleFilter(id: string, defaultVal?) {
+    debugger
     this.filterService.toggleFilter(id, defaultVal);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
 

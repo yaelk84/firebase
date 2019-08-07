@@ -6,6 +6,8 @@ import {AppService} from '../../core/services/app.service';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {CONSTANTS} from '../../constants';
 import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
+import {interval} from 'rxjs';
+import {BranchFilterService} from '../../core/services/branch-filter.service';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   location: any;
 
-  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService) {
+  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService) {
   }
 
   /**
@@ -63,7 +65,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
-      console.log("the branch filter ",  this.branchNewArrayFilter )
+      console.log('the branch filter ', this.branchNewArrayFilter);
       const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
       this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
 
@@ -82,7 +84,16 @@ export class HomeComponent implements OnInit {
         () => {
           console.log('Observer got a complete notification');
         });
+    setInterval(() => {
 
+      this.apiService.getGetCurrentTimeStamp().subscribe(
+        (res) => {
+          console.log('interval');
+          this.hours.updateTime = res.time;
+          this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.filterBranch.activeFilters);
+        }
+      );
 
+    }, 1000 * 60);
   }
 }
