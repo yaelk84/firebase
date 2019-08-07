@@ -53,10 +53,7 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     console.log('branchessssssssssssssssssssssssss from map',this.branches)
     this.showBranchesBasedOnLocationAccess();
-    // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
-    //   this.showBranchesBasedOnLocationAccess();
-    //   this.zoom = 15;
-    // });
+
   }
   // generateArrayOfBranchesBasedOnLocationAccess() {
   //     this.branches.map((dataToAddForEachBranchSum, i) => {

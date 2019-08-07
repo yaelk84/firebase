@@ -26,7 +26,7 @@ export class BranchFiltersComponent implements OnInit {
   @Input() activeFilters;
 
 
-  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService, private mapService: MapBranchesService, private events: RcEventBusService) {
+  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService, private mapService: MapBranchesService) {
   }
 
   public formControl = new FormControl();
@@ -106,9 +106,6 @@ export class BranchFiltersComponent implements OnInit {
       const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
       this.toggleFilter(defaultFilter, true);
       /* check if can delete */
-      this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
-        this.updateBranchAfterChangeMap();
-      }, true);
 
 
     });

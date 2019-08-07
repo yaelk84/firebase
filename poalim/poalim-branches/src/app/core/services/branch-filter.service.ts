@@ -24,15 +24,15 @@ export class BranchFilterService {
   private filtersTypesArray: any[] = []; // convert to array for sorting
   filters: any[] = [];
   activeFilters: any[] = [];
-
   selectedBranchValue: any = '';
   selectedCityValue: any = '';
   dirty = false;
 
+  /** clear filters */
   clearFilter() {
     this.activeFilters = [];
   }
-
+  /** get and set */
   set selectedCity(val: any) {
     this.selectedCityValue = val;
   }
@@ -41,16 +41,19 @@ export class BranchFilterService {
     return this.activeFilters;
   }
 
+  /** set filters and event
+   * @param filters Array
+   */
+
   updateActiveFilters(filters) {
     this.activeFilters = filters;
-    console.log('update filter', filters);
-    this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, filters);
+       this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, filters);
   }
 
   /**
    * get array of filters from stub and add sort it
    * @param response Array get from service
-   *   */
+   */
   createFiltersByTypes(response: any[]) {
     response.sort((a, b) => {
       return a - b;
@@ -59,6 +62,7 @@ export class BranchFilterService {
 
   }
 
+  /**  user remove location by filter click */
   handaleRemoveLocation() {
     this.mapServices.hasLocationPermission = false;
     this.mapServices.defaultFilter(this.app.branches);
@@ -66,6 +70,7 @@ export class BranchFilterService {
 
   }
 
+  /**  user add location by filter click */
   handleAddLocation() {
     if (this.mapServices.hasLocationPermissionFromGeoLocation) {
       this.mapServices.changeFilterLoactionToTrue();
@@ -74,11 +79,13 @@ export class BranchFilterService {
     } else {
       this.mapServices.getMyLocation().subscribe((res) => {
 
-        if (!isNullOrUndefined(res  as GeoLocationObject).lat) {
-          this.mapServices.myLocationFilter((res  as GeoLocationObject), this.app.branches).subscribe(() => {
-             this.branchDataServices.onlyBranches = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
-             this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER,this.activeFilters);
-          })
+        if (!isNullOrUndefined(res as GeoLocationObject).lat) {
+          this.mapServices.myLocationFilter((res as GeoLocationObject), this.app.branches).subscribe(() => {
+        const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
+            this.branchDataServices.initBranchesAndApplyFilters(branchesFilter,this.activeFilters)
+            //this.events.emit(CONSTANTS.EVENTS.UPDATE_FILTER, this.activeFilters);
+            //this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
+          });
 
         }
         console.log('res', res);
@@ -87,6 +94,9 @@ export class BranchFilterService {
     }
   }
 
+  /**  remove filter that can not go together nad update activeFilters array
+   * @param selectedFilters Array
+   */
   removeOtherFiltersIfOnlyOneFilterCanSelected(selectedFilters) {
 
     const removeItem = (id) => {
@@ -147,6 +157,8 @@ export class BranchFilterService {
 
   }
 
+  /** remove filters from drop down list after apply
+   * @param arr Array to delete */
   removeFilterCheckBoxValues(arr) {
     arr.forEach((val) => {
       const indexOfId = this.activeFilters.indexOf(val.key);
@@ -157,7 +169,8 @@ export class BranchFilterService {
     });
     this.updateActiveFilters(this.activeFilters);
   }
-
+  /** remove filters from filters
+   * @param arr Array to delete */
   removeFilterRadio(arr) {
     arr.forEach((val) => {
       const indexOfId = this.activeFilters.indexOf(val);
@@ -168,7 +181,8 @@ export class BranchFilterService {
     });
     this.updateActiveFilters(this.activeFilters);
   }
-
+  /** add multi vals
+   * @param arr Array to add */
   addFiltersCheckBoxValues(arr) {
     arr.forEach((val) => {
       const indexOfId = this.activeFilters.indexOf(val.key);
@@ -179,10 +193,11 @@ export class BranchFilterService {
     });
     this.updateActiveFilters(this.activeFilters);
   }
-
+  /** create the drop down array
+   * @param arr Array to add */
   createCheckBoxArray(arr) {
     {
-      let checkBoxValues = [];
+      const checkBoxValues = [];
 
       arr.forEach((val) => {
         checkBoxValues.push({key: val.serviceType, value: val.serviceLabel, formControl: new FormControl()});

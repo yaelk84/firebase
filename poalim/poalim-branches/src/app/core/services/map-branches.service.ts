@@ -29,8 +29,7 @@ export class MapBranchesService {
   }
   changeFilterLoactionToTrue(){
     this.sortedBranches = this.nearsBranches;
-    this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
-  }
+    }
   // will take the mockData and filter it by city name = 'תל אביב' and will display only the 6 nearest branches
   defaultFilter(branches) {
     const filteredByCity = branches.filter(branch => {

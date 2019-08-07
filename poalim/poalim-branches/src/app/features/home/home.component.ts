@@ -15,20 +15,22 @@ import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
 })
 export class HomeComponent implements OnInit {
 
-  activeFilters = [];
+
   servicesLoaded = false;
   branches: Array<object> = null;
-  branchNewArrayFilter: Array<object>= [] ;
+  branchNewArrayFilter: Array<object> = []; // branch list and map use that shared data
   branchResultTitle: string;
 
   location: any;
 
-  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService , private branchDataServices: BranchDataService,  private events: RcEventBusService, private translate: RcTranslateService , private  mapServices: MapBranchesService) {
+  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService) {
   }
 
+  /**
+   * call services from server and update data
+   * **/
   getServicers() {
     this.appService.init().subscribe((response: any) => {
-
       this.hours.updateTime = response.time;
       this.branches = response.branches;
       const cities = response.branches.map(obj => {
@@ -37,16 +39,16 @@ export class HomeComponent implements OnInit {
       if (this.mapBranches.hasLocationPermission) {
         this.servicesLoaded = false;
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
-          setTimeout(()=>{
+          setTimeout(() => {
             this.servicesLoaded = true;
-          },200)
+          }, 200);
           this.mapBranches.hasLocationPermissionFromGeoLocation = true;
           this.mapBranches.nearsBranches = res;
-          this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
-               }));
+          this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
+        }));
       } else {
-        this.mapBranches.defaultFilter(this.branches);
-        this.branchDataServices.initBrnchesAndMap( this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
+        this.mapBranches.defaultFilter(this.branches); // update sorted branches
+        this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
         this.servicesLoaded = true;
 
       }
@@ -60,8 +62,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
-      const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
+      console.log("the branch filter ",  this.branchNewArrayFilter )
+      const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
       this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
 
     }, true);
@@ -71,7 +74,6 @@ export class HomeComponent implements OnInit {
 
           this.getServicers();
           this.location = x;
-          console.log('success');
         },
         (err) => {
           this.getServicers();
