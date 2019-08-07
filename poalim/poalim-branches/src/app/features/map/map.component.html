@@ -21,7 +21,7 @@
       text: '&#8362;',
       color: 'white',
       fontFamily: 'inherit',
-      fontSize: '16px',
+      fontSize: '18px',
       fontWeight: 'normal'
     } : {
       text: branchPoint.indexNoBankat + '',
@@ -36,10 +36,10 @@
         [shadow]="true"
         [latitude]="branchPoint.coords.lat"
         [longitude]="branchPoint.coords.lng"
+        [isOpen]="branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"
         [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
-        <!--[isOpen]="(branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch || ShowSnazzyInfoWindow) || showSingleDisplay"-->
         <ng-template>
           <app-branch-box-summarize [branchDataSummarize]="branchPoint.branchSummarize"></app-branch-box-summarize>
         </ng-template>

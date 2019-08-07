@@ -83,5 +83,5 @@
   "chooseTitle": "בחרו באחד או יותר מאפשריות הסינון:",
   "shareWithEmail": "אימייל",
   "copyLinkToShare": "העתקת קישור",
-  "shareBranchPopupTitle": "שתף את סניף {branchNum} ב{branchName}"
+  "shareBranchPopupTitle": "שתף את סניף {0} ב{1}"
 }

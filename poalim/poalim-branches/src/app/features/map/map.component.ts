@@ -21,18 +21,17 @@ export class MapComponent implements OnInit {
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
-    scaledSize: { width: 32, height: 32 }
+    scaledSize: { width: 30, height: 30 }
   };
   bankatAndHoverIcon = {
     url: 'assets/media/bankat-shape.png',
-    scaledSize: { width: 32, height: 32 },
+    scaledSize: { width: 30, height: 30 }
   };
 
   myLocationIcon = {
     url: 'assets/media/myLocation-marker.svg',
-    scaledSize: { width: 50, height: 70 },
+    scaledSize: { width: 50, height: 70 }
   };
-  singleDisplay = false;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService) {
