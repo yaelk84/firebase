@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
   @Input() branches: any;
   geoCoordinateY = 32.09472;
   geoCoordinateX = 34.8236;
+  latAfterCenterChanged: number;
+  lngAfterCenterChanged: number;
   zoom = 15;
   hasAccessToMyLocation = false;
   branchIcon = {
@@ -32,6 +34,7 @@ export class MapComponent implements OnInit {
     url: 'assets/media/myLocation-marker.svg',
     scaledSize: { width: 50, height: 70 }
   };
+  centerHasChanged = false;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService) {
@@ -66,7 +69,24 @@ export class MapComponent implements OnInit {
   get showSingleDisplay() {
     return this.branchDataServices.isSingleDisplay;
   }
-  get ShowSnazzyInfoWindow() {
-    return this.branchDataServices.isShowSnazzyInfoWindow;
+  getNewCenter(event) {
+    const currentLat = (this.geoCoordinateY).toFixed(5);
+    const currentLng = (this.geoCoordinateX).toFixed(5);
+    const newLat = (event.lat).toFixed(5);
+    const newLng = (event.lng).toFixed(5);
+    // console.log('currentLatLng', currentLat, currentLng, '||||||||||||||afterDragLatLng', newLat, newLng);
+    if ((newLat < currentLat + 2 || newLat > currentLat + 2) && (newLng < currentLng + 2 || newLng > currentLng + 2)) {
+      console.log('get New Center !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+    }
+  }
+  getNewCenterOfCircle(newCoords) {
+    this.centerHasChanged = true;
+    this.latAfterCenterChanged = (newCoords.lat).toFixed(5);
+    this.lngAfterCenterChanged = (newCoords.lng).toFixed(5);
+    console.log('~~~~triggered when center change~~~~~', this.latAfterCenterChanged, this.lngAfterCenterChanged);
+  }
+  get newCenterCoords() {
+    // return {newLat: this.latAfterCenterChanged, newLng: this.lngAfterCenterChanged, isCenterChange: this.centerHasChanged = true};
+   return this.geoCoordinateY === this.geoCoordinateY + 0.3 && this.geoCoordinateX === this.geoCoordinateX + 0.3 ? true : false;
   }
 }

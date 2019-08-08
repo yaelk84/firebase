@@ -38,7 +38,7 @@ export class MapBranchesService {
       }
     });
 
-    this.sortedBranches = filteredByCity.slice(0, 6);
+    this.sortedBranches = filteredByCity.slice(6, 12);
 
 
     return this.sortedBranches;
@@ -93,7 +93,6 @@ export class MapBranchesService {
     const nearestBranchesObserveble = new Observable(observer => {
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {
-        // debugger;
         const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
         this.filteredMarkers = this.branchesPointsMap.filter(m => {
           const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate.geoCoordinateY,
@@ -116,5 +115,14 @@ export class MapBranchesService {
     });
     return nearestBranchesObserveble;
   }
+
+  // test() {
+  //   this.mapsAPILoader.load().then(() => {
+  //     const myCoords1 = new google.maps.LatLng(32.08284, 34.78064);
+  //     const destination1 = new google.maps.LatLng(32.062787, 34.782296);
+  //     const distanceInKm1 = google.maps.geometry.spherical.computeDistanceBetween(myCoords1, destination1) / 1000;
+  //     console.log(distanceInKm1);
+  //   });
+  // }
 }
 

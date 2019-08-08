@@ -31,7 +31,6 @@ export class HoursService {
   }
 
   get selectedDays() {
-
     return this.selectedDaysValue;
   }
 
