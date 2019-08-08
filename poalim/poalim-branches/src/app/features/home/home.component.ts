@@ -65,7 +65,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
-      debugger
       if (this.branchDataServices.citySelected.length) {
         this.branchResultTitle = this.translate.getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
       } else {

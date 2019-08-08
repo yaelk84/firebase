@@ -75,9 +75,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches).slice(0, 10);
         this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
       }
-
-      this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
-      this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
     };
     const showError = () => {
 
@@ -126,6 +123,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       }
 
     }
+    this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
   }
 
   private callQueryParam() {
