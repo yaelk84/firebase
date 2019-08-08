@@ -18,9 +18,9 @@ import {BranchFilterService} from './branch-filter.service';
 export class BranchDataService {
   private config = this.appService.appConfig;
   isSingleDisplay = false;
-  isShowSnazzyInfoWindow = false
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService,
+              private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
   }
 
   branchNewArray: Array<object>;
@@ -34,10 +34,10 @@ export class BranchDataService {
 
   set branchesFilter(branches) {
     this.branchNewArrayFilter = branches;
-      this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
+    this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
   }
 
-  initBranchesAndApplyFilters(branches, filters){
+  initBranchesAndApplyFilters(branches, filters) {
     this.branchNewArray = branches;
     this.branchesFilter = this.pipe.transform(this.branchNewArray, filters) ;
   }
@@ -47,10 +47,10 @@ export class BranchDataService {
    */
   initBrnchesAndMap(branches) {
    this.branchNewArray = branches;
-    this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []); // called at first when no filters ywet
-    this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
+   this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []); // called at first when no filters ywet
+   this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
            this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
-    },true);
+    }, true);
 
 
 
@@ -108,16 +108,21 @@ export class BranchDataService {
   createSingleBranch(data) {
 
     const isBankat = data.channelsGroupCode === CONSTANTS.BANKAT;
-    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification, false, isBankat);
+    const hours: any = this.hursService
+      .createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification, false, isBankat);
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
-    const comma = this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
-    const coords = {lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY, lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX};
+    const comma =
+      this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
+    const coords = {
+      lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY,
+      lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX};
     const branchData = {
 
       branchNum: data.branchNumber,
       branchName: data.branchName,
-      address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
+      address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' '
+        + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
       distanceInKm: data.geographicAddress[0].distanceInKm,
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),
@@ -126,11 +131,11 @@ export class BranchDataService {
     const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distanceInKm, branchData.openAndCloseHours);
     return {
-      coords: coords,
-      isBankat: isBankat,
-      branchSummarize: branchSummarize,
+      coords,
+      isBankat,
+      branchSummarize,
       branchService: branchData.branchService,
-      fax: fax,
+      fax,
       phone: CONSTANTS.PHONE,
       branchManagerName: data.branchManagerName,
       comment: data.comment,

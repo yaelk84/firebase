@@ -1,4 +1,4 @@
-<agm-map dir="ltr" [fitBounds]="true" [draggable]="false">
+<agm-map dir="ltr" [fitBounds]="true" [draggable]="false" (centerChange)="getNewCenter($event)">
 <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
@@ -46,6 +46,18 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
+  <agm-circle [radius]="200"
+              [visible]="true"
+              [strokeColor]="'red'"
+              [fillColor]="'light-gray'"
+              [latitude]="geoCoordinateY + 0.02"
+              [longitude]="geoCoordinateX"
+              [circleDraggable]="true"
+              [editable]="true"
+              (centerChange)="getNewCenterOfCircle($event)">
+    <!--        [latitude]="geoCoordinateY + 0.03" [longitude]="geoCoordinateX + 0.03"-->
+    <!--                          [visible]="(geoCoordinateY < geoCoordinateY + 0.1 || geoCoordinateX < geoCoordinateX + 0.1) ||
+                      (geoCoordinateY > geoCoordinateY + 0.1 || geoCoordinateX > geoCoordinateX + 0.1)"-->
+  </agm-circle>
 </agm-map>
-
-
+{{newCenterCoords | json}}

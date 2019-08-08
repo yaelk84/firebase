@@ -45,7 +45,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterIcon = this.filterWithNoHours;
 
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private translate: RcTranslateService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,
+              private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe,
+              private events: RcEventBusService, private activeRoute: ActivatedRoute,
+              private  mapServices: MapBranchesService, private  router: Router,
+              private hours: HoursService, private translate: RcTranslateService) {
   }
 
   private branchData: any[];
@@ -70,7 +74,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }
 
     this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
-    this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
   }
 
   private callQueryParam() {
@@ -83,7 +86,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.showDaysHoursFilter = false;
   }
   closePopupLocation() {
-    console.log('777777777777')
+    // console.log('777777777777')
     this.showNoLocation = false;
   }
 
