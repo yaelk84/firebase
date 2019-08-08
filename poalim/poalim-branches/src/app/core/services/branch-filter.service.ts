@@ -76,7 +76,6 @@ export class BranchFilterService {
   /**  user add location by filter click */
   handleAddLocation() {
     this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
-    debugger;
     if (this.mapServices.hasLocationPermissionFromGeoLocation) {
       this.mapServices.changeFilterLoactionToTrue();
       this.mapServices.hasLocationPermission = true;

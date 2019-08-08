@@ -45,7 +45,6 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   }
 
   copy(phone) {
-    debugger;
     this.createTempInput('fffffffffff');
 
 

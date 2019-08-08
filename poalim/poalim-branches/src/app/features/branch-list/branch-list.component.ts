@@ -57,7 +57,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.showSelectedBranch = false;
 
     const getSingleBranch = () => {
-      debugger;
       let branchSelectedDisplay: any;
       const branches = this.branchDataServices.branchesFilter;
       const branchFromList = this.appService.branches;
@@ -106,7 +105,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       }
 
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
-      this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
     }else{
      this.mapServices.defaultFilter( this.appService.branches);
      const filters =  this.branchFilterService.activeFilters;
