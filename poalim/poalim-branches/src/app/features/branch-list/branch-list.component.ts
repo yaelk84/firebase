@@ -108,10 +108,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
       this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
     }else{
-     this.mapServices.defaultFilter( this.appService.branches);
-     const filters =  this.branchFilterService.activeFilters;
-
-
+      this.mapServices.sortedBranches = this.mapServices.defaultFilter( this.appService.branches);
     }
   }
 
