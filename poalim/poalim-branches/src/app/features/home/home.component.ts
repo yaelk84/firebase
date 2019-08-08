@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {HoursService} from '../../core/services/hours.service';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
@@ -15,14 +15,14 @@ import {BranchFilterService} from '../../core/services/branch-filter.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
 
   servicesLoaded = false;
   branches: Array<object> = null;
   branchNewArrayFilter: Array<object> = []; // branch list and map use that shared data
   branchResultTitle: string;
-
+  intervalTimer: any;
   location: any;
 
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService) {
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
       if (this.mapBranches.hasLocationPermission) {
         this.servicesLoaded = false;
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
-          setTimeout(() => {
+          this.intervalTimer =setTimeout(() => {
             this.servicesLoaded = true;
           }, 200);
           this.mapBranches.hasLocationPermissionFromGeoLocation = true;
@@ -65,9 +65,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
-      console.log('the branch filter ', this.branchNewArrayFilter);
-      const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
-      this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
+      debugger
+      if (this.branchDataServices.citySelected.length) {
+        this.branchResultTitle = this.translate.getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
+      } else {
+        const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
+        this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
+      }
+
 
     }, true);
     return this.mapBranches.getMyLocation()
@@ -96,4 +101,9 @@ export class HomeComponent implements OnInit {
 
     }, 1000 * 60);
   }
+  ngOnDestroy() {
+    console.log('destroy');
+    this.intervalTimer.clearTimeout();
+  }
+
 }

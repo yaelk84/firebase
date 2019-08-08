@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, AfterViewInit} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
@@ -43,6 +43,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
   arrow = '/assets/media/left.svg';
   showNoLocation = false;
+  intervalTimer: any;
 
   filterIcon = this.filterWithNoHours;
 
@@ -51,9 +52,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   private branchData: any[];
-
   private buildFilterByQuery(queryParams) {
-
+    this.branchDataServices.citySelected = '';
     this.showSelectedBranch = false;
 
     const getSingleBranch = () => {
@@ -65,17 +65,17 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         return queryParams.branch === String(value.branchSummarize.branchNum);
       })[0];
       if (!isNullOrUndefined(branchSelectedDisplay)) {
-        return  branchSelectedDisplay
-      }else{
+        return branchSelectedDisplay;
+      } else {
         branchSelectedDisplay = branchFromList.filter((value) => {
           return queryParams.branch === String(value.branchNumber);
         })[0];
-        if (!isNullOrUndefined(branchSelectedDisplay)){
-            return  this.branchDataServices.createSingleBranch(branchSelectedDisplay)
+        if (!isNullOrUndefined(branchSelectedDisplay)) {
+          return this.branchDataServices.createSingleBranch(branchSelectedDisplay);
         }
       }
       return branchSelectedDisplay;
-    }
+    };
 
     if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
 
@@ -83,10 +83,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       if (isNullOrUndefined(branchSelectedDisplay)) {
         return;
       } else {
-        this.branchSelectedDisplay = branchSelectedDisplay ;
+        this.branchSelectedDisplay = branchSelectedDisplay;
         this.showSelectedBranch = true;
       }
-    }  else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
+    } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
+      this.branchDataServices.citySelected = queryParams.city;
       if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
         this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
       }
@@ -107,8 +108,16 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
       this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
-    }else{
-      this.mapServices.sortedBranches = this.mapServices.defaultFilter( this.appService.branches);
+    } else {
+      if (!this.mapServices.hasLocationPermission) {
+        this.mapServices.defaultFilter(this.appService.branches);
+        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+      }else{
+        this.mapServices.changeFilterLoactionToTrue();
+        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+
+      }
+
     }
   }
 
@@ -128,8 +137,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   backToResults() {
-    this.showSelectedBranch = false;
-    this.selectBranch(null);
+    this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
+
 
   }
 
@@ -184,12 +193,14 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // this.componentRef.directiveRef.ps().update();
     this.callQueryParam();
-    interval(1000 * 60).subscribe(x => {
-      // this.init();
+    this.intervalTimer = setInterval(() => {
+      console.log('123');
+      this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+    }, 5000 * 60);
 
-    });
 
   }
+
 
 
 }
