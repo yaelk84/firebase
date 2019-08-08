@@ -57,10 +57,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.branchDataServices.citySelected = '';
     this.showSelectedBranch = false;
     const handleCity = () => {
-      this.branchDataServices.citySelected = queryParams.city;
-      if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
-        this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
-      }
       const city = queryParams.city;
       const branches = this.appService.branches.filter((branch) => {
         return branch.geographicAddress[0].cityName === city;
@@ -68,16 +64,33 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       if (this.mapServices.hasLocationPermission) {
         this.mapServices.myLocationFilter(this.mapServices.position as GeoLocationObject, branches).subscribe((res) => {
           const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
-          this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+          showResultsCity(branchesFilter);
         });
       } else {
         this.mapServices.sortedBranches = branches;
         const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches).slice(0, 10);
-        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+        showResultsCity(branchesFilter);
       }
 
-      this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
-      this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
+
+    };
+    const showResultsCity = (branchesFilter) => {
+      if (branchesFilter.length === 1) {
+        singleCityResult(branchesFilter[0]);
+
+      } else {
+        this.branchDataServices.citySelected = queryParams.city;
+        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+      }
+      ;
+    };
+    const UncheckLocationFilter = () => {
+      if (queryParams.city || queryParams.branch || queryParams.street) {
+        if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+          this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
+        }
+      }
+
     };
     const showError = () => {
 
@@ -90,6 +103,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         this.branchSelectedDisplay = branchSelectedDisplay;
         this.showSelectedBranch = true;
       }
+    };
+    const singleCityResult = (branch) => {
+      this.branchSelectedDisplay = branch;
+      this.showSelectedBranch = true;
+
     };
     const getSingleBranch = () => {
 
@@ -111,6 +129,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       }
       return branchSelectedDisplay;
     };
+    UncheckLocationFilter();
     if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
       handleBranch();
     } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
@@ -126,6 +145,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       }
 
     }
+    this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
+    this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
   }
 
   private callQueryParam() {
@@ -144,12 +165,17 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   backToResults() {
-    this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
+    debugger;
+    const params = this.branchDataServices.citySelected.length ? {city: this.branchDataServices.citySelected} : {};
+    this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
 
 
   }
 
-  selectBranch(id) {
+  selectBranch(id, index?) {
+    console.log('select branch', index);
+    const indexNoBankat = isNullOrUndefined(index) ? '' : index;
+    this.branchDataServices.citySelectedIndex =  indexNoBankat;
     if (isNullOrUndefined(id)) {
       this.showSelectedBranch = false;
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});

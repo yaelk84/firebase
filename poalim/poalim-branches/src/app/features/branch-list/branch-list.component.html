@@ -12,7 +12,7 @@
     <span  class="back-to-results-wrapper"(click)="backToResults()">
       <span class="go-back">   <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
-    <app-single-branch-display [indexNoBankat]="0" [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
+    <app-single-branch-display  [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
 
   </div>
   <div *ngIf="!showSelectedBranch" >
@@ -29,7 +29,7 @@
 
       <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
         <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
-          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum)" [branchData]="branch" ></app-branch-box>
+          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum ,branch.indexNoBankat)" [branchData]="branch" ></app-branch-box>
         </div>
       </perfect-scrollbar>
 

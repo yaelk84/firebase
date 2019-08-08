@@ -20,6 +20,7 @@ export class BranchDataService {
   isSingleDisplay = false;
   isShowSnazzyInfoWindow = false;
   citySelected = '';
+  citySelectedIndex = '';
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
   }
@@ -27,35 +28,36 @@ export class BranchDataService {
   branchNewArray: Array<object>;
   branchNewArrayFilter: Array<any>;
 
-    /** setters ang getters */
+  /** setters ang getters */
 
   get branchesFilter() {
-     return this.branchNewArrayFilter;
+    return this.branchNewArrayFilter;
   }
 
   set branchesFilter(branches) {
     this.branchNewArrayFilter = branches;
-      this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
+    this.events.emit(CONSTANTS.EVENTS.REFRESH_LIST);
   }
 
-  initBranchesAndApplyFilters(branches, filters){
+  initBranchesAndApplyFilters(branches, filters) {
     this.branchNewArray = branches;
-    this.branchesFilter = this.pipe.transform(this.branchNewArray, filters) ;
+    this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
   }
+
   /**
    * update branchNewArray
    * @param branches Array
    */
   initBrnchesAndMap(branches) {
-   this.branchNewArray = branches;
+    this.branchNewArray = branches;
     this.branchNewArrayFilter = this.pipe.transform(this.branchNewArray, []); // called at first when no filters ywet
     this.events.on(CONSTANTS.EVENTS.UPDATE_FILTER, (filters) => {
-           this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
-    },true);
-
+      this.branchesFilter = this.pipe.transform(this.branchNewArray, filters);
+    }, true);
 
 
   }
+
   /**
    * replace Null Or Undefined In Empty str
    * @param val String
@@ -65,6 +67,7 @@ export class BranchDataService {
     const str = isNullOrUndefined(val) || val === 'null' ? '' : val;
     return str;
   }
+
   /**
    * gett services from server that should show
    * @param services Array
@@ -76,6 +79,7 @@ export class BranchDataService {
       return value.serviceSwitch === CONSTANTS.yes;
     });
   }
+
   /**
    * create services array
    * @param services Array
@@ -86,6 +90,7 @@ export class BranchDataService {
       return obj.branchServiceTypeCode;
     });
   }
+
   /**
    * create address to display
    * @param contactAddress Array
@@ -101,6 +106,7 @@ export class BranchDataService {
     }
     return (!isNullOrUndefined(contactAddressFax[0].contactAddressInfo) ? contactAddressFax[0].contactAddressInfo : '');
   }
+
   /**
    * add all needed data for single Beanch
    * @param data Object from mock data
@@ -113,7 +119,10 @@ export class BranchDataService {
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
     const comma = this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
-    const coords = {lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY, lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX};
+    const coords = {
+      lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY,
+      lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX
+    };
     const branchData = {
 
       branchNum: data.branchNumber,
@@ -140,6 +149,7 @@ export class BranchDataService {
 
     };
   }
+
   /**
    * create array of branches
    * @param branchData Array

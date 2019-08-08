@@ -1,6 +1,7 @@
 import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import {BranchDataService} from '../../core/services/branch-data.service';
 
 @Component({
   selector: 'app-single-branch-display',
@@ -12,7 +13,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   public config: PerfectScrollbarConfigInterface = {};
   @ViewChild('phone') elementView: ElementRef;
 
-  constructor() {
+  constructor(private dataBranchServices: BranchDataService) {
   }
 
   arrow = '/assets/media/left.svg';
@@ -22,8 +23,9 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   openPopup = false;
   @ViewChild('tooltip') tooltip: ElementRef;
   openShareBranchPopup = false;
-  @Input() indexNoBankat: string;
+  indexNoBankat: string;
   @Input() dataBranchSelected: any;
+
 
   addMore() {
     this.end = this.dataBranchSelected.branchService.length;
@@ -52,6 +54,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('ddd', this.dataBranchSelected);
+    this.indexNoBankat = this.dataBranchServices.citySelectedIndex;
 
   }
 
