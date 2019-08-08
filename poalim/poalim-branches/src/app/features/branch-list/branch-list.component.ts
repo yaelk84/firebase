@@ -52,41 +52,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   private branchData: any[];
+
   private buildFilterByQuery(queryParams) {
     this.branchDataServices.citySelected = '';
     this.showSelectedBranch = false;
-
-    const getSingleBranch = () => {
-      debugger;
-      let branchSelectedDisplay: any;
-      const branches = this.branchDataServices.branchesFilter;
-      const branchFromList = this.appService.branches;
-      branchSelectedDisplay = branches.filter((value) => {
-        return queryParams.branch === String(value.branchSummarize.branchNum);
-      })[0];
-      if (!isNullOrUndefined(branchSelectedDisplay)) {
-        return branchSelectedDisplay;
-      } else {
-        branchSelectedDisplay = branchFromList.filter((value) => {
-          return queryParams.branch === String(value.branchNumber);
-        })[0];
-        if (!isNullOrUndefined(branchSelectedDisplay)) {
-          return this.branchDataServices.createSingleBranch(branchSelectedDisplay);
-        }
-      }
-      return branchSelectedDisplay;
-    };
-
-    if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
-
-      const branchSelectedDisplay = getSingleBranch();
-      if (isNullOrUndefined(branchSelectedDisplay)) {
-        return;
-      } else {
-        this.branchSelectedDisplay = branchSelectedDisplay;
-        this.showSelectedBranch = true;
-      }
-    } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
+    const handleCity = () => {
       this.branchDataServices.citySelected = queryParams.city;
       if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
         this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
@@ -108,11 +78,48 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
       this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
+    };
+    const showError = () => {
+
+    };
+    const handleBranch = () => {
+      const branchSelectedDisplay = getSingleBranch();
+      if (isNullOrUndefined(branchSelectedDisplay)) {
+        return;
+      } else {
+        this.branchSelectedDisplay = branchSelectedDisplay;
+        this.showSelectedBranch = true;
+      }
+    };
+    const getSingleBranch = () => {
+
+      let branchSelectedDisplay: any;
+      const branches = this.branchDataServices.branchesFilter;
+      const branchFromList = this.appService.branches;
+      branchSelectedDisplay = branches.filter((value) => {
+        return queryParams.branch === String(value.branchSummarize.branchNum);
+      })[0];
+      if (!isNullOrUndefined(branchSelectedDisplay)) {
+        return branchSelectedDisplay;
+      } else {
+        branchSelectedDisplay = branchFromList.filter((value) => {
+          return queryParams.branch === String(value.branchNumber);
+        })[0];
+        if (!isNullOrUndefined(branchSelectedDisplay)) {
+          return this.branchDataServices.createSingleBranch(branchSelectedDisplay);
+        }
+      }
+      return branchSelectedDisplay;
+    };
+    if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
+      handleBranch();
+    } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
+      handleCity();
     } else {
       if (!this.mapServices.hasLocationPermission) {
         this.mapServices.defaultFilter(this.appService.branches);
         this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
-      }else{
+      } else {
         this.mapServices.changeFilterLoactionToTrue();
         this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
 
@@ -200,7 +207,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
 
   }
-
 
 
 }

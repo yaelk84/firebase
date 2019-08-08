@@ -124,6 +124,7 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
+    console.log('events', $event)
     if (isNullOrUndefined($event)) {
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
 
