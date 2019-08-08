@@ -13,6 +13,8 @@ import {isNullOrUndefined} from 'util';
 import {interval} from 'rxjs';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {HoursService} from '../../core/services/hours.service';
+import {GeoLocationObject} from '../../core/interface/coordinates';
+import {AppService} from '../../core/services/app.service';
 
 
 @Component({
@@ -45,35 +47,72 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterIcon = this.filterWithNoHours;
 
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,
-              private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe,
-              private events: RcEventBusService, private activeRoute: ActivatedRoute,
-              private  mapServices: MapBranchesService, private  router: Router,
-              private hours: HoursService, private translate: RcTranslateService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private appService: AppService) {
   }
 
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
 
-    if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
+    this.showSelectedBranch = false;
+
+    const getSingleBranch = () => {
+      debugger;
+      let branchSelectedDisplay: any;
       const branches = this.branchDataServices.branchesFilter;
-      this.branchSelectedDisplay = branches.filter((value) => {
+      const branchFromList = this.appService.branches;
+      branchSelectedDisplay = branches.filter((value) => {
         return queryParams.branch === String(value.branchSummarize.branchNum);
       })[0];
-      if (isNullOrUndefined(this.branchSelectedDisplay)) {
-        return;
+      if (!isNullOrUndefined(branchSelectedDisplay)) {
+        return  branchSelectedDisplay
+      }else{
+        branchSelectedDisplay = branchFromList.filter((value) => {
+          return queryParams.branch === String(value.branchNumber);
+        })[0];
+        if (!isNullOrUndefined(branchSelectedDisplay)){
+            return  this.branchDataServices.createSingleBranch(branchSelectedDisplay)
+        }
       }
-      this.showSelectedBranch = true;
-    } else {
-      this.showSelectedBranch = false;
-    }
-    if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
-      this.branchFilterService.selectedCity = queryParams.city;
-      this.branchFilterService.toggleFilter(CONSTANTS.FILTER_BY_CITY);
+      return branchSelectedDisplay;
     }
 
-    this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
+    if (!isNullOrUndefined(queryParams.branch && queryParams.branch.length)) {
+
+      const branchSelectedDisplay = getSingleBranch();
+      if (isNullOrUndefined(branchSelectedDisplay)) {
+        return;
+      } else {
+        this.branchSelectedDisplay = branchSelectedDisplay ;
+        this.showSelectedBranch = true;
+      }
+    }  else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
+      if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+        this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
+      }
+      const city = queryParams.city;
+      const branches = this.appService.branches.filter((branch) => {
+        return branch.geographicAddress[0].cityName === city;
+      });
+      if (this.mapServices.hasLocationPermission) {
+        this.mapServices.myLocationFilter(this.mapServices.position as GeoLocationObject, branches).subscribe((res) => {
+          const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
+          this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+        });
+      } else {
+        this.mapServices.sortedBranches = branches;
+        const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches).slice(0, 10);
+        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+      }
+
+      this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
+      this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
+    }else{
+     this.mapServices.defaultFilter( this.appService.branches);
+     const filters =  this.branchFilterService.activeFilters;
+
+
+    }
   }
 
   private callQueryParam() {
@@ -85,8 +124,9 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   closeDropDown() {
     this.showDaysHoursFilter = false;
   }
+
   closePopupLocation() {
-    // console.log('777777777777')
+    console.log('777777777777');
     this.showNoLocation = false;
   }
 
@@ -123,7 +163,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   addEvents() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, (filters) => {
-      if(this.showSelectedBranch && this.branchFilterService.dirty){
+      if (this.showSelectedBranch && this.branchFilterService.dirty) {
         this.selectBranch(null);
       }
       const activeFilter = this.branchFilterService.getActiveFilters();
@@ -139,8 +179,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.addEvents();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
-    if (!this.mapServices.hasLocationPermissionFromGeoLocation){
-       this.showNoLocation = true;
+    if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
+      this.showNoLocation = true;
     }
   }
 

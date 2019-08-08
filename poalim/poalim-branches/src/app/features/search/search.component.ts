@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {RcValidators} from '@realcommerce/rc-packages';
+import {RcEventBusService, RcValidators} from '@realcommerce/rc-packages';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
@@ -9,6 +9,9 @@ import {MapBranchesService} from '../../core/services/map-branches.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GeoLocationObject} from '../../core/interface/coordinates';
 import {isNullOrUndefined} from 'util';
+import {BranchFilterService} from '../../core/services/branch-filter.service';
+import {NgSelectComponent} from '@ng-select/ng-select';
+import {CONSTANTS} from '../../constants';
 
 
 @Component({
@@ -16,8 +19,11 @@ import {isNullOrUndefined} from 'util';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
+
+
 export class SearchComponent implements OnInit {
 
+  @ViewChild(NgSelectComponent) ngSelectComponent: NgSelectComponent;
   items: any[];
   selectedItem: any;
   filteredItems: any[];
@@ -28,7 +34,7 @@ export class SearchComponent implements OnInit {
   cities: [];
 
 
-  constructor(private apiService: ApiService, private appService: AppService, private  router: Router, private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService) {
+  constructor(private apiService: ApiService, private appService: AppService, private  router: Router, private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService, private branchDataServices: BranchDataService, private filterServics: BranchFilterService, private events: RcEventBusService) {
   }
 
   set updateCities(data) {
@@ -38,6 +44,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
 
     this.initSearch();
+    this.events.on(CONSTANTS.EVENTS.DELETE_SEARCH, () => {
+      this.clearFromOutside();
+    }, true);
 
   }
 
@@ -56,8 +65,11 @@ export class SearchComponent implements OnInit {
     this.appService.cities.map((obj) => {
       tempCities.push({type: 'city', nameLabel: '333333', name: obj});
     });
-
     this.items = tempCities.concat(tempBranches);
+  }
+
+  clearFromOutside() {
+    this.ngSelectComponent.handleClearClick();
 
   }
 
@@ -91,7 +103,7 @@ export class SearchComponent implements OnInit {
   }
 
   onFocus($event) {
-    console.log($event);
+
     this.searchFocused = true;
   }
 
@@ -112,35 +124,26 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
+    if (isNullOrUndefined($event)) {
+      this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
 
-    console.log($event, 'select');
+      return;
+    }
+
     this.openDropdown = false;
     this.searchTerm = '';
     // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
-    if (isNullOrUndefined($event)) {
-      this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, this.appService.branches).subscribe((res) => {
-        console.log('res' , res)
-      });
+    if ($event.type === 'branch') {
+      this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
+      return;
+    }
+
+    if ($event.type === 'city') {
+      this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
     }
-    else{
-      if ($event.type === 'branch') {
-        this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
-      }
 
-      if ($event.type === 'city') {
-        const city = $event && $event.name ? $event.name : '';
-        const branches = this.appService.branches.filter((branch) => {
-          return branch.geographicAddress[0].cityName === city;
-        });
-        debugger;
-        this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, branches).subscribe((res) => {
-          console.log('res' , res)
-        });
-      }
-
-    }
 
   }
 
@@ -155,5 +158,6 @@ export class SearchComponent implements OnInit {
       return item.branchName.indexOf(term) > -1 || item.geographicAddress[0].cityName.indexOf(term) > -1;
     }
   }
+
 
 }

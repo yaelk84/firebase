@@ -20,12 +20,12 @@ export class FilterBranchPipe implements PipeTransform {
   }
 
   openFriday(value) {
-    const friday = !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.specificDayValue.morning);
+    const friday = !isNullOrUndefined(value.branchSummarize.openAndCloseHours.dayInWeek.Friday.specificDayValue.morning) || value.isBankat;
     return friday;
   }
 
   openNow(value) {
-    return value.branchSummarize.openAndCloseHours.openCurrentHours;
+    return value.branchSummarize.openAndCloseHours.openCurrentHours  || value.isBankat;
   }
 
   dayFunction(value) {
