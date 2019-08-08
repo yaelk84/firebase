@@ -103,7 +103,6 @@ export class SearchComponent implements OnInit {
   }
 
   onFocus($event) {
-    debugger;
 
     this.searchFocused = true;
   }
@@ -126,8 +125,11 @@ export class SearchComponent implements OnInit {
 
   onChange($event) {
     if (isNullOrUndefined($event)) {
-      return; }
-     console.log($event, 'select');
+      this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
+
+      return;
+    }
+
     this.openDropdown = false;
     this.searchTerm = '';
     // todo: handle item selected
@@ -137,28 +139,10 @@ export class SearchComponent implements OnInit {
       return;
     }
 
-         if ($event.type === 'city') {
-        if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
-          this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION)
-        }
-        const city = $event && $event.name ? $event.name : '';
-        const branches = this.appService.branches.filter((branch) => {
-          return branch.geographicAddress[0].cityName === city;
-        });
-        if ( this.mapSEervice.hasLocationPermission){
-          this.mapSEervice.myLocationFilter(this.mapSEervice.position as GeoLocationObject, branches).subscribe((res) => {
-            const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches);
-            this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.filterServics.activeFilters);
-          });
-        }
-        else{
-          this.mapSEervice.sortedBranches = branches;
-          const branchesFilter = this.branchDataServices.createDataArray(this.mapSEervice.sortedBranches).slice(0, 10);
-          this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.filterServics.activeFilters);
-        }
+    if ($event.type === 'city') {
+      this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
-      }
-
+    }
 
 
   }
