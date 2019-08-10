@@ -8,6 +8,8 @@ import {CONSTANTS} from '../../constants';
 import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
 import {interval} from 'rxjs';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
+import {FormControl} from '@angular/forms';
+
 
 
 @Component({
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   branchResultTitle: string;
   intervalTimer: any;
   location: any;
+  formControl = new FormControl();
 
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService) {
   }

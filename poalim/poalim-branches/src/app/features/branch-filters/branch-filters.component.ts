@@ -85,6 +85,16 @@ export class BranchFiltersComponent implements OnInit {
     this.togglePluse();
   }
 
+  getNumberPfBOxesBySize() {
+    debugger
+    if (this.deviceService.isXs()) {
+      return CONSTANTS.BRANCH_FILTER_NUM.MOBILE;
+    } else if (this.deviceService.isSm() || this.deviceService.isMd())  {
+      return CONSTANTS.BRANCH_FILTER_NUM.TABLET;
+    }
+    return CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
+  }
+
   updateBranchAfterChangeMap() {
 
     /* check if need
@@ -98,7 +108,7 @@ export class BranchFiltersComponent implements OnInit {
 
   ngOnInit() {
     this.filterService.clearFilter();
-    const size = this.deviceService.isMobile() ? CONSTANTS.BRANCH_FILTER_NUM.MOBILE : CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
+    const size = this.getNumberPfBOxesBySize();
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);

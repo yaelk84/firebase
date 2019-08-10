@@ -35,6 +35,10 @@ top:37px;
   position: relative;
   width: 510px;
   overflow: hidden;
+
+  &.slideDown{
+    height: 335px;
+  }
     /deep/
   .popover-wrapper.filter-days{
 
@@ -133,20 +137,20 @@ font-size: 20px;
 
 
 @media (max-width: $mobile_view) {
+  .branch-list{
+    height: auto;
+  }
+    .hide-in-mobile{
+      display: none;
+    }
   .list-wrapper{
     width: 100%;
+    height: auto;
   }
   .branch-list-header{
     flex-direction: column;
     align-items: start;
     position: relative;
-
-  }
-  lib-rc-switcher{
-    display: block;
-    position: absolute;
-    top:0;
-    #{$default-end}: 0;
 
   }
 

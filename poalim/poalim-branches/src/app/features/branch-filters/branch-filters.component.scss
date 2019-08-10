@@ -175,18 +175,21 @@ padding:25px;
 
 
 
-@media  (max-width: $mobile_view) {
+@media  (max-width: $mobile_bootsrap_view) {
 
   .filter-box{
     margin: 0 2px;
     cursor: pointer;
+    .label-wrapper{
+      font-size: 14px;
+    }
     &:last-child {
       margin-#{$default-end}: 0px;
     }
   }
   .filter-btn{
     width: 22px;
-    height: 73px;
+    height: auto;
 
   }
 }

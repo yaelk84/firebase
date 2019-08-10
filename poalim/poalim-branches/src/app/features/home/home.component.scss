@@ -35,13 +35,34 @@
 }
 
 .branch-map {
+  position: relative;
   display: flex;
   justify-content: space-between;
-}
+  lib-rc-switcher{
+  display: none}
+  }
+
 
 @media (max-width: $mobile_view) {
+  app-map{
+    display: none;
+
+    &.show-in-mobile{
+      display: block;
+    }
+  }
+
   .branch-map{
     flex-direction: column;
+
+    lib-rc-switcher{
+      display: block;
+      position: absolute;
+      top:0;
+      z-index: 1;
+      #{$default-end}: 0;
+
+    }
   }
   app-map{
     width: 100%;

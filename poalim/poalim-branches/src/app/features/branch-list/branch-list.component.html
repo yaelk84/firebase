@@ -1,4 +1,4 @@
-<div class="list-wrapper">
+<div class="list-wrapper" [ngClass]="{'slideDown' :showDaysHoursFilter}">
   <div class="popover-wrapper  filter-days"   lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >
     <app-hours-filer (close)="closeDropDown()"> </app-hours-filer>
   </div>
@@ -12,6 +12,7 @@
     <span  class="back-to-results-wrapper"(click)="backToResults()">
       <span class="go-back">   <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
+
     <app-single-branch-display  [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
 
   </div>
@@ -25,7 +26,10 @@
 
       </div>
     </div>
-    <div class="branch-list" id="branch_id" *ngIf=" branchNewArrayFilter && branchNewArrayFilter.length">
+
+
+
+    <div  [ngClass]="{'hide-in-mobile' :hideListInMoBile}"   class="branch-list" id="branch_id" *ngIf=" branchNewArrayFilter && branchNewArrayFilter.length">
 
       <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
         <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
@@ -39,15 +43,11 @@
 
     </div>
 
-    <div class="map-wrapper">
+    <div   class="map-wrapper">
 
     </div>
   </div>
 
 </div>
 
-
-<lib-rc-switcher style="display: none" [control]="formControl" [elementId]="'mySwitcherID'">
-
-</lib-rc-switcher>
 

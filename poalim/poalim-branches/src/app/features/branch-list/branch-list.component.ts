@@ -27,12 +27,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
   @Input() branchNewArrayFilter: any;
   @Input() branchResultTitle: any;
+  @Input() hideListInMoBile: boolean;
 
   public config: PerfectScrollbarConfigInterface = {};
   private city: string;
 
   filters = [];
-  formControl = new FormControl();
+
   branchSelectedDisplay: object;
   showSelectedBranch = false;
   filterByDay = false;
