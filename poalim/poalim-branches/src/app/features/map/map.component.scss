@@ -1,3 +1,4 @@
+@import "../../../assets/scss/style";
 agm-map {
   height: 460px;
   width: 532px;
@@ -74,6 +75,12 @@ agm-map {
 
 
 
+@media (max-width: $mobile_view) {
+  agm-map{
+    width: 100%;
+  }
+
+}
 
 
 

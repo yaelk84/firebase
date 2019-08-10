@@ -40,8 +40,17 @@
 }
 
 @media (max-width: $mobile_view) {
+  .branch-map{
+    flex-direction: column;
+  }
+  app-map{
+    width: 100%;
+  }
   .branches-header {
-    padding:100px  0;
+     .branch-title{
+      font-size: 35px;
+    }
+
   }
 
 }

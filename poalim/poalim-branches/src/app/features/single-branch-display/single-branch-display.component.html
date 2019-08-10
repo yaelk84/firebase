@@ -1,92 +1,22 @@
-<perfect-scrollbar class="single-scroll"  [config]="config">
-  <div class="single-branch-display">
-    <div class="part-wrapper">
-      <div class="selected-branch-header">
-        <div class="branch-data">
-          <div class="wrapper-icon"  >
-            <div class="branch-icon" [ngClass]="{'bankat':dataBranchSelected.isBankat}">
-              <div class="icon-val" *ngIf="!dataBranchSelected.isBankat" >{{indexNoBankat}}</div>
-              <div class="icon-val" *ngIf="dataBranchSelected.isBankat"> ₪ </div>
+<!DOCTYPE html>
+<html style="width: 100%;height: 100%">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.13.0/bodymovin.min.js"></script>
+</head>
+<body style="background-color:#ccc; margin: 0px;height: 100%; font-family: sans-serif;font-size: 10px">
 
-            </div>
-          </div>
-          <app-branch-box-summarize  [isSingleDisplay]="true" [branchDataSummarize]="dataBranchSelected.branchSummarize"></app-branch-box-summarize>
-        </div>
+<div style="width:100%;height:100%;background-color:#333;" id="bodymovin"></div>
 
-        <div class="share">
-          <div class="btn" (click)="openShareBranchPopup = true"></div>
-          <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
-            <app-share-branch-popup
-              [branchName]="dataBranchSelected.branchSummarize.branchName"
-              [branchNum]="dataBranchSelected.branchSummarize.branchNum">
-            </app-share-branch-popup>
-          </lib-rc-popup-wrapper>
-        </div>
-
-      </div>
-    </div>
-    <div class="part-wrapper services">
-      <div class="wrapper-service-and-btn">
-        <div class="selected-branches-services">
-          <h1>{{'servicesTitle' | rcTranslate}}</h1>
-          <div  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
-            <span class="icon-separation"></span>
-            <span class="service-label">{{service.branchServiceTypeDescription}}</span>
-          </div>
-          <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
-        </div>
-        <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
-      </div>
-
-    </div>
-
-    <div class="part-wrapper" *ngIf="!dataBranchSelected.isBankat">
-      <div class="selected-branch-data">
-
-        <div class="line-data copy">
-
-          <span class="icon phone-icon"  (click)="copy(phone)"></span>
-          <span class="label">{{'phone'| rcTranslate}}</span>
-          <span class="value aaa" data-toggle="tooltip" #tooltip title="wwwwwwwwwwww" #phone>{{dataBranchSelected.phone}} </span>
-          <span class="copy-icon">#</span>
-        </div>
-        <div class="line-data copy" *ngIf="dataBranchSelected.fax">
-          <span class="icon fax-icon" ></span>
-          <span class="label">{{'fax'| rcTranslate}}</span>
-          <span class="value" >{{dataBranchSelected.fax}}</span>
-          <span class="copy-icon"  title="Tooltip on top" >#</span>
-        </div>
-        <div class="line-data">
-          <span class="icon manager-icon" ></span>
-          <span class="label">{{'manager'| rcTranslate}}</span>
-          <span class="value">{{dataBranchSelected.branchManagerName}}</span>
-        </div>
-        <div class="line-data">
-          <div class="icon note-icon" ></div>
-          <div>
-            <span class="label">{{'note'| rcTranslate}}</span>
-            <span class="value">{{dataBranchSelected.comment}}</span>
-          </div>
-
-        </div>
-
-      </div>
-      <div class="selected-branch-buttons">
-
-        <span class="worng-data">
-         <span class="wrong-data-text" (click)="openReportproblem()" role="button">{{'worngData'|rcTranslate }}</span>
-
-           <span class="go-back"> <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span>
-      </span>
-
-      </div>
-
-    </div>
-
-  </div>
-</perfect-scrollbar>
-
-
-<lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
-  <app-report-problem-popup></app-report-problem-popup>
-</lib-rc-popup-wrapper>
+<script>
+  var animData = {
+    wrapper: document.getElementById('bodymovin'),
+    animType: 'html',
+    loop: true,
+    prerender: true,
+    autoplay: true,
+    path: 'data.json'
+  };
+  var anim = bodymovin.loadAnimation(animData);
+</script>
+</body>
+</html>

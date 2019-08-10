@@ -3,40 +3,7 @@
 
 
 #branch_id {
-  /deep/
-  lib-rc-switcher{
 
-    .rc-switcher-wrapper {
-
-      .rc-switcher-control {
-
-          width: 58px;
-          height: 30px;
-          border-radius: 14.6px;
-        label {
-
-          border-color:$marine-two;
-          &.switcher-indicator{
-            background: $white;
-
-            &:after {
-              background: $marine-two;
-              box-shadow: 0 2px 5px 0 rgba(3, 41, 76, 0.05);
-            }
-          }
-
-        }
-        input:checked + label{
-          &:after{
-            left:29px;
-          }
-
-        }
-
-
-      }
-    }
-  }
 }
 .branch-box-wrapper{
 
@@ -110,7 +77,9 @@ font-size: 20px;
     line-height: 20px;
     height: 27px;
 }
-
+  lib-rc-switcher{
+    display: none;
+  }
 
 }
 .branch-list{
@@ -163,3 +132,22 @@ font-size: 20px;
 }
 
 
+@media (max-width: $mobile_view) {
+  .list-wrapper{
+    width: 100%;
+  }
+  .branch-list-header{
+    flex-direction: column;
+    align-items: start;
+    position: relative;
+
+  }
+  lib-rc-switcher{
+    display: block;
+    position: absolute;
+    top:0;
+    #{$default-end}: 0;
+
+  }
+
+}

@@ -1,3 +1,46 @@
+
+lib-rc-switcher{
+
+  .rc-switcher-wrapper {
+
+    .rc-switcher-control {
+
+      width: 58px !important;
+      height: 30px;
+      border-radius: 14.6px !important;
+      label {
+        background-image: url('~src/assets/media/blue-map.svg');
+        background-repeat: no-repeat;
+        background-position: 82% center;
+        border-color:$marine-two !important;
+        &.switcher-indicator{
+          background-color: transparent;
+
+          &:after {
+            background-color: $marine-two !important;
+            box-shadow: 0 2px 5px 0 rgba(3, 41, 76, 0.05);
+            background-image: url('~src/assets/media/white-burger.svg') !important;
+            background-repeat: no-repeat !important;
+            background-position: center !important;
+          }
+        }
+
+      }
+      input:checked + label{
+        background-color: transparent !important;
+        background-image: url('~src/assets/media/blue-burger.svg');
+        background-position: 18% center;
+        &:after{
+          left:28px !important;
+          background-image: url('~src/assets/media/white-map.svg') !important;
+        }
+
+      }
+
+
+    }
+  }
+}
 .wrapper-icon {
 
   padding-left: 24px;

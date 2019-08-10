@@ -33,7 +33,8 @@ export const CONSTANTS = {
   },
   BRANCH_FILTER_NUM :{
     MOBILE:3,
-    DESKTOP:7,
+    TABLET:5,
+    DESKTOP:7
 
   },
 };
