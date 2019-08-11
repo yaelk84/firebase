@@ -36,10 +36,9 @@ export class MapComponent implements OnInit {
     url: 'assets/media/myLocation-marker.svg',
     scaledSize: {width: 50, height: 70}
   };
-  currentCenter: GeoLocationObject;
+  currentCenter: GeoLocationObject = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
-  showInstructions = false;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
@@ -97,11 +96,11 @@ export class MapComponent implements OnInit {
   showCircle(newCoordsCenter) {
     this.findHereCenter = newCoordsCenter;
     this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
-      if (distance > 3) {
-        // console.log('distance from prev center', distance);
-        return this.isShowCircle = true;
-      }
-    });
+        if (distance > 3) {
+          // console.log('distance from prev center', distance);
+          return this.isShowCircle = true;
+        }
+      });
   }
 
   searchOnArea() {

@@ -123,7 +123,7 @@ export class MapBranchesService {
           const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
           const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
           observer.next(distanceInKm);
-      });
+      }).catch( err => console.log(err));
     });
     return centerOfNewLocation;
   }
