@@ -119,10 +119,10 @@ export class MapBranchesService {
   getCenterOfNewLocation(preCircleCoords: GeoLocationObject, newCircleCoords: GeoLocationObject) {
     const centerOfNewLocation = new Observable((observer) => {
       this.mapsAPILoader.load().then(() => {
-        const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
-        const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
-        const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
-        observer.next(distanceInKm);
+          const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
+          const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
+          const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
+          observer.next(distanceInKm);
       });
     });
     return centerOfNewLocation;

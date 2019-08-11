@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewRef} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -98,15 +98,13 @@ export class MapComponent implements OnInit {
     this.findHereCenter = newCoordsCenter;
     this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
       if (distance > 3) {
-        console.log('distance from prev center', distance);
+        // console.log('distance from prev center', distance);
         return this.isShowCircle = true;
       }
     });
   }
 
-  searchOnArea(event) {
-    // event.preventDefault();
-    // console.log(event);
+  searchOnArea() {
       this.geoCoordinateY = this.findHereCenter.lat;
       this.geoCoordinateX = this.findHereCenter.lng;
       this.getNewCenterOfCircle({lat: this.geoCoordinateY, lng: this.geoCoordinateX});

@@ -62,5 +62,14 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
   }
+  copyToClipboard(element) {
+    console.log(element);
+    document.addEventListener('copy', (e: ClipboardEvent) => {
+      e.clipboardData.setData('text/plain', (element));
+      e.preventDefault();
+      document.removeEventListener('copy', null);
+    });
+    document.execCommand('copy');
+  }
 
 }

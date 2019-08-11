@@ -43,17 +43,21 @@
     <div class="part-wrapper" *ngIf="!dataBranchSelected.isBankat">
       <div class="selected-branch-data">
 
-        <div class="line-data copy">
+        <div class="line-data copy" (click)="copyToClipboard(dataBranchSelected.phone)">
 
           <span class="icon phone-icon"  (click)="copy(phone)"></span>
           <span class="label">{{'phone'| rcTranslate}}</span>
-          <span class="value aaa" data-toggle="tooltip" #tooltip title="wwwwwwwwwwww" #phone>{{dataBranchSelected.phone}} </span>
+          <span
+            class="value aaa"
+            data-toggle="tooltip"
+            #tooltip title="wwwwwwwwwwww"
+            #phone>{{dataBranchSelected.phone}} </span>
           <span class="copy-icon">#</span>
         </div>
-        <div class="line-data copy" *ngIf="dataBranchSelected.fax">
-          <span class="icon fax-icon" ></span>
+        <div class="line-data copy" *ngIf="dataBranchSelected.fax" (click)="copyToClipboard(dataBranchSelected.fax)">
+          <span class="icon fax-icon"></span>
           <span class="label">{{'fax'| rcTranslate}}</span>
-          <span class="value" >{{dataBranchSelected.fax}}</span>
+          <span class="value">{{dataBranchSelected.fax}}</span>
           <span class="copy-icon"  title="Tooltip on top" >#</span>
         </div>
         <div class="line-data">

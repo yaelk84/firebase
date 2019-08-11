@@ -25,23 +25,27 @@
 
       </div>
     </div>
-    <div class="branch-list" id="branch_id" *ngIf=" branchNewArrayFilter && branchNewArrayFilter.length">
+    <ng-container
+      *ngIf="branchNewArrayFilter && branchNewArrayFilter.length; else notFound">
+      <div class="branch-list" id="branch_id">
 
-      <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
-        <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
-          <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum)" [branchData]="branch" ></app-branch-box>
-        </div>
-      </perfect-scrollbar>
+        <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
+          <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
+            <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum)" [branchData]="branch" ></app-branch-box>
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </ng-container>
 
+    <ng-template #notFound>
+      <div class="not-found-container">
+        <img src="../../../assets/media/images/not-found.svg">
+        <h4 class="oops">אופס!</h4>
+        <p>לא מצאנו תוצאות תואמות לחיפוש שלך</p>
+      </div>
+    </ng-template>
 
-
-
-
-    </div>
-
-    <div class="map-wrapper">
-
-    </div>
+    <div class="map-wrapper"></div>
   </div>
 
 </div>
