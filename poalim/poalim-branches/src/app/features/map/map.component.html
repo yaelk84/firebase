@@ -1,4 +1,16 @@
-<agm-map dir="ltr" [fitBounds]="true" [draggable]="true" (centerChange)="showCircle($event)">
+<button
+  *ngIf="isShowCircle && !showSingleDisplay"
+  (click)="searchOnArea($event)"
+  class="search-in-area"
+  id="Map-Search"
+  type="button">
+  חפש באזור זה
+</button>
+<agm-map
+  dir="ltr"
+  [fitBounds]="true"
+  [draggable]="true"
+  (centerChange)="showCircle($event)">
   <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
@@ -46,16 +58,17 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
-  <agm-circle [radius]="300"
-              [visible]="isShowCircle"
+<!--  <input type="button" value="חפש באזור זה">-->
+  <agm-circle [radius]="350"
+              [visible]="false"
               [fillColor]="'#DF1A1E'"
               [fillOpacity]="0.6"
               [latitude]="geoCoordinateY + 0.03"
               [longitude]="geoCoordinateX"
               [circleDraggable]="true"
-              [editable]="false"
+              [editable]="false "
               [draggable]="true"
-              (centerChange)="getNewCenterOfCircle($event)"
+              (dragEnd)="getNewCenterOfCircle($event)"
               (mouseOver)="showInstructions = true"
               (mouseOut)="showInstructions = false">
   </agm-circle>
@@ -66,6 +79,3 @@
               [strokeWeight]="15"
 -->
 </agm-map>
-<div *ngIf="showInstructions">
-  <p>גרור את העיגול האדום לאזור המבוקש כדי לחפש סניפים באזור</p>
-</div>
