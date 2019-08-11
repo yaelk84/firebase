@@ -7,6 +7,7 @@ import {ApiService} from '../../core/services/api.service';
 import {isNullOrUndefined} from 'util';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {RcEventBusService} from '@realcommerce/rc-packages';
+import {BranchDataService} from '../../core/services/branch-data.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class BranchFiltersComponent implements OnInit {
   @Input() activeFilters;
 
 
-  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService, private mapService: MapBranchesService) {
+  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService, private mapService: MapBranchesService , private branchDataServices: BranchDataService) {
   }
 
   public formControl = new FormControl();
@@ -113,7 +114,8 @@ export class BranchFiltersComponent implements OnInit {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size + 1, this.filterService.filters.length));
-      const defaultFilter = this.mapService.hasLocationPermission ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
+      const defaultFilter = this.mapService.hasLocationPermission && !this.branchDataServices.citySelected.length ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
+      console.log('default filter')
       this.toggleFilter(defaultFilter, true);
       /* check if can delete */
 

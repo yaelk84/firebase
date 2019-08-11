@@ -109,7 +109,7 @@ export class MapBranchesService {
         }).slice(0, 10);
 
         this.sortedBranches = nearestBranches;
-        this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
+        // this.events.emit(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP);
         observer.next(this.sortedBranches);
       });
     });
