@@ -1,5 +1,5 @@
 <button
-  *ngIf="isShowCircle && !showSingleDisplay"
+  *ngIf="isShowCircle && !showSingleDisplay && branches.length"
   (click)="searchOnArea()"
   class="search-in-area"
   id="Map-Search"
@@ -68,9 +68,7 @@
               [circleDraggable]="true"
               [editable]="false "
               [draggable]="true"
-              (dragEnd)="getNewCenterOfCircle($event)"
-              (mouseOver)="showInstructions = true"
-              (mouseOut)="showInstructions = false">
+              (dragEnd)="getNewCenterOfCircle($event)">
   </agm-circle>
 <!--
               [strokeColor]="'#DF1A1E'"

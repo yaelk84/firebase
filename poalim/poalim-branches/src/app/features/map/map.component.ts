@@ -36,7 +36,7 @@ export class MapComponent implements OnInit {
     url: 'assets/media/myLocation-marker.svg',
     scaledSize: {width: 50, height: 70}
   };
-  currentCenter: GeoLocationObject = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
+  currentCenter: GeoLocationObject;
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
 

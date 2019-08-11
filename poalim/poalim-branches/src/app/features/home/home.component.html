@@ -17,7 +17,7 @@
         <app-branch-list *ngIf="branchNewArrayFilter" [branchNewArrayFilter]="branchNewArrayFilter" [branchResultTitle]="branchResultTitle"></app-branch-list>
         <ng-container>
 
-          <app-map [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter && branchNewArrayFilter.length"></app-map>
+          <app-map [branches]="branchNewArrayFilter"></app-map>
         </ng-container>
       </div>
     </div>
