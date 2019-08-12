@@ -22,7 +22,7 @@ export class BranchBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-
+console.log('111',this.branchData )
 
 
   }

@@ -115,7 +115,7 @@ export class BranchFiltersComponent implements OnInit {
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size + 1, this.filterService.filters.length));
       const defaultFilter = this.mapService.hasLocationPermission && !this.branchDataServices.citySelected.length ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
-      console.log('default filter')
+      console.log('default filter', defaultFilter)
       this.toggleFilter(defaultFilter, true);
       /* check if can delete */
 

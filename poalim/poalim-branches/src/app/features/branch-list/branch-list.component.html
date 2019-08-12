@@ -1,8 +1,7 @@
-<div class="list-wrapper">
+<div class="list-wrapper" >
   <div class="popover-wrapper  filter-days"   lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >
     <app-hours-filer (close)="closeDropDown()"> </app-hours-filer>
   </div>
-
   <div class="popover-wrapper  no-location"   lib-rc-click-outside (clickOutside)="closePopupLocation()"[ngClass]="{'slideDown' :showNoLocation}" >
     <app-no-location-permissions (close)="closePopupLocation()" > </app-no-location-permissions>
   </div>
@@ -29,7 +28,6 @@
     <ng-container
       *ngIf="branchNewArrayFilter && branchNewArrayFilter.length; else notFound">
       <div class="branch-list" id="branch_id"  [ngClass]="{'hide-in-mobile' :hideListInMoBile}"  >
-
         <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
           <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
             <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum)" [branchData]="branch" ></app-branch-box>

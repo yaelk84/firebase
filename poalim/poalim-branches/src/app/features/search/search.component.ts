@@ -124,10 +124,10 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
-    console.log('events', $event)
+    console.log('events', $event);
     if (isNullOrUndefined($event)) {
+      this.branchDataServices.citySelected = '';
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
-
       return;
     }
 
@@ -135,13 +135,14 @@ export class SearchComponent implements OnInit {
     this.searchTerm = '';
     // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
-    if ($event.type === 'branch') {
+
+     if ($event.type === 'branch') {
       this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
       return;
     }
 
     if ($event.type === 'city') {
-      this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
+         this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
     }
 

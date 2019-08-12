@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit} from '@a
 import {CONSTANTS} from '../../constants';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {BranchDataService} from '../../core/services/branch-data.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-single-branch-display',
@@ -53,8 +54,8 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('ddd', this.dataBranchSelected);
-    this.indexNoBankat = this.dataBranchServices.citySelectedIndex;
+    debugger
+    this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexNoBankat) ? this.dataBranchSelected.indexNoBankat : 1;
 
   }
 
@@ -65,6 +66,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
   }
+
   copyToClipboard(element) {
     console.log(element);
     document.addEventListener('copy', (e: ClipboardEvent) => {

@@ -63,6 +63,7 @@ export class HoursFilerComponent implements OnInit {
     this.selectedDay = this.selectedDay;
     this.filters.removeFilterRadio([CONSTANTS.FILTER_BY_HOURS, CONSTANTS.FILTER_BY_DAYS]);
     this.close.emit([]);
+    this.submit();
 
 
 

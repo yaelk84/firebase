@@ -11,7 +11,7 @@ import {BranchDataService} from './branch-data.service';
 import {HoursService} from './hours.service';
 import {GeoLocationObject} from '../interface/coordinates';
 import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 
 
 @Injectable({
@@ -75,29 +75,37 @@ export class BranchFilterService {
 
   /**  user add location by filter click */
   handleAddLocation() {
-    this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
-    if (this.mapServices.hasLocationPermissionFromGeoLocation) {
-      this.mapServices.changeFilterLoactionToTrue();
-      this.mapServices.hasLocationPermission = true;
-      this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapServices.sortedBranches));
-    } else {
-      this.mapServices.getMyLocation().subscribe((res) => {
-        console.log('location');
-        if (!isNullOrUndefined(res as GeoLocationObject).lat) {
-          this.mapServices.myLocationFilter((res as GeoLocationObject), this.app.branches).subscribe(() => {
-            const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
-            this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.activeFilters);
+    const addLocation = new Observable((observer) => {
+      this.branchDataServices.citySelected = '';
+      this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
+      if (this.mapServices.hasLocationPermissionFromGeoLocation) {
+        this.mapServices.changeFilterLoactionToTrue();
+        this.mapServices.hasLocationPermission = true;
+        this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapServices.sortedBranches));
+        observer.next(true);
+      } else {
+        this.mapServices.getMyLocation().subscribe((res) => {
+          console.log('location');
+          if (!isNullOrUndefined(res as GeoLocationObject).lat) {
+            this.mapServices.myLocationFilter((res as GeoLocationObject), this.app.branches).subscribe(() => {
+              const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
+              this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.activeFilters);
+              observer.next(true);
+            });
+          }
+        }, (error: any) => {
+          observer.next(false);
 
-          });
-        }
-      }, (error: any) => {
-        console.log('erererer location');
-        const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.defaultFilter(this.app.branches));
-        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.activeFilters);
-        return throwError(error);
-      })
+          this.events.emit(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP);
+          const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.defaultFilter(this.app.branches));
+          this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.activeFilters);
+          return throwError(error);
+        });
 
-    }
+      }
+    });
+    return addLocation;
+
   }
 
   /**  remove filter that can not go together nad update activeFilters array
@@ -153,14 +161,25 @@ export class BranchFilterService {
       if (id === CONSTANTS.FILTER_lOCATION) {
         this.handaleRemoveLocation();
       }
+      this.updateActiveFilters(this.activeFilters);
     } else {
+      const canAddLocation = false;
       if (id === CONSTANTS.FILTER_lOCATION) {
-        this.handleAddLocation();
+        this.handleAddLocation().subscribe((canAddLoation) => {
+          if (canAddLoation) {
+            this.activeFilters.push(id);
+          }
+
+          this.updateActiveFilters(this.activeFilters);
+        });
+      } else {
+        this.activeFilters.push(id);
+        this.updateActiveFilters(this.activeFilters);
       }
 
-      this.activeFilters.push(id);
+
     }
-    this.updateActiveFilters(this.activeFilters);
+
 
   }
 

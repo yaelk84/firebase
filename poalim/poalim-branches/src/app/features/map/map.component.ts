@@ -54,6 +54,7 @@ export class MapComponent implements OnInit {
   }
 
   showBranchesBasedOnLocationAccess() {
+    ;
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       if (this.mapBranches.hasLocationPermission) {
         this.hasAccessToMyLocation = true;
@@ -61,11 +62,11 @@ export class MapComponent implements OnInit {
         this.geoCoordinateY = (point as GeoLocationObject).lat;
         this.geoCoordinateX = (point as GeoLocationObject).lng;
         this.currentCenter = (point as GeoLocationObject);
-        // console.log('center with location', this.currentCenter);
+        console.log('center with location', this.currentCenter);
       } else {
         this.hasAccessToMyLocation = false;
         this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
-        // console.log('center with !NO! location', this.currentCenter);
+      console.log('center with !NO! location', this.currentCenter);
       }
     });
   }
@@ -88,7 +89,7 @@ export class MapComponent implements OnInit {
       lng: this.lngAfterCenterChanged
     }, this.appService.branches)
       .subscribe((res) => {
-        // console.log('reeeees', res);
+         console.log('reeeees', res);
         this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res), this.filterService.activeFilters);
       });
   }
