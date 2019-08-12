@@ -55,7 +55,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     debugger
-    this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexNoBankat) ? this.dataBranchSelected.indexNoBankat : 1;
+    this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexForDisplay) &&  this.dataBranchSelected.indexForDisplay > 0 ? this.dataBranchSelected.indexForDisplay : 1;
 
   }
 

@@ -17,10 +17,10 @@
         <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
         </lib-rc-switcher>
-        <app-branch-list [hideListInMoBile]="formControl.value"  *ngIf="branchNewArrayFilter" [branchNewArrayFilter]="branchNewArrayFilter" [branchResultTitle]="branchResultTitle"></app-branch-list>
+        <app-branch-list class="col-sm-6 col-12" [hideListInMoBile]="formControl.value"  *ngIf="branchNewArrayFilter" [branchNewArrayFilter]="branchNewArrayFilter" [branchResultTitle]="branchResultTitle"></app-branch-list>
         <ng-container>
 
-          <app-map [ngClass]="{'show-in-mobile' :formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter && branchNewArrayFilter.length" [branches]="branchNewArrayFilter"></app-map>
+          <app-map class="col-sm-6 col-12"  [ngClass]="{'show-in-mobile' :formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter && branchNewArrayFilter.length" [branches]="branchNewArrayFilter"></app-map>
 
         </ng-container>
       </div>

@@ -5,7 +5,7 @@
     <app-general-popup><app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter></app-general-popup>
     </lib-rc-popup-wrapper>
     <div class="filter-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"
-         (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index">
+         (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index" role="button" tabindex="0">
 
       <div class="wrapper-icon-filter">
         <div class="icon-filter" [ngClass]="'cube-'+ i">

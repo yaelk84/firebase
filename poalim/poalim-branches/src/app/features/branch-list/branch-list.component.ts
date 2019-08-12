@@ -108,7 +108,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         return;
       } else {
         this.branchSelectedDisplay = branchSelectedDisplay;
-        console.log('single');
+
         this.showSelectedBranch = true;
       }
     };
@@ -129,20 +129,21 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const getSingleBranch = () => {
-
+      console.log('get single branch');
       let branchSelectedDisplay: any;
       const branches = this.branchDataServices.branchesFilter;
       const branchFromList = this.appService.branches;
       branchSelectedDisplay = branches.filter((value) => { // check if  get to branch from  list to get indexNoBankat
         return queryParams.branch === String(value.branchSummarize.branchNum);
       })[0];
-      if (!isNullOrUndefined(branchSelectedDisplay)) {
+      if (!isNullOrUndefined(branchSelectedDisplay) && false) {
         return branchSelectedDisplay;
       } else {
         branchSelectedDisplay = branchFromList.filter((value) => {
           return queryParams.branch === String(value.branchNumber);
         })[0];
         if (!isNullOrUndefined(branchSelectedDisplay)) {
+          branchSelectedDisplay.indexForDisplay  = this.branchDataServices.indexNoBankat;
           return this.branchDataServices.createSingleBranch(branchSelectedDisplay);
         }
       }
@@ -216,12 +217,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   selectBranch(id, index?) {
     console.log('select branch', index);
     const indexNoBankat = isNullOrUndefined(index) ? '' : index;
-    this.branchDataServices.citySelectedIndex = indexNoBankat;
+    this.branchDataServices.indexNoBankat = indexNoBankat;
     if (isNullOrUndefined(id)) {
       this.showSelectedBranch = false;
       const params = this.branchDataServices.citySelected.length ? {city: this.branchDataServices.citySelected} : {};
       this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
     } else {
+
       this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
     }
 

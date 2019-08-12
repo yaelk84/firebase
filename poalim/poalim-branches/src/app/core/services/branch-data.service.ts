@@ -20,7 +20,7 @@ export class BranchDataService {
   isSingleDisplay = false;
   isShowSnazzyInfoWindow = false;
   citySelected = '';
-  citySelectedIndex = '';
+  indexNoBankat = '';
 
   constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
   }
@@ -132,7 +132,6 @@ export class BranchDataService {
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),
     };
-
     const branchSummarize = new BranchSummarize(branchData.branchNum, branchData.branchName, branchData.address,
       branchData.distanceInKm, branchData.openAndCloseHours);
     return {
@@ -145,7 +144,8 @@ export class BranchDataService {
       branchManagerName: data.branchManagerName,
       comment: data.comment,
       servicesType: this.onlyServicesTypeArray(branchData.branchService),
-      isHovering: false
+      isHovering: false,
+      indexForDisplay: !isNullOrUndefined(data.indexForDisplay) ? data.indexForDisplay : 0,
 
     };
   }
@@ -164,7 +164,7 @@ export class BranchDataService {
       const branchFetched = this.createSingleBranch(obj);
       branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize,
         branchFetched.branchService, branchFetched.fax, branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment,
-        branchFetched.servicesType, branchFetched.isHovering));
+        branchFetched.servicesType, branchFetched.isHovering, branchFetched.indexForDisplay));
     });
     return branchNewArray;
   }

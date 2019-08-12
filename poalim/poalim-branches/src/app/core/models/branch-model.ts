@@ -15,7 +15,8 @@ constructor(
             private branchManagerName: string,
             private comment: string,
             private  serviceType: [],
-            private isHovering: boolean
+            private isHovering: boolean,
+             private indexForDisplay: string
 
 
 ) {

@@ -29,8 +29,8 @@
       *ngIf="branchNewArrayFilter && branchNewArrayFilter.length; else notFound">
       <div class="branch-list" id="branch_id"  [ngClass]="{'hide-in-mobile' :hideListInMoBile}"  >
         <perfect-scrollbar class="branch-list-scroll"  [config]="config"  id="scoller">
-          <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
-            <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum)" [branchData]="branch" ></app-branch-box>
+          <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;" tabindex="0">
+            <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum, branch.indexNoBankat)" [branchData]="branch" ></app-branch-box>
           </div>
         </perfect-scrollbar>
       </div>
