@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33" height="32" viewBox="0 0 33 32">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#0A294C" d="M18.917 1.018L31.7 13.374a3.393 3.393 0 0 1 0 4.913L18.917 30.643c-1.403 1.356-3.679 1.356-5.082 0L1.053 18.287a3.393 3.393 0 0 1 0-4.913L13.835 1.018c1.403-1.357 3.679-1.357 5.082 0"/>
+        <text fill="#FFF" font-family="Poalim-Light, Poalim" font-size="19.8" font-weight="300">
+            <tspan x="9.931" y="21.1">₪</tspan>
+        </text>
+    </g>
+</svg>

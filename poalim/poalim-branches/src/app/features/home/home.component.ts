@@ -96,7 +96,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
       this.apiService.getGetCurrentTimeStamp().subscribe(
         (res) => {
-          console.log('interval');
           this.hours.updateTime = res.time;
           this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.filterBranch.activeFilters);
         }
