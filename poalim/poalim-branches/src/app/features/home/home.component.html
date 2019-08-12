@@ -20,7 +20,8 @@
         <app-branch-list [hideListInMoBile]="formControl.value"  *ngIf="branchNewArrayFilter" [branchNewArrayFilter]="branchNewArrayFilter" [branchResultTitle]="branchResultTitle"></app-branch-list>
         <ng-container>
 
-          <app-map [ngClass]="{'show-in-mobile' :formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter && branchNewArrayFilter.length"></app-map>
+          <app-map [ngClass]="{'show-in-mobile' :formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter && branchNewArrayFilter.length" [branches]="branchNewArrayFilter"></app-map>
+
         </ng-container>
       </div>
     </div>

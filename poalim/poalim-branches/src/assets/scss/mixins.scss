@@ -227,7 +227,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   padding: 30px 23px;
   &.slideDown{
     opacity: 1;
-    z-index: 99;
+    z-index: 999;
     display: block;
   }
 

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewRef} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -6,6 +6,8 @@ import {RcEventBusService} from '@realcommerce/rc-packages';
 import {CONSTANTS} from '../../constants';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
+import {AppService} from '../../core/services/app.service';
+import {BranchFilterService} from '../../core/services/branch-filter.service';
 
 
 @Component({
@@ -23,29 +25,34 @@ export class MapComponent implements OnInit {
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
-    scaledSize: { width: 30, height: 30 }
+    scaledSize: {width: 30, height: 30}
   };
   bankatAndHoverIcon = {
     url: 'assets/media/bankat-shape.png',
-    scaledSize: { width: 30, height: 30 }
+    scaledSize: {width: 30, height: 30}
   };
 
   myLocationIcon = {
     url: 'assets/media/myLocation-marker.svg',
-    scaledSize: { width: 50, height: 70 }
+    scaledSize: {width: 50, height: 70}
   };
-  centerHasChanged = false;
+  currentCenter: GeoLocationObject;
+  findHereCenter: GeoLocationObject;
+  isShowCircle = false;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
-              private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService) {
+              private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
+              private appService: AppService, private filterService: BranchFilterService) {
   }
+
   ngOnInit() {
-    console.log('branchessssssssssssssssssssssssss from map', this.branches);
+    console.log('branchesss from map comp', this.branches);
     this.showBranchesBasedOnLocationAccess();
     // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
     //   this.showBranchesBasedOnLocationAccess();
     // });
   }
+
   showBranchesBasedOnLocationAccess() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       if (this.mapBranches.hasLocationPermission) {
@@ -53,40 +60,52 @@ export class MapComponent implements OnInit {
         const point = this.mapBranches.position;
         this.geoCoordinateY = (point as GeoLocationObject).lat;
         this.geoCoordinateX = (point as GeoLocationObject).lng;
+        this.currentCenter = (point as GeoLocationObject);
+        // console.log('center with location', this.currentCenter);
       } else {
         this.hasAccessToMyLocation = false;
+        this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
+        // console.log('center with !NO! location', this.currentCenter);
       }
     });
   }
+
   showSelectedMarkerOnBranchList(id) {
-    console.log('MARKER WAS CLICKED!!!!!');
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
-    console.log(this.activeRoute.snapshot.queryParams.branch);
+    // console.log(this.activeRoute.snapshot.queryParams.branch);
   }
-  // grabCoords(e) {
-  //   console.log(e);
-  // }
+
   get showSingleDisplay() {
     return this.branchDataServices.isSingleDisplay;
   }
-  getNewCenter(event) {
-    const currentLat = (this.geoCoordinateY).toFixed(5);
-    const currentLng = (this.geoCoordinateX).toFixed(5);
-    const newLat = (event.lat).toFixed(5);
-    const newLng = (event.lng).toFixed(5);
-    // console.log('currentLatLng', currentLat, currentLng, '||||||||||||||afterDragLatLng', newLat, newLng);
-    if ((newLat < currentLat + 2 || newLat > currentLat + 2) && (newLng < currentLng + 2 || newLng > currentLng + 2)) {
-      console.log('get New Center !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    }
-  }
+
   getNewCenterOfCircle(newCoords) {
-    this.centerHasChanged = true;
-    this.latAfterCenterChanged = (newCoords.lat).toFixed(5);
-    this.lngAfterCenterChanged = (newCoords.lng).toFixed(5);
+    this.latAfterCenterChanged = newCoords.lat;
+    this.lngAfterCenterChanged = newCoords.lng;
     console.log('~~~~triggered when center change~~~~~', this.latAfterCenterChanged, this.lngAfterCenterChanged);
+    this.mapBranches.myLocationFilter({
+      lat: this.latAfterCenterChanged,
+      lng: this.lngAfterCenterChanged
+    }, this.appService.branches)
+      .subscribe((res) => {
+        // console.log('reeeees', res);
+        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res), this.filterService.activeFilters);
+      });
   }
-  get newCenterCoords() {
-    // return {newLat: this.latAfterCenterChanged, newLng: this.lngAfterCenterChanged, isCenterChange: this.centerHasChanged = true};
-   return this.geoCoordinateY === this.geoCoordinateY + 0.3 && this.geoCoordinateX === this.geoCoordinateX + 0.3 ? true : false;
+
+  showCircle(newCoordsCenter) {
+    this.findHereCenter = newCoordsCenter;
+    this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
+        if (distance > 3) {
+          // console.log('distance from prev center', distance);
+          return this.isShowCircle = true;
+        }
+      });
+  }
+
+  searchOnArea() {
+      this.geoCoordinateY = this.findHereCenter.lat;
+      this.geoCoordinateX = this.findHereCenter.lng;
+      this.getNewCenterOfCircle({lat: this.geoCoordinateY, lng: this.geoCoordinateX});
   }
 }

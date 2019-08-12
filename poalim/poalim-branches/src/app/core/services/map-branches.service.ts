@@ -116,13 +116,16 @@ export class MapBranchesService {
     return nearestBranchesObserveble;
   }
 
-  // test() {
-  //   this.mapsAPILoader.load().then(() => {
-  //     const myCoords1 = new google.maps.LatLng(32.08284, 34.78064);
-  //     const destination1 = new google.maps.LatLng(32.062787, 34.782296);
-  //     const distanceInKm1 = google.maps.geometry.spherical.computeDistanceBetween(myCoords1, destination1) / 1000;
-  //     console.log(distanceInKm1);
-  //   });
-  // }
+  getCenterOfNewLocation(preCircleCoords: GeoLocationObject, newCircleCoords: GeoLocationObject) {
+    const centerOfNewLocation = new Observable((observer) => {
+      this.mapsAPILoader.load().then(() => {
+          const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
+          const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
+          const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
+          observer.next(distanceInKm);
+      }).catch( err => console.log(err));
+    });
+    return centerOfNewLocation;
+  }
 }
 

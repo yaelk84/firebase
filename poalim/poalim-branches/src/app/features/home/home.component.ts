@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
 import {HoursService} from '../../core/services/hours.service';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
@@ -68,7 +68,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
-      debugger
       if (this.branchDataServices.citySelected.length) {
         this.branchResultTitle = this.translate.getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
       } else {

@@ -1,13 +1,25 @@
-<agm-map dir="ltr" [fitBounds]="true" [draggable]="false" (centerChange)="getNewCenter($event)">
-<!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
+<button
+  *ngIf="isShowCircle && !showSingleDisplay && branches.length"
+  (click)="searchOnArea()"
+  class="search-in-area"
+  id="Map-Search"
+  type="button">
+  חפש באזור זה
+</button>
+<agm-map
+  dir="ltr"
+  [fitBounds]="true"
+  [draggable]="true"
+  (centerChange)="showCircle($event)">
+  <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
-    [latitude]="geoCoordinateY"
-    [longitude]="geoCoordinateX"
-    [iconUrl]="myLocationIcon">
-  </agm-marker>
+      [latitude]="geoCoordinateY"
+      [longitude]="geoCoordinateX"
+      [iconUrl]="myLocationIcon">
+    </agm-marker>
   </ng-container>
-    <ng-container *ngFor="let branchPoint of branches; let i = index">
+  <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
       (mouseOver)="branchPoint.isHovering = true"
@@ -46,18 +58,22 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
-  <agm-circle [radius]="200"
-              [visible]="true"
-              [strokeColor]="'red'"
-              [fillColor]="'light-gray'"
-              [latitude]="geoCoordinateY + 0.02"
+<!--  <input type="button" value="חפש באזור זה">-->
+  <agm-circle [radius]="350"
+              [visible]="false"
+              [fillColor]="'#DF1A1E'"
+              [fillOpacity]="0.6"
+              [latitude]="geoCoordinateY + 0.03"
               [longitude]="geoCoordinateX"
               [circleDraggable]="true"
-              [editable]="true"
-              (centerChange)="getNewCenterOfCircle($event)">
-    <!--        [latitude]="geoCoordinateY + 0.03" [longitude]="geoCoordinateX + 0.03"-->
-    <!--                          [visible]="(geoCoordinateY < geoCoordinateY + 0.1 || geoCoordinateX < geoCoordinateX + 0.1) ||
-                      (geoCoordinateY > geoCoordinateY + 0.1 || geoCoordinateX > geoCoordinateX + 0.1)"-->
+              [editable]="false "
+              [draggable]="true"
+              (dragEnd)="getNewCenterOfCircle($event)">
   </agm-circle>
+<!--
+              [strokeColor]="'#DF1A1E'"
+              [strokeOpacity]="0.8"
+              [strokePosition]="'outside'"
+              [strokeWeight]="15"
+-->
 </agm-map>
-{{newCenterCoords | json}}
