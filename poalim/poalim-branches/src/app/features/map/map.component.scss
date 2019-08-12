@@ -1,3 +1,4 @@
+@import "../../../assets/scss/style";
 .search-in-area {
   position: absolute;
   z-index: 99;
@@ -15,7 +16,7 @@
   font-family: inherit;
   outline: none !important;
 }
-@import "../../../assets/scss/style";
+
 agm-map {
   height: 460px;
   width: 532px;

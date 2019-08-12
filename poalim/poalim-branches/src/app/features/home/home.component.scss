@@ -35,7 +35,6 @@
 }
 
 .branch-map {
-  position: relative;
   display: flex;
   justify-content: space-between;
   lib-rc-switcher{
@@ -53,6 +52,7 @@
   }
 
   .branch-map{
+    position: relative;
     flex-direction: column;
 
     lib-rc-switcher{
