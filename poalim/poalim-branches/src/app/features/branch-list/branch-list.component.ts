@@ -15,6 +15,7 @@ import {MapBranchesService} from '../../core/services/map-branches.service';
 import {HoursService} from '../../core/services/hours.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
 import {AppService} from '../../core/services/app.service';
+import {DeviceService} from '../../core/services/event-service';
 
 
 @Component({
@@ -45,11 +46,12 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   arrow = '/assets/media/left.svg';
   showNoLocation = false;
   intervalTimer: any;
+  isMobile = false;
 
   filterIcon = this.filterWithNoHours;
 
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private appService: AppService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private appService: AppService, private deviceService: DeviceService) {
   }
 
   private branchData: any[];
@@ -145,7 +147,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     const getSingleBranchName = () => {
 
       let branchSelectedDisplay: any;
-           const branchFromList = this.appService.branches;
+      const branchFromList = this.appService.branches;
       branchSelectedDisplay = branchFromList.filter((value) => {
         return queryParams.name === String(value.branchName);
       })[0];
@@ -250,6 +252,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     // this.city = this.route.snapshot.paramMap.get("city");
     this.addEvents();
+    this.isMobile = this.deviceService.isMobile();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
     if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
@@ -258,7 +261,14 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.componentRef.directiveRef.ps().update();
+/*    setTimeout(() => {
+      if (this.deviceService.isMobile()) {
+        if (!isNullOrUndefined(this.componentRef)) {
+          this.componentRef.directiveRef.ps().destroy();
+             }
+
+      }
+    }, 200);*/
     this.callQueryParam();
     this.intervalTimer = setInterval(() => {
       this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);

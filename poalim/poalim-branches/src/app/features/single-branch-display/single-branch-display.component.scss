@@ -268,3 +268,15 @@
 }
 
 
+@media (max-width: $mobile_view) {
+
+.mobile-scroll{
+  height: 427px;
+  overflow: auto;
+  direction: ltr;
+  .single-branch-display{
+    direction: rtl;
+    margin-right: 0;
+  }
+}
+}

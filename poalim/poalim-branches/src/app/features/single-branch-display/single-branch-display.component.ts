@@ -1,8 +1,9 @@
 import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {CONSTANTS} from '../../constants';
-import {PerfectScrollbarModule, PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {isNullOrUndefined} from 'util';
+import {DeviceService} from '../../core/services/device.service';
 
 @Component({
   selector: 'app-single-branch-display',
@@ -13,8 +14,9 @@ import {isNullOrUndefined} from 'util';
 export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   public config: PerfectScrollbarConfigInterface = {};
   @ViewChild('phone') elementView: ElementRef;
+  @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
-  constructor(private dataBranchServices: BranchDataService) {
+  constructor( private deviceService: DeviceService) {
   }
 
   arrow = '/assets/media/left.svg';
@@ -26,6 +28,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   openShareBranchPopup = false;
   indexNoBankat: string;
   @Input() dataBranchSelected: any;
+  isMobile = false;
 
 
   addMore() {
@@ -54,7 +57,7 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    debugger
+    this.isMobile = this.deviceService.isMobile();
     this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexForDisplay) &&  this.dataBranchSelected.indexForDisplay > 0 ? this.dataBranchSelected.indexForDisplay : 1;
 
   }
@@ -64,6 +67,15 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    setTimeout(() => {
+      console.log('scroll')
+      if (this.deviceService.isMobile()) {
+        if (!isNullOrUndefined(this.componentRef)) {
+          this.componentRef.directiveRef.ps().destroy();
+        }
+
+      }
+    }, 200);
 
   }
 

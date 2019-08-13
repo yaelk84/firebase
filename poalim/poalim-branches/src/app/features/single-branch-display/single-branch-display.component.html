@@ -1,5 +1,9 @@
-<perfect-scrollbar class="single-scroll"  [config]="config">
-  <div class="single-branch-display">
+<perfect-scrollbar class="single-scroll"  [config]="config" *ngIf="!isMobile">
+  <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
+</perfect-scrollbar>
+
+<ng-template  #singleDispaly>
+  <div class="single-branch-display" >
     <div class="part-wrapper">
       <div class="selected-branch-header">
         <div class="branch-data">
@@ -88,8 +92,11 @@
     </div>
 
   </div>
-</perfect-scrollbar>
+</ng-template>
+<div class="mobile-scroll" *ngIf="isMobile">
 
+  <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
+</div>
 
 <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
   <app-report-problem-popup></app-report-problem-popup>

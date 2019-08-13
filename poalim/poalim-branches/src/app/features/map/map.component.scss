@@ -96,6 +96,8 @@ agm-map {
 @media (max-width: $mobile_view) {
   agm-map{
     width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 
 }

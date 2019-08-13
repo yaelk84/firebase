@@ -43,12 +43,19 @@
 
 
 @media (max-width: $mobile_view) {
+  .branch-container{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   app-map{
     display: none;
 
     &.show-in-mobile{
       display: block;
       position: relative;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 
@@ -61,7 +68,7 @@
       position: absolute;
       top:0;
       z-index: 1;
-      #{$default-end}: 0;
+      #{$default-end}: 15px;
 
     }
   }
