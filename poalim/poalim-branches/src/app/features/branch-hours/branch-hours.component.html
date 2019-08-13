@@ -1,4 +1,25 @@
 
+<div class="popover-wrapper hours-list "    lib-rc-click-outside (clickOutside)="closeDropDown($event)"*ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
+  <div *ngFor=" let dayHours of hoursList" class="drop-line">
+      <span class="drop-label"> <span>{{'dropdownLabel' | rcTranslate}}</span> <span> {{dayHours.dayName}}:</span>
+        </span>
+    <span class="drop-val" >
+        <span *ngIf="dayHours.openToday" class="have-day-val">
+             <span *ngIf="dayHours.label.morning">
+
+        <span> {{dayHours.label.morning}}</span>
+        </span>
+
+        <span *ngIf="dayHours.label.noon && dayHours.label.morning"> <div  class="icon-separation"></div></span>
+
+        <span *ngIf="dayHours.label.noon">{{dayHours.label.noon}}</span>
+        </span>
+        <span *ngIf="!dayHours.openToday" class="closed">{{'closed'| rcTranslate}}</span>
+
+      </span>
+  </div>
+</div>
+
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
   <div class="clearfix is-bankat" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
   <div class="clearfix" *ngIf="!hours.isBankat">
@@ -7,16 +28,18 @@
       <div class="was-change">{{'changeHours'| rcTranslate}</div>
     </div>
     <div class="clearfix" *ngIf="!hours.wasChange">
-      <div class="open-today" *ngIf="hours.openCurrentDay && !dayName">
-
-        <span *ngIf="hours.label.morning">
-            <span class="title-open-today"> {{'openToday'| rcTranslate }}</span>
-        <span> {{hours.label.morning}}</span>
+      <div  *ngIf="hours.openCurrentDay && !dayName">
+      <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
+        <span class="open-today" [ngClass]="{'withdropdown':isSingleDisplay}"   (click)=" isSingleDisplay && dropClick($event)">
+                  <span >
+            <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
+        <span *ngIf="hours.label.morning"> {{hours.label.morning}}</span>
+        </span>
+        <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
+        <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
+           <div *ngIf="isSingleDisplay" class="icon-arrow"></div>
         </span>
 
-        <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
-
-        <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
       </div>
       <div class="future-date" *ngIf="!dayName && !hours.filterByDay">
         {{hours.label.textHours}}

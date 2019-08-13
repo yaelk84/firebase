@@ -249,7 +249,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     // this.city = this.route.snapshot.paramMap.get("city");
     this.addEvents();
     this.isMobile = this.deviceService.isMobile();

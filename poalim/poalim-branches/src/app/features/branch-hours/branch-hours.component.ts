@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RcTranslateService} from '@realcommerce/rc-packages';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {HoursService} from '../../core/services/hours.service';
-
+import {DeviceService} from '../../core/services/device.service';
 
 
 @Component({
@@ -12,18 +12,36 @@ import {HoursService} from '../../core/services/hours.service';
 })
 export class BranchHoursComponent implements OnInit {
 
-  constructor(private translate: RcTranslateService ,private  branchFilter: BranchFilterService , private hoursService: HoursService) { }
+  constructor(private translate: RcTranslateService, private  branchFilter: BranchFilterService, private hoursService: HoursService, private deviceService: DeviceService) {
+  }
+
   @Input() hours: any;
   @Input() isSingleDisplay: boolean;
+  @Output()togglePopup = new EventEmitter();
+  isMobile = false;
+  hoursList = [];
+  openHoursDrop = false;
 
+  closeDropDown() {
+    this.openHoursDrop = false;
+  }
 
-
+  dropClick(e) {
+    console.log('clickkkk')
+    e.stopPropagation();
+    debugger
+    this.togglePopup.emit();
+  }
 
   get dayName() {
     return this.hoursService.selectedDays;
   }
 
   ngOnInit() {
+    this.isMobile = this.deviceService.isMobile();
+    debugger;
+    this.hoursList = this.hoursService.creatHoursWeekList(this.hours);
+    console.log('hours', this.hoursList);
 
 
   }

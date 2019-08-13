@@ -19,8 +19,8 @@ export class BranchBoxSummarizeComponent implements OnInit {
   closeDropDown(){
     this.openHoursDrop=false;
   }
-  dropClick(e){
-    e.stopPropagation();
+  dropClick(){
+console.log('drop clcik')
     this.openHoursDrop =!this.openHoursDrop;
   }
   ngOnInit() {

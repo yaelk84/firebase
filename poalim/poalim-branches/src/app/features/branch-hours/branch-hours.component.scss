@@ -1,5 +1,4 @@
 @import "../../../assets/scss/style";
-
 .branch-hours{
   font-size: 18px;
   font-weight: normal;
@@ -8,18 +7,29 @@
   }
 
  }
-
+.title-open-today{
+  color:  $true-green;
+}
 .open-today,open-specific-day{
   display: flex;
   align-items: center;
 
-  .title-open-today{
-    color:  $true-green;
 
+}
+.open-today{
+  &.withdropdown{
+    cursor: pointer;
+    padding: 0 15px;
+    margin-right: -15px;
 
+    &:hover{
 
+      border-radius: 16px;
+      background-color: rgba(10, 41, 76, 0.08);
+    }
   }
 }
+
 
 .open-specific-day{
   display: flex;

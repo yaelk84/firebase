@@ -1,24 +1,17 @@
 @import "../../../assets/scss/style";
 
-.wrapper-branch-hours{
+.wrapper-branch-hours {
 
   display: flex;
   align-items: baseline;
 
-  &.withdropdown{
-    cursor: pointer;
-    padding: 0 15px;
-    margin-right: -15px;
-    &:hover{
-      border-radius: 16px;
-      background-color: rgba(10, 41, 76, 0.08);
-    }
-  }
 }
+
 .branch-details {
   color: $marine-two;
+
   .name-and-number {
-display: inline-block;
+    display: inline-block;
     font-size: 23.9px;
     max-width: 250px;
 
@@ -36,10 +29,11 @@ display: inline-block;
     }
 
   }
+
   .wrapper-icon-accessibility {
 
     .icon-accessibility {
-display: inline-block;
+      display: inline-block;
       width: 21px;
       height: 20px;
       background-image: url('~src/assets/media/group-26.svg');
@@ -53,9 +47,10 @@ display: inline-block;
     font-weight: 300;
 
   }
+
   .location {
     font-size: 20px;
-    line-height:1.1;
+    line-height: 1.1;
     font-weight: 300;
   }
 
@@ -63,57 +58,89 @@ display: inline-block;
     margin-right: 5px;
   }
 }
-.hours{
+
+.hours {
   position: relative;
   display: flex;
-  align-items:center ;
+  align-items: center;
 }
+
 /deep/
-.icon-arrow{
+.icon-arrow {
   margin-right: 10px;
 
 
 }
-.hours{
+
+.hours {
   /deep/
   .popover-wrapper.hours-list {
-    top:29px;
+    top: 29px;
     right: 0;
     padding: 25px 15px;
     min-width: 330px;
-    &:after
-    {margin-left: 40%;
-    border-width:7px}
-    &:before
-    {margin-left: 40%;
+
+    &:after {
+      margin-left: 40%;
+      border-width: 7px
+    }
+
+    &:before {
+      margin-left: 40%;
     }
   }
 }
 
-.drop-line{
+.drop-line {
   display: flex;
   color: $greyish-brown;
   font-size: 20px;
   padding: 15px;
   line-height: 1;
   font-weight: 300;
-border-bottom: 1px solid $pale-grey;
-  &:last-child{
+  border-bottom: 1px solid $pale-grey;
+
+  &:last-child {
     border: none;
   }
-  .drop-val{
+
+  .drop-val {
     display: flex;
     align-items: center;
-    .have-day-val{
+
+    .have-day-val {
       display: flex;
       align-items: center;
 
     }
-    .closed{
+
+    .closed {
       color: $lipstick-two;
     }
   }
-  .drop-label{
-margin-left: 5px;
+
+  .drop-label {
+    margin-left: 5px;
   }
+}
+
+@media (max-width: $mobile_view) {
+
+
+  .hours {
+    position: static;
+    /deep/
+    .popover-wrapper.hours-list {
+      top: 60px;
+      width: 100%;
+      &:before{
+        content: none;
+      }
+      &:after{
+        content: none;
+      }
+    }
+  }
+
+
 }
