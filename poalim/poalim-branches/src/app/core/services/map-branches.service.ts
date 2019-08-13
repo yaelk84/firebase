@@ -19,6 +19,7 @@ export class MapBranchesService {
   filteredMarkers = [];
   sortedBranches = [];
   hasLocationPermission = false;
+  isDefaultFilter = false;
   hasLocationPermissionFromGeoLocation = false;
   position: object;
   nearsBranches: Array<object> ;
@@ -40,7 +41,7 @@ export class MapBranchesService {
 
     this.sortedBranches = filteredByCity.slice(6, 12);
 
-
+    this.isDefaultFilter = true;
     return this.sortedBranches;
   }
 

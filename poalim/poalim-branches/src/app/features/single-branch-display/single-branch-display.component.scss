@@ -133,6 +133,10 @@
           top: 0;
           left: 15px;
           opacity: 0;
+
+          .copy-to-clipboard-icon {
+            width: 18px;
+          }
         }
         &:hover{
           border-radius: 16px;

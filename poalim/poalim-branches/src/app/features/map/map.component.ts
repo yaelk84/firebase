@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewRef} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -8,6 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
+import {AgmMap} from '@agm/core';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class MapComponent implements OnInit {
   geoCoordinateX = 34.8236;
   // latAfterCenterChanged: number;
   // lngAfterCenterChanged: number;
-  zoom = 15;
+  zoom = 12;
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
@@ -39,23 +40,27 @@ export class MapComponent implements OnInit {
   currentCenter: GeoLocationObject;
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
+  // @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
-              private appService: AppService, private filterService: BranchFilterService) {
+              private appService: AppService, private filterService: BranchFilterService, private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     console.log('branchesss from map comp', this.branches);
+    // setTimeout(() => { this.agmMap.triggerResize(); }, 500);
     this.showBranchesBasedOnLocationAccess();
     // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
     //   this.showBranchesBasedOnLocationAccess();
-    // });
+    // }, true);
   }
 
   showBranchesBasedOnLocationAccess() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       console.log('branchesss from map 2', this.branches);
+      this.geoCoordinateY = this.branches[0].coords.lat;
+      this.geoCoordinateX = this.branches[0].coords.lng;
       if (this.mapBranches.hasLocationPermission) {
         this.hasAccessToMyLocation = true;
         const point = this.mapBranches.position;
@@ -73,7 +78,6 @@ export class MapComponent implements OnInit {
 
   showSelectedMarkerOnBranchList(id) {
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
-    console.log('id', id);
   }
 
   get showSingleDisplay() {
