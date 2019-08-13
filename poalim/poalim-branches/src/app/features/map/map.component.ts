@@ -19,8 +19,8 @@ export class MapComponent implements OnInit {
   @Input() branches: any;
   geoCoordinateY = 32.09472;
   geoCoordinateX = 34.8236;
-  latAfterCenterChanged: number;
-  lngAfterCenterChanged: number;
+  // latAfterCenterChanged: number;
+  // lngAfterCenterChanged: number;
   zoom = 15;
   hasAccessToMyLocation = false;
   branchIcon = {
@@ -54,8 +54,8 @@ export class MapComponent implements OnInit {
   }
 
   showBranchesBasedOnLocationAccess() {
-    ;
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
+      console.log('branchesss from map 2', this.branches);
       if (this.mapBranches.hasLocationPermission) {
         this.hasAccessToMyLocation = true;
         const point = this.mapBranches.position;
@@ -66,31 +66,37 @@ export class MapComponent implements OnInit {
       } else {
         this.hasAccessToMyLocation = false;
         this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
-      console.log('center with !NO! location', this.currentCenter);
+        console.log('center with !NO! location', this.currentCenter);
       }
-    });
+    }, true);
   }
 
   showSelectedMarkerOnBranchList(id) {
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
-    // console.log(this.activeRoute.snapshot.queryParams.branch);
+    console.log('id', id);
   }
 
   get showSingleDisplay() {
+    if (this.branchDataServices.isSingleDisplay) {
+      this.branches = [this.branchDataServices.singleBranchToDisplay];
+    }
     return this.branchDataServices.isSingleDisplay;
   }
 
   getNewCenterOfCircle(newCoords) {
-    this.latAfterCenterChanged = newCoords.lat;
-    this.lngAfterCenterChanged = newCoords.lng;
-    console.log('~~~~triggered when center change~~~~~', this.latAfterCenterChanged, this.lngAfterCenterChanged);
+    this.geoCoordinateY = newCoords.lat;
+    this.geoCoordinateX = newCoords.lng;
+    console.log('~~~~triggered when center change~~~~~', this.geoCoordinateY, this.geoCoordinateX);
     this.mapBranches.myLocationFilter({
-      lat: this.latAfterCenterChanged,
-      lng: this.lngAfterCenterChanged
+      lat: this.geoCoordinateY,
+      lng: this.geoCoordinateX
     }, this.appService.branches)
       .subscribe((res) => {
          console.log('reeeees', res);
-        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res), this.filterService.activeFilters);
+         this.branches = this.branchDataServices.createDataArray(res);
+         this.branchDataServices.initBranchesAndApplyFilters(this.branches, this.filterService.activeFilters);
+         console.log('branches-after', this.branches);
+         // console.log('filterService---activeFilters', this.filterService.activeFilters);
       });
   }
 
@@ -102,6 +108,7 @@ export class MapComponent implements OnInit {
           return this.isShowCircle = true;
         }
       });
+    this.isShowCircle = false;
   }
 
   searchOnArea() {

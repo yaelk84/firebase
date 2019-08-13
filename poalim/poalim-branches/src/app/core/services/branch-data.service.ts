@@ -19,6 +19,7 @@ export class BranchDataService {
   private config = this.appService.appConfig;
   isSingleDisplay = false;
   isShowSnazzyInfoWindow = false;
+  singleBranchToDisplay: object;
   citySelected = '';
   indexNoBankat = '';
 

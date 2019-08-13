@@ -87,7 +87,6 @@ export class BranchFiltersComponent implements OnInit {
   }
 
   getNumberPfBOxesBySize() {
-    debugger
     if (this.deviceService.isXs()) {
       return CONSTANTS.BRANCH_FILTER_NUM.MOBILE;
     } else if (this.deviceService.isSm() || this.deviceService.isMd())  {

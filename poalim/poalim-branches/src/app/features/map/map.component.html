@@ -1,5 +1,6 @@
+{{branches.length}}
 <button
-  *ngIf="isShowCircle && !showSingleDisplay && branches.length"
+  *ngIf="isShowCircle && !showSingleDisplay"
   (click)="searchOnArea()"
   class="search-in-area"
   id="Map-Search"
@@ -8,7 +9,7 @@
 </button>
 <agm-map
   dir="ltr"
-  [fitBounds]="true"
+  [fitBounds]="!showSingleDisplay"
   [draggable]="true"
   (centerChange)="showCircle($event)">
   <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
@@ -36,7 +37,7 @@
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: branchPoint.indexNoBankat + '',
+      text: showSingleDisplay ? '1' : branchPoint.indexNoBankat + '',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',

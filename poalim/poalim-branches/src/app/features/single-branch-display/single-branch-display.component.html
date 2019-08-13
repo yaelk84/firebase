@@ -1,7 +1,6 @@
 <perfect-scrollbar class="single-scroll"  [config]="config" *ngIf="!isMobile">
   <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
 </perfect-scrollbar>
-
 <ng-template  #singleDispaly>
   <div class="single-branch-display" >
     <div class="part-wrapper">
@@ -49,7 +48,7 @@
 
         <div class="line-data copy" (click)="copyToClipboard(dataBranchSelected.phone)">
 
-          <span class="icon phone-icon"  (click)="copy(phone)"></span>
+          <span class="icon phone-icon"></span>
           <span class="label">{{'phone'| rcTranslate}}</span>
           <span
             class="value aaa"

@@ -4,6 +4,7 @@ import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PerfectScrollba
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {isNullOrUndefined} from 'util';
 import {DeviceService} from '../../core/services/device.service';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'app-single-branch-display',
@@ -50,11 +51,9 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
     document.body.removeChild(selBox);
   }
 
-  copy(phone) {
-    this.createTempInput('fffffffffff');
-
-
-  }
+  // copy(phone) {
+  //   this.createTempInput('fffffffffff');
+  // }
 
   ngOnInit() {
     this.isMobile = this.deviceService.isMobile();
@@ -80,9 +79,17 @@ export class SingleBranchDisplayComponent implements OnInit, AfterViewInit {
   }
 
   copyToClipboard(element) {
-    console.log(element);
+    const elementArr = element.split('').slice(0, element.length - 1);
+    elementArr.unshift('*');
+    const joinElm = elementArr.join('');
     document.addEventListener('copy', (e: ClipboardEvent) => {
-      e.clipboardData.setData('text/plain', (element));
+      if (element === '2407*') {
+        e.clipboardData.setData('text/plain', (joinElm));
+        console.log('copy phone', joinElm);
+      } else {
+        e.clipboardData.setData('text/plain', (element));
+        console.log('copy fax', element);
+      }
       e.preventDefault();
       document.removeEventListener('copy', null);
     });
