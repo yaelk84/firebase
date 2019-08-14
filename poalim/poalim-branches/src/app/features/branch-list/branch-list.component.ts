@@ -251,6 +251,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
+      console.log('event change')
       this.showNoLocation = true;
     }, true);
 
@@ -263,14 +264,16 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.isMobile = this.deviceService.isMobile();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
-    if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
-      this.showNoLocation = true;
-    }
+
   }
 
   ngAfterViewInit() {
 //
     this.callQueryParam();
+    if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
+      debugger;
+      this.showNoLocation = true;
+    }
     this.intervalTimer = setInterval(() => {
       this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
     }, 5000 * 60);
