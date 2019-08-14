@@ -18,6 +18,7 @@ import {AgmMap} from '@agm/core';
 })
 export class MapComponent implements OnInit {
   @Input() branches: any;
+  singleBranchDisplay: object;
   geoCoordinateY = 32.09472;
   geoCoordinateX = 34.8236;
   // latAfterCenterChanged: number;
@@ -40,6 +41,7 @@ export class MapComponent implements OnInit {
   currentCenter: GeoLocationObject;
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
+  showSingleDisplay = false;
   // @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
@@ -49,6 +51,11 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
     console.log('branchesss from map comp', this.branches);
+    this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
+      this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
+      this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
+      console.log('999999999', this.singleBranchDisplay);
+    }, true);
     // setTimeout(() => { this.agmMap.triggerResize(); }, 500);
     this.showBranchesBasedOnLocationAccess();
     // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
@@ -83,10 +90,7 @@ export class MapComponent implements OnInit {
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 
-  get showSingleDisplay() {
-    if (this.branchDataServices.isSingleDisplay) {
-      this.branches = [this.branchDataServices.singleBranchToDisplay];
-    }
+  get isSingleMarker() {
     return this.branchDataServices.isSingleDisplay;
   }
 

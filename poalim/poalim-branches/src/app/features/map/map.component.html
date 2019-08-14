@@ -15,6 +15,7 @@
   [draggable]="true"
   (centerChange)="showCircle($event)">
   <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
+
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
       [latitude]="geoCoordinateY"
@@ -22,6 +23,8 @@
       [iconUrl]="myLocationIcon">
     </agm-marker>
   </ng-container>
+  <!--  ALL BRANCHES FROM HOME COMP'-->
+  <ng-container *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
@@ -61,7 +64,42 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
-<!--  <input type="button" value="חפש באזור זה">-->
+  </ng-container>
+single branch display: THE SELECTED BRANCH
+  <ng-container *ngIf="showSingleDisplay">
+    <agm-marker
+      [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
+      [latitude]="singleBranchDisplay.coords.lat"
+      [longitude]="singleBranchDisplay.coords.lng"
+      [label]="singleBranchDisplay.isBankat ? {
+      text: '&#8362;',
+      color: 'white',
+      fontFamily: 'inherit',
+      fontSize: '18px',
+      fontWeight: 'normal'
+    } : {
+      text: showSingleDisplay ? '1' : singleBranchDisplay.indexNoBankat + '',
+      color: 'white',
+      fontFamily: '',
+      fontSize: '16px',
+      fontWeight: 'normal'
+      }">
+      <agm-snazzy-info-window
+        [maxWidth]="350"
+        [maxHeight]="200"
+        [shadow]="true"
+        [latitude]="singleBranchDisplay.coords.lat"
+        [longitude]="singleBranchDisplay.coords.lng"
+        [isOpen]="branches.length === 1"
+        [closeOnMapClick]="true"
+        [closeWhenOthersOpen]="true"
+        [openOnMarkerClick]="true">
+        <ng-template>
+          <app-branch-box-summarize [branchDataSummarize]="singleBranchDisplay.branchSummarize"></app-branch-box-summarize>
+        </ng-template>
+      </agm-snazzy-info-window>
+    </agm-marker>
+  </ng-container>
   <agm-circle [radius]="350"
               [visible]="false"
               [fillColor]="'#DF1A1E'"

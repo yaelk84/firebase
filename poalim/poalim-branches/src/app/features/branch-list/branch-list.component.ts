@@ -112,6 +112,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       } else {
         this.branchDataServices.singleBranchToDisplay = branchSelectedDisplay;
         this.branchSelectedDisplay = branchSelectedDisplay;
+        this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
 
         this.showSelectedBranch = true;
       }
