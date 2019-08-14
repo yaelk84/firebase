@@ -57,7 +57,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
-debugger
+  debugger
     this.showSelectedBranch = false;
     const UncheckLocationFilter = () => {
 
@@ -67,6 +67,11 @@ debugger
       }
 
     };
+    const updateData = () => {
+      this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
+      this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
+      this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
+    }
     const handleCity = () => {
       UncheckLocationFilter();
       const name = queryParams.branchName;
@@ -79,7 +84,7 @@ debugger
       });
       if (this.mapServices.hasLocationPermissionFromGeoLocation) {
 
-        this.mapServices.myLocationFilter(this.mapServices.position as GeoLocationObject, branches).subscribe((res) => {
+        this.mapServices.myLocationFilter(this.mapServices.position as GeoLocationObject, branches, false).subscribe((res) => {
           const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
           showResultsCity(branchesFilter);
         });
@@ -100,6 +105,8 @@ debugger
         this.branchDataServices.citySelected = queryParams.city;
         this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
       }
+      updateData();
+
     };
 
     const showError = () => {
@@ -123,16 +130,17 @@ debugger
         return;
       } else {
         this.branchSelectedDisplay = branchSelectedDisplay;
-              this.showSelectedBranch = true;
+        this.showSelectedBranch = true;
       }
     };
     const singleCityResult = (branch) => {
       this.branchSelectedDisplay = branch;
       this.showSelectedBranch = true;
+      this.branchDataServices.singleBranchToDisplay = branch;
 
     };
     const getSingleBranch = () => {
-      debugger
+    debugger
       let branchSelectedDisplay: any;
       const branchFromList = this.appService.branches;
       branchSelectedDisplay = branchFromList.filter((value) => {
@@ -176,9 +184,7 @@ debugger
       }
 
     }
-    this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
-    this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
-    this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
+    updateData()
     console.log('evnt event');
   }
 
@@ -246,7 +252,7 @@ debugger
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
       this.showNoLocation = true;
-    },true);
+    }, true);
 
 
   }

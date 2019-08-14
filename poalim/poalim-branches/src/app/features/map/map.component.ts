@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, AfterViewInit, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -8,20 +8,22 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
+import {AgmMap} from '@agm/core';
+
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss', '../branch-box-summarize/branch-box-summarize.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
   @Input() branches: any;
   singleBranchDisplay: any;
   geoCoordinateY = 32.09472;
   geoCoordinateX = 34.8236;
   // latAfterCenterChanged: number;
   // lngAfterCenterChanged: number;
-  zoom = 11;
+  // zoom = 11;
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
@@ -40,7 +42,7 @@ export class MapComponent implements OnInit {
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
   showSingleDisplay = false;
-  isBound = false;
+  @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
@@ -89,7 +91,7 @@ export class MapComponent implements OnInit {
 
   showSelectedMarkerOnBranchList(id, indexNoBankat) {
     this.branchDataServices.indexNoBankat = indexNoBankat;
-      this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
+    this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 
   getNewCenterOfCircle(newCoords) {
@@ -124,5 +126,9 @@ export class MapComponent implements OnInit {
       this.geoCoordinateY = this.findHereCenter.lat;
       this.geoCoordinateX = this.findHereCenter.lng;
       this.getNewCenterOfCircle({lat: this.geoCoordinateY, lng: this.geoCoordinateX});
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => { this.agmMap.triggerResize(); }, 500);
   }
 }

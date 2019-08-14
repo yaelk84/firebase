@@ -90,7 +90,7 @@ export class MapBranchesService {
   }
 
 
-  public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = []): any {
+  public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = [], useDistanceInKm = true): any {
     const nearestBranchesObserveble = new Observable(observer => {
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {
@@ -100,9 +100,10 @@ export class MapBranchesService {
             m.geographicAddress[0].geographicCoordinate.geoCoordinateX);
           const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
           m.geographicAddress[0].distanceInKm = distanceInKm;
-          if (distanceInKm < 25.0) {
+          if (useDistanceInKm && distanceInKm < 25.0) {
             return m;
           }
+          return m;
         });
         // console.log('this.branchesPointsMap m34', this.branchesPointsMap);
         const nearestBranches = this.filteredMarkers.sort((a, b) => {
