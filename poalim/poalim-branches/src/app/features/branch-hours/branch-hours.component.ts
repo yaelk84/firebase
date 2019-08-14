@@ -27,9 +27,9 @@ export class BranchHoursComponent implements OnInit {
   }
 
   dropClick(e) {
-    console.log('clickkkk')
+
     e.stopPropagation();
-    debugger
+
     this.togglePopup.emit();
   }
 
@@ -39,9 +39,9 @@ export class BranchHoursComponent implements OnInit {
 
   ngOnInit() {
     this.isMobile = this.deviceService.isMobile();
-    debugger;
+    ;
     this.hoursList = this.hoursService.creatHoursWeekList(this.hours);
-    console.log('hours', this.hoursList);
+
 
 
   }

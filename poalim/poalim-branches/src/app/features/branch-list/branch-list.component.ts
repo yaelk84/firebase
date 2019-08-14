@@ -121,13 +121,12 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         return;
       } else {
         this.branchSelectedDisplay = branchSelectedDisplay;
-        console.log('single');
-        this.showSelectedBranch = true;
+              this.showSelectedBranch = true;
       }
     };
     const singleCityResult = (branch) => {
       this.branchSelectedDisplay = branch;
-      console.log('single');
+
       this.showSelectedBranch = true;
 
     };

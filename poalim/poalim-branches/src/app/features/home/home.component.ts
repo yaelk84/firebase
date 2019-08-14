@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       console.log('refresh list wad called' , this.branchDataServices.branchesFilter.length)
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
-      console.log(' this.branchNewArrayFilter',  this.branchNewArrayFilter)
+
       if (this.branchDataServices.citySelected.length) {
         this.branchResultTitle = this.translate.getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
       } else {

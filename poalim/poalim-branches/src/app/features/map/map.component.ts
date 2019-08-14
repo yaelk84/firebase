@@ -62,11 +62,11 @@ export class MapComponent implements OnInit {
         this.geoCoordinateY = (point as GeoLocationObject).lat;
         this.geoCoordinateX = (point as GeoLocationObject).lng;
         this.currentCenter = (point as GeoLocationObject);
-        console.log('center with location', this.currentCenter);
+
       } else {
         this.hasAccessToMyLocation = false;
         this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
-      console.log('center with !NO! location', this.currentCenter);
+
       }
     });
   }
