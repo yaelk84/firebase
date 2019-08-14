@@ -1,4 +1,5 @@
 {{branches.length}}
+{{activeRoute.snapshot.queryParams.city}}
 <!-- SEARCH IN AREA BUTTON. DISPLAY ONLY WHEN DRAG THE MAP MORE THEN 3KM FROM CURRENT LOCATION -->
 <button
   *ngIf="isShowCircle && !showSingleDisplay"
@@ -29,7 +30,7 @@
   <div *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
-      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
+      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum, branchPoint.indexNoBankat)"
       (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
       [agmFitBounds]="true"
@@ -44,7 +45,7 @@
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: branchPoint.indexNoBankat + '',
+      text: showSingleDisplay ? '1' : branchPoint.indexNoBankat + '',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',
@@ -71,7 +72,7 @@
 <!-- SINGLE BRANCH DISPLAY: THE SELECTED BRANCH. ONLY ONE MARKER IS SHOWN. SNAZZY INFO WINDOW OPEN -->
   <ng-container *ngIf="showSingleDisplay">
     <agm-marker
-      (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum)"
+      (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum,'')"
       (mouseOver)="singleBranchDisplay.isHovering = true"
       (mouseOut)="singleBranchDisplay.isHovering = false"
       [agmFitBounds]="true"
@@ -86,7 +87,7 @@
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: 1 + '',
+      text: singleBranchDisplay.indexForDisplay ? (singleBranchDisplay.indexForDisplay) : '1',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',

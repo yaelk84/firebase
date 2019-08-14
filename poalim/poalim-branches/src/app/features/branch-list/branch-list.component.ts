@@ -128,7 +128,6 @@ debugger
     };
     const singleCityResult = (branch) => {
       this.branchSelectedDisplay = branch;
-
       this.showSelectedBranch = true;
 
     };
@@ -180,6 +179,7 @@ debugger
     this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
     this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
     this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
+    console.log('evnt event');
   }
 
   private callQueryParam() {

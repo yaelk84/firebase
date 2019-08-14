@@ -66,8 +66,10 @@ export class MapComponent implements OnInit {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       setTimeout(() => {
         console.log('branchesss from map 2', this.branches);
-        this.geoCoordinateY = this.branches[0].coords.lat;
-        this.geoCoordinateX = this.branches[0].coords.lng;
+        if (this.branches.length > 0) {
+          this.geoCoordinateY = this.branches[0].coords.lat;
+          this.geoCoordinateX = this.branches[0].coords.lng;
+        }
         if (this.mapBranches.hasLocationPermission) {
           this.hasAccessToMyLocation = true;
           const point = this.mapBranches.position;
@@ -87,8 +89,7 @@ export class MapComponent implements OnInit {
 
   showSelectedMarkerOnBranchList(id, indexNoBankat) {
     this.branchDataServices.indexNoBankat = indexNoBankat;
-    console.log('branchid',id)
-    this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
+      this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 
   getNewCenterOfCircle(newCoords) {
