@@ -124,6 +124,7 @@ export class BranchDataService {
       lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY,
       lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX
     };
+    const cityName = data.geographicAddress[0].cityName;
     const branchData = {
 
       branchNum: data.branchNumber,
@@ -137,6 +138,7 @@ export class BranchDataService {
       branchData.distanceInKm, branchData.openAndCloseHours);
     return {
       coords: coords,
+      city: cityName,
       isBankat: isBankat,
       branchSummarize: branchSummarize,
       branchService: branchData.branchService,
@@ -165,7 +167,7 @@ export class BranchDataService {
       const branchFetched = this.createSingleBranch(obj);
       branchNewArray.push(new BranchObj(branchFetched.coords, branchFetched.isBankat, branchFetched.branchSummarize,
         branchFetched.branchService, branchFetched.fax, branchFetched.phone, branchFetched.branchManagerName, branchFetched.comment,
-        branchFetched.servicesType, branchFetched.isHovering, branchFetched.indexForDisplay));
+        branchFetched.servicesType, branchFetched.isHovering, branchFetched.indexForDisplay, branchFetched.city));
     });
     return branchNewArray;
   }

@@ -1,21 +1,22 @@
 {{branches.length}}
+<!-- SEARCH IN AREA BUTTON. DISPLAY ONLY WHEN DRAG THE MAP MORE THEN 3KM FROM CURRENT LOCATION -->
 <button
-  *ngIf="isShowCircle && (this.branches.length > 1 || !this.mapBranches.hasLocationPermission)"
+  *ngIf="isShowCircle && !showSingleDisplay"
   (click)="searchOnArea()"
   class="search-in-area"
   id="Map-Search"
   type="button">
   חפש באזור זה
 </button>
+
 <agm-map
   dir="ltr"
-  #agmMap
-  [fitBounds]="(this.mapBranches.hasLocationPermission && this.branches.length > 1) || !this.mapBranches.isDefaultFilter ? true : false"
-  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom"
+  [fitBounds]="this.mapBranches.hasLocationPermission ? true : false"
+  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="showSingleDisplay && this.mapBranches.hasLocationPermission ? 2 : 11"
   [draggable]="true"
   (centerChange)="showCircle($event)">
-  <!--  [latitude]="geoCoordinateY" [longitude]="geoCoordinateX" [zoom]="zoom" (mapClick)="grabCoords($event)" -->
 
+<!--  AGM MARKER FOR MY LOCATION -->
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
       [latitude]="geoCoordinateY"
@@ -23,14 +24,15 @@
       [iconUrl]="myLocationIcon">
     </agm-marker>
   </ng-container>
-  <!--  ALL BRANCHES FROM HOME COMP'-->
+
+  <!--  ALL BRANCHES FROM HOME COMP'. DISPLAY ALL THE MARKERS. SNAZZY INFO WINDOW CLOSE-->
   <div *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
       (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
-      [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
+      [agmFitBounds]="true"
       [latitude]="branchPoint.coords.lat"
       [longitude]="branchPoint.coords.lng"
       [visible]="true"
@@ -42,7 +44,7 @@
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: showSingleDisplay ? '1' : branchPoint.indexNoBankat + '',
+      text: branchPoint.indexNoBankat + '',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',
@@ -65,13 +67,14 @@
     </agm-marker>
   </ng-container>
   </div>
-single branch display: THE SELECTED BRANCH
+
+<!-- SINGLE BRANCH DISPLAY: THE SELECTED BRANCH. ONLY ONE MARKER IS SHOWN. SNAZZY INFO WINDOW OPEN -->
   <ng-container *ngIf="showSingleDisplay">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum)"
       (mouseOver)="singleBranchDisplay.isHovering = true"
       (mouseOut)="singleBranchDisplay.isHovering = false"
-      [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
+      [agmFitBounds]="true"
       [latitude]="singleBranchDisplay.coords.lat"
       [longitude]="singleBranchDisplay.coords.lng"
       [visible]="singleBranchDisplay.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"
@@ -83,7 +86,7 @@ single branch display: THE SELECTED BRANCH
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: showSingleDisplay ? '1' : singleBranchDisplay.indexNoBankat + '',
+      text: 1 + '',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',
@@ -95,7 +98,7 @@ single branch display: THE SELECTED BRANCH
         [shadow]="true"
         [latitude]="singleBranchDisplay.coords.lat"
         [longitude]="singleBranchDisplay.coords.lng"
-        [isOpen]="singleBranchDisplay.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"
+        [isOpen]="singleBranchDisplay.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch || singleBranchDisplay.city == activeRoute.snapshot.queryParams.city"
         [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
@@ -105,6 +108,8 @@ single branch display: THE SELECTED BRANCH
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
+
+<!--  GET THE CENTER OF THE NEW VIEW AFTER DRAGGING THE MAP. DRAW CIRCLE. SHOW THE POINTS ON THIS CIRCLE -->
   <agm-circle [radius]="350"
               [visible]="false"
               [fillColor]="'#DF1A1E'"
@@ -116,10 +121,4 @@ single branch display: THE SELECTED BRANCH
               [draggable]="true"
               (dragEnd)="getNewCenterOfCircle($event)">
   </agm-circle>
-<!--
-              [strokeColor]="'#DF1A1E'"
-              [strokeOpacity]="0.8"
-              [strokePosition]="'outside'"
-              [strokeWeight]="15"
--->
 </agm-map>

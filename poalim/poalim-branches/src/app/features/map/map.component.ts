@@ -8,8 +8,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
-import {AgmMap} from '@agm/core';
-
 
 @Component({
   selector: 'app-map',
@@ -23,7 +21,7 @@ export class MapComponent implements OnInit {
   geoCoordinateX = 34.8236;
   // latAfterCenterChanged: number;
   // lngAfterCenterChanged: number;
-  zoom = 12;
+  zoom = 11;
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
@@ -42,7 +40,7 @@ export class MapComponent implements OnInit {
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
   showSingleDisplay = false;
-  // @ViewChild('agmMap') agmMap: AgmMap;
+  isBound = false;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
@@ -54,16 +52,14 @@ export class MapComponent implements OnInit {
     this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
       this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
       this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
-      console.log('999999999', this.singleBranchDisplay);
-      console.log('444444444', this.showSingleDisplay);
+      console.log('single branch[FROM-EVENT]', this.singleBranchDisplay);
+      console.log('showSingleDisplay[FROM-EVENT] ? ', this.showSingleDisplay);
     }, true);
-    // setTimeout(() => { this.agmMap.triggerResize(); }, 500);
     this.showBranchesBasedOnLocationAccess();
     this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
     this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
-    // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
-    //   this.showBranchesBasedOnLocationAccess();
-    // }, true);
+    console.log('single branch[ON-INIT]', this.singleBranchDisplay);
+    console.log('showSingleDisplay[ON-INIT] ? ', this.showSingleDisplay);
   }
 
   showBranchesBasedOnLocationAccess() {
@@ -93,10 +89,6 @@ export class MapComponent implements OnInit {
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 
-  // get isSingleMarker() {
-  //   return this.branchDataServices.isSingleDisplay;
-  // }
-
   getNewCenterOfCircle(newCoords) {
     this.geoCoordinateY = newCoords.lat;
     this.geoCoordinateX = newCoords.lng;
@@ -111,7 +103,6 @@ export class MapComponent implements OnInit {
          this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res),
            this.filterService.activeFilters);
          console.log('branches-after', this.branches);
-         // console.log('filterService---activeFilters', this.filterService.activeFilters);
       });
   }
 

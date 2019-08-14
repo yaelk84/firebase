@@ -7,7 +7,7 @@ export class BranchObj {
 
 constructor(
             private coords:any,
-            private  isBankat: boolean,
+            private isBankat: boolean,
             public  branchSummarize: BranchSummarize,
             private  branchService: [],
             private  fax: string,
@@ -16,7 +16,8 @@ constructor(
             private comment: string,
             private  serviceType: [],
             private isHovering: boolean,
-             private indexForDisplay: string
+            private indexForDisplay: string,
+            private city: string
 
 
 ) {
