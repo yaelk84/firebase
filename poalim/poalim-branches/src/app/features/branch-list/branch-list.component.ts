@@ -245,7 +245,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
       this.showNoLocation = true;
-    });
+    },true);
 
 
   }
@@ -262,14 +262,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-/*    setTimeout(() => {
-      if (this.deviceService.isMobile()) {
-        if (!isNullOrUndefined(this.componentRef)) {
-          this.componentRef.directiveRef.ps().destroy();
-             }
-
-      }
-    }, 200);*/
+//
     this.callQueryParam();
     this.intervalTimer = setInterval(() => {
       this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
