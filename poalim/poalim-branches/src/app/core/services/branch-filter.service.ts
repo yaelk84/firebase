@@ -96,7 +96,7 @@ export class BranchFilterService {
           }
         }, (error: any) => {
           observer.next(false);
-
+          console.log('emit')
           this.events.emit(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP);
           const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.defaultFilter(this.app.branches));
           this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.activeFilters);

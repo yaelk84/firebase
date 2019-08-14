@@ -57,7 +57,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
-
+debugger
     this.showSelectedBranch = false;
     const UncheckLocationFilter = () => {
 
@@ -133,6 +133,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const getSingleBranch = () => {
+      debugger
       let branchSelectedDisplay: any;
       const branchFromList = this.appService.branches;
       branchSelectedDisplay = branchFromList.filter((value) => {
@@ -245,7 +246,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
       this.showNoLocation = true;
-    });
+    },true);
 
 
   }
@@ -262,14 +263,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-/*    setTimeout(() => {
-      if (this.deviceService.isMobile()) {
-        if (!isNullOrUndefined(this.componentRef)) {
-          this.componentRef.directiveRef.ps().destroy();
-             }
-
-      }
-    }, 200);*/
+//
     this.callQueryParam();
     this.intervalTimer = setInterval(() => {
       this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);

@@ -1,14 +1,8 @@
 @import "../../../assets/scss/style";
 
-
-#branch_id {
-
-}
-.branch-box-wrapper{
-
-
-
-
+/deep/
+.rc-popup-wrapper .modal-dialog .modal-content .close.pointer{
+  left: 15px;
 
 }
 .no-location{
@@ -179,12 +173,15 @@ font-size: 20px;
     }
 
   }
-    .hide-in-mobile{
+  .hide-in-mobile{
       display: none;
     }
   .list-wrapper{
     width: 100%;
     height: auto;
+    .popover-wrapper.filter-days {
+      width: 100%;
+    }
   }
   .branch-list-header{
     flex-direction: column;

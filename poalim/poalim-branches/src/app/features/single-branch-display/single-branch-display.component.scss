@@ -274,6 +274,23 @@
 
 
 @media (max-width: $mobile_view) {
+  .single-branch-display{
+    .selected-branch-data{
+      .line-data {
+        &.copy {
+          &:hover {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+
+  }
+
+  .copy-icon{
+    display: none;
+  }
 .row-btn{
   margin-top: 30px;
   .row{
