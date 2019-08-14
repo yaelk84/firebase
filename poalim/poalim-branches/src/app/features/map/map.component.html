@@ -1,4 +1,4 @@
-{{branches.length}}
+
 <button
   *ngIf="isShowCircle && (this.branches.length > 1 || !this.mapBranches.hasLocationPermission)"
   (click)="searchOnArea()"
@@ -27,7 +27,7 @@
   <div *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
-      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
+      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum,branchPoint.indexNoBankat)"
       (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
       [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
@@ -83,7 +83,7 @@ single branch display: THE SELECTED BRANCH
       fontSize: '18px',
       fontWeight: 'normal'
     } : {
-      text: showSingleDisplay ? '1' : singleBranchDisplay.indexNoBankat + '',
+      text: singleBranchDisplay.indexForDisplay ? (singleBranchDisplay.indexForDisplay) : '1',
       color: 'white',
       fontFamily: '',
       fontSize: '16px',

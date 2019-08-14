@@ -57,7 +57,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   private branchData: any[];
 
   private buildFilterByQuery(queryParams) {
-
+debugger
     this.showSelectedBranch = false;
     const UncheckLocationFilter = () => {
 
@@ -133,6 +133,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const getSingleBranch = () => {
+      debugger
       let branchSelectedDisplay: any;
       const branchFromList = this.appService.branches;
       branchSelectedDisplay = branchFromList.filter((value) => {

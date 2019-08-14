@@ -146,7 +146,7 @@ export class BranchDataService {
       comment: data.comment,
       servicesType: this.onlyServicesTypeArray(branchData.branchService),
       isHovering: false,
-      indexForDisplay: !isNullOrUndefined(data.indexForDisplay) ? data.indexForDisplay : 0,
+      indexForDisplay: !isNullOrUndefined(data.indexForDisplay) ? String(data.indexForDisplay) : '0',
 
     };
   }

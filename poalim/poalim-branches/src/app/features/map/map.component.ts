@@ -89,7 +89,9 @@ export class MapComponent implements OnInit {
     }, true);
   }
 
-  showSelectedMarkerOnBranchList(id) {
+  showSelectedMarkerOnBranchList(id, indexNoBankat) {
+    this.branchDataServices.indexNoBankat = indexNoBankat;
+    console.log('branchid',id)
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 

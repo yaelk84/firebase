@@ -1,4 +1,22 @@
-
+.close-btn {
+  position: absolute;
+  #{$default-end}: 1rem;
+  top: 1rem;
+  border: none;
+  background: none;
+}
+.close-btn:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "\2573"; /* use the hex value here... */
+  font-size: 10px;
+  color: black;
+  line-height: 1;
+  text-align: center;
+}
 lib-rc-switcher{
 
   .rc-switcher-wrapper {

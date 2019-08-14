@@ -24,6 +24,31 @@ agm-map {
   /deep/.gm-style:not(agm-marker) {
     font: inherit;
   }
+
+  /deep/.name-branch,
+  /deep/.num-branch {
+    font-size: 16px;
+  }
+
+  /deep/.name-branch {
+    font-weight: bold;
+    max-width: 120px;
+  }
+
+  /deep/.address span,
+  /ddep/.location {
+    font-size: 15px;
+  }
+
+  /deep/.branch-hours {
+    // the text will be changed from "פתוח ביום רביעי" to "פתוח ביום ד" and then the font fits to the window which open when click on branch marker
+    font-size: 16px !important;
+  }
+
+  /deep/.open-today span span {
+    font-size: 14px;
+    font-weight: bold;
+  }
 }
 
   /deep/.si-content-wrapper {
@@ -65,30 +90,7 @@ agm-map {
   width: 300px;
 }
 
-/deep/.name-branch,
-/deep/.num-branch {
-  font-size: 16px;
-}
 
-/deep/.name-branch {
-  font-weight: bold;
-  max-width: 120px;
-}
-
-/deep/.address span,
-/ddep/.location {
-  font-size: 15px;
-}
-
-/deep/.branch-hours {
-  // the text will be changed from "פתוח ביום רביעי" to "פתוח ביום ד" and then the font fits to the window which open when click on branch marker
-  font-size: 16px !important;
-}
-
-/deep/.open-today span span {
-  font-size: 14px;
-  font-weight: bold;
-}
 
 
 
