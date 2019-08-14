@@ -59,6 +59,8 @@ export class MapComponent implements OnInit {
     }, true);
     // setTimeout(() => { this.agmMap.triggerResize(); }, 500);
     this.showBranchesBasedOnLocationAccess();
+    this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
+    this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
     // this.events.on(CONSTANTS.EVENTS.UPDATE_BRANCH_FROM_MAP, () => {
     //   this.showBranchesBasedOnLocationAccess();
     // }, true);
