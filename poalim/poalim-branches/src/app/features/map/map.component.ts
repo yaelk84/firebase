@@ -58,21 +58,24 @@ export class MapComponent implements OnInit {
 
   showBranchesBasedOnLocationAccess() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
-      console.log('branchesss from map 2', this.branches);
-      this.geoCoordinateY = this.branches[0].coords.lat;
-      this.geoCoordinateX = this.branches[0].coords.lng;
-      if (this.mapBranches.hasLocationPermission) {
-        this.hasAccessToMyLocation = true;
-        const point = this.mapBranches.position;
-        this.geoCoordinateY = (point as GeoLocationObject).lat;
-        this.geoCoordinateX = (point as GeoLocationObject).lng;
-        this.currentCenter = (point as GeoLocationObject);
-        console.log('center with location', this.currentCenter);
-      } else {
-        this.hasAccessToMyLocation = false;
-        this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
-        console.log('center with !NO! location', this.currentCenter);
-      }
+      setTimeout(() => {
+        console.log('branchesss from map 2', this.branches);
+        this.geoCoordinateY = this.branches[0].coords.lat;
+        this.geoCoordinateX = this.branches[0].coords.lng;
+        if (this.mapBranches.hasLocationPermission) {
+          this.hasAccessToMyLocation = true;
+          const point = this.mapBranches.position;
+          this.geoCoordinateY = (point as GeoLocationObject).lat;
+          this.geoCoordinateX = (point as GeoLocationObject).lng;
+          this.currentCenter = (point as GeoLocationObject);
+          console.log('center with location', this.currentCenter);
+        } else {
+          this.hasAccessToMyLocation = false;
+          this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
+          console.log('center with !NO! location', this.currentCenter);
+        }
+      }, 0);
+
     }, true);
   }
 
@@ -97,8 +100,9 @@ export class MapComponent implements OnInit {
     }, this.appService.branches)
       .subscribe((res) => {
          console.log('reeeees', res);
-         this.branches = this.branchDataServices.createDataArray(res);
-         this.branchDataServices.initBranchesAndApplyFilters(this.branches, this.filterService.activeFilters);
+         // this.branches = this.branchDataServices.createDataArray(res);
+         this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res),
+           this.filterService.activeFilters);
          console.log('branches-after', this.branches);
          // console.log('filterService---activeFilters', this.filterService.activeFilters);
       });
