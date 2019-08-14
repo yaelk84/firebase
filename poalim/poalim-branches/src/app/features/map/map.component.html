@@ -24,7 +24,7 @@
     </agm-marker>
   </ng-container>
   <!--  ALL BRANCHES FROM HOME COMP'-->
-  <ng-container *ngIf="!showSingleDisplay">
+  <div *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum)"
@@ -33,7 +33,7 @@
       [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
       [latitude]="branchPoint.coords.lat"
       [longitude]="branchPoint.coords.lng"
-      [visible]="branchPoint.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch || !showSingleDisplay"
+      [visible]="true"
       [iconUrl]="branchPoint.isBankat || branchPoint.isHovering ? bankatAndHoverIcon : branchIcon"
       [label]="branchPoint.isBankat ? {
       text: '&#8362;',
@@ -54,7 +54,7 @@
         [shadow]="true"
         [latitude]="branchPoint.coords.lat"
         [longitude]="branchPoint.coords.lng"
-        [isOpen]="branches.length === 1"
+        [isOpen]="false"
         [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
@@ -64,13 +64,18 @@
       </agm-snazzy-info-window>
     </agm-marker>
   </ng-container>
-  </ng-container>
+  </div>
 single branch display: THE SELECTED BRANCH
   <ng-container *ngIf="showSingleDisplay">
     <agm-marker
+      (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum)"
+      (mouseOver)="singleBranchDisplay.isHovering = true"
+      (mouseOut)="singleBranchDisplay.isHovering = false"
       [agmFitBounds]="this.mapBranches.hasLocationPermission ? true : false"
       [latitude]="singleBranchDisplay.coords.lat"
       [longitude]="singleBranchDisplay.coords.lng"
+      [visible]="singleBranchDisplay.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"
+      [iconUrl]="singleBranchDisplay.isBankat || singleBranchDisplay.isHovering ? bankatAndHoverIcon : branchIcon"
       [label]="singleBranchDisplay.isBankat ? {
       text: '&#8362;',
       color: 'white',
@@ -90,7 +95,7 @@ single branch display: THE SELECTED BRANCH
         [shadow]="true"
         [latitude]="singleBranchDisplay.coords.lat"
         [longitude]="singleBranchDisplay.coords.lng"
-        [isOpen]="branches.length === 1"
+        [isOpen]="singleBranchDisplay.branchSummarize.branchNum == activeRoute.snapshot.queryParams.branch"
         [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">

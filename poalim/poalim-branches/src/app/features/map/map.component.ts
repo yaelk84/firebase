@@ -18,7 +18,7 @@ import {AgmMap} from '@agm/core';
 })
 export class MapComponent implements OnInit {
   @Input() branches: any;
-  singleBranchDisplay: object;
+  singleBranchDisplay: any;
   geoCoordinateY = 32.09472;
   geoCoordinateX = 34.8236;
   // latAfterCenterChanged: number;
@@ -55,6 +55,7 @@ export class MapComponent implements OnInit {
       this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
       this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
       console.log('999999999', this.singleBranchDisplay);
+      console.log('444444444', this.showSingleDisplay);
     }, true);
     // setTimeout(() => { this.agmMap.triggerResize(); }, 500);
     this.showBranchesBasedOnLocationAccess();
@@ -90,9 +91,9 @@ export class MapComponent implements OnInit {
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
   }
 
-  get isSingleMarker() {
-    return this.branchDataServices.isSingleDisplay;
-  }
+  // get isSingleMarker() {
+  //   return this.branchDataServices.isSingleDisplay;
+  // }
 
   getNewCenterOfCircle(newCoords) {
     this.geoCoordinateY = newCoords.lat;

@@ -112,7 +112,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       } else {
         this.branchDataServices.singleBranchToDisplay = branchSelectedDisplay;
         this.branchSelectedDisplay = branchSelectedDisplay;
-        this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
+
 
         this.showSelectedBranch = true;
       }
@@ -178,6 +178,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     }
     this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
     this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
+    this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
   }
 
   private callQueryParam() {
