@@ -123,13 +123,12 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         return;
       } else {
         this.branchSelectedDisplay = branchSelectedDisplay;
-        console.log('single');
-        this.showSelectedBranch = true;
+              this.showSelectedBranch = true;
       }
     };
     const singleCityResult = (branch) => {
       this.branchSelectedDisplay = branch;
-      console.log('single');
+
       this.showSelectedBranch = true;
 
     };
@@ -251,7 +250,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     // this.city = this.route.snapshot.paramMap.get("city");
     this.addEvents();
     this.isMobile = this.deviceService.isMobile();

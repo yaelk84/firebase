@@ -5,27 +5,38 @@
   <div class="single-branch-display" >
     <div class="part-wrapper">
       <div class="selected-branch-header">
-        <div class="branch-data">
-          <div class="wrapper-icon"  >
-            <div class="branch-icon" [ngClass]="{'bankat':dataBranchSelected.isBankat}">
-              <div class="icon-val" *ngIf="!dataBranchSelected.isBankat" >{{indexNoBankat}}</div>
-              <div class="icon-val" *ngIf="dataBranchSelected.isBankat"> ₪ </div>
+        <div class="col-12">
+          <div class="row">
+            <div class="branch-data">
+              <div class="wrapper-icon"  >
+                <div class="branch-icon" [ngClass]="{'bankat':dataBranchSelected.isBankat}">
+                  <div class="icon-val" *ngIf="!dataBranchSelected.isBankat" >{{indexNoBankat}}</div>
+                  <div class="icon-val" *ngIf="dataBranchSelected.isBankat"> ₪ </div>
+
+                </div>
+              </div>
+              <app-branch-box-summarize  [isSingleDisplay]="true" [branchDataSummarize]="dataBranchSelected.branchSummarize"></app-branch-box-summarize>
 
             </div>
+            <div class="share">
+              <div class="btn" (click)="openShareBranchPopup = true"></div>
+              <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
+                <app-share-branch-popup
+                  [branchName]="dataBranchSelected.branchSummarize.branchName"
+                  [branchNum]="dataBranchSelected.branchSummarize.branchNum">
+                </app-share-branch-popup>
+              </lib-rc-popup-wrapper>
+            </div>
           </div>
-          <app-branch-box-summarize  [isSingleDisplay]="true" [branchDataSummarize]="dataBranchSelected.branchSummarize"></app-branch-box-summarize>
         </div>
 
-        <div class="share">
-          <div class="btn" (click)="openShareBranchPopup = true"></div>
-          <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
-            <app-share-branch-popup
-              [branchName]="dataBranchSelected.branchSummarize.branchName"
-              [branchNum]="dataBranchSelected.branchSummarize.branchNum">
-            </app-share-branch-popup>
-          </lib-rc-popup-wrapper>
-        </div>
+              <div *ngIf="isMobile" class="col-12 row-btn">
+                <div class="row">
+                  <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
+                  <div class="btn">{{'navigate' | rcTranslate}}</div>
+                </div>
 
+        </div>
       </div>
     </div>
     <div class="part-wrapper services">
@@ -38,7 +49,7 @@
           </div>
           <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
         </div>
-        <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
+        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
       </div>
 
     </div>
