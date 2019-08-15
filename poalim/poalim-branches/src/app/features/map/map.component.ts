@@ -125,8 +125,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   searchOnArea() {
+    this.branchDataServices.citySelected = '';
+    this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
       this.geoCoordinateY = this.findHereCenter.lat;
       this.geoCoordinateX = this.findHereCenter.lng;
+
       this.getNewCenterOfCircle({lat: this.geoCoordinateY, lng: this.geoCoordinateX});
   }
 

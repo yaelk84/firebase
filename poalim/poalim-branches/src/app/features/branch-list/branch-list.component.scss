@@ -6,7 +6,7 @@
 
 }
 .no-location{
-  left:15px;
+  left:30px;
 top:37px;
   box-shadow: 0 14px 34px 1px rgba(10, 41, 76, 0.16);
   background-color: $white;
@@ -179,6 +179,7 @@ font-size: 20px;
   .list-wrapper{
     width: 100%;
     height: auto;
+    margin: 0;
     .popover-wrapper.filter-days {
       width: 100%;
     }
