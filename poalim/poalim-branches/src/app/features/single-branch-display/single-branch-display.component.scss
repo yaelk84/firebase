@@ -1,8 +1,25 @@
 @import "../../../assets/scss/style";
-
 .single-scroll {
   height: 427px;
   position: relative;
+}
+
+span.tooltip[title] {position: relative;}
+
+span.tooltip:hover:after {
+  content: attr(data-title);
+  position: absolute;
+  right: -35px;
+  top: 2.5em;
+  width: 7em;
+  padding: 0.15em;
+  background: white;
+  color: black;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: center;
+  border: none;
 }
 
 .single-branch-display {
@@ -247,7 +264,21 @@
   }
 }
 
-// popup
+// report-problem-popup
+
+.report-problem-popup-style {
+  /deep/.close {
+    width: 100%;
+    text-align: left;
+    padding: 0 20px;
+    margin-top: -10px;
+    outline: none;
+    font-weight: normal;
+    font-size: 40px;
+  }
+}
+
+// share-branch-popup
 .rc-popup-wrapper {
   /deep/.modal-content {
     width: 750px;

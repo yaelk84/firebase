@@ -64,15 +64,14 @@
           <span
             class="value aaa"
             data-toggle="tooltip"
-            #tooltip title="wwwwwwwwwwww"
-            #phone>{{dataBranchSelected.phone}} </span>
-          <span class="copy-icon"><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClipboard.png"></span>
+            #phone>{{dataBranchSelected.phone}}</span>
+          <span class="copy-icon tooltip" data-title="העתק מספר"><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClipboard.png"></span>
         </div>
         <div class="line-data copy" *ngIf="dataBranchSelected.fax" (click)="copyToClipboard(dataBranchSelected.fax)">
           <span class="icon fax-icon"></span>
           <span class="label">{{'fax'| rcTranslate}}</span>
           <span class="value">{{dataBranchSelected.fax}}</span>
-          <span class="copy-icon"  title="Tooltip on top" ><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClipboard.png"></span>
+          <span class="copy-icon tooltip"  data-title="העתק מספר" ><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClipboard.png"></span>
         </div>
         <div class="line-data">
           <span class="icon manager-icon" ></span>
@@ -108,6 +107,6 @@
   <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
 </div>
 
-<lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'">
+<lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'" class="report-problem-popup-style">
   <app-report-problem-popup></app-report-problem-popup>
 </lib-rc-popup-wrapper>

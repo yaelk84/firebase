@@ -7,7 +7,7 @@
 
   .image-wrapper {
     margin-bottom: 1rem;
-    transition: all ease .4s;
+    transition: all ease 0.7s;
     overflow: hidden;
     height: auto;
     max-height: 1000px;
@@ -37,7 +37,7 @@
       letter-spacing: normal;
       text-align: center;
       color: $greyish-brown;
-      transition: all ease .4s;
+      transition: all ease 0.7s;
       overflow: hidden;
       height: auto;
       max-height: 600px;
@@ -52,7 +52,7 @@
       margin-bottom: 1rem;
       font-size: 20px;
       color: $greyish-brown;
-      transition: all ease .4s;
+      transition: all ease 0.7s;
       overflow: hidden;
       height: auto;
       max-height: 600px;
@@ -67,15 +67,16 @@
       .outlined-btn {
         width: 177px;
         margin-left: 1rem;
+        outline: none;
       }
     }
   }
 
   .report-service-wrapper {
     margin-top: 2rem;
-    transition: all ease .4s;
     overflow: hidden;
     height: auto;
+    transition: all ease 0.7s;
     max-height: 1000px;
     display: flex;
     justify-content: center;
@@ -122,4 +123,5 @@
   .report-service-wrapper.shrink {
     max-height: 0;
   }
+
 }

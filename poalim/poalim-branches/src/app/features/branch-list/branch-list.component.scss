@@ -90,7 +90,7 @@ top:37px;
     position: relative;
     cursor: pointer;
     display: flex;
-font-size: 20px;
+    font-size: 20px;
     align-items: center;
     line-height: 20px;
     height: 27px;
@@ -170,6 +170,7 @@ font-size: 20px;
 
     .branch-box-wrapper{
       direction: rtl;
+      overflow-x: hidden;
     }
 
   }

@@ -269,7 +269,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 //
     this.callQueryParam();
     if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
-      debugger;
       this.showNoLocation = true;
     }
     this.intervalTimer = setInterval(() => {

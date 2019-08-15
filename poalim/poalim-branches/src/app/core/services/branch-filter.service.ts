@@ -76,7 +76,6 @@ export class BranchFilterService {
 
   /**  user add location by filter click */
   handleAddLocation() {
-    debugger
     const addLocation = new Observable((observer) => {
       this.branchDataServices.citySelected = '';
       this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
