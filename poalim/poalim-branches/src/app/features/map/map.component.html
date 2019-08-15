@@ -129,10 +129,14 @@
               (dragEnd)="getNewCenterOfCircle($event)">
   </agm-circle>
 </agm-map>
-branches {{branches.length}}
+branches--- {{branches.length}}
 <br>
 <!--single {{singleBranchDisplay.city}}-->
-{{geoCoordinateY}} {{geoCoordinateX}}
+lat--- {{geoCoordinateY}}
 <br>
-city {{activeRoute.snapshot.queryParams.city}}
-showSingleDisplay {{showSingleDisplay}}
+lng--- {{geoCoordinateX}}
+<br>
+city--- {{activeRoute.snapshot.queryParams.city}}
+showSingleDisplay--- {{showSingleDisplay}}
+<br>
+button search here--- {{isShowCircle}}

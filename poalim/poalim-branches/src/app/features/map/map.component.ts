@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import {ChangeDetectorRef, Component, Input, AfterViewInit, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
@@ -9,6 +10,7 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {AgmMap} from '@agm/core';
+import {google} from "@agm/core/services/google-maps-types";
 
 
 @Component({
@@ -69,8 +71,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         console.log('branchesss from map 2', this.branches);
         if (this.branches.length > 0) {
-          this.geoCoordinateY = this.branches[0].coords.lat;
-          this.geoCoordinateX = this.branches[0].coords.lng;
+          this.geoCoordinateY = this.branches[1].coords.lat;
+          this.geoCoordinateX = this.branches[1].coords.lng;
         }
         if (this.mapBranches.hasLocationPermission) {
           this.hasAccessToMyLocation = true;
