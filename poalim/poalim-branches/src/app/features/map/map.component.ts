@@ -10,7 +10,6 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {AgmMap} from '@agm/core';
-import {google} from "@agm/core/services/google-maps-types";
 
 
 @Component({
@@ -21,8 +20,8 @@ import {google} from "@agm/core/services/google-maps-types";
 export class MapComponent implements OnInit, AfterViewInit {
   @Input() branches: any;
   singleBranchDisplay: any;
-  geoCoordinateY = 32.09472;
-  geoCoordinateX = 34.8236;
+  latCoordinate = 34.8236;
+  lngCoordinate = 32.09472;
   // latAfterCenterChanged: number;
   // lngAfterCenterChanged: number;
   // zoom = 11;
@@ -44,6 +43,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
   showSingleDisplay = false;
+  centerChangeCbTimeout = null;
+  isZoomChange = false;
   @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
@@ -52,18 +53,13 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log('branchesss from map comp', this.branches);
     this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
       this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
       this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
-      console.log('single branch[FROM-EVENT]', this.singleBranchDisplay);
-      console.log('showSingleDisplay[FROM-EVENT] ? ', this.showSingleDisplay);
     }, true);
     this.showBranchesBasedOnLocationAccess();
     this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
     this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
-    console.log('single branch[ON-INIT]', this.singleBranchDisplay);
-    console.log('showSingleDisplay[ON-INIT] ? ', this.showSingleDisplay);
   }
 
   showBranchesBasedOnLocationAccess() {
@@ -71,19 +67,19 @@ export class MapComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         console.log('branchesss from map 2', this.branches);
         if (this.branches.length > 0) {
-          this.geoCoordinateY = this.branches[1].coords.lat;
-          this.geoCoordinateX = this.branches[1].coords.lng;
+          this.latCoordinate = this.branches[1].coords.lat;
+          this.lngCoordinate = this.branches[1].coords.lng;
         }
         if (this.mapBranches.hasLocationPermission) {
           this.hasAccessToMyLocation = true;
           const point = this.mapBranches.position;
-          this.geoCoordinateY = (point as GeoLocationObject).lat;
-          this.geoCoordinateX = (point as GeoLocationObject).lng;
+          this.latCoordinate = (point as GeoLocationObject).lat;
+          this.lngCoordinate = (point as GeoLocationObject).lng;
           this.currentCenter = (point as GeoLocationObject);
           console.log('center with location', this.currentCenter);
         } else {
           this.hasAccessToMyLocation = false;
-          this.currentCenter = {lat: this.geoCoordinateY, lng: this.geoCoordinateX};
+          this.currentCenter = {lat: this.latCoordinate, lng: this.lngCoordinate};
           console.log('center with !NO! location', this.currentCenter);
         }
       }, 0);
@@ -97,12 +93,12 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   getNewCenterOfCircle(newCoords) {
-    this.geoCoordinateY = newCoords.lat;
-    this.geoCoordinateX = newCoords.lng;
-    console.log('~~~~triggered when center change~~~~~', this.geoCoordinateY, this.geoCoordinateX);
+    this.latCoordinate = newCoords.lat;
+    this.lngCoordinate = newCoords.lng;
+    console.log('~~~~triggered when center change~~~~~', this.latCoordinate, this.lngCoordinate);
     this.mapBranches.myLocationFilter({
-      lat: this.geoCoordinateY,
-      lng: this.geoCoordinateX
+      lat: this.latCoordinate,
+      lng: this.lngCoordinate
     }, this.appService.branches)
       .subscribe((res) => {
          console.log('reeeees', res);
@@ -114,26 +110,32 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   showCircle(newCoordsCenter) {
-    this.findHereCenter = newCoordsCenter;
-    this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
+    this.centerChangeCbTimeout = setTimeout(() => {
+      this.findHereCenter = newCoordsCenter;
+      this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
         if (distance > 3) {
-          // console.log('distance from prev center', distance);
+          console.log('distance from prev center', distance);
           return this.isShowCircle = true;
         }
       });
-    this.isShowCircle = false;
+      this.isShowCircle = false;
+    }, 20);
   }
 
   searchOnArea() {
     this.branchDataServices.citySelected = '';
     this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
-      this.geoCoordinateY = this.findHereCenter.lat;
-      this.geoCoordinateX = this.findHereCenter.lng;
+      this.latCoordinate = this.findHereCenter.lat;
+      this.lngCoordinate = this.findHereCenter.lng;
 
-      this.getNewCenterOfCircle({lat: this.geoCoordinateY, lng: this.geoCoordinateX});
+      this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
   }
 
   ngAfterViewInit() {
     setTimeout(() => { this.agmMap.triggerResize(); }, 500);
+  }
+
+  onZoomChange(event) {
+    clearTimeout(this.centerChangeCbTimeout);
   }
 }

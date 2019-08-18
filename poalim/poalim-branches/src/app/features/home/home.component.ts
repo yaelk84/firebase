@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   intervalTimer: any;
   location: any;
   formControl = new FormControl();
+  initMessages: {} | any;
 
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService) {
   }
@@ -36,6 +37,8 @@ export class HomeComponent implements OnInit, OnDestroy {
    * **/
   getServicers() {
     this.appService.init().subscribe((response: any) => {
+      // this.initMessages = response.uniqueInit;
+      // console.log('uniqueInit', this.initMessages.byBranchMessages[0].messageIndependenceDay);
       this.hours.updateTime = response.time;
       this.branches = response.branches;
       const cities = response.branches.map(obj => {

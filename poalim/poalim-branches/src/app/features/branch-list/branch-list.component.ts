@@ -29,6 +29,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   @Input() branchNewArrayFilter: any;
   @Input() branchResultTitle: any;
   @Input() hideListInMoBile: boolean;
+  // @Input() initGeneralMessages: any;
+
 
   public config: PerfectScrollbarConfigInterface = {};
   private city: string;
@@ -51,7 +53,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterIcon = this.filterWithNoHours;
 
 
-  constructor(private branchDataServices: BranchDataService, private apiService: ApiService, private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService, private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router, private hours: HoursService, private appService: AppService, private deviceService: DeviceService) {
+  constructor(private branchDataServices: BranchDataService, private apiService: ApiService,
+              private branchFilterService: BranchFilterService, private pipe: FilterBranchPipe, private events: RcEventBusService,
+              private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router,
+              private hours: HoursService, private appService: AppService, private deviceService: DeviceService) {
+  }
+  get generalMessage() {
+    return this.appService.initGeneralMessages[0].messageIndependenceDay;
   }
 
   private branchData: any[];
@@ -272,11 +280,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.showNoLocation = true;
     }
     this.intervalTimer = setInterval(() => {
-      this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+      this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches),
+        this.branchFilterService.activeFilters);
     }, 5000 * 60);
-
-
   }
-
-
 }

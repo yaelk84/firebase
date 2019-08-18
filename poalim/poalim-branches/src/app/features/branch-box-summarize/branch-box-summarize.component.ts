@@ -16,6 +16,7 @@ export class BranchBoxSummarizeComponent implements OnInit {
   @Input() branchDataSummarize: any;
   @Input() isSingleDisplay: boolean;
   @Input()  filterByDay: boolean;
+
   closeDropDown(){
     this.openHoursDrop=false;
   }

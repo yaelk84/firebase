@@ -10,6 +10,7 @@ import {HoursService} from './hours.service';
 import {CONSTANTS} from '../../constants';
 import {FilterBranchPipe} from '../filters/branch-filter.pipe';
 import {BranchFilterService} from './branch-filter.service';
+import {MapBranchesService} from './map-branches.service';
 
 
 @Injectable({
@@ -23,7 +24,7 @@ export class BranchDataService {
   citySelected = '';
   indexNoBankat = '';
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService) {
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService, private mapBranches: MapBranchesService) {
   }
 
   branchNewArray: Array<object>;
@@ -100,7 +101,7 @@ export class BranchDataService {
   private craeteContactAddressFax(contactAddress) {
 
     const contactAddressFax = contactAddress.filter((value) => {
-      return value.contactChannelTypeCode === CONSTANTS.HAVE_FAX;
+      return value && value.contactChannelTypeCode === CONSTANTS.HAVE_FAX;
     });
     if (!contactAddressFax.length) {
       return '';
@@ -121,8 +122,8 @@ export class BranchDataService {
     const fax = this.craeteContactAddressFax(data.contactAddress);
     const comma = this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
     const coords = {
-      lat: data.geographicAddress[0].geographicCoordinate.geoCoordinateY,
-      lng: data.geographicAddress[0].geographicCoordinate.geoCoordinateX
+      lat: data.geographicAddress[0].geographicCoordinate[this.mapBranches.LAT_PARAM],
+      lng: data.geographicAddress[0].geographicCoordinate[this.mapBranches.LNG_PARAM]
     };
     const cityName = data.geographicAddress[0].cityName;
     const branchData = {

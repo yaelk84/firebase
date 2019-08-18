@@ -14,8 +14,8 @@ export class BranchBoxComponent implements OnInit {
 
   @Input() branchData: any;
   @Input() branchIndex: number;
-
   @Output() branchClick = new EventEmitter();
+
 
   selectBranch() {
     this.branchClick.emit(this.branchIndex);

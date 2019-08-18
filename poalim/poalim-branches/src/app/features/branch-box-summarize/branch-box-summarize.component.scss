@@ -9,7 +9,7 @@
 
 .branch-details {
   color: $marine-two;
-  width: 380px;
+  width: 265px;
 
   .name-and-number {
     display: inline-block;
@@ -132,7 +132,6 @@
   }
   .branch-details {
     .name-and-number {
-
       font-size: 18px;
 
     }
@@ -144,7 +143,13 @@
 
     .location {
       font-size: 16px;
-
+      margin: 5px 0 2px 0;
+      .location-icon {
+        float: right;
+        margin-right: 0;
+        margin-left: 5px;
+        margin-top: 2px;
+      }
     }
   }
 

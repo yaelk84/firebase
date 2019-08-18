@@ -21,8 +21,9 @@
 </div>
 
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
-  <div class="clearfix is-bankat" *ngIf="hours.isBankat">{{ 'alwaysOpen' | rcTranslate}}</div>
-  <div class="clearfix" *ngIf="!hours.isBankat">
+  <div class="clearfix branch-message" *ngIf="branchMessage">{{branchMessage}}</div>
+  <div class="clearfix is-bankat" *ngIf="hours.isBankat && !branchMessage">{{ 'alwaysOpen' | rcTranslate}}</div>
+  <div class="clearfix" *ngIf="!hours.isBankat && !branchMessage">
 
     <div class="clearfix" *ngIf="hours.wasChange">
       <div class="was-change">{{'changeHours'| rcTranslate}</div>

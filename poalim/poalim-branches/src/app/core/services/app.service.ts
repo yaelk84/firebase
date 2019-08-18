@@ -18,6 +18,8 @@ export class AppService {
   public appConfig;
   public cities = [];
   public branches = [];
+  public initGeneralMessages = {};
+  public initBranchMessages = {};
   public queryParam = {};
   private firstObsSubscription: Subscription;
 
@@ -51,14 +53,12 @@ export class AppService {
 
 
 init() {
-
-
-
-  return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches(), this.apiService.getGetCities() ]).pipe(
+  return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches(),
+    this.apiService.getGetCities(), this.apiService.getBranchesInit()]).pipe(
       switchMap((results: any) => {
 
         const objResult = {
-          time: {}, branches: [], location: {}, cities: []
+          time: {}, branches: [], location: {}, cities: [], uniqueInit: {}
         };
         objResult.time = results[0];
         objResult.branches = results[1];
@@ -66,9 +66,11 @@ init() {
         objResult.cities = results[2];
         this.cities = results[2].cities;
         objResult.location = results[4];
+        objResult.uniqueInit = results[3];
+        this.initGeneralMessages = results[3].generalMessages;
+        this.initBranchMessages = results[3].byBranchMessages;
 
-      return of(objResult)
-
+        return of(objResult);
       }),
       catchError((error: any) => {
         console.log(error);
@@ -77,6 +79,5 @@ init() {
       })
     );
   }
-
 
 }

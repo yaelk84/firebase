@@ -152,7 +152,7 @@ export class ApiService extends RcApiService {
 
 
   public getBranches(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/mockData.json', {}, true);
+    return this.apiGet('../assets/stubs/mockDataBranches.json', {}, true);
   }
 
   public getFilters(params = {}, force: boolean = true) {
@@ -165,6 +165,10 @@ export class ApiService extends RcApiService {
 
   public getGetCities(params = {}, force: boolean = true) {
     return this.apiGet('../assets/stubs/cities.json', {}, true);
+  }
+
+  public getBranchesInit(params = {}, force: boolean = true) {
+    return this.apiGet('../assets/stubs/init.json', {}, true);
   }
 
 

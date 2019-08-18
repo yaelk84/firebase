@@ -3,6 +3,7 @@ import {RcTranslateService} from '@realcommerce/rc-packages';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {HoursService} from '../../core/services/hours.service';
 import {DeviceService} from '../../core/services/device.service';
+import {AppService} from "../../core/services/app.service";
 
 
 @Component({
@@ -12,15 +13,21 @@ import {DeviceService} from '../../core/services/device.service';
 })
 export class BranchHoursComponent implements OnInit {
 
-  constructor(private translate: RcTranslateService, private  branchFilter: BranchFilterService, private hoursService: HoursService, private deviceService: DeviceService) {
+  constructor(private translate: RcTranslateService, private  branchFilter: BranchFilterService, private hoursService: HoursService,
+              private deviceService: DeviceService, private appService: AppService) {
   }
 
   @Input() hours: any;
   @Input() isSingleDisplay: boolean;
+
   @Output()togglePopup = new EventEmitter();
   isMobile = false;
   hoursList = [];
   openHoursDrop = false;
+
+  get branchMessage() {
+    return this.appService.initBranchMessages[0].messageIndependenceDay;
+  }
 
   closeDropDown() {
     this.openHoursDrop = false;

@@ -125,3 +125,15 @@
   }
 
 }
+
+@media (max-width: $mobile_view) {
+  .choose-problem-btns {
+    flex-wrap: wrap !important;
+  }
+
+  .outlined-btn {
+    margin-left: 0;
+    margin-bottom: 15px;
+  }
+}
+

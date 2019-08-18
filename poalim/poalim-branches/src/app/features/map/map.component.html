@@ -1,5 +1,4 @@
 <!-- SEARCH IN AREA BUTTON. DISPLAY ONLY WHEN DRAG THE MAP MORE THEN 3KM FROM CURRENT LOCATION -->
-
 <button
   *ngIf="isShowCircle && !showSingleDisplay"
   (click)="searchOnArea()"
@@ -8,26 +7,26 @@
   type="button">
   {{ 'searchHere' | rcTranslate }}
 </button>
-
+<!--[scrollwheel]="showSingleDisplay"-->
 <agm-map
   dir="ltr"
   #agmMap
   [fitBounds]="true"
-  (centerChange)="showCircle($event)" >
-
+  (zoomChange)="onZoomChange($event)"
+  (centerChange)="showCircle($event)">
 <!--  AGM MARKER FOR MY LOCATION -->
   <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
-      [latitude]="geoCoordinateY"
-      [longitude]="geoCoordinateX"
+      [latitude]="latCoordinate"
+      [longitude]="lngCoordinate"
       [iconUrl]="myLocationIcon">
     </agm-marker>
   </ng-container>
 
   <ng-container *ngIf="!hasAccessToMyLocation">
     <agm-marker
-      [latitude]="geoCoordinateY"
-      [longitude]="geoCoordinateX"
+      [latitude]="latCoordinate"
+      [longitude]="lngCoordinate"
       [visible]="false">
     </agm-marker>
   </ng-container>
@@ -122,8 +121,8 @@
               [visible]="false"
               [fillColor]="'#DF1A1E'"
               [fillOpacity]="0.6"
-              [latitude]="geoCoordinateY + 0.03"
-              [longitude]="geoCoordinateX"
+              [latitude]="latCoordinate + 0.03"
+              [longitude]="lngCoordinate"
               [circleDraggable]="true"
               [editable]="false "
               [draggable]="true"
@@ -134,9 +133,9 @@
 <!--branches-&#45;&#45; {{branches.length}}-->
 <!--<br>-->
 <!--&lt;!&ndash;single {{singleBranchDisplay.city}}&ndash;&gt;-->
-<!--lat-&#45;&#45; {{geoCoordinateY}}-->
-<!--<br>-->
-<!--lng-&#45;&#45; {{geoCoordinateX}}-->
+lat--- {{latCoordinate}}
+<br>
+lng--- {{lngCoordinate}}
 <!--<br>-->
 <!--city-&#45;&#45; {{activeRoute.snapshot.queryParams.city}}-->
 <!--showSingleDisplay-&#45;&#45; {{showSingleDisplay}}-->

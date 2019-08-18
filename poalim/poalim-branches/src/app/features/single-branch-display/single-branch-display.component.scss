@@ -281,7 +281,8 @@ span.tooltip:hover:after {
 // share-branch-popup
 .rc-popup-wrapper {
   /deep/.modal-content {
-    width: 750px;
+    max-width: 750px;
+    width: 100%;
     height: 378px
   }
   /deep/.modal-body {
@@ -306,7 +307,11 @@ span.tooltip:hover:after {
 
 @media (max-width: $mobile_view) {
   .single-branch-display{
+    .selected-branch-header {
+      padding-right: 25px;
+    }
     .selected-branch-data{
+      padding-right: 25px;
       .line-data {
         &.copy {
           &:hover {
@@ -314,6 +319,12 @@ span.tooltip:hover:after {
           }
         }
       }
+    }
+    .wrapper-service-and-btn {
+      padding-right: 25px;
+    }
+    .selected-branch-buttons {
+      padding-right: 25px;
     }
 
 
@@ -340,4 +351,11 @@ margin:0 -15px ;
     margin-right: 0;
   }
 }
+
+  .rc-popup-wrapper {
+    /deep/.modal-dialog {
+      margin-top: 74px;
+    }
+  }
+
 }

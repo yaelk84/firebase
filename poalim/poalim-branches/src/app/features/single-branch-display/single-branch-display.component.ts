@@ -66,4 +66,9 @@ export class SingleBranchDisplayComponent implements OnInit {
     document.execCommand('copy');
   }
 
+  onNavigate() {
+    window.location.href =
+      `https://www.waze.com/ul?ll=${this.dataBranchSelected.coords.lat}%2C${this.dataBranchSelected.coords.lng}&navigate=yes&zoom=15`;
+  }
+
 }

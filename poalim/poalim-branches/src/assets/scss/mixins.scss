@@ -33,6 +33,7 @@ lib-rc-switcher{
         border-color:$marine-two !important;
         &.switcher-indicator{
           background-color: transparent;
+          left: 10px !important;
 
           &:after {
             background-color: $marine-two !important;
@@ -40,6 +41,7 @@ lib-rc-switcher{
             background-image: url('~src/assets/media/white-burger.svg') !important;
             background-repeat: no-repeat !important;
             background-position: center !important;
+            left: -1px !important;
           }
         }
 

@@ -25,6 +25,8 @@ export class MapBranchesService {
   nearsBranches: Array<object> ;
   lat: number;
   lng: number;
+  LAT_PARAM = 'geoCoordinateY';
+  LNG_PARAM = 'geoCoordinateX';
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader , private  events: RcEventBusService) {
   }
@@ -96,8 +98,8 @@ export class MapBranchesService {
       this.mapsAPILoader.load().then(() => {
         const myCoords = new google.maps.LatLng(myLatLng.lat, myLatLng.lng);
         this.filteredMarkers = this.branchesPointsMap.filter(m => {
-          const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate.geoCoordinateY,
-            m.geographicAddress[0].geographicCoordinate.geoCoordinateX);
+          const destination = new google.maps.LatLng(m.geographicAddress[0].geographicCoordinate[this.LAT_PARAM],
+            m.geographicAddress[0].geographicCoordinate[this.LNG_PARAM]);
           const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
           m.geographicAddress[0].distanceInKm = distanceInKm;
           if (useDistanceInKm && distanceInKm < 25.0) {
