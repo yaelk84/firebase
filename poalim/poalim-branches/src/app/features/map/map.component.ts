@@ -22,9 +22,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   singleBranchDisplay: any;
   latCoordinate = 34.8236;
   lngCoordinate = 32.09472;
-  // latAfterCenterChanged: number;
-  // lngAfterCenterChanged: number;
-  // zoom = 11;
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
@@ -44,7 +41,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   isShowCircle = false;
   showSingleDisplay = false;
   centerChangeCbTimeout = null;
-  isZoomChange = false;
   @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
@@ -76,7 +72,6 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.latCoordinate = (point as GeoLocationObject).lat;
           this.lngCoordinate = (point as GeoLocationObject).lng;
           this.currentCenter = (point as GeoLocationObject);
-          console.log('center with location', this.currentCenter);
         } else {
           this.hasAccessToMyLocation = false;
           this.currentCenter = {lat: this.latCoordinate, lng: this.lngCoordinate};
@@ -114,7 +109,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.findHereCenter = newCoordsCenter;
       this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
         if (distance > 3) {
-          console.log('distance from prev center', distance);
+          // console.log('distance from prev center', distance);
           return this.isShowCircle = true;
         }
       });

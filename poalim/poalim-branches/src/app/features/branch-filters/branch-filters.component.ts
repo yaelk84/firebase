@@ -27,13 +27,16 @@ export class BranchFiltersComponent implements OnInit {
   @Input() activeFilters;
 
 
-  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService, private mapService: MapBranchesService , private branchDataServices: BranchDataService) {
+  constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService,
+              private mapService: MapBranchesService , private branchDataServices: BranchDataService) {
   }
 
   public formControl = new FormControl();
 
   closePopup() {
-
+    if (this.mapService.hasLocationPermission) {
+      this.closePopup();
+    }
   }
 
   closeDropDownServices() {
