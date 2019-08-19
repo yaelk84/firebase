@@ -16,7 +16,9 @@ import {HoursService} from '../services/hours.service';
 export class FilterBranchPipe implements PipeTransform {
 
   services(value, serviceType) {
-    return value.serviceType.indexOf(serviceType) > -1;
+
+    const  intVal = parseInt(serviceType);
+    return value.serviceType.indexOf(intVal) > -1;
   }
 
   openFriday(value) {
