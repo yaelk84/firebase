@@ -6,6 +6,17 @@
 .poalim-branches-container{
   font-size: 18px;
 
+  .rc-popup-wrapper.modal{
+    width: 100%;
+    max-height: 100%;
+    height: 100%;
+    background: none;
+
+    .modal-content{
+      padding: 0;
+    }
+  }
+
   span {
     font-size: inherit;
   }
