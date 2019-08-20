@@ -343,6 +343,10 @@ span.tooltip:hover:after {
     .selected-branch-data{
       padding-right: 25px;
       .line-data {
+        .value{
+          display: inline-flex;
+          max-width: 65%;
+        }
         &.copy {
           &:hover {
             background-color: transparent;
