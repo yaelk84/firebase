@@ -52,7 +52,7 @@ margin-bottom: 30px;
 
   .hours-wrapper {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     .morning,.noon{text-align: center;
       width: 127px;
       height: 33px;
@@ -84,7 +84,7 @@ margin-bottom: 30px;
     /deep/
     .btn{
       cursor: pointer;
-      padding: 12px 28px;
+      padding: 6px 28px;
     }
     .clean{
       display: flex;
@@ -92,5 +92,11 @@ margin-bottom: 30px;
       text-decoration: underline;
       cursor: pointer;
     }
+  }
+}
+
+@media only screen and (max-width: $mobile_view) {
+  .hours-filter{
+    margin-bottom: 15px;
   }
 }

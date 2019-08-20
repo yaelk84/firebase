@@ -1,6 +1,6 @@
 <div class="filter-box-cointener">
   <div class="filter-box-wrapper">
-    <lib-rc-popup-wrapper (closeCallback)="closePopup()" *ngIf="openPOPup" [customClass]="'full-width'">
+    <lib-rc-popup-wrapper (closeCallback)="closePopup()" *ngIf="openPOPup" [customClass]="'full-width full-height'">
       <div closeButton class="close-btn"></div>
     <app-general-popup><app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter></app-general-popup>
     </lib-rc-popup-wrapper>

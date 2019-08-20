@@ -34,6 +34,7 @@
 @media (max-width: $mobile_view) {
   .branch-box{
     margin-right: 0;
+    min-width: 0;
   }
   .inner-box {
        padding: 13px 7px  13px 7px;

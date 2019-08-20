@@ -122,8 +122,8 @@
 .back-to-results-wrapper{
   display: flex;
   align-items: center;
-  margin-bottom: 0;
-  height: 68px;
+  margin-bottom: 20px;
+
   margin-right: 42px;
 }
 .go-back{
@@ -186,14 +186,17 @@
 .branch-container{
   padding-right: 0;
   padding-left: 0;
+
 }
   .back-to-results-wrapper{
-
+margin-top: 20px;
+    margin-bottom: 20px;
     margin-#{$default-start}: 0;
   }
 .branch-list{
       overflow: auto;
       direction: ltr;
+  padding: 0 15px;
 
     .branch-box-wrapper{
       direction: rtl;
@@ -213,6 +216,8 @@
     }
   }
   .branch-list-header{
+    padding: 0 15px;
+    margin-top: 20px;
     flex-direction: column;
     align-items: start;
     position: relative;

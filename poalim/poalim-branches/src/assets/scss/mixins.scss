@@ -1,3 +1,16 @@
+@mixin lhCrop($line-height) {
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+    margin-top: calc((1 - #{$line-height}) * 0.5em);
+  }
+}
+.text-to-crop-add {
+
+  @include lhCrop(1.2); //line-height: 1.2
+}
 .close-btn {
   position: absolute;
   #{$default-end}: 1rem;
@@ -33,7 +46,7 @@ lib-rc-switcher{
         border-color:$marine-two !important;
         &.switcher-indicator{
           background-color: transparent;
-          left: 10px !important;
+          left: 15px !important;
           top: 20px !important;
 
           &:after {
@@ -125,6 +138,26 @@ lib-rc-switcher{
 .rc-popup-wrapper {
   /deep/
   .modal-dialog {
+    &.full-height{
+      app-general-popup{
+        height: 100%;
+        .general-popup-wrapper{
+          height: 100%;
+          .general-popup-content{
+            height: 100%;
+            .error-popup-wrapper{
+              height: 100%;
+            }
+            app-check-box-filter{
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            }
+          }
+        }
+      }
+    }
     &.full-width {
       height: 100%;
       margin: 0;
@@ -155,16 +188,17 @@ lib-rc-switcher{
 
 }
 .btn {
+  @include lhCrop(1.2); //line-height: 1.2
   cursor: pointer;
   border-radius: 21.5px;
   border: solid 1px $marine-two;
-  padding: 9px 35px;
+  padding: 7px 35px;
   font-family: Poalim;
   font-size: 20px;
   font-weight: normal;
   text-align: center;
   color: $marine-two;
-  line-height: 1;
+  line-height: normal;
   &:hover{
     border: solid 1px $lipstick-two;
     color: $lipstick-two; ;
@@ -277,3 +311,8 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   border-width: 6px;
 }
 
+@media only screen and (max-width: $mobile_view) {
+  .btn{
+    @include lhCrop(1.4); //line-height: 1.4
+  }
+}

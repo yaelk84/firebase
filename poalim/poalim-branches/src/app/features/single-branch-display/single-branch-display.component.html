@@ -19,7 +19,7 @@
 
             </div>
             <div class="share">
-              <div class="btn" (click)="openShareBranchPopup = true"></div>
+              <div class="btn text-to-crop" (click)="openShareBranchPopup = true"></div>
               <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
                 <app-share-branch-popup
                   [branchName]="dataBranchSelected.branchSummarize.branchName"
@@ -32,8 +32,8 @@
 
               <div *ngIf="isMobile" class="col-12 row-btn">
                 <div class="row">
-                  <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
-                  <div class="btn" (click)="onNavigate()">{{'navigate' | rcTranslate}}</div>
+                  <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn " role="button">{{'order' |rcTranslate}}</div>
+                  <div class="btn text-to-crop" (click)="onNavigate()">{{'navigate' | rcTranslate}}</div>
                 </div>
 
         </div>

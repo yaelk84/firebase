@@ -120,6 +120,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const handleBranch = () => {
+     UncheckLocationFilter();
       const branchSelectedDisplay = getSingleBranch();
       if (isNullOrUndefined(branchSelectedDisplay)) {
         return;

@@ -28487,7 +28487,7 @@
       {
         "branchServiceTypeCode": 6,
         "branchServiceTypeDescription": "בנקט עם שטרות של 20 ש\"ח",
-        "serviceSwitch": "no"
+        "serviceSwitch": "yes"
       },
       {
         "branchServiceTypeCode": 7,

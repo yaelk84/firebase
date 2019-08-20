@@ -28,7 +28,7 @@ export class BranchFiltersComponent implements OnInit {
 
 
   constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService,
-              private mapService: MapBranchesService , private branchDataServices: BranchDataService) {
+              private mapService: MapBranchesService, private branchDataServices: BranchDataService) {
   }
 
   public formControl = new FormControl();
@@ -62,6 +62,8 @@ export class BranchFiltersComponent implements OnInit {
   }
 
   togglePluse(e?: Event) {
+
+
     if (!isNullOrUndefined(e)) {
       e.stopPropagation();
     }
@@ -71,6 +73,13 @@ export class BranchFiltersComponent implements OnInit {
     } else {
 
       this.openDropDown = !this.openDropDown;
+    }
+    if (this.openPOPup || this.openDropDown) {
+    // solution for case that user check service and close the popup without submit'next time this service wont show
+      this.checkBoxValues.forEach(checkbox => {
+        const haveVal = this.filterService.activeFilters.indexOf(checkbox.key) > -1;
+        checkbox.formControl.setValue(haveVal ? true : null);
+      });
     }
   }
 
@@ -92,7 +101,7 @@ export class BranchFiltersComponent implements OnInit {
   getNumberPfBOxesBySize() {
     if (this.deviceService.isXs()) {
       return CONSTANTS.BRANCH_FILTER_NUM.MOBILE;
-    } else if (this.deviceService.isSm() || this.deviceService.isMd())  {
+    } else if (this.deviceService.isSm() || this.deviceService.isMd()) {
       return CONSTANTS.BRANCH_FILTER_NUM.TABLET;
     }
     return CONSTANTS.BRANCH_FILTER_NUM.DESKTOP;
@@ -115,9 +124,10 @@ export class BranchFiltersComponent implements OnInit {
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
+
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size + 1, this.filterService.filters.length));
       const defaultFilter = this.mapService.hasLocationPermission && !this.branchDataServices.citySelected.length ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
-      console.log('default filter', defaultFilter)
+      console.log('default filter', defaultFilter);
       this.toggleFilter(defaultFilter, true);
       /* check if can delete */
 
