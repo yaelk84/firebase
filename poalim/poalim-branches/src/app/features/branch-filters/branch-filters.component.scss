@@ -1,6 +1,14 @@
 @import "../../../assets/scss/style";
 
 /deep/
+.app-general-popup{
+  height: 100%;
+  .general-popup-wrapper{
+    height: 100%;
+  }
+
+}
+/deep/
 .popover-wrapper{
   &.more-services{
 padding:25px;
