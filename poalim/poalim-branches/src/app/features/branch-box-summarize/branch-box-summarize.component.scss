@@ -131,6 +131,15 @@
     height: auto;
   }
   .branch-details {
+    .wrapper-icon-accessibility {
+
+      .icon-accessibility {
+
+        width: 15px;
+        height: 17px;
+        background-size: contain;
+      }
+    }
     .name-and-number {
       font-size: 18px;
 
