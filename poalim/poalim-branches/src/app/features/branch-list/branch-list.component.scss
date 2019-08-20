@@ -6,8 +6,8 @@
 
 }
 .no-location{
-  left:30px;
-top:37px;
+  left:80px;
+  top:37px;
   box-shadow: 0 14px 34px 1px rgba(10, 41, 76, 0.16);
   background-color: $white;
   width: 461px;
@@ -122,7 +122,8 @@ top:37px;
 .back-to-results-wrapper{
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  height: 68px;
   margin-right: 42px;
 }
 .go-back{
@@ -166,9 +167,17 @@ top:37px;
   margin-right: 25px;
 }
 
+.width-for-no-results {
+  width: 530px;
+}
+
 
 @media (max-width: 770px) {
+  .width-for-no-results {
+    //padding: 0 20px;
+  }
   .no-location{
+    top: 0;
 #{$default-end}: 0;
     width: 100%;
     max-height: 999px;
@@ -210,6 +219,8 @@ margin-top: 20px;
     flex-direction: column;
     align-items: start;
     position: relative;
+    padding-bottom: 0;
+    margin-top: 20px;
     .hours{
       position: static;
     }

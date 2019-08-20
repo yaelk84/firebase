@@ -23,8 +23,17 @@
   }
 
   .branch-title {
+.title{
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
+  line-height: normal;
+  color: $greyish-brown;
+}
+  .branch-title{
 
     font-size: 50px;
+
 
 
   }
@@ -48,7 +57,6 @@
   lib-rc-switcher {
     display: none
   }
-}
 
 
 @media (max-width: $mobile_view) {
@@ -56,6 +64,12 @@
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+  .background-no-results {
+    background-color: $pale-grey;
   }
 
   app-map {
@@ -69,27 +83,24 @@
     }
   }
 
-  .branch-map {
-
-
+  .branch-map{
     position: relative;
     flex-direction: column;
 
-    lib-rc-switcher {
+    lib-rc-switcher{
       display: block;
       position: absolute;
-      top: 0;
+      top:0;
       z-index: 1;
-      #{$default-end}:15px;
+      #{$default-end}: 15px;
 
     }
   }
-  app-map {
+  app-map{
     width: 100%;
   }
   .branches-header {
-    padding-bottom: 30px;
-    .branch-title {
+     .branch-title{
       font-size: 35px;
     }
 

@@ -206,7 +206,6 @@ debugger;
   }
 
   closePopupLocation() {
-
     this.showNoLocation = false;
   }
 

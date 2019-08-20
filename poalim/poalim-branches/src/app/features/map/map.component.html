@@ -110,7 +110,9 @@
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
         <ng-template>
-          <app-branch-box-summarize [branchDataSummarize]="singleBranchDisplay.branchSummarize"></app-branch-box-summarize>
+          <app-branch-box-summarize [branchDataSummarize]="singleBranchDisplay.branchSummarize">
+          </app-branch-box-summarize>
+<!--           <h6 style="text-align: center">לפרטי הסניף > </h6>-->
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>

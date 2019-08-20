@@ -2,12 +2,16 @@
   <div class="popover-wrapper  filter-days"   lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >
     <app-hours-filer (close)="closeDropDown()"> </app-hours-filer>
   </div>
-  <div class="popover-wrapper  no-location"   lib-rc-click-outside (clickOutside)="closePopupLocation()"[ngClass]="{'slideDown' :showNoLocation}" >
+  <div class="popover-wrapper  no-location" [ngClass]="{'slideDown' :showNoLocation}" >
+<!--
+      commented due to qa requirements:
+      lib-rc-click-outside (clickOutside)="closePopupLocation()"
+ -->
     <app-no-location-permissions (close)="closePopupLocation()" > </app-no-location-permissions>
   </div>
 
 
-  <div *ngIf="showSelectedBranch" >
+  <div *ngIf="showSelectedBranch" class ="width-for-no-results">
     <span  class="back-to-results-wrapper"(click)="backToResults()">
       <span class="go-back">   <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
@@ -15,7 +19,7 @@
     <app-single-branch-display  [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
 
   </div>
-  <div *ngIf="!showSelectedBranch" >
+  <div *ngIf="!showSelectedBranch" class="width-for-no-results">
 
     <div class="branch-list-header">
       <div class="branch-result">{{branchResultTitle}}</div>

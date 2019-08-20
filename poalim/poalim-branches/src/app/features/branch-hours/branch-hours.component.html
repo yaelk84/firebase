@@ -32,15 +32,14 @@
       <div  *ngIf="hours.openCurrentDay && !dayName">
       <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
         <span class="open-today" [ngClass]="{'withdropdown':isSingleDisplay}"   (click)=" isSingleDisplay && dropClick($event)">
-                  <span >
+          <span>
             <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
-        <span *ngIf="hours.label.morning"> {{hours.label.morning}}</span>
-        </span>
+            <span *ngIf="hours.label.morning"> {{hours.label.morning}}</span>
+          </span>
         <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
         <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
            <div *ngIf="isSingleDisplay" class="icon-arrow"></div>
         </span>
-
       </div>
       <div class="future-date" *ngIf="!dayName && !hours.filterByDay">
         {{hours.label.textHours}}

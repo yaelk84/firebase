@@ -23,49 +23,25 @@ agm-map {
   /deep/.gm-style:not(agm-marker) {
     font: inherit;
   }
-
-  ///deep/.name-branch,
-  //  ///deep/.num-branch {
-  //  //  font-size: 16px;
-  //  //}
-  //  //
-  //  ///deep/.name-branch {
-  //  //  font-weight: bold;
-  //  //  max-width: 120px;
-  //  //}
-  //  //
-  //  ///deep/.address span,
-  //  ///deep/.location {
-  //  //  font-size: 15px;
-  //  //}
-  //  //
-  //  ///deep/.branch-hours {
-  //  //  // the text will be changed from "פתוח ביום רביעי" to "פתוח ביום ד" and then the font fits to the window which open when click on branch marker
-  //  //  font-size: 16px !important;
-  //  //}
-  //  //
-    /deep/.open-today span span {
-      font-size: 16px;
-      font-weight: bold;
-    }
 }
 
   /deep/.si-content-wrapper {
-    //width: 320px;
     direction: rtl;
-    //padding: 15px 25px 15px 5px;
-    padding: 30px 25px;
+    padding: 25px 20px;
     border: none !important;
     box-shadow: 0 14px 24px 0 rgba(132, 169, 204, 0.24);
 
 
-    .si-close-button {
-      left: 0;
-      padding: 0 9px;
-      opacity: 0.7;
-      font-size: 30px;
+    /deep/.si-close-button {
+      top: 8px !important;
+      right: 266px !important;
       outline: none;
-      color: #343a40;
+      padding: 0;
+      font-size: 0;
+      width: 26px;
+      height: 26px;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
     }
 }
 
@@ -88,11 +64,6 @@ agm-map {
 /deep/.si-float-wrapper {
   width: 300px;
 }
-
-
-
-
-
 
 @media (max-width: $mobile_view) {
   agm-map{
