@@ -124,7 +124,7 @@ export class BranchFiltersComponent implements OnInit {
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
-      debugger;
+
       this.checkBoxValues = this.filterService.createCheckBoxArray(this.filterService.filters.slice(size + 1, this.filterService.filters.length));
       const defaultFilter = this.mapService.hasLocationPermission && !this.branchDataServices.citySelected.length ? CONSTANTS.FILTER_lOCATION : CONSTANTS.FILTER_OPEN_NOW;
       console.log('default filter', defaultFilter);

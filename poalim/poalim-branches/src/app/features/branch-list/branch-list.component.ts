@@ -90,7 +90,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
         return (branch.geographicAddress[0].cityName === city && (!street.length || (String(branch.geographicAddress[0].streetName) === street)) && (!streetNumber.length || (String(branch.geographicAddress[0].buildingNumber) === streetNumber)));
       });
       if (this.mapServices.hasLocationPermissionFromGeoLocation) {
-debugger;
+
         this.mapServices.myLocationFilter(this.mapServices.position as GeoLocationObject, branches, false).subscribe((res) => {
           const branchesFilter = this.branchDataServices.createDataArray(this.mapServices.sortedBranches);
           showResultsCity(branchesFilter);

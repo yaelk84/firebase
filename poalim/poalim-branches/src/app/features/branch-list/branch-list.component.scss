@@ -122,8 +122,8 @@
 .back-to-results-wrapper{
   display: flex;
   align-items: center;
-  margin-bottom: 0;
-  height: 68px;
+  margin-bottom: 20px;
+
   margin-right: 42px;
 }
 .go-back{
@@ -189,6 +189,7 @@
 }
   .back-to-results-wrapper{
 margin-top: 20px;
+    margin-bottom: 20px;
     margin-#{$default-start}: 0;
   }
 .branch-list{

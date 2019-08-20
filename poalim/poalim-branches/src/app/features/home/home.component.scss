@@ -23,24 +23,25 @@
   }
 
   .branch-title {
-.title{
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: normal;
-  line-height: normal;
-  color: $greyish-brown;
-}
-  .branch-title{
+    .title {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: normal;
+      line-height: normal;
+      color: $greyish-brown;
+    }
 
-    font-size: 50px;
+    .branch-title {
+
+      font-size: 50px;
 
 
+    }
 
-  }
-
-  .choose-title {
-    font-size: 20px;
-    margin-top: 32px;
+    .choose-title {
+      font-size: 20px;
+      margin-top: 32px;
+    }
   }
 }
 
@@ -57,9 +58,12 @@
   lib-rc-switcher {
     display: none
   }
-
+}
 
 @media (max-width: $mobile_view) {
+  .choose-title{
+    margin-top: 10px;
+  }
   .branch-container {
     padding-left: 0;
     padding-right: 0;
@@ -83,27 +87,29 @@
     }
   }
 
-  .branch-map{
+  .branch-map {
     position: relative;
     flex-direction: column;
 
-    lib-rc-switcher{
+    lib-rc-switcher {
       display: block;
       position: absolute;
-      top:0;
+      top: 0;
       z-index: 1;
       #{$default-end}: 15px;
 
     }
   }
-  app-map{
+  app-map {
     width: 100%;
   }
   .branches-header {
-     .branch-title{
+    padding-bottom: 35px;
+    .branch-title {
       font-size: 35px;
     }
 
   }
+
 
 }
