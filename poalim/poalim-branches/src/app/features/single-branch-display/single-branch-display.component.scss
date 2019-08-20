@@ -268,13 +268,14 @@ span.tooltip:hover:after {
 
 .report-problem-popup-style {
   /deep/.close {
-    width: 100%;
-    text-align: left;
-    padding: 0 20px;
-    margin-top: -10px;
     outline: none;
     font-weight: normal;
-    font-size: 40px;
+    font-size: 0;
+    background-image: url("../../../assets/media/icons/close.svg");
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    right: 762px !important;
   }
 }
 
@@ -370,6 +371,12 @@ margin:0 -15px ;
     /deep/.modal-dialog {
       margin-top: 74px;
     }
+    /deep/.close {
+      right: 321px !important;
+    }
+  }
+
+  .report-problem-popup-style {
     /deep/.close {
       right: 321px !important;
     }
