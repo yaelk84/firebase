@@ -121,8 +121,7 @@ span.tooltip:hover:after {
       margin-right: 26px;
       cursor: pointer;
       margin-top: 17px;
-      margin-right: 5px;
-      font-size: 18px;
+          font-size: 18px;
       font-weight: normal;
       text-decoration: underline;
     }
@@ -309,6 +308,10 @@ span.tooltip:hover:after {
   .single-branch-display{
     .selected-branch-header {
       padding-right: 25px;
+      .share{
+        position: absolute;
+        left:0px;
+      }
     }
     .selected-branch-data{
       padding-right: 25px;
@@ -324,7 +327,8 @@ span.tooltip:hover:after {
       padding-right: 25px;
     }
     .selected-branch-buttons {
-      padding-right: 25px;
+margin: 0;
+      margin-bottom: 20px;
     }
 
 
@@ -345,7 +349,7 @@ span.tooltip:hover:after {
   height: 427px;
   overflow: auto;
   direction: ltr;
-margin:0 -15px ;
+
   .single-branch-display{
     direction: rtl;
     margin-right: 0;

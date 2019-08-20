@@ -5,10 +5,11 @@ import {MapBranchesService} from '../../core/services/map-branches.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {CONSTANTS} from '../../constants';
-import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
+import {RcDeviceService, RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
 import {interval} from 'rxjs';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {FormControl} from '@angular/forms';
+import {DeviceService} from '../../core/services/device.service';
 
 
 
@@ -28,8 +29,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   location: any;
   formControl = new FormControl();
   initMessages: {} | any;
+  isMobile;
 
-  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService) {
+  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService, private deviceService: DeviceService) {
   }
 
   /**
@@ -69,6 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isMobile = this.deviceService.isMobile();
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       console.log('refresh list wad called' , this.branchDataServices.branchesFilter.length)
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;

@@ -13,7 +13,7 @@
   <div class="branch-container container">
     <div>
 
-      <div class="branch-map row">
+      <div class="branch-map row" [ngClass]="{'row':isMobile}">
         <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
 
         </lib-rc-switcher>

@@ -2,60 +2,66 @@
 //.show-map{
 //  padding-#{$default-end}: 0px;
 //}
-.header-bg{
-  background-color:$pale-grey;
+.header-bg {
+  background-color: $pale-grey;
 }
-.bg-branches{
+
+.bg-branches {
   background-color: $white;
 }
-.container {
-  overflow-x: hidden;
-}
+
 .branches-header {
   padding-top: 10px;
   padding-bottom: 55px;
-.title{
-  text-align: center;
-  margin-bottom: 17px;
-  font-weight: normal;
-  line-height: normal;
-  color: $greyish-brown;
-}
-  .branch-title{
 
-      font-size: 50px;
+  .title {
+    text-align: center;
+    margin-bottom: 17px;
+    font-weight: normal;
+    line-height: normal;
+    color: $greyish-brown;
+  }
 
+  .branch-title {
+
+    font-size: 50px;
 
 
   }
-  .choose-title{
+
+  .choose-title {
     font-size: 20px;
     margin-top: 32px;
   }
 }
-.branch-container{
+
+.branch-container {
   padding-top: 46px;
   margin-bottom: 200px;
+  overflow-x: hidden;
 }
 
 .branch-map {
   display: flex;
   justify-content: space-between;
-  lib-rc-switcher{
-  display: none}
+
+  lib-rc-switcher {
+    display: none
   }
+}
 
 
 @media (max-width: $mobile_view) {
-  .branch-container{
+  .branch-container {
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
   }
 
-  app-map{
+  app-map {
     display: none;
 
-    &.show-in-mobile{
+    &.show-in-mobile {
       display: block;
       position: relative;
       padding-left: 0;
@@ -63,24 +69,26 @@
     }
   }
 
-  .branch-map{
+  .branch-map {
+
+
     position: relative;
     flex-direction: column;
 
-    lib-rc-switcher{
+    lib-rc-switcher {
       display: block;
       position: absolute;
-      top:0;
+      top: 0;
       z-index: 1;
-      #{$default-end}: 15px;
+      #{$default-end}:15px;
 
     }
   }
-  app-map{
+  app-map {
     width: 100%;
   }
   .branches-header {
-     .branch-title{
+    .branch-title {
       font-size: 35px;
     }
 
