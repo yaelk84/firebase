@@ -14,11 +14,12 @@
           <p class="text-btn">{{'shareWithEmail' | rcTranslate}}</p>
         </div>
         <div class="flex-btn">
-          <button type="button" class="copy-link" (click)="copyLink()"></button>
+          <button type="button" class="copy-link" (click)="copyLink($event)"></button>
           <p class="text-btn">{{'copyLinkToShare' | rcTranslate}}</p>
         </div>
       </div>
     </div>
+    <span class="msg-container"></span>
   </div>
 <!--</div>-->
 

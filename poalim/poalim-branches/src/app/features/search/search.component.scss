@@ -81,7 +81,7 @@
     }
     .ng-dropdown-panel {
       margin-top: 1.7rem;
-      color: $marine-two;
+      color: #525252;
       background-color: $white;
       border-radius: 9px;
       box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
@@ -93,11 +93,12 @@
         .option-wrapper {
           padding: 1rem;
           border-radius: 4px;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: lighter;
           transition: all .4s ease;
           .highlighted {
             font-weight: bold;
+            font-size: 20px;
             text-decoration: none;
           }
           .distance-wrapper {

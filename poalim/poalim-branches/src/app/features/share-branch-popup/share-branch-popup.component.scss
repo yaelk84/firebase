@@ -14,12 +14,20 @@
 //    outline: none;
 //  }
 //}
+
+.msg-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #0a294c;
+}
 .share-branch-popup-wrapper {
   width: 100%;
   height: 378px;
   border-radius: 9px;
   box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
   display: flex;
+  position: relative;
 
 
   .popup-content {

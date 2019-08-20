@@ -335,7 +335,8 @@ span.tooltip:hover:after {
 @media (max-width: $mobile_view) {
   .single-branch-display{
     .selected-branch-header {
-      padding-right: 25px;
+      //padding-right: 25px;
+      padding: 25px 10px;
       .share{
         position: absolute;
         left:0px;
