@@ -83,6 +83,9 @@ span.tooltip:hover:after {
     padding: 18px;
     display: flex;
     justify-content: space-between;
+    .white-btn{
+      font-size: 18px;
+    }
   }
 
   .selected-branches-services {
@@ -108,6 +111,8 @@ span.tooltip:hover:after {
       }
 
       .service-label {
+        font-size: 18px;
+        color:$marine-two;
         margin-right: 5px;
       }
 
@@ -118,9 +123,11 @@ span.tooltip:hover:after {
     }
 
     .add-more {
+      font-weight: normal;
+      color:$marine-two;
       margin-right: 26px;
       cursor: pointer;
-      margin-top: 17px;
+      margin-top: 8px;
           font-size: 18px;
       font-weight: normal;
       text-decoration: underline;
@@ -138,12 +145,13 @@ span.tooltip:hover:after {
     .line-data {
       display: flex;
       align-items: center;
-      margin-top: 15px;
+      margin-top: 0px;
+      padding: 5px 15px;
+      margin-right: -15px;
       &.copy {
         max-width: 317px;
         cursor: pointer;
-        padding: 5px 15px;
-        margin-right: -15px;
+
         position: relative;
         .copy-icon{
           position: absolute;
@@ -161,6 +169,7 @@ span.tooltip:hover:after {
           .copy-icon{
             opacity: 1;
           }
+
         }
       }
 
@@ -222,7 +231,8 @@ span.tooltip:hover:after {
 
   .selected-branch-buttons {
     margin-bottom: 46px;
-    margin-top: 38px;
+    margin-right: 33px;
+    margin-top: 0px;
     font-size: 18px;
     padding: 0 18px;
     display: flex;
@@ -233,6 +243,9 @@ span.tooltip:hover:after {
 
     .wrong-data-text {
       color: $marine-two;
+      &:hover{
+        color: $lipstick-two;
+      }
     }
 
     .worng-data {
