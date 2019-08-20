@@ -289,14 +289,28 @@ span.tooltip:hover:after {
     padding: 0;
   }
   /deep/.close {
-    width: 100%;
-    text-align: left;
-    padding: 0 20px;
-    margin-top: -10px;
     outline: none;
     font-weight: normal;
-    font-size: 40px;
+    font-size: 0;
+    background-image: url("../../../assets/media/icons/close.svg");
+    background-repeat: no-repeat;
+    width: 26px;
+    height: 26px;
+    right: 462px !important;
   }
+
+  ///deep/.close {
+  //  outline: none;
+  //  font-size: 0;
+  //  background-image: url("../../../assets/media/icons/close.svg");
+  //  background-repeat: no-repeat;
+  //  width: 26px;
+  //  height: 26px;
+  //  right: 462px !important;
+  //  @media (max-width: $mobile_view) {
+  //    right: 20px;
+  //  }
+  //}
 
   /deep/.pointer:hover {
     color: #343a40;
@@ -355,6 +369,9 @@ margin:0 -15px ;
   .rc-popup-wrapper {
     /deep/.modal-dialog {
       margin-top: 74px;
+    }
+    /deep/.close {
+      right: 321px !important;
     }
   }
 

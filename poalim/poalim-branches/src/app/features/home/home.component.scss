@@ -16,7 +16,7 @@
   padding-bottom: 55px;
 .title{
   text-align: center;
-  margin-bottom: 17px;
+  margin-bottom: 10px;
   font-weight: normal;
   line-height: normal;
   color: $greyish-brown;
@@ -50,6 +50,12 @@
   .branch-container{
     padding-left: 0;
     padding-right: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+  }
+
+  .background-no-results {
+    background-color: $pale-grey;
   }
 
   app-map{
@@ -83,7 +89,6 @@
      .branch-title{
       font-size: 35px;
     }
-
   }
 
 }

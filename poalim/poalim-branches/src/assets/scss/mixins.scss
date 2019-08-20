@@ -34,6 +34,7 @@ lib-rc-switcher{
         &.switcher-indicator{
           background-color: transparent;
           left: 10px !important;
+          top: 20px !important;
 
           &:after {
             background-color: $marine-two !important;

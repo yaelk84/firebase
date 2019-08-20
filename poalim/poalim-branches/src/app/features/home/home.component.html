@@ -9,12 +9,12 @@
         <app-branch-filters></app-branch-filters>
       </div>
     </div>
-<div class="bg-branches">
+<div class="bg-branches" [ngClass]="{'background-no-results': branchNewArrayFilter.length === 0}">
   <div class="branch-container container">
     <div>
 
       <div class="branch-map row">
-        <lib-rc-switcher [control]="formControl" [elementId]="'mySwitcherID'">
+        <lib-rc-switcher *ngIf=" branchNewArrayFilter.length > 0" [control]="formControl" [elementId]="'mySwitcherID'">
 
         </lib-rc-switcher>
         <app-branch-list class="col-lg-6 col-sm-12 col-12 " [hideListInMoBile]="formControl.value"

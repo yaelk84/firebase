@@ -205,7 +205,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   closePopupLocation() {
-
     this.showNoLocation = false;
   }
 
