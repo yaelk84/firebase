@@ -2,6 +2,15 @@
 //.show-map{
 //  padding-#{$default-end}: 0px;
 //}
+
+.poalim-branches-container{
+  font-size: 18px;
+
+  span {
+    font-size: inherit;
+  }
+}
+
 .header-bg {
   background-color: $pale-grey;
 }
