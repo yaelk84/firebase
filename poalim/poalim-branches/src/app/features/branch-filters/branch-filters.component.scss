@@ -1,5 +1,11 @@
 @import "../../../assets/scss/style";
+/deep/
+lib-rc-popup-wrapper{
+  .modal{
+    bottom: 0;
+  }
 
+}
 /deep/
 .app-general-popup{
   height: 100%;

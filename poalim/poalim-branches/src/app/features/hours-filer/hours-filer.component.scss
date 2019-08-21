@@ -98,5 +98,14 @@ margin-bottom: 15px;
 @media only screen and (max-width: $mobile_view) {
   .hours-filter{
     margin-bottom: 15px;
+    .hours-wrapper{
+      display: flex;
+      justify-content: center;
+      .morning{
+        margin-left: 15px;
+      }
+
+    }
+
   }
 }
