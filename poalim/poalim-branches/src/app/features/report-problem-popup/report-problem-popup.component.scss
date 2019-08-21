@@ -69,10 +69,10 @@
         margin-left: 1rem;
         outline: none;
         line-height: 1.5;
-        //&:hover{
-        //  border: solid 1px $lipstick-two;
-        //  color: $lipstick-two; ;
-        //}
+        &:hover{
+          border: solid 1px $lipstick-two;
+          color: $lipstick-two; ;
+        }
       }
     }
   }
