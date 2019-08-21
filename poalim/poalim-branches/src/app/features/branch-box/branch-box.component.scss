@@ -29,6 +29,13 @@
   background-color: $pale-grey;
 }
 }
+.wrapper-icon {
+  .is-hovering {
+    background: $marine-two;
+  }
+}
+
+
 
 
 @media (max-width: $mobile_view) {

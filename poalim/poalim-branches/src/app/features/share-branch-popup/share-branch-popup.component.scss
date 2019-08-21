@@ -14,12 +14,24 @@
 //    outline: none;
 //  }
 //}
+
+.msg-container {
+  position: absolute;
+  //left: 18px;
+  //bottom: 0;
+  padding-top: 5px;
+  color: darkblue;
+  font-size: 14px;
+  font-weight: 300;
+}
+
 .share-branch-popup-wrapper {
   width: 100%;
   height: 378px;
   border-radius: 9px;
   box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
   display: flex;
+  position: relative;
 
 
   .popup-content {

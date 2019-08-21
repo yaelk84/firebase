@@ -36,7 +36,7 @@
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
       (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum, branchPoint.indexNoBankat)"
-      (mouseOver)="branchPoint.isHovering = true;"
+      (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
       [agmFitBounds]="true"
       [latitude]="branchPoint.coords.lat"
@@ -132,12 +132,8 @@
   </agm-circle>
 </agm-map>
 
-<!--branches-&#45;&#45; {{branches.length}}-->
-<!--<br>-->
-<!--&lt;!&ndash;single {{singleBranchDisplay.city}}&ndash;&gt;-->
-
-<!--<br>-->
-<!--city-&#45;&#45; {{activeRoute.snapshot.queryParams.city}}-->
-<!--showSingleDisplay-&#45;&#45; {{showSingleDisplay}}-->
-<!--<br>-->
-<!--button search here-&#45;&#45; {{isShowCircle}}-->
+branches--- {{branches.length}}
+<br>
+lat---{{latCoordinate}}
+<br>
+lng---{{lngCoordinate}}

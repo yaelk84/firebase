@@ -279,16 +279,21 @@ span.tooltip:hover:after {
 // report-problem-popup
 
 .report-problem-popup-style {
-  /deep/.close {
-    outline: none;
-    font-weight: normal;
-    font-size: 0;
-    background-image: url("../../../assets/media/icons/close.svg");
-    background-repeat: no-repeat;
-    width: 26px;
-    height: 26px;
-    right: 762px !important;
+  /deep/.modal-content {
+    /deep/.close {
+      outline: none;
+      font-weight: normal;
+      font-size: 0;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      right: unset !important;
+      left: 10px !important;
+      top: 10px !important;
+    }
   }
+
 }
 
 // share-branch-popup
@@ -301,29 +306,21 @@ span.tooltip:hover:after {
   /deep/.modal-body {
     padding: 0;
   }
-  /deep/.close {
-    outline: none;
-    font-weight: normal;
-    font-size: 0;
-    background-image: url("../../../assets/media/icons/close.svg");
-    background-repeat: no-repeat;
-    width: 26px;
-    height: 26px;
-    right: 462px !important;
-  }
 
-  ///deep/.close {
-  //  outline: none;
-  //  font-size: 0;
-  //  background-image: url("../../../assets/media/icons/close.svg");
-  //  background-repeat: no-repeat;
-  //  width: 26px;
-  //  height: 26px;
-  //  right: 462px !important;
-  //  @media (max-width: $mobile_view) {
-  //    right: 20px;
-  //  }
-  //}
+  /deep/.modal-content {
+    /deep/.close {
+      outline: none;
+      font-weight: normal;
+      font-size: 0;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      right: unset !important;
+      left: 10px !important;
+      top: 10px !important;
+    }
+  }
 
   /deep/.pointer:hover {
     color: #343a40;
@@ -335,7 +332,8 @@ span.tooltip:hover:after {
 @media (max-width: $mobile_view) {
   .single-branch-display{
     .selected-branch-header {
-      padding-right: 25px;
+      //padding-right: 25px;
+      padding: 25px 10px;
       .share{
         position: absolute;
         left:0px;
@@ -392,15 +390,17 @@ margin: 0;
     /deep/.modal-dialog {
       margin-top: 74px;
     }
-    /deep/.close {
-      right: 321px !important;
-    }
+    ///deep/.close {
+    //  left: 10px !important;
+    //  top: 10px !important;
+    //}
   }
 
-  .report-problem-popup-style {
-    /deep/.close {
-      right: 321px !important;
-    }
-  }
+  //.report-problem-popup-style {
+  //  /deep/.close {
+  //    left: 10px !important;
+  //    top: 10px !important;
+  //  }
+  //}
 
 }

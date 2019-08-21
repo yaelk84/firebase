@@ -5,10 +5,9 @@
           [ngClass]="{'hover-on-marker': branchData.isHovering}">
 
       <div class="wrapper-icon">
-        <div class="branch-icon" [ngClass]="{'bankat':branchData.isBankat}">
+        <div class="branch-icon" [ngClass]="{'bankat':branchData.isBankat, 'is-hovering': branchData.isHovering}">
           <div class="icon-val"  *ngIf="!branchData.isBankat">{{branchData.indexNoBankat}}</div>
           <div class="icon-val" *ngIf="branchData.isBankat"> ₪ </div>
-
         </div>
       </div>
       <app-branch-box-summarize
