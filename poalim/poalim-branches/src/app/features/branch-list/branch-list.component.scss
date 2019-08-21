@@ -173,6 +173,10 @@
 
 
 @media (max-width: 770px) {
+  .popover-add-margin{
+    position: relative;
+    margin: 0 15px;
+  }
   .width-for-no-results {
     //padding: 0 20px;
   }

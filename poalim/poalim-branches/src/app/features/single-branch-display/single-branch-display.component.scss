@@ -253,7 +253,7 @@ span.tooltip:hover:after {
   }
 
   .selected-branch-buttons {
-    margin-bottom: 46px;
+    margin-bottom: 30px;
     margin-right: 33px;
     margin-top: 0px;
     font-size: 18px;
@@ -368,8 +368,10 @@ span.tooltip:hover:after {
         left: 0px;
       }
     }
-
-    .selected-branch-data {
+.btn{
+  padding: 7px 15px;
+}
+.selected-branch-data {
       padding-right: 25px;
 
       .line-data {
