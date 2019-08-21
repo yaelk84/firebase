@@ -22,17 +22,19 @@ export class MapBranchesService {
   isDefaultFilter = false;
   hasLocationPermissionFromGeoLocation = false;
   position: object;
-  nearsBranches: Array<object> ;
+  nearsBranches: Array<object>;
   lat: number;
   lng: number;
   LAT_PARAM = 'geoCoordinateY';
   LNG_PARAM = 'geoCoordinateX';
 
-  constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader , private  events: RcEventBusService) {
+  constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader, private  events: RcEventBusService) {
   }
-  changeFilterLoactionToTrue(){
+
+  changeFilterLoactionToTrue() {
     this.sortedBranches = this.nearsBranches;
-    }
+  }
+
   // will take the mockData and filter it by city name = 'תל אביב' and will display only the 6 nearest branches
   defaultFilter(branches) {
     const filteredByCity = branches.filter(branch => {
@@ -58,6 +60,7 @@ export class MapBranchesService {
     });
     return geocoordsArray;
   }
+
   // will get my location
   getMyLocation() {
     const myGeoLocation = new Observable(observer => {
@@ -79,12 +82,12 @@ export class MapBranchesService {
           observer.complete();
 
         }, err => {
-          console.log('111111111', err)
+          console.log('111111111', err);
           observer.error(err);
 
         });
       } else {
-        console.log('22222')
+        console.log('22222');
         observer.error();
       }
     });
@@ -93,6 +96,7 @@ export class MapBranchesService {
 
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = [], useDistanceInKm = true): any {
+    debugger;
     const nearestBranchesObserveble = new Observable(observer => {
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {
@@ -104,8 +108,10 @@ export class MapBranchesService {
           m.geographicAddress[0].distanceInKm = distanceInKm;
           if (useDistanceInKm && distanceInKm < 25.0) {
             return m;
+          } else if (!useDistanceInKm) {
+            return m;
           }
-          return m;
+
         });
         // console.log('this.branchesPointsMap m34', this.branchesPointsMap);
         const nearestBranches = this.filteredMarkers.sort((a, b) => {
@@ -123,11 +129,11 @@ export class MapBranchesService {
   getCenterOfNewLocation(preCircleCoords: GeoLocationObject, newCircleCoords: GeoLocationObject) {
     const centerOfNewLocation = new Observable((observer) => {
       this.mapsAPILoader.load().then(() => {
-          const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
-          const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
-          const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
-          observer.next(distanceInKm);
-      }).catch( err => console.log(err));
+        const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
+        const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
+        const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
+        observer.next(distanceInKm);
+      }).catch(err => console.log(err));
     });
     return centerOfNewLocation;
   }

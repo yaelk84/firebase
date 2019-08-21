@@ -124,7 +124,7 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
-    console.log('events', $event);
+
     if (isNullOrUndefined($event)) {
       this.branchDataServices.citySelected = '';
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
