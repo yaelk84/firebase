@@ -45,7 +45,8 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
-              private appService: AppService, private filterService: BranchFilterService, private cdRef: ChangeDetectorRef) {
+              private appService: AppService, private filterService: BranchFilterService,
+              private branchFilterService: BranchFilterService) {
   }
 
   ngOnInit() {
@@ -102,6 +103,9 @@ export class MapComponent implements OnInit, AfterViewInit {
            this.filterService.activeFilters);
          console.log('branches-after', this.branches);
       });
+    if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+      this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
+    }
   }
 
   showCircle(newCoordsCenter) {
@@ -120,10 +124,10 @@ export class MapComponent implements OnInit, AfterViewInit {
   searchOnArea() {
     this.branchDataServices.citySelected = '';
     this.events.emit(CONSTANTS.EVENTS.DELETE_SEARCH);
-      this.latCoordinate = this.findHereCenter.lat;
-      this.lngCoordinate = this.findHereCenter.lng;
+    this.latCoordinate = this.findHereCenter.lat;
+    this.lngCoordinate = this.findHereCenter.lng;
 
-      this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
+    this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
   }
 
   ngAfterViewInit() {

@@ -1,4 +1,11 @@
 <!-- SEARCH IN AREA BUTTON. DISPLAY ONLY WHEN DRAG THE MAP MORE THEN 3KM FROM CURRENT LOCATION -->
+<agm-map
+  *ngIf="branches.length === 0"
+  [latitude]="latCoordinate"
+  [longitude]="lngCoordinate"
+  [zoom]="12">
+<!--  [scrollwheel]="false" [mapDraggable]="false" -->
+</agm-map>
 <button
   *ngIf="isShowCircle && !showSingleDisplay && branches.length !== 0"
   (click)="searchOnArea()"
@@ -10,11 +17,12 @@
 <agm-map
   dir="ltr"
   #agmMap
+  *ngIf="branches.length > 0"
   [fitBounds]="true"
   (zoomChange)="onZoomChange($event)"
   (centerChange)="showCircle($event)">
 <!--  AGM MARKER FOR MY LOCATION -->
-  <ng-container *ngIf="hasAccessToMyLocation || branches.length === 0">
+  <ng-container *ngIf="hasAccessToMyLocation">
     <agm-marker
       [latitude]="latCoordinate"
       [longitude]="lngCoordinate"
@@ -23,7 +31,7 @@
     </agm-marker>
   </ng-container>
 
-  <ng-container *ngIf="!hasAccessToMyLocation || branches.length === 0">
+  <ng-container *ngIf="!hasAccessToMyLocation">
     <agm-marker
       [latitude]="latCoordinate"
       [longitude]="lngCoordinate"
@@ -106,13 +114,14 @@
         [latitude]="singleBranchDisplay.coords.lat"
         [longitude]="singleBranchDisplay.coords.lng"
         [isOpen]="true"
-        [closeOnMapClick]="true"
         [closeWhenOthersOpen]="true"
         [openOnMarkerClick]="true">
         <ng-template>
           <app-branch-box-summarize [branchDataSummarize]="singleBranchDisplay.branchSummarize">
           </app-branch-box-summarize>
-<!--           <h6 style="text-align: center">לפרטי הסניף > </h6>-->
+          <div class="goto-branch-details-wrapper">
+            <button class="goto-branch-details">לפרטי הסניף > </button>
+          </div>
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>
@@ -132,8 +141,3 @@
   </agm-circle>
 </agm-map>
 
-branches--- {{branches.length}}
-<br>
-lat---{{latCoordinate}}
-<br>
-lng---{{lngCoordinate}}

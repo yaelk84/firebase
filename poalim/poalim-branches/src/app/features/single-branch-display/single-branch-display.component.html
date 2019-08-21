@@ -103,9 +103,9 @@
   </div>
 </ng-template>
 <div class="mobile-scroll" *ngIf="isMobile">
-
   <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
 </div>
+
 
 <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'" class="report-problem-popup-style">
   <app-report-problem-popup></app-report-problem-popup>

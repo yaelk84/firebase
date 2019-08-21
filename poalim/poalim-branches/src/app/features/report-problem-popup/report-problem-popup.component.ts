@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-report-problem-popup',
@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ReportProblemPopupComponent implements OnInit {
 
   reportBadServiceToggle = false;
+  openSuccessPopup = false;
+  @Input() rcPopupWrapperComponent: any;
 
   constructor() { }
 
@@ -24,6 +26,7 @@ export class ReportProblemPopupComponent implements OnInit {
 
   sendServiceReport(serviceReportInput) {
     console.dir(serviceReportInput);
+    this.openSuccessPopup = true;
   }
 
 }
