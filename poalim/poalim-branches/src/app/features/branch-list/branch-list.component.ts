@@ -97,12 +97,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const showResultsCity = (branchesFilter) => {
+      this.branchDataServices.citySelected = queryParams.city;
       if (branchesFilter.length === 1) {
         singleCityResult(branchesFilter[0]);
-        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+             this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
 
       } else {
-        this.branchDataServices.citySelected = queryParams.city;
+
         this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
       }
       updateData();
