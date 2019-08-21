@@ -64,6 +64,18 @@ agm-map {
 /deep/.si-float-wrapper {
   width: 300px;
 }
+.goto-branch-details-wrapper {
+  width: 100%;
+  display: flex;
+  .goto-branch-details {
+    outline: none;
+    border: none;
+    background: #ffffff;
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
 
 @media (max-width: $mobile_view) {
   agm-map{

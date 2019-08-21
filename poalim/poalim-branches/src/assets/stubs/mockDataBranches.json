@@ -18431,7 +18431,7 @@
   {
     "_id": 9128,
     "branchNumber": 9128,
-    "branchName": "בנקט - מתנ*ס ירוחם",
+    "branchName": "בנקט - מתנ\"ס ירוחם",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -19670,7 +19670,7 @@
     ],
     "geographicAddress": [
       {
-        "cityName": "ראשל*צ",
+        "cityName": "ראשל\"צ",
         "streetName": "null",
         "buildingNumber": 2,
         "postOfficeBox": "",
@@ -21059,7 +21059,7 @@
   {
     "_id": 9526,
     "branchNumber": 9526,
-    "branchName": "בנקט מזרח י*ם",
+    "branchName": "בנקט מזרח י\"ם",
     "branchTypeCode": "",
     "branchTypeDesc": null,
     "branchManagerName": "",
@@ -22811,7 +22811,7 @@
   {
     "_id": 9732,
     "branchNumber": 9732,
-    "branchName": "נתב*ג - שרוול C",
+    "branchName": "נתב\"ג - שרוול C",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -43052,7 +43052,7 @@
     ],
     "geographicAddress": [
       {
-        "cityName": "ראשל*צ",
+        "cityName": "ראשל\"צ",
         "streetName": "null",
         "buildingNumber": 50,
         "postOfficeBox": "",
@@ -45609,7 +45609,7 @@
   {
     "_id": 9714,
     "branchNumber": 9714,
-    "branchName": "נתב*ג - מקבלי פנים",
+    "branchName": "נתב\"ג - מקבלי פנים",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -45901,7 +45901,7 @@
   {
     "_id": 9731,
     "branchNumber": 9731,
-    "branchName": "נתב*ג - שרוול B",
+    "branchName": "נתב\"ג - שרוול B",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -46193,7 +46193,7 @@
   {
     "_id": 9734,
     "branchNumber": 9734,
-    "branchName": "נתב*ג - דיוטי פרי",
+    "branchName": "נתב\"ג - דיוטי פרי",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -64615,7 +64615,7 @@
     "branchTypeCode": "PRV",
     "branchTypeDesc": "פרטי",
     "branchManagerName": "אודי שני",
-    "comment": "ניתן לקבל בסניף שירותי מזומנים <br> בתחום נתב*ג פו",
+    "comment": "ניתן לקבל בסניף שירותי מזומנים <br> בתחום נתב\"ג פו",
     "branchOnDuty": 774,
     "channelsGroupCode": 19,
     "channelsGroupDescription": "סניף פיזי",
@@ -69648,7 +69648,7 @@
       {
         "cityName": "עוספיה",
         "streetName": "null",
-        "buildingNumber": "(100 מ*ר ל",
+        "buildingNumber": "(100 מ\"ר ל",
         "postOfficeBox": "",
         "zipCode": "",
         "geographicCoordinate": {
@@ -84770,7 +84770,7 @@
   {
     "_id": 9216,
     "branchNumber": 9216,
-    "branchName": "המכללה למינהל ראשל*צ",
+    "branchName": "המכללה למינהל ראשל\"צ",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -87982,7 +87982,7 @@
   {
     "_id": 9713,
     "branchNumber": 9713,
-    "branchName": "נתב*ג - מקבלי פנים",
+    "branchName": "נתב\"ג - מקבלי פנים",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -88274,7 +88274,7 @@
   {
     "_id": 9719,
     "branchNumber": 9719,
-    "branchName": "נתב*ג - טרמינל 1",
+    "branchName": "נתב\"ג - טרמינל 1",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -90389,7 +90389,7 @@
     ],
     "geographicAddress": [
       {
-        "cityName": "ראשל*צ",
+        "cityName": "ראשל\"צ",
         "streetName": "null",
         "buildingNumber": 2,
         "postOfficeBox": "",
@@ -90610,7 +90610,7 @@
   {
     "_id": 9321,
     "branchNumber": 9321,
-    "branchName": "קניון G צמרת ת*א",
+    "branchName": "קניון G צמרת ת\"א",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -92946,7 +92946,7 @@
   {
     "_id": 9715,
     "branchNumber": 9715,
-    "branchName": "נתב*ג - מקבלי פנים",
+    "branchName": "נתב\"ג - מקבלי פנים",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -93530,7 +93530,7 @@
   {
     "_id": 9733,
     "branchNumber": 9733,
-    "branchName": "נתב*ג - שרוול D",
+    "branchName": "נתב\"ג - שרוול D",
     "branchTypeCode": "BNK",
     "branchTypeDesc": "בנקט",
     "branchManagerName": "",
@@ -93822,7 +93822,7 @@
   {
     "_id": 9743,
     "branchNumber": 9743,
-    "branchName": "נתב*ג שחקים",
+    "branchName": "נתב\"ג שחקים",
     "branchTypeCode": "",
     "branchTypeDesc": null,
     "branchManagerName": "",
@@ -93893,7 +93893,7 @@
     ],
     "geographicAddress": [
       {
-        "cityName": "נתב*ג",
+        "cityName": "נתב\"ג",
         "streetName": "null",
         "buildingNumber": "",
         "postOfficeBox": "",

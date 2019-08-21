@@ -28,6 +28,7 @@ import { MapComponent } from './features/map/map.component';
 import { AgmCoreModule  } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ShareBranchPopupComponent } from './features/share-branch-popup/share-branch-popup.component';
+import { SuccessPopupMsgComponent } from './success-popup-msg/success-popup-msg.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -54,6 +55,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     GeneralPopupComponent,
     MapComponent,
     ShareBranchPopupComponent,
+    SuccessPopupMsgComponent,
   ],
   imports: [
     BrowserModule,

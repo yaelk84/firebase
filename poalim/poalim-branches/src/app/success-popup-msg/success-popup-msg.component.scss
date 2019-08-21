@@ -1,0 +1,88 @@
+.msg-container {
+  position: absolute;
+  //left: 18px;
+  //bottom: 0;
+  padding-top: 5px;
+  color: darkblue;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.share-branch-popup-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+  display: flex;
+  position: relative;
+
+
+  .popup-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .share-branch-popup-icon {
+    position: relative;
+    top: 15px;
+  }
+
+  .success-popup-content {
+    width: 100%;
+    text-align: center;
+    font-family: inherit;
+    font-size: 24px;
+
+    h1 {
+      font-size: 25px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.1;
+      letter-spacing: normal;
+      text-align: center;
+      font-family: inherit;
+    }
+  }
+
+
+    .flex-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      button {
+        width: 132px;
+        height: 45px;
+        border-radius: 21.5px;
+        border: solid 1px #03294c;
+        box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.12);
+        background-color: #ffffff;
+        outline: none;
+        font-family: inherit;
+        font-size: 20px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 0.95;
+        letter-spacing: normal;
+        text-align: center;
+        color: #03294c;
+      }
+    }
+
+
+}
