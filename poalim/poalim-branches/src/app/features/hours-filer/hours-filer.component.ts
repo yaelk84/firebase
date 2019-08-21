@@ -33,10 +33,14 @@ export class HoursFilerComponent implements OnInit {
 
   selectHours(key) {
     if (key == this.selectedHours) {
-      this.selectedHours ='';
+      this.selectedHours = '';
       return;
     }
     this.selectedHours = key;
+  }
+
+  closePopOver() {
+    this.close.emit([]);
   }
 
   /**
@@ -66,16 +70,15 @@ export class HoursFilerComponent implements OnInit {
     this.submit();
 
 
-
   }
 
-  constructor(private filters: BranchFilterService , private events: RcEventBusService, private hoursService: HoursService) {
+  constructor(private filters: BranchFilterService, private events: RcEventBusService, private hoursService: HoursService) {
   }
 
   ngOnInit() {
-    this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS,()=>{
-          this.clear();
-    },true)
+    this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS, () => {
+      this.clear();
+    }, true);
   }
 
 }

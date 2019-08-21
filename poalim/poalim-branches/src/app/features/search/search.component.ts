@@ -124,7 +124,16 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
-    console.log('events', $event);
+
+  const UncheckLocationFilter = () => {
+
+    if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+      this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION);
+
+    }
+
+
+}
     if (isNullOrUndefined($event)) {
       this.branchDataServices.citySelected = '';
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
@@ -137,11 +146,13 @@ export class SearchComponent implements OnInit {
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
 
      if ($event.type === 'branch') {
+       UncheckLocationFilter();
       this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
       return;
     }
 
     if ($event.type === 'city') {
+      UncheckLocationFilter();
          this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
     }

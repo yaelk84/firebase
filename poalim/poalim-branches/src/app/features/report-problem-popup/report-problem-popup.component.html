@@ -24,11 +24,14 @@
   </div>
   <div class="report-service-wrapper" [ngClass]="{'shrink': !reportBadServiceToggle}">
     <div class="report-service-text-box-wrapper">
-      <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250" class="report-service-textarea" #serviceReportInput ></textarea>
+      <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250" class="report-service-textarea" #serviceReportInput></textarea>
       <span class="report-service-text-box-note">{{ 'maxChars' | rcTranslate}}</span>
     </div>
     <div>
-      <button class="outlined-btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
+      <button class="outlined-btn btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
+<!--      <lib-rc-popup-wrapper class="rc-popup-wrapper-success" *ngIf="openSuccessPopup" (closeCallback)="openSuccessPopup = false">-->
+<!--        <app-success-popup-msg></app-success-popup-msg>-->
+<!--      </lib-rc-popup-wrapper>-->
     </div>
   </div>
 </div>

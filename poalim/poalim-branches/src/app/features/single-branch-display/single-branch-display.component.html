@@ -39,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="part-wrapper services">
+    <div class="part-wrapper services" [ngClass]="{'no-border':dataBranchSelected.isBankat}">
       <div class="wrapper-service-and-btn">
         <div class="selected-branches-services">
           <h1>{{'servicesTitle' | rcTranslate}}</h1>
@@ -49,13 +49,13 @@
           </div>
           <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
         </div>
-        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn" role="button">{{'order' |rcTranslate}}</div>
+        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop" role="button">{{'order' |rcTranslate}}</div>
       </div>
 
     </div>
 
-    <div class="part-wrapper" *ngIf="!dataBranchSelected.isBankat">
-      <div class="selected-branch-data">
+    <div class="part-wrapper" [ngClass]="{'no-border':dataBranchSelected.isBankat}" >
+      <div class="selected-branch-data" *ngIf="!dataBranchSelected.isBankat">
 
         <div class="line-data copy" (click)="copyToClipboard(dataBranchSelected.phone)">
 
@@ -103,9 +103,9 @@
   </div>
 </ng-template>
 <div class="mobile-scroll" *ngIf="isMobile">
-
   <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
 </div>
+
 
 <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'" class="report-problem-popup-style">
   <app-report-problem-popup></app-report-problem-popup>

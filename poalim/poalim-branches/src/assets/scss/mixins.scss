@@ -243,7 +243,7 @@ lib-rc-switcher{
 /deep/
 perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   right: 2px !important; ;
-  width: 2px;
+  width: 2px !important; ;;
   opacity: 1;
   background-color: $pale-grey;
 &:hover, perfect-scrollbar > .ps.ps--active-y > .ps__rail-y.ps--clicking{

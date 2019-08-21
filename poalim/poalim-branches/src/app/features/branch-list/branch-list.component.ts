@@ -66,21 +66,14 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
   private buildFilterByQuery(queryParams) {
     this.showSelectedBranch = false;
-    const UncheckLocationFilter = () => {
 
-      if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
-        this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
-
-      }
-
-    };
     const updateData = () => {
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
       this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
       this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
     }
     const handleCity = () => {
-      UncheckLocationFilter();
+
       const name = queryParams.branchName;
       const city = queryParams.city;
       const street = !isNullOrUndefined(queryParams.BranchStreet) ? queryParams.BranchStreet : '';
@@ -104,12 +97,13 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const showResultsCity = (branchesFilter) => {
+      this.branchDataServices.citySelected = queryParams.city;
       if (branchesFilter.length === 1) {
         singleCityResult(branchesFilter[0]);
-        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+             this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
 
       } else {
-        this.branchDataServices.citySelected = queryParams.city;
+
         this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
       }
       updateData();
@@ -120,7 +114,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     };
     const handleBranch = () => {
-     UncheckLocationFilter();
+
       const branchSelectedDisplay = getSingleBranch();
       if (isNullOrUndefined(branchSelectedDisplay)) {
         return;

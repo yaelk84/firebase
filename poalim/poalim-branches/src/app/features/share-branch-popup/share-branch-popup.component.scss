@@ -1,26 +1,13 @@
-//.rc-popup-wrapper {
-//  /deep/.modal-content {
-//    width: 750px;
-//    height: 378px
-//  }
-//  /deep/.modal-body {
-//    padding: 0;
-//  }
-//  /deep/.close {
-//    width: 100%;
-//    text-align: left;
-//    padding: 0 20px;
-//    margin-top: -6px;
-//    outline: none;
-//  }
-//}
-
 .msg-container {
   position: absolute;
-  left: 0;
-  bottom: 0;
-  color: #0a294c;
+  //left: 18px;
+  //bottom: 0;
+  padding-top: 5px;
+  color: darkblue;
+  font-size: 14px;
+  font-weight: 300;
 }
+
 .share-branch-popup-wrapper {
   width: 100%;
   height: 378px;

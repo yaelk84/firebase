@@ -35,7 +35,7 @@ export class BranchFiltersComponent implements OnInit {
 
   closePopup() {
     if (this.mapService.hasLocationPermission) {
-      this.closePopup();
+      this.openPOPup = false;
     }
   }
 

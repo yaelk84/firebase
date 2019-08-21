@@ -1,10 +1,13 @@
 @import "../../../assets/scss/style";
+
 .single-scroll {
   height: 427px;
   position: relative;
 }
 
-span.tooltip[title] {position: relative;}
+span.tooltip[title] {
+  position: relative;
+}
 
 span.tooltip:hover:after {
   content: attr(data-title);
@@ -23,20 +26,27 @@ span.tooltip:hover:after {
 }
 
 .single-branch-display {
- min-height: 427px;
+  min-height: 427px;
   margin-right: 50px;
   background-color: $pale-grey;
-.name-branch{
-  margin-left: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
+
+  .name-branch {
+    margin-left: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
   .part-wrapper {
     border-bottom: 0.3px solid rgba(10, 41, 76, 0.5);
 
+    &.no-border {
+      border-bottom: none;
+    }
+
     &.services {
+      position: relative;
 
       .white-btn {
         line-height: normal;
@@ -51,10 +61,12 @@ span.tooltip:hover:after {
 
     padding: 18px;
     padding-right: 21px;
-.row{
-  display: flex;
-  justify-content: space-between;
-}
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .branch-data {
       display: flex;
       justify-items: baseline
@@ -68,12 +80,13 @@ span.tooltip:hover:after {
       .btn {
         padding: 9px;
         background-repeat: no-repeat;
-         background-position: center;
+        background-position: center;
         height: 35px;
         width: 42px;
-        background-image:  url('~src/assets/media/share.svg');
-        &:hover{
-          background-image:  url('~src/assets/media/share-red.svg');
+        background-image: url('~src/assets/media/share.svg');
+
+        &:hover {
+          background-image: url('~src/assets/media/share-red.svg');
         }
       }
     }
@@ -83,8 +96,14 @@ span.tooltip:hover:after {
     padding: 18px;
     display: flex;
     justify-content: space-between;
-    .white-btn{
+
+    .white-btn {
       font-size: 18px;
+      &.desktop{
+        position: absolute;
+        top:12px ;
+        left:15px;
+      }
     }
   }
 
@@ -112,7 +131,7 @@ span.tooltip:hover:after {
 
       .service-label {
         font-size: 18px;
-        color:$marine-two;
+        color: $marine-two;
         margin-right: 5px;
       }
 
@@ -124,11 +143,11 @@ span.tooltip:hover:after {
 
     .add-more {
       font-weight: normal;
-      color:$marine-two;
+      color: $marine-two;
       margin-right: 26px;
       cursor: pointer;
       margin-top: 8px;
-          font-size: 18px;
+      font-size: 18px;
       font-weight: normal;
       text-decoration: underline;
     }
@@ -148,12 +167,14 @@ span.tooltip:hover:after {
       margin-top: 0px;
       padding: 5px 15px;
       margin-right: -15px;
+
       &.copy {
         max-width: 317px;
         cursor: pointer;
 
         position: relative;
-        .copy-icon{
+
+        .copy-icon {
           position: absolute;
           top: 0;
           left: 15px;
@@ -163,10 +184,12 @@ span.tooltip:hover:after {
             width: 18px;
           }
         }
-        &:hover{
+
+        &:hover {
           border-radius: 16px;
           background-color: rgba(10, 41, 76, 0.08);
-          .copy-icon{
+
+          .copy-icon {
             opacity: 1;
           }
 
@@ -243,7 +266,8 @@ span.tooltip:hover:after {
 
     .wrong-data-text {
       color: $marine-two;
-      &:hover{
+
+      &:hover {
         color: $lipstick-two;
       }
     }
@@ -260,17 +284,20 @@ span.tooltip:hover:after {
       margin-right: 13px;
     }
   }
-  .back-to-results-wrapper{
+
+  .back-to-results-wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
     margin-right: 42px;
   }
-  .go-back{
+
+  .go-back {
     display: flex;
     align-items: center;
     margin-right: 9px;
-    img{
+
+    img {
       transform: rotate(90deg);
     }
   }
@@ -279,53 +306,51 @@ span.tooltip:hover:after {
 // report-problem-popup
 
 .report-problem-popup-style {
-  /deep/.close {
-    outline: none;
-    font-weight: normal;
-    font-size: 0;
-    background-image: url("../../../assets/media/icons/close.svg");
-    background-repeat: no-repeat;
-    width: 26px;
-    height: 26px;
-    right: 762px !important;
+  /deep/ .modal-content {
+    /deep/ .close {
+      outline: none;
+      font-weight: normal;
+      font-size: 0;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      right: unset !important;
+      left: 10px !important;
+      top: 10px !important;
+    }
   }
+
 }
 
 // share-branch-popup
 .rc-popup-wrapper {
-  /deep/.modal-content {
+  /deep/ .modal-content {
     max-width: 750px;
     width: 100%;
     height: 378px
   }
-  /deep/.modal-body {
+
+  /deep/ .modal-body {
     padding: 0;
   }
-  /deep/.close {
-    outline: none;
-    font-weight: normal;
-    font-size: 0;
-    background-image: url("../../../assets/media/icons/close.svg");
-    background-repeat: no-repeat;
-    width: 26px;
-    height: 26px;
-    right: 462px !important;
+
+  /deep/ .modal-content {
+    /deep/ .close {
+      outline: none;
+      font-weight: normal;
+      font-size: 0;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      right: unset !important;
+      left: 10px !important;
+      top: 10px !important;
+    }
   }
 
-  ///deep/.close {
-  //  outline: none;
-  //  font-size: 0;
-  //  background-image: url("../../../assets/media/icons/close.svg");
-  //  background-repeat: no-repeat;
-  //  width: 26px;
-  //  height: 26px;
-  //  right: 462px !important;
-  //  @media (max-width: $mobile_view) {
-  //    right: 20px;
-  //  }
-  //}
-
-  /deep/.pointer:hover {
+  /deep/ .pointer:hover {
     color: #343a40;
     opacity: 0.6;
   }
@@ -333,22 +358,26 @@ span.tooltip:hover:after {
 
 
 @media (max-width: $mobile_view) {
-  .single-branch-display{
+  .single-branch-display {
     .selected-branch-header {
       //padding-right: 25px;
       padding: 25px 10px;
-      .share{
+
+      .share {
         position: absolute;
-        left:0px;
+        left: 0px;
       }
     }
-    .selected-branch-data{
+
+    .selected-branch-data {
       padding-right: 25px;
+
       .line-data {
-        .value{
+        .value {
           display: inline-flex;
-          max-width: 65%;
+          max-width: 80%;
         }
+
         &.copy {
           &:hover {
             background-color: transparent;
@@ -356,52 +385,59 @@ span.tooltip:hover:after {
         }
       }
     }
+
     .wrapper-service-and-btn {
       padding-right: 25px;
     }
+
     .selected-branch-buttons {
-margin: 0;
+      margin: 0;
+      margin-right: 10px;
       margin-bottom: 20px;
     }
 
 
   }
 
-  .copy-icon{
+  .copy-icon {
     display: none;
   }
-.row-btn{
-  margin-top: 30px;
-  .row{
-    display: flex;
-    justify-content: space-between;
-  }
+  .row-btn {
+    margin-top: 30px;
 
-}
-.mobile-scroll{
-  height: 427px;
-  overflow: auto;
-  direction: ltr;
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
 
-  .single-branch-display{
-    direction: rtl;
-    margin-right: 0;
   }
-}
+  .mobile-scroll {
+    height: 427px;
+    overflow: auto;
+    direction: ltr;
+
+    .single-branch-display {
+      direction: rtl;
+      margin-right: 0;
+    }
+  }
 
   .rc-popup-wrapper {
-    /deep/.modal-dialog {
+    /deep/ .modal-dialog {
       margin-top: 74px;
     }
-    /deep/.close {
-      right: 321px !important;
-    }
+
+    ///deep/.close {
+    //  left: 10px !important;
+    //  top: 10px !important;
+    //}
   }
 
-  .report-problem-popup-style {
-    /deep/.close {
-      right: 321px !important;
-    }
-  }
+  //.report-problem-popup-style {
+  //  /deep/.close {
+  //    left: 10px !important;
+  //    top: 10px !important;
+  //  }
+  //}
 
 }

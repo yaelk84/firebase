@@ -61,6 +61,7 @@
       max-height: 0;
     }
     .choose-problem-btns {
+      font-family: inherit;
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
@@ -69,6 +70,7 @@
         margin-left: 1rem;
         outline: none;
         line-height: 1.5;
+        padding-bottom: 2px;
         &:hover{
           border: solid 1px $lipstick-two;
           color: $lipstick-two; ;
@@ -100,6 +102,7 @@
 
       }
       .report-service-textarea {
+        font-size: 16px;
         max-width: 562px;
         width: 100%;
         height: 117px;
@@ -110,8 +113,7 @@
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         resize: none;
-        padding-right: 16px;
-        padding-top: 14px;
+        padding: 14px 16px;
       }
       .report-service-text-box-note {
         position: absolute;
@@ -132,13 +134,44 @@
 
 }
 
+// success-popup
+.rc-popup-wrapper-success {
+  /deep/.modal-body {
+    padding: 0;
+  }
+
+  /deep/.modal-content {
+    width: 753px;
+    height: 421px;
+    border-radius: 9px;
+    box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+    /deep/.close {
+      outline: none;
+      font-weight: normal;
+      font-size: 0;
+      background-image: url("../../../assets/media/icons/close.svg");
+      background-repeat: no-repeat;
+      width: 26px;
+      height: 26px;
+      right: unset !important;
+      left: 10px !important;
+      top: 10px !important;
+    }
+  }
+
+  /deep/.pointer:hover {
+    color: #343a40;
+    opacity: 0.6;
+  }
+}
+
 @media (max-width: $mobile_view) {
   .choose-problem-btns {
     flex-wrap: wrap !important;
   }
 
   .outlined-btn {
-    margin-left: 0;
+    margin-left: 0 !important;
     margin-bottom: 15px;
   }
 
