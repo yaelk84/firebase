@@ -1,13 +1,12 @@
 <!-- SEARCH IN AREA BUTTON. DISPLAY ONLY WHEN DRAG THE MAP MORE THEN 3KM FROM CURRENT LOCATION -->
 <button
-  *ngIf="isShowCircle && !showSingleDisplay"
+  *ngIf="isShowCircle && !showSingleDisplay && branches.length !== 0"
   (click)="searchOnArea()"
   class="search-in-area"
   id="Map-Search"
   type="button">
   {{ 'searchHere' | rcTranslate }}
 </button>
-<!--[scrollwheel]="showSingleDisplay"-->
 <agm-map
   dir="ltr"
   #agmMap
@@ -15,15 +14,16 @@
   (zoomChange)="onZoomChange($event)"
   (centerChange)="showCircle($event)">
 <!--  AGM MARKER FOR MY LOCATION -->
-  <ng-container *ngIf="hasAccessToMyLocation">
+  <ng-container *ngIf="hasAccessToMyLocation || branches.length === 0">
     <agm-marker
       [latitude]="latCoordinate"
       [longitude]="lngCoordinate"
-      [iconUrl]="myLocationIcon">
+      [iconUrl]="myLocationIcon"
+      [agmFitBounds]="true">
     </agm-marker>
   </ng-container>
 
-  <ng-container *ngIf="!hasAccessToMyLocation">
+  <ng-container *ngIf="!hasAccessToMyLocation || branches.length === 0">
     <agm-marker
       [latitude]="latCoordinate"
       [longitude]="lngCoordinate"
