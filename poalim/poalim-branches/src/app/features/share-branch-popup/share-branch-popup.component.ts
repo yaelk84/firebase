@@ -22,14 +22,18 @@ export class ShareBranchPopupComponent implements OnInit {
       document.removeEventListener('copy', null);
     });
     document.execCommand('copy');
-    // const branchLinkToShare = window.location.href;
-    // console.log('link to share !@#$%^&*', branchLinkToShare);
+    const branchLinkToShare = window.location.href;
+    console.log('link to share !@#$%^&*', branchLinkToShare);
+    let message;
     setTimeout(() => {
-      const message = document.createElement('p');
-      const textNode = document.createTextNode('הועתק בהצלחה');
+      message = document.createElement('p');
+      const textNode = document.createTextNode('הועתק בהצלחה!');
       message.appendChild(textNode);
       document.querySelector('.msg-container').appendChild(message);
-    }, 500);
+    }, 250);
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 1500);
   }
   ShareBranchLinkByMail() {
     const clientMail = 'mailto:address@dmail.com';
