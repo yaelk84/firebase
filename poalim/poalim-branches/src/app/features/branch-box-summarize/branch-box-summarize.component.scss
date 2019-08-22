@@ -42,20 +42,20 @@
   }
 
   .address {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.1;
     font-weight: 300;
 
   }
 
   .location {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1.1;
     font-weight: 300;
   }
 
   .location-icon {
-    margin-left: 5px;
+    margin-left: 10px;
   }
 }
 
@@ -133,9 +133,9 @@
     .wrapper-icon-accessibility {
 
       .icon-accessibility {
-
-        width: 15px;
-        height: 16px;
+margin-right: 5px;
+        width: 14px;
+        height: 15px;
         background-size: cover;
       }
     }

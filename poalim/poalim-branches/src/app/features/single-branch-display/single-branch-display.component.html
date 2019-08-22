@@ -108,5 +108,5 @@
 
 
 <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" [customClass]="'modal-lg'" class="report-problem-popup-style">
-  <app-report-problem-popup></app-report-problem-popup>
+  <app-report-problem-popup (isModalOpen)="openPopup = false"></app-report-problem-popup>
 </lib-rc-popup-wrapper>

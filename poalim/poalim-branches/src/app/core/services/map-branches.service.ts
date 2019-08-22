@@ -96,7 +96,6 @@ export class MapBranchesService {
 
 
   public myLocationFilter(myLatLng: GeoLocationObject, branchesArr = [], useDistanceInKm = true): any {
-    debugger;
     const nearestBranchesObserveble = new Observable(observer => {
       this.branchesPointsMap = branchesArr;
       this.mapsAPILoader.load().then(() => {

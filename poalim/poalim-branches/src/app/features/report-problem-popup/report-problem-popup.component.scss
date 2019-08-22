@@ -1,6 +1,10 @@
 @import "../../../assets/scss/shared_param";
 @import "../../../assets/scss/colors";
 
+/deep/.modal-body {
+  padding: 0;
+}
+
 .report-problem-wrapper {
   text-align: center;
   padding: 2rem;
@@ -118,7 +122,7 @@
       .report-service-text-box-note {
         position: absolute;
         bottom: -10px;
-        right: 70px;
+        right: 87px;
         font-size: 14px;
         font-weight: 300;
         font-style: normal;
@@ -140,30 +144,125 @@
     padding: 0;
   }
 
-  /deep/.modal-content {
-    width: 753px;
+    width: 800px;
     height: 421px;
+    //padding: 0;
     border-radius: 9px;
     box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
-    /deep/.close {
-      outline: none;
-      font-weight: normal;
-      font-size: 0;
-      background-image: url("../../../assets/media/icons/close.svg");
-      background-repeat: no-repeat;
-      width: 26px;
-      height: 26px;
-      right: unset !important;
-      left: 10px !important;
-      top: 10px !important;
-    }
-  }
+    ///deep/.close {
+    //  outline: none;
+    //  font-weight: normal;
+    //  font-size: 0;
+    //  background-image: url("../../../assets/media/icons/close.svg");
+    //  background-repeat: no-repeat;
+    //  width: 26px;
+    //  height: 26px;
+    //  right: unset !important;
+    //  left: 10px !important;
+    //  top: 10px !important;
+    //}
+
 
   /deep/.pointer:hover {
     color: #343a40;
     opacity: 0.6;
   }
 }
+
+.msg-container {
+  position: absolute;
+  //left: 18px;
+  //bottom: 0;
+  padding-top: 5px;
+  color: darkblue;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.share-branch-popup-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 9px;
+  box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
+  display: flex;
+  position: relative;
+
+
+  .popup-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .share-branch-popup-icon {
+    position: relative;
+    top: 15px;
+  }
+
+  .success-popup-content {
+    width: 100%;
+    text-align: center;
+    font-family: inherit;
+    font-size: 24px;
+
+    h1 {
+      font-size: 25px;
+      font-weight: normal;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1;
+      letter-spacing: normal;
+      text-align: center;
+      font-family: inherit;
+    }
+
+    p {
+      font-size: 20px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.1;
+      letter-spacing: normal;
+      text-align: center;
+      font-family: inherit;
+    }
+  }
+
+
+  .flex-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+      width: 132px;
+      height: 45px;
+      border-radius: 21.5px;
+      border: solid 1px #03294c;
+      background-color: #ffffff;
+      outline: none;
+      font-family: inherit;
+      font-size: 20px;
+      font-weight: normal;
+      text-align: center;
+      color: #03294c;
+      &:hover{
+        border: solid 1px $lipstick-two;
+        color: $lipstick-two;
+      }
+    }
+    .outlined-btn {
+      margin-left: 1rem;
+      outline: none;
+      line-height: 1.5;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+
+
 
 @media (max-width: $mobile_view) {
   .choose-problem-btns {

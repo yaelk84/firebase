@@ -1,12 +1,15 @@
+@import "../../../assets/scss/style";
 .msg-container {
   position: absolute;
+  left: 125px;
   //left: 18px;
   //bottom: 0;
   padding-top: 5px;
-  color: darkblue;
+  color: #0a294c;
   font-size: 14px;
   font-weight: 300;
 }
+
 
 .share-branch-popup-wrapper {
   width: 100%;
@@ -39,7 +42,8 @@
     width: 100%;
     text-align: center;
     font-family: inherit;
-    font-size: 24px;
+    font-size: 25px;
+    color: #525252;
   }
 
   .share-branch-popup-buttons {
@@ -90,6 +94,13 @@
       letter-spacing: normal;
       text-align: center;
       padding: 10px 0;
+      color: #525252;
     }
   }
 }
+@media (max-width: $mobile_view) {
+  .msg-container {
+    left: 57px;
+  }
+}
+
