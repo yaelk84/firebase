@@ -1,4 +1,5 @@
 export const CONSTANTS = {
+  MAX_RESULTS_DROP_DOWN:6,
   FRIDAY:'Friday',
   BANKAT: 899,
   yes:'yes',

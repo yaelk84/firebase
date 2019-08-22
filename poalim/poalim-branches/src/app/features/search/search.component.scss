@@ -16,6 +16,7 @@
   z-index: 10;
 }
 .search-wrapper {
+  position: relative;
   border: 1px solid;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
@@ -27,12 +28,16 @@
 
   max-width: 749px;
   margin: 0 auto;
-
+  /deep/
+  .ng-dropdown-panel .ng-dropdown-panel-items{
+    max-height: 370px !important;
+  }
   /deep/
   .autocomplete-search {
     margin-bottom: 0;
     .ng-select-container {
       flex-flow: row-reverse;
+
       .ng-clear-wrapper {
         margin-#{$default-end}: 1rem;
         .ng-clear {
@@ -128,7 +133,7 @@
   .search-btn-wrapper {
     position: absolute;
     #{$default-end}: -1px;
-    top: -1px;
+    top: 0px;
     z-index: 1002;
 
     .search-btn {
@@ -165,3 +170,40 @@
 }
 
 
+@media only screen and (max-width: $mobile_view) {
+  .overlay{
+    background-color: rgba(255, 255, 255, 0.0); /*dim the background*/
+    &.overlay.on {
+      background-color: rgba(255, 255, 255, 1); /*dim the background*/
+  }
+  }
+   .search-wrapper{
+     padding:1rem 0 ;
+     /deep/
+     .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
+       left: auto;
+     }
+ /deep/
+   .ng-select-container {
+   padding: 0 1rem;
+ }     /deep/
+     .autocomplete-search .ng-dropdown-panel{
+
+          width: calc(100% + 30px);
+          margin-right: -15px;
+          margin-left: -15px;
+
+       padding: 0;
+     }
+     /deep/
+     .autocomplete-search .ng-dropdown-panel .ng-option .option-wrapper{
+       padding: 1rem ;
+     }
+     /deep/
+     .autocomplete-search .ng-dropdown-panel{
+       box-shadow: none;
+     }
+   }
+
+
+}

@@ -119,7 +119,7 @@ span.tooltip:hover:after {
     .service-list {
       line-height: normal;
       display: flex;
-      align-items: center;
+      align-items: baseline;
       margin-top: 12px;
 
       /deep/
@@ -130,6 +130,7 @@ span.tooltip:hover:after {
       }
 
       .service-label {
+        max-width: 90%;
         font-size: 18px;
         color: $marine-two;
         margin-right: 5px;
