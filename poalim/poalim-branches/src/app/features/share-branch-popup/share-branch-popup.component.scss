@@ -1,7 +1,7 @@
 @import "../../../assets/scss/style";
 .msg-container {
   position: absolute;
-  left: 125px;
+  left: 256px;
   //left: 18px;
   //bottom: 0;
   padding-top: 5px;
@@ -100,7 +100,7 @@
 }
 @media (max-width: $mobile_view) {
   .msg-container {
-    left: 57px;
+    left: 49px;
   }
 }
 

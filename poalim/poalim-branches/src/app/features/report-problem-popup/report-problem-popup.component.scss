@@ -75,10 +75,6 @@
         outline: none;
         line-height: 1.5;
         padding-bottom: 2px;
-        &:hover{
-          border: solid 1px $lipstick-two;
-          color: $lipstick-two; ;
-        }
       }
     }
   }
@@ -247,16 +243,16 @@
       font-weight: normal;
       text-align: center;
       color: #03294c;
-      &:hover{
-        border: solid 1px $lipstick-two;
-        color: $lipstick-two;
-      }
     }
     .outlined-btn {
       margin-left: 1rem;
       outline: none;
       line-height: 1.5;
       padding-bottom: 3px;
+      &.active:hover{
+        border: solid 1px $lipstick-two;
+        color: $lipstick-two;
+      }
     }
   }
 }

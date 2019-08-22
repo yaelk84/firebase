@@ -98,6 +98,7 @@ span.tooltip:hover:after {
       .btn {
         padding: 9px;
         background-repeat: no-repeat;
+        background-color: transparent;
         background-position: center;
         height: 35px;
         width: 42px;
@@ -317,6 +318,8 @@ span.tooltip:hover:after {
 
     img {
       transform: rotate(90deg);
+      position: relative;
+      bottom: 1px;
     }
   }
 }
