@@ -41,6 +41,10 @@ span.tooltip:hover:after {
   .part-wrapper {
     border-bottom: 0.3px solid rgba(10, 41, 76, 0.5);
 
+    &:last-child {
+      border-bottom: none;
+    }
+
     &.no-border {
       border-bottom: none;
     }
@@ -55,6 +59,20 @@ span.tooltip:hover:after {
       }
     }
   }
+
+  @supports (-moz-appearance:none) {
+    .part-wrapper {
+      border-bottom: 1.5px solid #EDECED;
+    }
+  }
+
+
+
+  //@supports (ie11:none) {
+  //  .part-wrapper {
+  //    border-bottom: 1px solid #EDECED;
+  //  }
+  //}
 
   .selected-branch-header {
 
@@ -254,11 +272,11 @@ span.tooltip:hover:after {
   }
 
   .selected-branch-buttons {
-    margin-bottom: 30px;
+    //padding-bottom: 30px;
     margin-right: 33px;
     margin-top: 0px;
     font-size: 18px;
-    padding: 0 18px;
+    padding: 0 18px 30px 18px;
     display: flex;
 
     .btn {
@@ -327,8 +345,8 @@ span.tooltip:hover:after {
 // share-branch-popup
 .rc-popup-wrapper {
   /deep/ .modal-content {
-    max-width: 750px;
-    width: 100%;
+    width: 753px;
+    //width: 100%;
     height: 378px
   }
 
@@ -430,7 +448,7 @@ span.tooltip:hover:after {
       margin-top: 74px;
     }
 
-    ///deep/.close {
+      ///deep/.close {
     //  left: 10px !important;
     //  top: 10px !important;
     //}
@@ -442,5 +460,13 @@ span.tooltip:hover:after {
   //    top: 10px !important;
   //  }
   //}
-
+  .rc-popup-wrapper {
+    /deep/ .modal-content {
+      max-width: 753px;
+      width: 100%;
+    }
+  }
 }
+
+
+

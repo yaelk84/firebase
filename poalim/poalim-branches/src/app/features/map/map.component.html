@@ -4,7 +4,13 @@
   [latitude]="latCoordinate"
   [longitude]="lngCoordinate"
   [zoom]="12">
-<!--  [scrollwheel]="false" [mapDraggable]="false" -->
+  <ng-container *ngIf="hasAccessToMyLocation">
+    <agm-marker
+      [latitude]="latCoordinate"
+      [longitude]="lngCoordinate"
+      [iconUrl]="myLocationIcon">
+    </agm-marker>
+  </ng-container>
 </agm-map>
 <button
   *ngIf="isShowCircle && !showSingleDisplay && branches.length !== 0"

@@ -26,8 +26,8 @@ export class ShareBranchPopupComponent implements OnInit {
     console.log('link to share !@#$%^&*', branchLinkToShare);
     let message;
     setTimeout(() => {
-      message = document.createElement('p');
-      const textNode = document.createTextNode('הועתק בהצלחה!');
+      message = document.createElement('sapn');
+      const textNode = document.createTextNode('קישור הועתק בהצלחה!');
       message.appendChild(textNode);
       document.querySelector('.msg-container').appendChild(message);
     }, 250);
