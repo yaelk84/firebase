@@ -60,7 +60,7 @@ export class BranchFilterService {
    */
   createFiltersByTypes(response: any[]) {
     response.sort((a, b) => {
-      return a - b;
+      return a.order - b.order;
     });
     this.filters = response;
 

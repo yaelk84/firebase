@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-report-problem-popup',
@@ -8,7 +8,8 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ReportProblemPopupComponent implements OnInit {
 
   reportBadServiceToggle = false;
-  openSuccessPopup = false;
+  isSendBtnClicked = false;
+  @Output() isModalOpen = new EventEmitter();
   @Input() rcPopupWrapperComponent: any;
 
   constructor() { }
@@ -26,7 +27,11 @@ export class ReportProblemPopupComponent implements OnInit {
 
   sendServiceReport(serviceReportInput) {
     console.dir(serviceReportInput);
-    this.openSuccessPopup = true;
+    this.isSendBtnClicked = true;
+  }
+
+  closeModal() {
+    this.isModalOpen.emit();
   }
 
 }
