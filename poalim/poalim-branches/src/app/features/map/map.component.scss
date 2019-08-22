@@ -86,9 +86,17 @@ agm-map {
   }
 
   .search-in-area {
-    right: 132px;
+    right: 130px;
+    width: 150px;
   }
 
+}
+
+@media (max-width: 320px) {
+  .search-in-area {
+    right: 107px;
+    width: 150px;
+  }
 }
 
 
