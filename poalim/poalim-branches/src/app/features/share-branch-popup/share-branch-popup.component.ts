@@ -31,9 +31,9 @@ export class ShareBranchPopupComponent implements OnInit {
       message.appendChild(textNode);
       document.querySelector('.msg-container').appendChild(message);
     }, 250);
-    // setTimeout(() => {
-    //   message.style.display = 'none';
-    // }, 1500);
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 1500);
   }
   ShareBranchLinkByMail() {
     const clientMail = 'mailto:address@dmail.com';
