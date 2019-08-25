@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {RcEventBusService, RcValidators} from '@realcommerce/rc-packages';
 import {BranchObj} from '../../core/models/branch-model';
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   searchFocused: boolean;
   optionMouseOver: boolean;
   cities: [];
+  @Output() onMobileSearch = new EventEmitter();
 
 
   constructor(private apiService: ApiService, private appService: AppService, private  router: Router, private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService, private branchDataServices: BranchDataService, private filterServics: BranchFilterService, private events: RcEventBusService) {
@@ -55,7 +56,7 @@ export class SearchComponent implements OnInit {
     // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data from stub)
     //  need to sort by distance if possible, else sort by branch name -> street -> city (cities go first then branches)
     this.items = [];
-    this.openDropdown = false;
+    this.closeDropDown();
     const tempBranches = this.appService.branches.map((obj) => {
       obj.type = 'branch';
       obj.name = obj.branchName;
@@ -74,15 +75,16 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch($event) {
-console.log('eeeeeeee')
+    this.onMobileSearch.emit({isSearchOpen: true});
     this.searchTerm = $event.term;
     this.sortFilteredItems($event.items);
     if ($event.term.length > 2) {
-      this.openDropdown = true;
-    } else {
-      this.openDropdown = false;
+          this.openDropdown = true;
+        } else {
+          this.closeDropDown();
     }
   }
+
 
   shouldShow(item) {
     return this.filteredItems.indexOf(item) > -1;
@@ -90,25 +92,23 @@ console.log('eeeeeeee')
 
   sortFilteredItems(items) {
     const comma = ',';
-  function replaceNullOrUndefinedInEmpty(val) {
+    function replaceNullOrUndefinedInEmpty(val) {
       const str = isNullOrUndefined(val) || val === 'null' ? '' : val;
       return str;
     }
     function buildLabel(data) {
-    debugger
       const address = data.geographicAddress[0];
-    return  replaceNullOrUndefinedInEmpty(address.cityName) +  comma + ' ' + replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + replaceNullOrUndefinedInEmpty(address.buildingNumber) + '-' + replaceNullOrUndefinedInEmpty(data.branchName) + ' ' + '(' + data.branchNumber + ')';
+      return  replaceNullOrUndefinedInEmpty(address.cityName) +  comma + ' ' + replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + replaceNullOrUndefinedInEmpty(address.buildingNumber) + '-' + replaceNullOrUndefinedInEmpty(data.branchName) + ' ' + '(' + data.branchNumber + ')';
+    }
 
-  }
-
-    let cities = [];
-    let branches = [];
+    const cities = [];
+    const branches = [];
     for (const item of items) {
       if (item.type == 'city' && cities.length < 3) {
         cities.push(item);
       } else if (item.type == 'branch' && branches.length < 4) {
         item.addressToDisplay = buildLabel(item);
-        item.kmToDisplay = parseFloat(item.geographicAddress[0].distanceInKm).toFixed(2)
+        item.kmToDisplay = parseFloat(item.geographicAddress[0].distanceInKm).toFixed(2);
         branches.push(item);
       }
     }
@@ -117,7 +117,6 @@ console.log('eeeeeeee')
   }
 
   onFocus($event) {
-
     this.searchFocused = true;
   }
 
@@ -127,9 +126,9 @@ console.log('eeeeeeee')
     // this.openDropdown = false;
 
   }
-  keyDoen(e){
+  keyDoen(e) {
 
-    if(e.which === 8 && !e.target.value.length){
+    if (e.which === 8 && !e.target.value.length) {
       e.stopImmediatePropagation();
       e.preventDefault();
       e.stopPropagation();
@@ -139,30 +138,32 @@ console.log('eeeeeeee')
   }
   onClear() {
     this.searchTerm = '';
-    this.openDropdown = false;
+    this.closeDropDown();
   }
-  doSearch(e){
-  const event = new KeyboardEvent("keypress",{
-    "key": "Enter"
+  doSearch(e) {
+  const event = new KeyboardEvent('keypress', {
+    key: 'Enter'
   });
-  e.dispatchEvent(event);
-
+ // e.dispatchEvent(event);
+  // this.openDropdown = false;
 
   }
   onClose() {
+    this.closeDropDown();
+  }
+
+  closeDropDown() {
+    this.onMobileSearch.emit({isSearchOpen: false});
     this.openDropdown = false;
   }
 
   onChange($event) {
-
+    this.closeDropDown();
     const UncheckLocationFilter = () => {
 
       if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
         this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION);
-
       }
-
-
     };
     if (isNullOrUndefined($event)) {
       this.branchDataServices.citySelected = '';
@@ -185,10 +186,7 @@ console.log('eeeeeeee')
       this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
     }
-
-
   }
-
   searchFn(term, item) {
 
     if (term.length < 3) {
@@ -198,7 +196,12 @@ console.log('eeeeeeee')
       return item.name.indexOf(term) > -1;
     } else {
       const address = item.geographicAddress[0];
-      return item.branchName.indexOf(term) > -1 || address.cityName.indexOf(term) > -1 ||  address.streetName.indexOf(term) > -1 || String(address.buildingNumber).indexOf(term) > -1 ||  String(address.branchNumber).indexOf(term) > -1;
+      return item.branchName
+        .indexOf(term) > -1 || address.cityName
+        .indexOf(term) > -1 ||  address.streetName
+        .indexOf(term) > -1 || String(address.buildingNumber)
+        .indexOf(term) > -1 ||  String(address.branchNumber)
+        .indexOf(term) > -1;
     }
   }
 

@@ -139,8 +139,8 @@
     .search-btn {
       background-color: $lipstick-two;
       border: none;
-      height: 3.8rem;
-      width: 3.8rem;
+      height: 3.7rem;
+      width: 3.7rem;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       border-radius: 100%;
@@ -169,9 +169,22 @@
   }
 }
  @media (max-width: $mobile_view) {
-       .ng-placeholder {
-         font-size: 16px;
+   .search-wrapper{
+     &.margin-mobile-search {
+       margin-top: 40px;
+     }
+     .autocomplete-search{
+       /deep/
+       .ng-select-container {
+         .ng-value-container {
+           .ng-placeholder {
+             font-size: 18px;
+             line-height: 1.5;
+           }
+         }
        }
+     }
+   }
  }
 
 
@@ -204,6 +217,7 @@
      /deep/
      .autocomplete-search .ng-dropdown-panel .ng-option .option-wrapper{
        padding: 1rem ;
+       border-bottom: 1px solid #525252;
      }
      /deep/
      .autocomplete-search .ng-dropdown-panel{
