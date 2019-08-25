@@ -74,7 +74,7 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch($event) {
-
+console.log('eeeeeeee')
     this.searchTerm = $event.term;
     this.sortFilteredItems($event.items);
     if ($event.term.length > 2) {
@@ -89,6 +89,17 @@ export class SearchComponent implements OnInit {
   }
 
   sortFilteredItems(items) {
+    const comma = ',';
+  function replaceNullOrUndefinedInEmpty(val) {
+      const str = isNullOrUndefined(val) || val === 'null' ? '' : val;
+      return str;
+    }
+    function buildLabel(data) {
+    debugger
+      const address = data.geographicAddress[0];
+    return  replaceNullOrUndefinedInEmpty(address.cityName) +  comma + ' ' + replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + replaceNullOrUndefinedInEmpty(address.buildingNumber) + '-' + replaceNullOrUndefinedInEmpty(data.branchName) + ' ' + '(' + data.branchNumber + ')';
+
+  }
 
     let cities = [];
     let branches = [];
@@ -96,10 +107,13 @@ export class SearchComponent implements OnInit {
       if (item.type == 'city' && cities.length < 3) {
         cities.push(item);
       } else if (item.type == 'branch' && branches.length < 4) {
+        item.addressToDisplay = buildLabel(item);
+        item.kmToDisplay = parseFloat(item.geographicAddress[0].distanceInKm).toFixed(2)
         branches.push(item);
       }
     }
-    this.filteredItems = cities.concat(branches);
+    this.filteredItems = cities.concat(branches).slice(0, CONSTANTS.MAX_RESULTS_DROP_DOWN);
+    console.log('this.filteredItems', this.filteredItems);
   }
 
   onFocus($event) {
@@ -113,47 +127,62 @@ export class SearchComponent implements OnInit {
     // this.openDropdown = false;
 
   }
+  keyDoen(e){
 
+    if(e.which === 8 && !e.target.value.length){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      e.stopPropagation();
+
+    }
+
+  }
   onClear() {
     this.searchTerm = '';
     this.openDropdown = false;
   }
+  doSearch(e){
+  const event = new KeyboardEvent("keypress",{
+    "key": "Enter"
+  });
+  e.dispatchEvent(event);
 
+
+  }
   onClose() {
     this.openDropdown = false;
   }
 
   onChange($event) {
 
-  const UncheckLocationFilter = () => {
+    const UncheckLocationFilter = () => {
 
-    if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
-      this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION);
+      if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
+        this.filterServics.toggleFilter(CONSTANTS.FILTER_lOCATION);
 
-    }
+      }
 
 
-}
+    };
     if (isNullOrUndefined($event)) {
       this.branchDataServices.citySelected = '';
       this.router.navigate([], {queryParams: {}, relativeTo: this.activeRoute});
       return;
     }
 
-    this.openDropdown = false;
     this.searchTerm = '';
     // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
 
-     if ($event.type === 'branch') {
-       UncheckLocationFilter();
+    if ($event.type === 'branch') {
+      UncheckLocationFilter();
       this.router.navigate([], {queryParams: {branch: branchNumber}, relativeTo: this.activeRoute});
       return;
     }
 
     if ($event.type === 'city') {
       UncheckLocationFilter();
-         this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
+      this.router.navigate([], {queryParams: {city: $event.name}, relativeTo: this.activeRoute});
 
     }
 
@@ -168,7 +197,8 @@ export class SearchComponent implements OnInit {
     if (item.type === 'city') {
       return item.name.indexOf(term) > -1;
     } else {
-      return item.branchName.indexOf(term) > -1 || item.geographicAddress[0].cityName.indexOf(term) > -1;
+      const address = item.geographicAddress[0];
+      return item.branchName.indexOf(term) > -1 || address.cityName.indexOf(term) > -1 ||  address.streetName.indexOf(term) > -1 || String(address.buildingNumber).indexOf(term) > -1 ||  String(address.branchNumber).indexOf(term) > -1;
     }
   }
 
