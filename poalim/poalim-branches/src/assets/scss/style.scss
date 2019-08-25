@@ -21,6 +21,10 @@
   letter-spacing: normal;
   min-width: 148px;
   padding-bottom: .4rem;
+  &:hover{
+    border: solid 1px $lipstick-two;
+    color: $lipstick-two;
+  }
 }
 
 .outlined-btn.active {

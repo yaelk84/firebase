@@ -25,7 +25,7 @@
   position: relative;
   z-index: 11;
   background: $white;
-
+  width: 100%;
   max-width: 749px;
   margin: 0 auto;
   /deep/
@@ -139,15 +139,15 @@
     .search-btn {
       background-color: $lipstick-two;
       border: none;
-      height: 3.6rem;
-      width: 3.6rem;
+      height: 3.7rem;
+      width: 3.7rem;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       border-radius: 100%;
       transition: all .4s ease;
       cursor: not-allowed;
       .search-btn-icon {
-        padding: .6em;
+        padding: .5em;
       }
     }
     .search-btn.cant-click {
@@ -168,6 +168,25 @@
     display: none;
   }
 }
+ @media (max-width: $mobile_view) {
+   .search-wrapper{
+     &.margin-mobile-search {
+       margin-top: 40px;
+     }
+     .autocomplete-search{
+       /deep/
+       .ng-select-container {
+         .ng-value-container {
+           .ng-placeholder {
+             font-size: 18px;
+             line-height: 1.5;
+           }
+         }
+       }
+     }
+   }
+ }
+
 
 
 @media only screen and (max-width: $mobile_view) {
@@ -198,6 +217,7 @@
      /deep/
      .autocomplete-search .ng-dropdown-panel .ng-option .option-wrapper{
        padding: 1rem ;
+       border-bottom: 1px solid #525252;
      }
      /deep/
      .autocomplete-search .ng-dropdown-panel{

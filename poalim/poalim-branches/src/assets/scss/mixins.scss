@@ -17,6 +17,7 @@
   top: 1rem;
   border: none;
   background: none;
+  z-index: 111;
 }
 .close-btn:after {
   position: absolute;
@@ -95,6 +96,9 @@ lib-rc-switcher{
     .icon-val {
       color: $white;
       transform: rotate(-45deg);
+      position: relative;
+      top: -1.5px;
+      right: 1px;
     }
   }
 

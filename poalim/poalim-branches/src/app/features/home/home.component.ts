@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   initMessages: {} | any;
   isMobile;
   singleDisplay = false;
+  displayTitle = true;
 
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService, private deviceService: DeviceService) {
   }
@@ -115,8 +116,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('destroy');
     this.intervalTimer.clearTimeout();
   }
 
+  onMobileTitleSearch($event) {
+    this.displayTitle = !$event.isSearchOpen;
+  }
 }

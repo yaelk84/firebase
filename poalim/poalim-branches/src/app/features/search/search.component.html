@@ -1,6 +1,6 @@
 <div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
-<div class="close-btn"></div>
-<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem}">
+<div *ngIf="openDropdown" class="close-btn" (click)="closeDropDown()"></div>
+<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem, 'margin-mobile-search': openDropdown }">
   <ng-select [(ngModel)]="selectedItem"
              disable-backspace-reset
              [items]="items"
@@ -18,10 +18,7 @@
              (focus)="onFocus($event)"
              (clear)="onClear()"
              (blur)="onBlur($event)"
-                           (change)="onChange($event)"
-
-
-  >
+             (change)="onChange($event)">
     <ng-template ng-label-tmp let-item="item">
       <div *ngIf="item.type == 'city'">
         <span>{{item.name}}</span>
@@ -75,7 +72,7 @@
   </ng-select>
   <div class="search-btn-wrapper">
     <button class="search-btn"
-            (click)="doSearch()"
+            (click)="doSearch($event)"
             [disabled]="!openDropdown && !selectedItem"
             [ngClass]="{
             'can-click': openDropdown || selectedItem,
