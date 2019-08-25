@@ -95,6 +95,9 @@ lib-rc-switcher{
     .icon-val {
       color: $white;
       transform: rotate(-45deg);
+      position: relative;
+      top: -1.5px;
+      right: 1px;
     }
   }
 

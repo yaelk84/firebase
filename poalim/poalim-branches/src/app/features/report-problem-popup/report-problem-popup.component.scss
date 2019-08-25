@@ -75,6 +75,9 @@
         outline: none;
         line-height: 1.5;
         padding-bottom: 2px;
+        &.active:hover {
+          border-color: #03294c;
+        }
       }
     }
   }
@@ -136,13 +139,17 @@
 
 // success-popup
 .rc-popup-wrapper-success {
+
+  .outlined-btn {
+    padding-bottom: 2px;
+    min-width: 115px;
+
+  }
   /deep/.modal-body {
     padding: 0;
   }
 
-    width: 800px;
     height: 421px;
-    //padding: 0;
     border-radius: 9px;
     box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
 
@@ -150,6 +157,7 @@
     color: #343a40;
     opacity: 0.6;
   }
+
 }
 
 .msg-container {
@@ -177,6 +185,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    padding: 2em;
   }
 
   .share-branch-popup-icon {
@@ -218,6 +227,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .btn {
       color: #03294c;
     }
@@ -239,6 +249,13 @@
 
   .report-service-text-box-note {
     right: 9px !important;
+  }
+
+  .rc-popup-wrapper-success {
+    .popup-content {
+      max-width: 355px;
+      padding: 1rem;
+    }
   }
 }
 

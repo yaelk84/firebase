@@ -24,7 +24,7 @@
   position: relative;
   z-index: 11;
   background: $white;
-
+  width: 100%;
   max-width: 749px;
   margin: 0 auto;
 
@@ -134,15 +134,15 @@
     .search-btn {
       background-color: $lipstick-two;
       border: none;
-      height: 3.6rem;
-      width: 3.6rem;
+      height: 3.8rem;
+      width: 3.8rem;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       border-radius: 100%;
       transition: all .4s ease;
       cursor: not-allowed;
       .search-btn-icon {
-        padding: .6em;
+        padding: .5em;
       }
     }
     .search-btn.cant-click {
@@ -163,5 +163,11 @@
     display: none;
   }
 }
+ @media (max-width: $mobile_view) {
+       .ng-placeholder {
+         font-size: 16px;
+       }
+ }
+
 
 
