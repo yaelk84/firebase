@@ -114,11 +114,12 @@ lib-rc-switcher{
     color: #0a294c;
 
     .custom-control-description {
-      margin-#{$default-start}: 20px;
+      margin-#{$default-start}: 13px;
       font-size: 20px;
       color: #03294c;
       font-weight: 300;
       width: 200px;
+      padding-bottom: 4px;
     }
 
     .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
@@ -145,6 +146,7 @@ lib-rc-switcher{
 .rc-popup-wrapper {
   /deep/
   .modal-dialog {
+    max-width: 752px;
     &.full-height{
       app-general-popup{
         height: 100%;

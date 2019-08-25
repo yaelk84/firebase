@@ -127,7 +127,6 @@ export class SearchComponent implements OnInit {
 
   }
   keyDoen(e) {
-
     if (e.which === 8 && !e.target.value.length) {
       e.stopImmediatePropagation();
       e.preventDefault();
@@ -141,12 +140,14 @@ export class SearchComponent implements OnInit {
     this.closeDropDown();
   }
   doSearch(e) {
-  const event = new KeyboardEvent('keypress', {
-    key: 'Enter'
+    const enter = new KeyboardEvent('keypress', {
+    key: 'Enter',
+      code: '13'
   });
- // e.dispatchEvent(event);
-  // this.openDropdown = false;
-
+    console.log('MouseEvent', e);
+    console.log('KeyboardEvent', enter);
+    e.dispatchEvent(enter);
+    // this.openDropdown = false;
   }
   onClose() {
     this.closeDropDown();
