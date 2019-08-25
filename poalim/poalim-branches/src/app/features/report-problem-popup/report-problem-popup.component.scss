@@ -135,10 +135,20 @@
     max-height: 0;
   }
 
+  .btn {
+    padding: 9px 40px;
+    font-size: 18px;
+  }
+
 }
 
 // success-popup
 .rc-popup-wrapper-success {
+
+  img.success-popup-img {
+    position: relative;
+    top: 4px;
+  }
 
   .outlined-btn {
     padding-bottom: 2px;
@@ -219,6 +229,8 @@
       letter-spacing: normal;
       text-align: center;
       font-family: inherit;
+      width: 246px;
+      margin: 0 auto;
     }
   }
 
@@ -255,6 +267,9 @@
     .popup-content {
       max-width: 355px;
       padding: 1rem;
+    }
+    img.success-popup-img {
+      top: 0;
     }
   }
 }
