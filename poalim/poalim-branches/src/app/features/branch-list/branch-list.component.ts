@@ -177,16 +177,18 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     } else {
       if (!this.mapServices.hasLocationPermission) {
         this.mapServices.defaultFilter(this.appService.branches);
-        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices
+          .createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
       } else {
         this.mapServices.changeFilterLoactionToTrue();
-        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
+        this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices
+          .createDataArray(this.mapServices.sortedBranches), this.branchFilterService.activeFilters);
 
       }
 
     }
-    updateData()
-    console.log('evnt event');
+    updateData();
+    console.log('UPDATE DATA !!!');
   }
 
   private callQueryParam() {
@@ -234,8 +236,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   toggleDropDown(e) {
-
-    if (!isNullOrUndefined(e) && Object.keys(e).length) {
+    // (!isNullOrUndefined(e) && Object.keys(e).length)
+    if (!isNullOrUndefined(e)) {
       e.stopPropagation();
     }
     this.showDaysHoursFilter = !this.showDaysHoursFilter;
@@ -251,7 +253,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
-      console.log('event change')
+      console.log('event change');
       this.showNoLocation = true;
     }, true);
 

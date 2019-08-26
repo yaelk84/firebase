@@ -17,7 +17,7 @@
 }
 .search-wrapper {
   position: relative;
-  border: 1px solid;
+  border: 1px solid #525252;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
@@ -27,6 +27,9 @@
   width: 100%;
   max-width: 749px;
   margin: 0 auto;
+  //&.no-results {
+  //  border: 1px solid #df1a1e;
+  //}
   /deep/
   .ng-dropdown-panel .ng-dropdown-panel-items{
     max-height: 380px !important;
@@ -78,9 +81,7 @@
             line-height: 1;
             margin-top: -.4rem;
           }
-
         }
-
       }
     }
     .ng-dropdown-panel {
@@ -93,6 +94,13 @@
       #{$default-end}: 0;
       .ng-option {
         border-radius: 4px;
+        //color: #df1a1e;
+        //font-weight: 300;
+        //background-image: url("../../../assets/media/icons/no-results.svg");
+        //background-repeat: no-repeat;
+        //background-position-x: 62%;
+        //margin: 0 auto;
+        //text-align: center;
 
         .option-wrapper {
           padding: 1rem;

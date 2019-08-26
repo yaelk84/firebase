@@ -12,6 +12,7 @@ import {isNullOrUndefined} from 'util';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {NgSelectComponent} from '@ng-select/ng-select';
 import {CONSTANTS} from '../../constants';
+import {DeviceService} from "../../core/services/event-service";
 
 
 @Component({
@@ -35,7 +36,10 @@ export class SearchComponent implements OnInit {
   @Output() onMobileSearch = new EventEmitter();
 
 
-  constructor(private apiService: ApiService, private appService: AppService, private  router: Router, private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService, private branchDataServices: BranchDataService, private filterServics: BranchFilterService, private events: RcEventBusService) {
+  constructor(private apiService: ApiService, private appService: AppService, private  router: Router,
+              private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService,
+              private branchDataServices: BranchDataService, private filterServics: BranchFilterService,
+              private events: RcEventBusService, private eventService: DeviceService) {
   }
 
   set updateCities(data) {

@@ -49,7 +49,7 @@
   <div *ngIf="!showSingleDisplay">
   <ng-container *ngFor="let branchPoint of branches; let i = index">
     <agm-marker
-      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum, branchPoint.indexNoBankat)"
+      (markerClick)="showSelectedMarkerOnBranchList(branchPoint.branchSummarize.branchNum, branchPoint.indexNoBankat, branchPoint.coords)"
       (mouseOver)="branchPoint.isHovering = true"
       (mouseOut)="branchPoint.isHovering = false"
       [agmFitBounds]="true"
@@ -67,7 +67,7 @@
       text: showSingleDisplay ? '1' : branchPoint.indexNoBankat + '',
       color: 'white',
       fontFamily: '',
-      fontSize: '16px',
+      fontSize: '14px',
       fontWeight: 'normal'
       }">
       <agm-snazzy-info-window
@@ -92,7 +92,7 @@
 <!-- SINGLE BRANCH DISPLAY: THE SELECTED BRANCH. ONLY ONE MARKER IS SHOWN. SNAZZY INFO WINDOW OPEN -->
   <ng-container *ngIf="showSingleDisplay">
     <agm-marker
-      (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum,'')"
+      (markerClick)="showSelectedMarkerOnBranchList(singleBranchDisplay.branchSummarize.branchNum,'', singleBranchDisplay.coords)"
       (mouseOver)="singleBranchDisplay.isHovering = true"
       (mouseOut)="singleBranchDisplay.isHovering = false"
       [agmFitBounds]="true"
@@ -104,13 +104,13 @@
       text: '&#8362;',
       color: 'white',
       fontFamily: 'inherit',
-      fontSize: '18px',
+      fontSize: '14px',
       fontWeight: 'normal'
     } : {
       text: singleBranchDisplay.indexForDisplay ? (singleBranchDisplay.indexForDisplay) : '1',
       color: 'white',
       fontFamily: '',
-      fontSize: '16px',
+      fontSize: '14px',
       fontWeight: 'normal'
       }">
       <agm-snazzy-info-window

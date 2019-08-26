@@ -38,6 +38,8 @@
       height: 20px;
       background-image: url('~src/assets/media/group-26.svg');
       background-repeat: no-repeat;
+      position: relative;
+      top: 3px;
     }
   }
 
@@ -52,6 +54,7 @@
     font-size: 18px;
     line-height: 1.1;
     font-weight: 300;
+    margin-top: 4px;
   }
 
   .location-icon {
@@ -81,7 +84,7 @@
     min-width: 330px;
 
     &:after {
-      margin-left: 40%;
+      margin-left: 5.5%;
       border-width: 7px
     }
 

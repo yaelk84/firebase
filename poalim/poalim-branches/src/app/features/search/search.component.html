@@ -1,6 +1,6 @@
 <div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
-<div *ngIf="openDropdown" class="close-btn" (click)="closeDropDown()"></div>
-<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem, 'margin-mobile-search': openDropdown }">
+<div *ngIf="openDropdown && eventService.isMobile()" class="close-btn" (click)="closeDropDown()"></div>
+<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem, 'margin-mobile-search': openDropdown, 'no-results':  items.length === 421}">
   <ng-select [(ngModel)]="selectedItem" #ngSelectAutoComplete
              disable-backspace-reset
              [items]="items"
@@ -28,6 +28,7 @@
       </div>
     </ng-template>
     <ng-template ng-option-tmp let-item="item" let-index="index" let-search="searchTerm">
+<!--      <img src="../../../assets/media/icons/no-results.svg">-->
       <!-- todo: add the icons and complete the template according to city/branch -->
       <div *ngIf="shouldShow(item)"
            class="option-wrapper"

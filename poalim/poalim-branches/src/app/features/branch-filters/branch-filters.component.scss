@@ -16,8 +16,9 @@ lib-rc-popup-wrapper{
 }
 /deep/
 .popover-wrapper{
+  padding: 0;
   &.more-services{
-padding:20px;
+padding: 20px 0;
     &:before{
       margin-left: -19px;
     }

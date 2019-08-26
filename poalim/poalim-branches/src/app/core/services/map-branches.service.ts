@@ -82,12 +82,12 @@ export class MapBranchesService {
           observer.complete();
 
         }, err => {
-          console.log('111111111', err);
+          console.log('denied1', err);
           observer.error(err);
 
         });
       } else {
-        console.log('22222');
+        console.log('denied2');
         observer.error();
       }
     });

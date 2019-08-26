@@ -1,5 +1,5 @@
 /// <reference types="@types/googlemaps" />
-import {ChangeDetectorRef, Component, Input, AfterViewInit, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -25,11 +25,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   hasAccessToMyLocation = false;
   branchIcon = {
     url: 'assets/media/branch-marker.svg',
-    scaledSize: {width: 30, height: 30}
+    scaledSize: {width: 29, height: 29}
   };
   bankatAndHoverIcon = {
     url: 'assets/media/bankat-shape.png',
-    scaledSize: {width: 30, height: 30}
+    scaledSize: {width: 29, height: 29}
   };
 
   myLocationIcon = {
@@ -41,6 +41,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   isShowCircle = false;
   showSingleDisplay = false;
   centerChangeCbTimeout = null;
+  zoom: number;
   @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
@@ -62,7 +63,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   showBranchesBasedOnLocationAccess() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       setTimeout(() => {
-        console.log('branchesss from map 2', this.branches);
+        console.log('branches from map', this.branches);
         if (this.branches.length > 0) {
           this.latCoordinate = this.branches[1].coords.lat;
           this.lngCoordinate = this.branches[1].coords.lng;
@@ -73,19 +74,22 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.latCoordinate = (point as GeoLocationObject).lat;
           this.lngCoordinate = (point as GeoLocationObject).lng;
           this.currentCenter = (point as GeoLocationObject);
+          // console.log('center WITH location', this.currentCenter);
         } else {
           this.hasAccessToMyLocation = false;
           this.currentCenter = {lat: this.latCoordinate, lng: this.lngCoordinate};
-          console.log('center with !NO! location', this.currentCenter);
+          // console.log('center with !NO! location', this.currentCenter);
         }
       }, 0);
 
     }, true);
   }
 
-  showSelectedMarkerOnBranchList(id, indexNoBankat) {
+  showSelectedMarkerOnBranchList(id, indexNoBankat, coords) {
     this.branchDataServices.indexNoBankat = indexNoBankat;
     this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
+    this.currentCenter = {lat: coords.lat, lng: coords.lng};
+    // console.log('branch coords center', this.currentCenter);
   }
 
   getNewCenterOfCircle(newCoords) {
@@ -97,11 +101,9 @@ export class MapComponent implements OnInit, AfterViewInit {
       lng: this.lngCoordinate
     }, this.appService.branches)
       .subscribe((res) => {
-         console.log('reeeees', res);
-         // this.branches = this.branchDataServices.createDataArray(res);
          this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res),
            this.filterService.activeFilters);
-         console.log('branches-after', this.branches);
+         console.log('--search-here--', this.branches);
       });
     if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
       this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
@@ -113,7 +115,6 @@ export class MapComponent implements OnInit, AfterViewInit {
       this.findHereCenter = newCoordsCenter;
       this.mapBranches.getCenterOfNewLocation(this.currentCenter, this.findHereCenter).subscribe((distance) => {
         if (distance > 3) {
-          // console.log('distance from prev center', distance);
           return this.isShowCircle = true;
         }
       });
@@ -131,7 +132,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => { this.agmMap.triggerResize(); }, 500);
+    setTimeout(() => {
+      // window.addEventListener('resize', () => this.agmMap.triggerResize());
+      this.agmMap.triggerResize(true)
+        .then(() => console.log('triggerResize'));
+      }, 1000);
   }
 
   onZoomChange(event) {

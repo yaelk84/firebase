@@ -3,6 +3,24 @@
   //margin-bottom: 22px;
   //margin-top: 19px;
   margin: 10px 0;
+  padding: 0 20px;
+
+  &:hover {
+    color: #f1f6fb;
+    background: #03294c;
+
+    /deep/
+    label.custom-checkbox{
+      color: #f1f6fb;
+
+      .custom-control-description{
+        color: #f1f6fb;
+      }
+      .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
+        border-color: #f1f6fb;
+      }
+    }
+  }
   &:first-child{
     margin-top: 0;
   }
