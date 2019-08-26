@@ -119,7 +119,7 @@ lib-rc-switcher{
       color: #03294c;
       font-weight: 300;
       width: 200px;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
     }
 
     .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
@@ -291,7 +291,7 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   padding: 30px 23px;
   &.slideDown{
     opacity: 1;
-    z-index: 999;
+    z-index: 12;
     display: block;
   }
 

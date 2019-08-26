@@ -1,7 +1,7 @@
 <div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
 <div *ngIf="openDropdown" class="close-btn" (click)="closeDropDown()"></div>
 <div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem, 'margin-mobile-search': openDropdown }">
-  <ng-select [(ngModel)]="selectedItem"
+  <ng-select [(ngModel)]="selectedItem" #ngSelectAutoComplete
              disable-backspace-reset
              [items]="items"
              class="autocomplete-search"
@@ -54,13 +54,13 @@
 
             </div>
             <div class="col-4 col-sm-3" *ngIf="true">
-              <div class="distance-wrapper">
+              <div class="distance-wrapper"  *ngIf="mapSEervice.hasLocationPermission">
                 <img class="location-icon" *ngIf="!item.optionMouseOver" src="../../../assets/media/icons/location.svg"
                      alt="">
                 <img class="location-icon" *ngIf="item.optionMouseOver"
                      src="../../../assets/media/icons/location-white.svg" alt="">
 
-                <span class="distance ">
+                <span class="distance">
                 {{item.kmToDisplay}} {{ 'km' | rcTranslate}}
                 </span>
               </div>
@@ -72,7 +72,7 @@
   </ng-select>
   <div class="search-btn-wrapper">
     <button class="search-btn"
-            (click)="doSearch($event)"
+            (click)="doSearch(ngSelectAutoComplete)"
             [disabled]="!openDropdown && !selectedItem"
             [ngClass]="{
             'can-click': openDropdown || selectedItem,

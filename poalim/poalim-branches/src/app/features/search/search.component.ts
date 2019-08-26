@@ -113,7 +113,6 @@ export class SearchComponent implements OnInit {
       }
     }
     this.filteredItems = cities.concat(branches).slice(0, CONSTANTS.MAX_RESULTS_DROP_DOWN);
-    console.log('this.filteredItems', this.filteredItems);
   }
 
   onFocus($event) {
@@ -139,14 +138,11 @@ export class SearchComponent implements OnInit {
     this.searchTerm = '';
     this.closeDropDown();
   }
-  doSearch(e) {
-    const enter = new KeyboardEvent('keypress', {
-    key: 'Enter',
-      code: '13'
-  });
-    console.log('MouseEvent', e);
-    console.log('KeyboardEvent', enter);
-    e.dispatchEvent(enter);
+  doSearch(ngSelectAutoComplete) {
+    ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked')[0].click();
+  //   console.log('MouseEvent', e);
+  //   console.log('KeyboardEvent', enter);
+  //   e.dispatchEvent(enter);
     // this.openDropdown = false;
   }
   onClose() {
