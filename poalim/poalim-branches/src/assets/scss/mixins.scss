@@ -124,6 +124,7 @@ lib-rc-switcher{
       font-weight: 300;
       width: 100%;
       padding-bottom: 6px;
+      text-align: right;
       &:hover {
         color: #f1f6fb;
       }
@@ -334,5 +335,11 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
 @media only screen and (max-width: $mobile_view) {
   .btn{
     @include lhCrop(1.4); //line-height: 1.4
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper-icon {
+    padding-left: 30px;
   }
 }

@@ -18,5 +18,9 @@ export class DeviceService extends RcDeviceService {
 
     return this.isMobileDeviceBySize() ;
   }
+
+  public isTablet(): boolean {
+    return this.isLg();
+  }
 }
 

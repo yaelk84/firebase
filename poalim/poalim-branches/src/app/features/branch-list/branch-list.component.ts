@@ -49,6 +49,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   showNoLocation = false;
   intervalTimer: any;
   isMobile = false;
+  isTablet = false;
 
   filterIcon = this.filterWithNoHours;
 
@@ -71,7 +72,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchDataServices.isSingleDisplay = this.showSelectedBranch;
       this.branchDataServices.isShowSnazzyInfoWindow = this.showSelectedBranch;
       this.events.emit(CONSTANTS.EVENTS.SINGLE_DISPLY);
-    }
+    };
+
     const handleCity = () => {
 
       const name = queryParams.branchName;
@@ -174,6 +176,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       handleBranchName();
     } else if (!isNullOrUndefined(queryParams.city && queryParams.city.length)) {
       handleCity();
+      return;
     } else {
       if (!this.mapServices.hasLocationPermission) {
         this.mapServices.defaultFilter(this.appService.branches);
@@ -188,7 +191,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     }
     updateData();
-    console.log('UPDATE DATA !!!');
   }
 
   private callQueryParam() {
@@ -264,6 +266,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     // this.city = this.route.snapshot.paramMap.get("city");
     this.addEvents();
     this.isMobile = this.deviceService.isMobile();
+    this.isTablet = this.deviceService.isLg();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
 

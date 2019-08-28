@@ -397,13 +397,22 @@ span.tooltip:hover:after {
       }
     }
 .btn{
-  padding: 7px 15px;
+  padding: 9px 30px;
 }
+    .service-label {
+      font-weight: 300;
+    }
 .selected-branch-data {
       padding-right: 25px;
 
+
+
       .line-data {
+        .label {
+          font-size: 16px;
+        }
         .value {
+          font-size: 16px;
           display: inline-flex;
           max-width: 80%;
         }
@@ -476,6 +485,26 @@ span.tooltip:hover:after {
       width: 100%;
     }
   }
+}
+
+// Tablet
+@media (max-width: 1024px) {
+  .share {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .single-branch-display {
+    .wrapper-service-and-btn {
+      .white-btn {
+        &.desktop{
+          left: 6px;
+        }
+      }
+    }
+  }
+
 }
 
 

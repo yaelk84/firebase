@@ -17,7 +17,7 @@
 }
 .search-wrapper {
   position: relative;
-  border: 1px solid #525252;
+  border: 1px solid $greyish-brown;
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
@@ -207,7 +207,9 @@
    .search-wrapper{
      &.margin-mobile-search {
        margin-top: 40px;
-       bottom: 112px;
+       //bottom: 112px;
+       border: none;
+       box-shadow: 0 2px 7px 0 rgba(10, 41, 76, 0.2), 0 0 2px 0 rgba(10, 41, 76, 0.13);
      }
      .autocomplete-search{
        /deep/
@@ -223,7 +225,12 @@
      /deep/.ng-option-disabled {
        background-position-x: 75%;
      }
-
+     .search-btn-wrapper {
+       .search-btn {
+         height: 3rem;
+         width: 3rem;
+       }
+     }
    }
    //.ng-option {
    //  .option-wrapper {
@@ -249,7 +256,8 @@
   }
   }
    .search-wrapper{
-     padding:1rem 0 ;
+     padding: 0.7rem 0;
+     height: 50px;
      /deep/
      .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
        left: auto;

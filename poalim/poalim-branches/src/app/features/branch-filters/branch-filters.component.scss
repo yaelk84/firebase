@@ -42,6 +42,7 @@ padding: 20px 0;
 }
 
 .filter-box {
+  height: auto;
   cursor: pointer;
   display: flex;
   flex-flow: column nowrap;
@@ -49,15 +50,16 @@ padding: 20px 0;
   justify-content: center;
   flex: 1;
   min-width: 0;
-  border-radius: 3.1px;
-    background-color:$white;
+  border-radius: 6px;
+  background-color:$white;
   margin: 0 9px;
   border: 2px solid transparent;
   &:hover{
     box-shadow: 1px 7px 18px 6px rgba(189, 208, 228, 0.6);
   }
   &.filterActive{
-  border: 2px solid $lipstick-two;
+    border: 2px solid $lipstick-two;
+    box-shadow: none;
   }
 
   .wrapper-icon-filter {
@@ -182,20 +184,31 @@ padding: 20px 0;
       font-size: 12px;
       height: 12px;
       color: $white;
-
+      position: relative;
+      bottom: 1px;
     }
 
   }
 }
 
 
-
+@media (max-width: 1024px) and (min-width: $mobile_view + 1) {
+  .filter-box-cointener {
+    .filter-box-wrapper {
+      .filter-box.tablet-box {
+        width: 124px;
+        height: 124px;
+      }
+    }
+  }
+}
 
 @media  (max-width: $mobile_bootsrap_view) {
 
   .filter-box{
-    margin: 0 2px;
+    margin: 0 4px;
     cursor: pointer;
+    height: auto;
     .label-wrapper{
       font-size: 14px;
     }
@@ -209,6 +222,7 @@ padding: 20px 0;
 
   }
 }
+
 
 
 

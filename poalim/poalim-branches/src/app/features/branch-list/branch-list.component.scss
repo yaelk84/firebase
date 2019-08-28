@@ -104,8 +104,6 @@
   position: relative;
 
   .branch-list-scroll{
-
-
     position: relative
   }
 }
@@ -233,4 +231,11 @@ margin-top: 20px;
 
   }
 
+}
+
+@media (max-width: 1024px) {
+  .branch-list {
+      overflow-y: scroll;
+      overflow-x: hidden
+  }
 }

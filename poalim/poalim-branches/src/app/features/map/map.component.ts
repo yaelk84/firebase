@@ -19,7 +19,7 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {AgmMap} from '@agm/core';
-import {DeviceService} from "../../core/services/event-service";
+import {DeviceService} from '../../core/services/event-service';
 
 
 @Component({
@@ -27,7 +27,7 @@ import {DeviceService} from "../../core/services/event-service";
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss', '../branch-box-summarize/branch-box-summarize.component.scss']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit {
   @Input() branches: any;
   singleBranchDisplay: any;
   latCoordinate = 34.8236;
@@ -50,6 +50,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
   showSingleDisplay = false;
+  test = true;
   centerChangeCbTimeout = null;
   zoom: number;
   isMobile = false;
@@ -76,7 +77,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   showBranchesBasedOnLocationAccess() {
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
       setTimeout(() => {
-        console.log('branches from map', this.branches);
+        // console.log('branches from map', this.branches);
         if (this.branches.length > 0) {
           this.latCoordinate = this.branches[1].coords.lat;
           this.lngCoordinate = this.branches[1].coords.lng;
@@ -100,15 +101,15 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   showSelectedMarkerOnBranchList(id, indexNoBankat, coords) {
     this.branchDataServices.indexNoBankat = indexNoBankat;
-    this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
     this.currentCenter = {lat: coords.lat, lng: coords.lng};
+    this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
     // console.log('branch coords center', this.currentCenter);
   }
 
   getNewCenterOfCircle(newCoords) {
     this.latCoordinate = newCoords.lat;
     this.lngCoordinate = newCoords.lng;
-    console.log('~~~~triggered when center change~~~~~', this.latCoordinate, this.lngCoordinate);
+    // console.log('~~~~triggered when center change~~~~~', this.latCoordinate, this.lngCoordinate);
     this.mapBranches.myLocationFilter({
       lat: this.latCoordinate,
       lng: this.lngCoordinate
@@ -116,7 +117,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       .subscribe((res) => {
          this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(res),
            this.filterService.activeFilters);
-         console.log('--search-here--', this.branches);
+         // console.log('--search-here--', this.branches);
       });
     if (this.branchFilterService.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
       this.branchFilterService.toggleFilter(CONSTANTS.FILTER_lOCATION);
@@ -144,12 +145,12 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      // window.addEventListener('resize', () => this.agmMap.triggerResize());
-      this.agmMap.triggerResize(true)
-        .then(() => console.log('triggerResize'));
-      }, 1000);
+  getBranches() {
+    if (this.showSingleDisplay) {
+      return [];
+    }
+
+    return this.branches;
   }
 
   onZoomChange(event) {
