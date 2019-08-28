@@ -1,9 +1,15 @@
+<!--<span *ngIf="filteredItems && openDropdown"> CURRENT ITEMS {{filteredItems.length}}</span>-->
 <div class="overlay" [ngClass]="{'on' : openDropdown}"></div>
-<div *ngIf="openDropdown && eventService.isMobile()" class="close-btn" (click)="closeDropDown()"></div>
-<div class="search-wrapper" [ngClass]="{'focused' : searchFocused || selectedItem, 'margin-mobile-search': openDropdown, 'no-results':  items.length === 421}">
+<div *ngIf="openDropdown && isMobile" class="close-btn" (click)="closeDropDown()"></div>
+<div class="search-wrapper" [ngClass]="{
+                              'focused' : searchFocused || selectedItem,
+                              'margin-mobile-search': openDropdown,
+                              'no-results':  filteredItems && filteredItems.length === 0 &&  openDropdown
+                             }">
   <ng-select [(ngModel)]="selectedItem" #ngSelectAutoComplete
              disable-backspace-reset
              [items]="items"
+             [ngClass]="{'noresults':  filteredItems && filteredItems.length === 0 &&  openDropdown}"
              class="autocomplete-search"
              bindLabel="nameLabel"
              bindValue="name"

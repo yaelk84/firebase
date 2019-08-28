@@ -455,6 +455,7 @@ span.tooltip:hover:after {
   .rc-popup-wrapper {
     /deep/ .modal-dialog {
       margin-top: 74px;
+      height: 90%;
     }
 
       ///deep/.close {

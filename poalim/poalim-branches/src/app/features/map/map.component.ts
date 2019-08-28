@@ -1,5 +1,14 @@
 /// <reference types="@types/googlemaps" />
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {ApiService} from '../../core/services/api.service';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
@@ -10,6 +19,7 @@ import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {AgmMap} from '@agm/core';
+import {DeviceService} from "../../core/services/event-service";
 
 
 @Component({
@@ -42,15 +52,18 @@ export class MapComponent implements OnInit, AfterViewInit {
   showSingleDisplay = false;
   centerChangeCbTimeout = null;
   zoom: number;
+  isMobile = false;
+  @Output() goToBranchDetails = new EventEmitter();
   @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
-              private appService: AppService, private filterService: BranchFilterService,
+              private appService: AppService, private filterService: BranchFilterService, private deviceService: DeviceService,
               private branchFilterService: BranchFilterService) {
   }
 
   ngOnInit() {
+    this.isMobile = this.deviceService.isMobile();
     this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
       this.singleBranchDisplay = this.branchDataServices.singleBranchToDisplay;
       this.showSingleDisplay = this.branchDataServices.isSingleDisplay;
@@ -141,5 +154,9 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   onZoomChange(event) {
     clearTimeout(this.centerChangeCbTimeout);
+  }
+
+  onClickGoToBranchDetails() {
+    this.goToBranchDetails.emit();
   }
 }

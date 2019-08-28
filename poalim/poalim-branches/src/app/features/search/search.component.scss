@@ -27,9 +27,6 @@
   width: 100%;
   max-width: 749px;
   margin: 0 auto;
-  //&.no-results {
-  //  border: 1px solid #df1a1e;
-  //}
   /deep/
   .ng-dropdown-panel .ng-dropdown-panel-items{
     max-height: 380px !important;
@@ -94,13 +91,7 @@
       #{$default-end}: 0;
       .ng-option {
         border-radius: 4px;
-        //color: #df1a1e;
-        //font-weight: 300;
-        //background-image: url("../../../assets/media/icons/no-results.svg");
-        //background-repeat: no-repeat;
-        //background-position-x: 62%;
-        //margin: 0 auto;
-        //text-align: center;
+
 
         .option-wrapper {
           padding: 1rem;
@@ -113,6 +104,9 @@
             font-size: 20px;
             text-decoration: none;
           }
+          &>div>div.row {
+            width: 100%;
+          }
           .distance-wrapper {
             text-align: $default-end;
             font-size: 1.1rem;
@@ -120,7 +114,7 @@
             .location-icon {
               height: 1rem;
               margin-bottom: 0.1rem;
-              margin-#{$default-end}: 0.5rem;
+              margin-#{$default-end}: 0.2rem;
             }
           }
         }
@@ -135,6 +129,16 @@
         color: $white;
       }
     }
+  }
+
+  /deep/.ng-option-disabled {
+    color: #df1a1e;
+    font-weight: 300;
+    background-image: url("../../../assets/media/icons/no-results.svg");
+    background-repeat: no-repeat;
+    background-position-x: 62%;
+    margin: 0 auto;
+    text-align: center;
   }
 
   .search-btn-wrapper {
@@ -175,11 +179,30 @@
     display: none;
   }
 }
+
+.search-wrapper.no-results {
+  /deep/
+.autocomplete-search {
+    .ng-select-container {
+      .ng-value-container {
+        .ng-input {
+          input {
+            color: #df1a1e;
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-wrapper.no-results {
+  border: 1px solid #df1a1e;
+}
  @media (max-width: $mobile_view) {
    .search-wrapper{
      &.margin-mobile-search {
        margin-top: 40px;
-       bottom: 125px;
+       bottom: 140px;
      }
      .autocomplete-search{
        /deep/
@@ -192,18 +215,23 @@
          }
        }
      }
+     /deep/.ng-option-disabled {
+       background-position-x: 75%;
+     }
    }
    //.ng-option {
    //  .option-wrapper {
        .distance-wrapper {
          .location-icon {
            margin-left: 0.2rem;
-           margin-right: 1.1rem;
+           margin-right: 2rem;
          }
        }
    //  }
    //}
  }
+
+
 
 
 

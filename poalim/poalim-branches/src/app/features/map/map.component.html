@@ -125,9 +125,14 @@
         <ng-template>
           <app-branch-box-summarize [branchDataSummarize]="singleBranchDisplay.branchSummarize">
           </app-branch-box-summarize>
-<!--          <div class="goto-branch-details-wrapper">-->
-<!--            <button class="goto-branch-details">לפרטי הסניף > </button>-->
-<!--          </div>-->
+          <div *ngIf="isMobile" class="goto-branch-details-wrapper">
+            <button class="goto-branch-details" (click)="onClickGoToBranchDetails()">
+              לפרטי הסניף
+            </button>
+            <div class="img-wrapper">
+              <img src="../../../assets/media/left.svg" alt="">
+            </div>
+          </div>
         </ng-template>
       </agm-snazzy-info-window>
     </agm-marker>

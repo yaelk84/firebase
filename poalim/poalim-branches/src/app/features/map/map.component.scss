@@ -84,12 +84,21 @@ agm-map {
 .goto-branch-details-wrapper {
   width: 100%;
   display: flex;
+  justify-content: center;
+  cursor: pointer;
   .goto-branch-details {
     outline: none;
     border: none;
     background: #ffffff;
-    width: 100%;
     font-size: 16px;
+    font-weight: 300;
+    margin-right: 9px;
+    color: #03294c;
+  }
+  img {
+    transform: rotate(90deg);
+    position: relative;
+    top: 1.5px;
   }
 }
 
@@ -108,7 +117,7 @@ agm-map {
   }
 
   .search-in-area {
-    right: 120px;
+    right: 127px;
     width: 150px;
   }
 

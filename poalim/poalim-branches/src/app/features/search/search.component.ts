@@ -33,13 +33,14 @@ export class SearchComponent implements OnInit {
   searchFocused: boolean;
   optionMouseOver: boolean;
   cities: [];
+  isMobile = false;
   @Output() onMobileSearch = new EventEmitter();
 
 
   constructor(private apiService: ApiService, private appService: AppService, private  router: Router,
               private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService,
               private branchDataServices: BranchDataService, private filterServics: BranchFilterService,
-              private events: RcEventBusService, private eventService: DeviceService) {
+              private events: RcEventBusService, private deviceService: DeviceService) {
   }
 
   set updateCities(data) {
@@ -47,7 +48,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.isMobile = this.deviceService.isMobile();
     this.initSearch();
     this.events.on(CONSTANTS.EVENTS.DELETE_SEARCH, () => {
       this.clearFromOutside();
@@ -129,15 +130,13 @@ export class SearchComponent implements OnInit {
     // this.openDropdown = false;
 
   }
-  keyDoen(e) {
-    if (e.which === 8 && !e.target.value.length) {
-      e.stopImmediatePropagation();
-      e.preventDefault();
-      e.stopPropagation();
-
-    }
-
-  }
+  // keyDoen(e) {
+  //   if (e.which === 8 && !e.target.value.length) {
+  //     e.stopImmediatePropagation();
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //   }
+  // }
   onClear() {
     this.searchTerm = '';
     this.closeDropDown();

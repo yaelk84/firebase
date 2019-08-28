@@ -122,4 +122,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   onMobileTitleSearch($event) {
     this.displayTitle = !$event.isSearchOpen;
   }
+
+  toggleMobileSwitcher() {
+    this.formControl.setValue(!this.formControl.value);
+  }
 }
