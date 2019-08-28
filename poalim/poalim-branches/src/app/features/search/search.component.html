@@ -9,7 +9,6 @@
   <ng-select [(ngModel)]="selectedItem" #ngSelectAutoComplete
              disable-backspace-reset
              [items]="items"
-             [ngClass]="{'noresults':  filteredItems && filteredItems.length === 0 &&  openDropdown}"
              class="autocomplete-search"
              bindLabel="nameLabel"
              bindValue="name"

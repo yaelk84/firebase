@@ -192,6 +192,11 @@
         }
       }
     }
+    .ng-select-container {
+      .ng-clear-wrapper:after {
+        color: #df1a1e;
+      }
+    }
   }
 }
 
@@ -202,7 +207,7 @@
    .search-wrapper{
      &.margin-mobile-search {
        margin-top: 40px;
-       bottom: 140px;
+       bottom: 112px;
      }
      .autocomplete-search{
        /deep/
@@ -218,6 +223,7 @@
      /deep/.ng-option-disabled {
        background-position-x: 75%;
      }
+
    }
    //.ng-option {
    //  .option-wrapper {
