@@ -49,7 +49,6 @@
           </div>
           <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
         </div>
-        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop" role="button">{{'order' |rcTranslate}}</div>
       </div>
 
     </div>
@@ -89,6 +88,7 @@
 
       </div>
       <div class="selected-branch-buttons">
+        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop" role="button">{{'order' |rcTranslate}}</div>
 
         <span class="worng-data">
          <span class="wrong-data-text" (click)="openReportproblem()" role="button">{{'worngData'|rcTranslate }}</span>
