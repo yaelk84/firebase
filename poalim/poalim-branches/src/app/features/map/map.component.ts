@@ -145,14 +145,6 @@ export class MapComponent implements OnInit {
     this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
   }
 
-  getBranches() {
-    if (this.showSingleDisplay) {
-      return [];
-    }
-
-    return this.branches;
-  }
-
   onZoomChange(event) {
     clearTimeout(this.centerChangeCbTimeout);
   }
