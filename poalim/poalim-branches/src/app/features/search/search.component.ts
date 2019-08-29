@@ -200,7 +200,7 @@ export class SearchComponent implements OnInit {
         .indexOf(term) > -1 || address.cityName
         .indexOf(term) > -1 ||  address.streetName
         .indexOf(term) > -1 || String(address.buildingNumber)
-        .indexOf(term) > -1 ||  String(address.branchNumber)
+        .indexOf(term) > -1 ||  String(item.branchNumber)
         .indexOf(term) > -1;
     }
   }
