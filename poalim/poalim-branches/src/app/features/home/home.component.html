@@ -22,7 +22,7 @@
         </app-branch-list>
         <ng-container>
 
-          <app-map class="col-lg-6 col-sm-12 col-12 show-map" (goToBranchDetails)="toggleMobileSwitcher()"  [ngClass]="{'show-in-mobile' :formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter"></app-map>
+          <app-map class="col-lg-6 col-sm-12 col-12 show-map" (goToBranchDetails)="toggleMobileSwitcher()"  [ngClass]="{'show-in-mobile' :formControl.value, 'hide-in-mobile': !formControl.value}"  [branches]="branchNewArrayFilter" *ngIf="branchNewArrayFilter"></app-map>
 
         </ng-container>
       </div>

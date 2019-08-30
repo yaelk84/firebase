@@ -105,14 +105,20 @@
   }
 
   app-map {
-    display: none;
+    visibility: hidden;
 
     &.show-in-mobile {
-      display: block;
+      visibility: visible;
       position: relative;
       padding-left: 0;
       padding-right: 0;
     }
+
+    &.hide-in-mobile {
+      position: absolute;
+    }
+
+
   }
 
   .branch-map {
