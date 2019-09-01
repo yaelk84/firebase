@@ -44,7 +44,7 @@
         <div class="selected-branches-services">
           <h1>{{'servicesTitle' | rcTranslate}}</h1>
           <div  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
-            <span class="icon-separation"></span>
+            <span><img class="icon-service-list" src="../../../assets/media/icons/service-list.svg"></span>
             <span class="service-label">{{service.branchServiceTypeDescription}}</span>
           </div>
           <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
@@ -70,7 +70,7 @@
           <span class="icon fax-icon"></span>
           <span class="label">{{'fax'| rcTranslate}}</span>
           <span class="value">{{dataBranchSelected.fax}}</span>
-          <span class="copy-icon tooltip"  data-title="העתק מספר" ><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClip.svg"></span>
+          <span class="copy-icon tooltip"  data-title="העתק מספר"><img class="copy-to-clipboard-icon" src="../../../assets/media/icons/copyToClip.svg"></span>
         </div>
         <div class="line-data">
           <span class="icon manager-icon" ></span>

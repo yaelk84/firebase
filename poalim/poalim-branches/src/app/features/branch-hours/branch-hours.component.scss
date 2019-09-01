@@ -23,11 +23,12 @@
     padding: 0 15px;
     margin-right: -15px;
     width: 350px;
+    padding-bottom: 2px;
 
     &:hover{
       border-radius: 16px;
       background-color: rgba(10, 41, 76, 0.08);
-      width: 320px;
+      width: 315px;
     }
   }
 }

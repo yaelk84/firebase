@@ -66,7 +66,7 @@
         .ng-placeholder {
           font-size: 20px;
           font-weight: 300;
-          line-height: 1;
+          line-height: 1.3;
           transition: all .4s ease;
 
         }
@@ -172,7 +172,12 @@
     }
   }
 
+  .distance {
+    margin-right: 10px;
+  }
+
 }
+
 .search-wrapper.focused {
   /deep/
   .ng-placeholder {
@@ -188,6 +193,7 @@
         .ng-input {
           input {
             color: #df1a1e;
+            font-weight: 300;
           }
         }
       }

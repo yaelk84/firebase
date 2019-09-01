@@ -23,6 +23,7 @@ span.tooltip:hover:after {
   font-weight: 500;
   text-align: center;
   border: none;
+  border-radius: 3px;
 }
 
 .single-branch-display {
@@ -142,13 +143,15 @@ span.tooltip:hover:after {
       align-items: baseline;
       margin-top: 12px;
 
-      /deep/
-      .icon-separation {
-        width: 7px;
-        height: 7px;
+
+      .icon-service-list {
         position: relative;
         bottom: 2px;
-
+        margin: 0 8px;
+        margin-top:3px;
+        text-align: center;
+        float: $default-start;
+        transform: rotate(90deg);
       }
 
       .service-label {
@@ -156,6 +159,7 @@ span.tooltip:hover:after {
         font-size: 18px;
         color: $marine-two;
         margin-right: 5px;
+        font-weight: 300;
       }
 
       &:first-child {
@@ -206,7 +210,7 @@ span.tooltip:hover:after {
           .copy-to-clipboard-icon {
             //width: 18px;
             position: relative;
-            top: 1px;
+            top: 3px;
             right: 4px;
           }
         }
@@ -263,6 +267,7 @@ span.tooltip:hover:after {
         color: $marine-two;
         font-weight: normal;
         margin-left: 3px;
+        padding-bottom: 2px;
       }
 
       .value {
@@ -349,6 +354,16 @@ span.tooltip:hover:after {
     }
   }
 
+  .rc-popup-wrapper {
+    /deep/.modal {
+      max-height: 429px;
+      overflow: hidden;
+    }
+    /deep/.modal-body {
+      padding-top: 0 !important;
+    }
+  }
+
 }
 
 // share-branch-popup
@@ -360,8 +375,15 @@ span.tooltip:hover:after {
   }
 
   /deep/ .modal-body {
-    padding: 0;
+    padding: 0 !important;
   }
+
+  // DROPAL !!!!!!!!!!!!!!!!! ///
+  /deep/.modal {
+    max-height: 387px;
+    overflow: hidden;
+  }
+  //////////////////////////////
 
   /deep/ .modal-content {
     /deep/ .close {

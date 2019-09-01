@@ -55,6 +55,7 @@
     line-height: 1.1;
     font-weight: 300;
     margin-top: 4px;
+    margin-bottom: 4px;
   }
 
   .location-icon {
@@ -71,14 +72,15 @@
 /deep/
 .icon-arrow {
   margin-right: 10px;
-
+  position: relative;
+  top: 2px;
 
 }
 
 .hours {
   /deep/
   .popover-wrapper.hours-list {
-    top: 29px;
+    top: 35px;
     right: 0;
     padding: 25px 15px;
     min-width: 330px;
