@@ -28,6 +28,11 @@
   &:first-child{
     margin-top: 0;
   }
+
+  /deep/
+  .custom-control {
+    padding-right: 0;
+  }
 }
 .check-box-list{
   margin-bottom: 22px;

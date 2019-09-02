@@ -22,11 +22,15 @@
   -moz-border-radius: 50px;
   border-radius: 50px;
   padding: 1rem 2rem;
-  z-index: 101;
   background: $white;
   width: 100%;
   max-width: 749px;
   margin: 0 auto;
+
+  &.focused {
+    z-index: 101;
+  }
+
   /deep/
   .ng-dropdown-panel .ng-dropdown-panel-items{
     max-height: 380px !important;
