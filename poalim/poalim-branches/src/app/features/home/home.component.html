@@ -15,7 +15,7 @@
       <div class="branch-map row">
         <lib-rc-switcher  *ngIf=" branchNewArrayFilter.length > 0" [control]="formControl" [elementId]="'mySwitcherID'">
         </lib-rc-switcher>
-        <app-branch-list class="col-lg-6 col-sm-12 col-12 tablet-scroll" [hideListInMoBile]="formControl.value"
+        <app-branch-list class="col-lg-6 col-sm-12 col-12 tablet-scroll padding-mobile" [hideListInMoBile]="formControl.value"
                          *ngIf="branchNewArrayFilter"
                          [branchNewArrayFilter]="branchNewArrayFilter"
                          [branchResultTitle]="branchResultTitle">

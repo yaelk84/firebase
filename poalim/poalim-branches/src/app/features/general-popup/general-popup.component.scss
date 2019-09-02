@@ -1,3 +1,4 @@
+@import "../../../assets/scss/style";
 
 
 
@@ -6,6 +7,12 @@
 
   .general-popup-content {
        padding: 35px 32px 30px 32px;
+  }
+}
+
+@media (max-width: $mobile_view) {
+  .general-popup-content {
+    padding: 35px 0 30px 32px !important;
   }
 }
 

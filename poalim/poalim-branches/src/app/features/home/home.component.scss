@@ -3,6 +3,10 @@
 //  padding-#{$default-end}: 0px;
 //}
 
+.padding-mobile {
+  padding: 0 20px;
+}
+
 .poalim-branches-container{
   font-size: 18px;
 
@@ -116,6 +120,7 @@
 
     &.hide-in-mobile {
       position: absolute;
+      right: -1000px;
     }
 
 

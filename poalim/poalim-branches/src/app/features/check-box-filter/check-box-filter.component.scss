@@ -5,23 +5,26 @@
   margin: 10px 0;
   padding: 0 20px;
 
-  &:hover {
-    color: #f1f6fb;
-    background: #03294c;
-    border-radius: 4px;
-
-    /deep/
-    label.custom-checkbox{
+  @media (min-width: $mobile_view + 1) {
+    &:hover {
       color: #f1f6fb;
+      background: #03294c;
+      border-radius: 4px;
 
-      .custom-control-description{
+      /deep/
+      label.custom-checkbox{
         color: #f1f6fb;
-      }
-      .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
-        border-color: #f1f6fb;
+
+        .custom-control-description{
+          color: #f1f6fb;
+        }
+        .custom-control-input[type="checkbox"] ~ .custom-control-indicator {
+          border-color: #f1f6fb;
+        }
       }
     }
   }
+
   &:first-child{
     margin-top: 0;
   }
@@ -41,4 +44,13 @@
   .check-box-list{
     margin-bottom: 84px;
   }
+
+  //.check-box-line {
+  //  &:hover {
+  //    color: #03294c;
+  //    background: #f1f6fb;
+  //  }
+  //}
+
+
 }
