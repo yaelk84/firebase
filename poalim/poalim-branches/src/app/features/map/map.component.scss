@@ -24,6 +24,7 @@ agm-map {
 
   /deep/.agm-map-container-inner {
     border-radius: 6px;
+    margin-top: 20px;
   }
 
   /deep/.gm-style:not(agm-marker) {
@@ -130,6 +131,10 @@ agm-map {
   .search-in-area {
     right: 107px;
     width: 150px;
+  }
+
+  /deep/.agm-map-container-inner {
+    margin-top: 0;
   }
 }
 

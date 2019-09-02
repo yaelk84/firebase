@@ -70,7 +70,7 @@
       flex-flow: row nowrap;
       justify-content: center;
       .outlined-btn {
-        width: 177px;
+        min-width: 177px;
         margin-left: 1rem;
         outline: none;
         line-height: 1.5;

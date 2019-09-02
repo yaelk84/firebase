@@ -27,6 +27,7 @@ export class MapBranchesService {
   lng: number;
   LAT_PARAM = 'geoCoordinateY';
   LNG_PARAM = 'geoCoordinateX';
+  isSearchHereButtonClicked = false;
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader, private  events: RcEventBusService) {
   }
@@ -43,7 +44,7 @@ export class MapBranchesService {
       }
     });
 
-    this.sortedBranches = filteredByCity.slice(6, 12);
+    this.sortedBranches = filteredByCity.slice(0, 6);
 
     this.isDefaultFilter = true;
     return this.sortedBranches;
@@ -131,6 +132,7 @@ export class MapBranchesService {
         const myCoords = new google.maps.LatLng(preCircleCoords.lat, preCircleCoords.lng);
         const destination = new google.maps.LatLng(newCircleCoords.lat, newCircleCoords.lng);
         const distanceInKm = google.maps.geometry.spherical.computeDistanceBetween(myCoords, destination) / 1000;
+        this.isSearchHereButtonClicked = true;
         observer.next(distanceInKm);
       }).catch(err => console.log(err));
     });

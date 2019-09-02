@@ -49,6 +49,7 @@
   "branchFound": "נמצאו {0}  סניפים קרובים ",
   "branchFoundNoLocation": "נמצאו {0}  סניפים במרכז ",
   "branchFoundCity": "נמצאו {0}  סניפים ב{1} ",
+  "branchSearchHere": "נמצאו {0}  סניפים",
   "filterHours": "סינון לפי שעות",
   "share": "שתף",
   "servicesTitle": "שירותים הניתנים בסניפים",

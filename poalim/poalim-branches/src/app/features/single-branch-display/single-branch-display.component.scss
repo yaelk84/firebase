@@ -340,6 +340,7 @@ span.tooltip:hover:after {
 
 .report-problem-popup-style {
   /deep/ .modal-content {
+    min-width: 753px !important;
     /deep/ .close {
       outline: none;
       font-weight: normal;

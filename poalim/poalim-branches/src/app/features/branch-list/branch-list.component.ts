@@ -211,7 +211,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     const params = this.branchDataServices.citySelected.length ? {city: this.branchDataServices.citySelected} : {};
     this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
-
+    this.mapServices.isSearchHereButtonClicked = false;
 
   }
 

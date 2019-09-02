@@ -81,7 +81,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
 
       if (this.branchDataServices.citySelected.length) {
-        this.branchResultTitle = this.translate.getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
+        this.branchResultTitle = this.translate
+          .getText('branchFoundCity', [this.branchNewArrayFilter.length, this.branchDataServices.citySelected]);
+      } else if (this.mapBranches.isSearchHereButtonClicked) {
+        // const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchSearchHere';
+        this.branchResultTitle = this.translate.getText('branchSearchHere', [this.branchNewArrayFilter.length]);
       } else {
         const branchResultTitle = this.mapServices.hasLocationPermission ? 'branchFound' : 'branchFoundNoLocation';
         this.branchResultTitle = this.translate.getText(branchResultTitle, [this.branchNewArrayFilter.length]);
