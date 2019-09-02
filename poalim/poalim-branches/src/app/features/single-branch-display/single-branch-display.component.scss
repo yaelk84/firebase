@@ -340,7 +340,10 @@ span.tooltip:hover:after {
 
 .report-problem-popup-style {
   /deep/ .modal-content {
-    min-width: 753px !important;
+    @media(min-width: $mobile_view + 1) {
+      min-width: 753px !important;
+    }
+
     /deep/ .close {
       outline: none;
       font-weight: normal;
@@ -381,7 +384,11 @@ span.tooltip:hover:after {
 
   // DROPAL !!!!!!!!!!!!!!!!! ///
   /deep/.modal {
-    max-height: 387px;
+
+    @media(min-width: $mobile_view + 1) {
+      max-height: 387px;
+    }
+
     overflow: hidden;
   }
   //////////////////////////////

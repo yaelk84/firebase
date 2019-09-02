@@ -23,13 +23,19 @@
     cursor: pointer;
     padding: 0 15px;
     margin-right: -15px;
-    width: 350px;
     padding-bottom: 2px;
+
+    @media(min-width: $mobile_view + 1) {
+      width: 350px;
+    }
 
     &:hover{
       border-radius: 16px;
-      background-color: rgba(10, 41, 76, 0.08);
-      width: 315px;
+
+      @media(min-width: $mobile_view + 1) {
+        background-color: rgba(10, 41, 76, 0.08);
+        width: 315px;
+      }
     }
   }
 }
