@@ -87,6 +87,9 @@ agm-map {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  padding-top: 15px;
+  position: relative;
+  bottom: 5px;
   .goto-branch-details {
     outline: none;
     border: none;
