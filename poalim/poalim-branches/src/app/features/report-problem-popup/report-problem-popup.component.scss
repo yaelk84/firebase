@@ -13,11 +13,11 @@
     margin-bottom: 1rem;
     transition: all ease 0.7s;
     overflow: hidden;
-    height: auto;
+    height: 150px;
     max-height: 1000px;
   }
   .image-wrapper.shrink {
-    max-height: 0;
+    height: 0;
   }
 
   .msg-wrapper {
@@ -41,7 +41,6 @@
       letter-spacing: normal;
       text-align: center;
       color: $greyish-brown;
-      transition: all ease 0.7s;
       overflow: hidden;
       height: auto;
       max-height: 600px;
@@ -56,7 +55,7 @@
       margin-bottom: 1rem;
       font-size: 20px;
       color: $greyish-brown;
-      transition: all ease 0.7s;
+      //transition: all ease 0.7s;
       overflow: hidden;
       height: auto;
       max-height: 600px;
@@ -85,7 +84,7 @@
   .report-service-wrapper {
     margin-top: 2rem;
     overflow: hidden;
-    height: auto;
+    height: 186px;
     transition: all ease 0.7s;
     max-height: 1000px;
     display: flex;
@@ -132,7 +131,7 @@
     }
   }
   .report-service-wrapper.shrink {
-    max-height: 0;
+    height: 0;
   }
 
   .btn {

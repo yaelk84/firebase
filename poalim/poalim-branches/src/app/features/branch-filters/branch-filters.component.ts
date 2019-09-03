@@ -41,7 +41,6 @@ export class BranchFiltersComponent implements OnInit {
   }
 
   closeDropDownServices() {
-
     this.openDropDown = false;
   }
 
