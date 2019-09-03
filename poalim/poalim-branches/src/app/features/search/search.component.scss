@@ -148,14 +148,14 @@
   .search-btn-wrapper {
     position: absolute;
     #{$default-end}: -1px;
-    top: 0px;
-    z-index: 1002;
+    top: 0;
+    //z-index: 1002;
 
     .search-btn {
       background-color: $lipstick-two;
       border: none;
-      height: 3.7rem;
-      width: 3.7rem;
+      height: 3.8rem;
+      width: 3.8rem;
       -webkit-border-radius: 100%;
       -moz-border-radius: 100%;
       border-radius: 100%;
@@ -163,6 +163,8 @@
       cursor: not-allowed;
       .search-btn-icon {
         padding: .5em;
+        position: relative;
+        right: 2px;
       }
     }
     .search-btn.cant-click {

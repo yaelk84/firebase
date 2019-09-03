@@ -92,14 +92,19 @@
 
         <span class="worng-data">
          <span class="wrong-data-text" (click)="openReportproblem()" role="button">{{'worngData'|rcTranslate }}</span>
-
            <span class="go-back"> <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span>
       </span>
-
       </div>
-
     </div>
-
+    <agm-map
+      *ngIf="isMobile"
+      [latitude]="dataBranchSelected.coords.lat"
+      [longitude]="dataBranchSelected.coords.lng"
+      [zoom]="14"
+      [mapDraggable]="false"
+      [streetViewControl]="false">
+      <agm-marker [latitude]="dataBranchSelected.coords.lat" [longitude]="dataBranchSelected.coords.lng"></agm-marker>
+    </agm-map>
   </div>
 </ng-template>
 <div class="mobile-scroll" *ngIf="isMobile">

@@ -1,5 +1,19 @@
 @import "../../../assets/scss/style";
 
+agm-map {
+  height: 300px;
+  width: 320px;
+
+  /deep/.gmnoprint > div{
+    display: none;
+  }
+
+  /deep/.agm-map-container-inner {
+    margin: 10px auto !important;
+    border-radius: 6px;
+  }
+}
+
 .single-scroll {
   height: 427px;
   position: relative;
