@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
   cities: [];
   isMobile = false;
   @Output() onMobileSearch = new EventEmitter();
+  @ViewChild('searchButton') searchButtonElem: ElementRef;
 
 
   constructor(private apiService: ApiService, private appService: AppService, private  router: Router,
@@ -48,6 +49,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchFocused = false;
     this.isMobile = this.deviceService.isMobile();
     this.initSearch();
     this.events.on(CONSTANTS.EVENTS.DELETE_SEARCH, () => {
@@ -88,6 +90,7 @@ export class SearchComponent implements OnInit {
         } else {
           this.closeDropDown();
     }
+
   }
 
 
@@ -124,8 +127,7 @@ export class SearchComponent implements OnInit {
     this.searchFocused = true;
   }
 
-  onBlur($event) {
-    console.log($event);
+  onBlur() {
     this.searchFocused = false;
     // this.openDropdown = false;
 
@@ -143,10 +145,7 @@ export class SearchComponent implements OnInit {
   }
   doSearch(ngSelectAutoComplete) {
     ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked')[0].click();
-  //   console.log('MouseEvent', e);
-  //   console.log('KeyboardEvent', enter);
-  //   e.dispatchEvent(enter);
-    // this.openDropdown = false;
+    this.searchFocused = false;
   }
   onClose() {
     this.closeDropDown();
@@ -159,6 +158,7 @@ export class SearchComponent implements OnInit {
 
   onChange($event) {
     this.closeDropDown();
+    this.searchButtonElem.nativeElement.focus();
     const UncheckLocationFilter = () => {
 
       if (this.filterServics.activeFilters.indexOf(CONSTANTS.FILTER_lOCATION) > -1) {
@@ -188,7 +188,6 @@ export class SearchComponent implements OnInit {
     }
   }
   searchFn(term, item) {
-
     if (term.length < 3) {
       return false;
     }

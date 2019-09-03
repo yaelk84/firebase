@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {CONSTANTS} from '../../constants';
 import {DeviceService} from '../../core/services/device.service';
@@ -25,6 +25,7 @@ export class BranchFiltersComponent implements OnInit {
 
 
   @Input() activeFilters;
+  @ViewChild('filterBox') filterBox: ElementRef;
 
 
   constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService,
@@ -59,6 +60,7 @@ export class BranchFiltersComponent implements OnInit {
     this.filterService.toggleFilter(id, defaultVal);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
     this.mapService.isSearchHereButtonClicked = false;
+    this.filterBox.nativeElement.focus();
   }
 
   togglePluse(e?: Event) {

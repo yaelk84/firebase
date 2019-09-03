@@ -2,7 +2,7 @@
 import {
   AfterViewInit,
   ChangeDetectorRef,
-  Component,
+  Component, ElementRef,
   EventEmitter,
   Input,
   OnInit,
@@ -18,7 +18,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
-import {AgmMap} from '@agm/core';
+// import {AgmMap} from '@agm/core';
 import {DeviceService} from '../../core/services/event-service';
 
 
@@ -55,7 +55,8 @@ export class MapComponent implements OnInit {
   zoom: number;
   isMobile = false;
   @Output() goToBranchDetails = new EventEmitter();
-  @ViewChild('agmMap') agmMap: AgmMap;
+  // @ViewChild('agmMap') agmMap: AgmMap;
+  @ViewChild('searchOnAreaBtn') searchOnAreaBtn: ElementRef;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,
               private router: Router, private activeRoute: ActivatedRoute, private branchDataServices: BranchDataService,
@@ -143,6 +144,7 @@ export class MapComponent implements OnInit {
     this.lngCoordinate = this.findHereCenter.lng;
 
     this.getNewCenterOfCircle({lat: this.latCoordinate, lng: this.lngCoordinate});
+    this.searchOnAreaBtn.nativeElement.focus();
   }
 
   onZoomChange(event) {

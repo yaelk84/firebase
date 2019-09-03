@@ -13,6 +13,7 @@
   </ng-container>
 </agm-map>
 <button
+  #searchOnAreaBtn
   *ngIf="isShowCircle && !showSingleDisplay && branches.length !== 0"
   (click)="searchOnArea()"
   class="search-in-area"

@@ -205,12 +205,14 @@ export class HoursService {
     });
     const tomorrowIndex = arrayOfDays.findIndex(x => x.day === tomorrow);
     const nextDays = arrayOfDays.slice(tomorrowIndex, tomorrowIndex.length);
-    nextDays.forEach((value) => {
+    const beforeDays = arrayOfDays.slice(0, tomorrowIndex - 1);
+    const days = [].concat(nextDays).concat(beforeDays);
+    days.forEach((value) => {
             value.label = this.createLabelWithOpenAndClose(value);
-      value.dayName = this.translate.getText(value.day);
+            value.dayName = this.translate.getText(value.day);
 
     });
-    return nextDays;
+    return days;
 
 
   }
