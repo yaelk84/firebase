@@ -78,8 +78,8 @@
           <span class="value">{{dataBranchSelected.branchManagerName}}</span>
         </div>
         <div class="line-data">
-          <div class="icon note-icon" ></div>
-          <div>
+          <div class="icon note-icon"></div>
+          <div class="notes">
             <span class="label">{{'note'| rcTranslate}}</span>
             <span class="value">{{dataBranchSelected.comment}}</span>
           </div>
@@ -103,7 +103,8 @@
   </div>
 </ng-template>
 <div class="mobile-scroll" *ngIf="isMobile">
-  <ng-container *ngTemplateOutlet="singleDispaly"></ng-container>
+  <ng-container *ngTemplateOutlet="singleDispaly">
+  </ng-container>
 </div>
 
 

@@ -15,7 +15,7 @@ span.tooltip:hover:after {
   right: -35px;
   top: 2.5em;
   width: 7em;
-  padding: 0.15em;
+  padding: 2px 1px 4px 1px;
   background: white;
   color: #0a294c;
   font-family: inherit;
@@ -267,13 +267,14 @@ span.tooltip:hover:after {
         }
       }
 
+
       .label {
         line-height: 1;
         font-size: 18px;
         color: $marine-two;
         font-weight: normal;
         margin-left: 3px;
-        padding-bottom: 2px;
+        padding-bottom: 3px;
       }
 
       .value {
@@ -451,6 +452,10 @@ span.tooltip:hover:after {
 
 
 @media (max-width: $mobile_view) {
+  .notes {
+    position: relative;
+    bottom: 2px;
+  }
   .single-branch-display {
     .selected-branch-header {
       //padding-right: 25px;
