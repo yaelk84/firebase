@@ -24,7 +24,8 @@
              (focus)="onFocus($event)"
              (clear)="onClear()"
              (blur)="onBlur()"
-             (change)="onChange($event)">
+             (change)="onChange($event)"
+             lib-rc-click-outside (clickOutside)="closeDropDownSearchList()">
     <ng-template ng-label-tmp let-item="item">
       <div *ngIf="item.type == 'city'">
         <span>{{item.name}}</span>

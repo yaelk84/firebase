@@ -148,6 +148,11 @@ export class SearchComponent implements OnInit {
     ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked')[0].click();
     this.searchFocused = false;
   }
+
+  closeDropDownSearchList() {
+    this.closeDropDown();
+  }
+
   onClose() {
     this.closeDropDown();
   }
