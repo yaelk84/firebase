@@ -87,7 +87,7 @@
     }
     .ng-dropdown-panel {
       margin-top: 1.7rem;
-      color: #03294c;
+      color: #0a294c;
       background-color: $white;
       border-radius: 9px;
       box-shadow: 0 2px 63px 0 rgba(0, 0, 0, 0.21);
@@ -192,7 +192,7 @@
 .search-wrapper.no-results {
   /deep/
   .ng-dropdown-panel {
-      padding: 0.8rem;
+      padding: 15px;
   }
 .autocomplete-search {
     .ng-select-container {
@@ -216,8 +216,25 @@
 .search-wrapper.no-results {
   border: 1px solid #df1a1e;
 }
+
+.search-wrapper {
+  &.margin-mobile-search {
+    box-shadow: 0 2px 7px 0 rgba(10, 41, 76, 0.2), 0 0 2px 0 rgba(10, 41, 76, 0.13);
+  }
+}
  @media (max-width: $mobile_view) {
    .search-wrapper{
+     .address-search-mobile-wrapper {
+       max-width: 165px;
+       width: 100%;
+       .address-search-mobile {
+         white-space: initial;
+       }
+     }
+     .distance-mobile {
+       padding-left: 0;
+     }
+
      &.margin-mobile-search {
        margin-top: 40px;
        //bottom: 112px;
@@ -240,8 +257,8 @@
      }
      .search-btn-wrapper {
        .search-btn {
-         height: 3rem;
-         width: 3rem;
+         height: 2.9rem;
+         width: 2.9rem;
          padding: 0;
        }
      }
@@ -251,7 +268,7 @@
        .distance-wrapper {
          .location-icon {
            margin-left: 0.2rem;
-           margin-right: 2rem;
+           //margin-right: 2rem;
          }
        }
    //  }
@@ -271,7 +288,7 @@
   }
    .search-wrapper{
      padding: 0.7rem 0;
-     height: 50px;
+     height: 48px;
      /deep/
      .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input{
        left: auto;

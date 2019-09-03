@@ -13,7 +13,7 @@
   .name-and-number {
     display: inline-block;
     font-size: 23.9px;
-    max-width: 275px;
+    max-width: 276px;
 
 
     span {
@@ -84,7 +84,7 @@
     right: 0;
     padding: 25px 15px;
     min-width: 330px;
-    
+
     @media (max-width: $mobile_view) {
       padding-top: 0px;
       padding-bottom: 0;

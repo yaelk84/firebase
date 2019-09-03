@@ -19,7 +19,7 @@
 
             </div>
             <div class="share">
-              <div class="btn text-to-crop" (click)="openShareBranchPopup = true"></div>
+              <div class="share-btn" (click)="openShareBranchPopup = true"></div>
               <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
                 <app-share-branch-popup
                   [branchName]="dataBranchSelected.branchSummarize.branchName"

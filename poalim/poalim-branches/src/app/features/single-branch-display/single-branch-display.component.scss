@@ -89,19 +89,22 @@ span.tooltip:hover:after {
 
     .branch-data {
       display: flex;
-      justify-items: baseline
+      justify-items: baseline;
+      //max-width: 350px;
     }
 
     .share {
       padding: 0;
 
 
-      /deep/
-      .btn {
-        padding: 9px;
+      ///deep/
+      .share-btn {
+        padding: 0;
         background-repeat: no-repeat;
         background-color: transparent;
         background-position: center;
+        border-radius: 19.5px;
+        border: solid 1px #03294c;
         height: 35px;
         width: 42px;
         background-image: url('~src/assets/media/share.svg');
@@ -129,7 +132,8 @@ span.tooltip:hover:after {
   }
 
   .selected-branches-services {
-
+    max-width: 280px;
+    width: 100%;
 
     h1 {
       font-size: 20px;
@@ -147,8 +151,9 @@ span.tooltip:hover:after {
       .icon-service-list {
         position: relative;
         bottom: 2px;
-        margin: 0 8px;
+        //margin: 0 8px;
         margin-top:3px;
+        margin-right: 0;
         text-align: center;
         float: $default-start;
         transform: rotate(90deg);
@@ -414,6 +419,35 @@ span.tooltip:hover:after {
   }
 }
 
+// Tablet
+@media (max-width: 1024px) and (min-width: $mobile_view + 1)  {
+  .share {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .btn {
+    margin-left: 12px !important;
+    padding: 9px 25px !important;
+  }
+
+  .selected-branch-buttons {
+    margin-right: 0 !important;
+  }
+
+  .single-branch-display {
+    .wrapper-service-and-btn {
+      .white-btn {
+        &.desktop{
+          left: 6px;
+        }
+      }
+    }
+  }
+
+}
+
 
 @media (max-width: $mobile_view) {
   .single-branch-display {
@@ -427,7 +461,7 @@ span.tooltip:hover:after {
       }
     }
 .btn{
-  padding: 9px 30px;
+  padding: 9px 30px !important;
 }
     .service-label {
       font-weight: 300;
@@ -517,25 +551,7 @@ span.tooltip:hover:after {
   }
 }
 
-// Tablet
-@media (max-width: 1024px) {
-  .share {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
 
-  .single-branch-display {
-    .wrapper-service-and-btn {
-      .white-btn {
-        &.desktop{
-          left: 6px;
-        }
-      }
-    }
-  }
-
-}
 
 
 

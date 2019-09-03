@@ -56,10 +56,10 @@
         <div *ngIf="item.type == 'branch'">
           <div class="row">
             <div class="col-8 col-sm-9">
-              <div><span [ngOptionHighlight]="search">{{item.addressToDisplay}}</span></div>
+              <div class="address-search-mobile-wrapper"><span class="address-search-mobile" [ngOptionHighlight]="search">{{item.addressToDisplay}}</span></div>
 
             </div>
-            <div class="col-4 col-sm-3" *ngIf="true">
+            <div class="col-4 col-sm-3 distance-mobile" *ngIf="true">
               <div class="distance-wrapper"  *ngIf="mapSEervice.hasLocationPermission">
                 <img class="location-icon" *ngIf="!item.optionMouseOver" src="../../../assets/media/icons/location.svg"
                      alt="">
