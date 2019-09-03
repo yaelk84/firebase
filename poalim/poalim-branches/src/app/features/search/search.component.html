@@ -4,7 +4,8 @@
 <div class="search-wrapper" [ngClass]="{
                               'focused' : searchFocused || selectedItem,
                               'margin-mobile-search': openDropdown,
-                              'no-results':  filteredItems && filteredItems.length === 0 &&  openDropdown
+                              'no-results':  filteredItems && filteredItems.length === 0 && openDropdown,
+                              'is-after-select-branch': isAfterSelectBranch
                              }">
   <ng-select [(ngModel)]="selectedItem" #ngSelectAutoComplete
              disable-backspace-reset
@@ -59,7 +60,7 @@
               <div class="address-search-mobile-wrapper"><span class="address-search-mobile" [ngOptionHighlight]="search">{{item.addressToDisplay}}</span></div>
 
             </div>
-            <div class="col-4 col-sm-3 distance-mobile" *ngIf="true">
+            <div class="col-4 col-sm-3 distance-padding" *ngIf="true">
               <div class="distance-wrapper"  *ngIf="mapSEervice.hasLocationPermission">
                 <img class="location-icon" *ngIf="!item.optionMouseOver" src="../../../assets/media/icons/location.svg"
                      alt="">

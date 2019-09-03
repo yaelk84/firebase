@@ -110,6 +110,7 @@ span.tooltip:hover:after {
         background-image: url('~src/assets/media/share.svg');
 
         &:hover {
+          border-color: #df1a1e;
           background-image: url('~src/assets/media/share-red.svg');
         }
       }

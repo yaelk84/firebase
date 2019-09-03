@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   openDropdown: boolean;
   searchFocused: boolean;
   optionMouseOver: boolean;
+  isAfterSelectBranch = false;
   cities: [];
   isMobile = false;
   @Output() onMobileSearch = new EventEmitter();
@@ -154,6 +155,7 @@ export class SearchComponent implements OnInit {
   closeDropDown() {
     this.onMobileSearch.emit({isSearchOpen: false});
     this.openDropdown = false;
+    this.isAfterSelectBranch = true;
   }
 
   onChange($event) {

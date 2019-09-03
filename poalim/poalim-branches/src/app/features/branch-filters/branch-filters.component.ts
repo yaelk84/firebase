@@ -60,7 +60,9 @@ export class BranchFiltersComponent implements OnInit {
     this.filterService.toggleFilter(id, defaultVal);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
     this.mapService.isSearchHereButtonClicked = false;
-    this.filterBox.nativeElement.focus();
+    if (this.filterBox) {
+      this.filterBox.nativeElement.focus();
+    }
   }
 
   togglePluse(e?: Event) {
