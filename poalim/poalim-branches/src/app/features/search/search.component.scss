@@ -81,6 +81,8 @@
             font-size: 20px;
             line-height: 1;
             margin-top: -.4rem;
+            position: relative;
+            bottom: 3px;
           }
         }
       }
@@ -199,7 +201,6 @@
   &.margin-mobile-search {
     box-shadow: 0 2px 7px 0 rgba(10, 41, 76, 0.2), 0 0 2px 0 rgba(10, 41, 76, 0.13);
     position: relative;
-    bottom: 110px;
     //z-index: 102;
   }
   &.no-results {
