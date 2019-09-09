@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable, of, Subject, Subscription, throwError} from
 import {catchError, filter, map, switchMap} from 'rxjs/operators';
 import {forkJoin} from 'rxjs';
 import {MapBranchesService} from './map-branches.service';
+import {environment} from "../../../environments/environment";
 
 
 @Injectable({
@@ -30,6 +31,8 @@ export class AppService {
         return of({});
       }));
   }
+
+
 
   public loadTranslation(): Observable<any> {
     return this.apiService.getTranslation()

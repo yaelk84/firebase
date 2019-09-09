@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   apiBaseUrl: '',
   translationPath: '/assets/translate/',
-  configPath: '/assets/config.json'
-
+  configPath: '/assets/config.json',
+  imgUrlPath: '/assets/media/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

@@ -16,7 +16,7 @@
   <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
     <span  class="back-to-results-wrapper"(click)="backToResults()">
-      <span class="go-back">   <div class="img-wrapper"><img [src]="arrow" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+      <span class="go-back">   <div class="img-wrapper"><img src="{{'../../../assets/media/left.svg' | imgUrl}}" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
 
       <app-single-branch-display  [ngClass]="{'hide-in-mobile' :hideListInMoBile}" [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
@@ -60,7 +60,7 @@
 
   <ng-template #notFound>
     <div class="not-found-container">
-      <img src="../../../assets/media/images/not-found.svg">
+      <img src="{{'../../../assets/media/images/not-found.svg' | imgUrl}}">
       <h4 class="oops">{{'opps' | rcTranslate}}</h4>
       <p>{{'notFound' | rcTranslate}}</p>
     </div>

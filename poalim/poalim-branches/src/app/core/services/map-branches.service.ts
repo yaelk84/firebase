@@ -50,13 +50,17 @@ export class MapBranchesService {
     return this.sortedBranches;
   }
 
-  getGeoCoordinateArray(arr: Array<any>) {
+  getGeoCoordinateArray(citiesArr: Array<any>) {
     const geocoordsArray = new Observable(observer => {
       const newGeoArr = [];
-      for (let i = 0; i < arr.length; i++) {
-        const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
+      for (const city of citiesArr) {
+        const cityPoint = citiesArr[city].geographicAddress[0].geographicCoordinate;
         newGeoArr.push(cityPoint);
       }
+      // for (let i = 0; i < arr.length; i++) {
+      //   const cityPoint = arr[i].geographicAddress[0].geographicCoordinate;
+      //   newGeoArr.push(cityPoint);
+      // }
       observer.next(newGeoArr);
     });
     return geocoordsArray;

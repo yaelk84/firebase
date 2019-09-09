@@ -16,6 +16,7 @@ import {HoursService} from '../../core/services/hours.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
 import {AppService} from '../../core/services/app.service';
 import {DeviceService} from '../../core/services/event-service';
+import {environment} from "../../../environments/environment";
 
 
 @Component({
@@ -45,12 +46,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   showDaysHoursFilter = false;
   filterWithHours = '/assets/media/hour-filter.svg';
   filterWithNoHours = '/assets/media/no-filter-hours.svg';
-  arrow = '/assets/media/left.svg';
+  // arrow = '/assets/media/left.svg';
   showNoLocation = false;
   intervalTimer: any;
   isMobile = false;
   isTablet = false;
-
   filterIcon = this.filterWithNoHours;
 
 
@@ -282,5 +282,9 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchDataServices.initBranchesAndApplyFilters(this.branchDataServices.createDataArray(this.mapServices.sortedBranches),
         this.branchFilterService.activeFilters);
     }, 5000 * 60);
+  }
+
+  get imgSrc() {
+    return `${environment.imgUrlPath}`;
   }
 }

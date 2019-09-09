@@ -63,7 +63,7 @@
             </div>
             <div class="col-4 col-sm-3 distance-padding" *ngIf="true">
               <div class="distance-wrapper"  *ngIf="mapSEervice.hasLocationPermission">
-                <img class="location-icon" *ngIf="!item.optionMouseOver" src="../../../assets/media/icons/location.svg"
+                <img class="location-icon" *ngIf="!item.optionMouseOver" src="{{'../../../assets/media/icons/location.svg' | imgUrl}}"
                      alt="">
                 <img class="location-icon" *ngIf="item.optionMouseOver"
                      src="../../../assets/media/icons/location-white.svg" alt="">
@@ -85,7 +85,7 @@
             [ngClass]="{
             'can-click': openDropdown || selectedItem,
             'cant-click': searchTerm && searchTerm.length < 3}">
-      <img class="search-btn-icon" src="../../../assets/media/icons/search-white.svg" alt="">
+      <img class="search-btn-icon" src="{{'../../../assets/media/icons/search-white.svg' | imgUrl}}" alt="">
     </button>
   </div>
 </div>

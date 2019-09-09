@@ -29,6 +29,7 @@ import { AgmCoreModule  } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ShareBranchPopupComponent } from './features/share-branch-popup/share-branch-popup.component';
 import { SuccessPopupMsgComponent } from './success-popup-msg/success-popup-msg.component';
+import { ImgUrlPipe } from './core/filters/img-url.pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,6 +57,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MapComponent,
     ShareBranchPopupComponent,
     SuccessPopupMsgComponent,
+    ImgUrlPipe,
   ],
   imports: [
     BrowserModule,

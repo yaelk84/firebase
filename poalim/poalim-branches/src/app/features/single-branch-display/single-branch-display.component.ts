@@ -19,7 +19,7 @@ export class SingleBranchDisplayComponent implements OnInit {
   constructor( private deviceService: DeviceService) {
   }
 
-  arrow = '/assets/media/left.svg';
+  // arrow = '/assets/media/left.svg';
   share = '/assets/media/share.svg';
   start = 0;
   end = CONSTANTS.SERVICES_NUM;
