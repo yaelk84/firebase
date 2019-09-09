@@ -3,7 +3,7 @@
 <div *ngIf="openDropdown && isMobile" class="close-btn" (click)="closeDropDown()"></div>
 <div class="search-wrapper" [ngClass]="{
                               'focused' : searchFocused || selectedItem,
-                              'margin-mobile-search': openDropdown,
+                              'margin-mobile-search': openDropdown && isMobile,
                               'no-results':  filteredItems && filteredItems.length === 0 && openDropdown,
                               'is-after-select-branch': isAfterSelectBranch
                              }">

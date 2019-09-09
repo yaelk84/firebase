@@ -73,7 +73,7 @@
 .icon-arrow {
   margin-right: 10px;
   position: relative;
-  top: 2px;
+  top: 14px;
 
 }
 
@@ -180,10 +180,11 @@ margin-right: 5px;
       top: 97px;
       width: 100%;
       &:before{
-        content: none;
+        content: '';
       }
       &:after{
-        content: none;
+        content: '';
+        margin-left: 73px;
       }
     }
   }

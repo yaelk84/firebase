@@ -123,10 +123,14 @@ padding: 20px 3px;
   }
   .label-wrapper{
     line-height: 16px;
+    font-size: 17px;
     text-align: center;
     height: 32px;
     max-width:110px;
-    color: #525252;
+    color: #0a294c;
+    &.filterActive {
+      color: #df1a1e;
+    }
   }
 
   &:first-child {

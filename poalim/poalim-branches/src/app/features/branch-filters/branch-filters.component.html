@@ -13,7 +13,7 @@
         </div>
       </div>
       <div>
-        <div class="label-wrapper"> {{filter.serviceLabel}}</div>
+        <div class="label-wrapper" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"> {{filter.serviceLabel}}</div>
       </div>
 
 

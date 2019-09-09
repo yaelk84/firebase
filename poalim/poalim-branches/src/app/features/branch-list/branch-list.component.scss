@@ -169,6 +169,12 @@
   width: 100%;
 }
 
+@media (max-width: 1024px) {
+  .branch-list {
+    overflow-y: scroll;
+    overflow-x: hidden
+  }
+}
 
 @media (max-width: 770px) {
   .popover-add-margin{
@@ -195,9 +201,11 @@ margin-top: 20px;
     margin-#{$default-start}: 0;
   }
 .branch-list{
-      overflow: auto;
+      //overflow: auto;
       direction: ltr;
   padding: 0 15px;
+  height: unset;
+  min-height: 427px;
 
     .branch-box-wrapper{
       direction: rtl;
@@ -233,9 +241,4 @@ margin-top: 20px;
 
 }
 
-@media (max-width: 1024px) {
-  .branch-list {
-      overflow-y: scroll;
-      overflow-x: hidden
-  }
-}
+
