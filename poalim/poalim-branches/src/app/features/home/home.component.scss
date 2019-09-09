@@ -142,8 +142,11 @@
   .branches-header {
     padding-bottom: 35px;
     .branch-title {
-      font-size: 35px;
+      &.branch-title {
+        font-size: 35px;
+      }
     }
+
 
   }
 

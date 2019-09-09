@@ -7,7 +7,8 @@ export const environment = {
   apiBaseUrl: '',
   translationPath: '/assets/translate/',
   configPath: '/assets/config.json',
-  imgUrlPath: '/assets/media/'
+  imgUrlPath: '/assets/media/',
+  apiPath: '/assets/stubs/'
 };
 /*
  * For easier debugging in development mode, you can import the following file

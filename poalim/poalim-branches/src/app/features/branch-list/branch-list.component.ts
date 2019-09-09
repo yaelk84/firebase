@@ -44,9 +44,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   filterByHours = false;
   dayName = '';
   showDaysHoursFilter = false;
-  filterWithHours = '/assets/media/hour-filter.svg';
-  filterWithNoHours = '/assets/media/no-filter-hours.svg';
-  // arrow = '/assets/media/left.svg';
+  filterWithHours = `${environment.imgUrlPath}hour-filter.svg`;
+  filterWithNoHours = `${environment.imgUrlPath}no-filter-hours.svg`;
   showNoLocation = false;
   intervalTimer: any;
   isMobile = false;

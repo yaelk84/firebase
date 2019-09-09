@@ -1,7 +1,5 @@
 /// <reference types="@types/googlemaps" />
 import {
-  AfterViewInit,
-  ChangeDetectorRef,
   Component, ElementRef,
   EventEmitter,
   Input,
@@ -18,8 +16,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {AppService} from '../../core/services/app.service';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
-// import {AgmMap} from '@agm/core';
 import {DeviceService} from '../../core/services/event-service';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -34,28 +32,25 @@ export class MapComponent implements OnInit {
   lngCoordinate = 32.09472;
   hasAccessToMyLocation = false;
   branchIcon = {
-    url: 'assets/media/branch-marker.svg',
+    url: `${environment.imgUrlPath}branch-marker.svg`,
     scaledSize: {width: 29, height: 29}
   };
   bankatAndHoverIcon = {
-    url: 'assets/media/bankat-shape.png',
+    url: `${environment.imgUrlPath}bankat-shape.png`,
     scaledSize: {width: 29, height: 29}
   };
 
   myLocationIcon = {
-    url: 'assets/media/myLocation-marker.svg',
+    url: `${environment.imgUrlPath}myLocation-marker.svg`,
     scaledSize: {width: 50, height: 70}
   };
   currentCenter: GeoLocationObject;
   findHereCenter: GeoLocationObject;
   isShowCircle = false;
   showSingleDisplay = false;
-  test = true;
   centerChangeCbTimeout = null;
-  zoom: number;
   isMobile = false;
   @Output() goToBranchDetails = new EventEmitter();
-  // @ViewChild('agmMap') agmMap: AgmMap;
   @ViewChild('searchOnAreaBtn') searchOnAreaBtn: ElementRef;
 
   constructor(private apiService: ApiService, private mapBranches: MapBranchesService, private events: RcEventBusService,

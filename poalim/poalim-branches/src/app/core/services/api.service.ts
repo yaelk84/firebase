@@ -152,23 +152,23 @@ export class ApiService extends RcApiService {
 
 
   public getBranches(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/mockDataBranches.json', {}, true);
+    return this.apiGet(`${environment.apiPath}mockDataBranches.json`, {}, true);
   }
 
   public getFilters(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/filters.json', {}, true);
+    return this.apiGet(`${environment.apiPath}filters.json`, {}, true);
   }
 
   public getGetCurrentTimeStamp(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/GetCurrentTimeStamp.json', {}, true);
+    return this.apiGet(`${environment.apiPath}GetCurrentTimeStamp.json`, {}, true);
   }
 
   public getGetCities(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/cities.json', {}, true);
+    return this.apiGet(`${environment.apiPath}cities.json`, {}, true);
   }
 
   public getBranchesInit(params = {}, force: boolean = true) {
-    return this.apiGet('../assets/stubs/init.json', {}, true);
+    return this.apiGet(`${environment.apiPath}init.json`, {}, true);
   }
 
 

@@ -74,7 +74,12 @@
   margin-right: 10px;
   position: relative;
   top: 14px;
-
+  @media (max-width: 1024px) and (min-width: $mobile_view + 1) {
+      top: 4px;
+  }
+  @media (max-width: $mobile_view + 1)  {
+    top: 2px;
+  }
 }
 
 .hours {
@@ -84,6 +89,8 @@
     right: 0;
     padding: 10px 15px;
     min-width: 330px;
+
+
 
     @media (max-width: $mobile_view) {
       padding-top: 0px;
@@ -188,6 +195,5 @@ margin-right: 5px;
       }
     }
   }
-
 
 }
