@@ -4,6 +4,7 @@ import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {HoursService} from '../../core/services/hours.service';
 import {DeviceService} from '../../core/services/device.service';
 import {AppService} from "../../core/services/app.service";
+import {MapBranchesService} from "../../core/services/map-branches.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {AppService} from "../../core/services/app.service";
 export class BranchHoursComponent implements OnInit {
 
   constructor(private translate: RcTranslateService, private  branchFilter: BranchFilterService, private hoursService: HoursService,
-              private deviceService: DeviceService, private appService: AppService) {
+              private deviceService: DeviceService, private appService: AppService, private mapService: MapBranchesService) {
   }
 
   @Input() hours: any;
@@ -38,6 +39,10 @@ export class BranchHoursComponent implements OnInit {
     e.stopPropagation();
 
     this.togglePopup.emit();
+  }
+
+  get isSwitchedToMap() {
+    return this.mapService.isShowMap;
   }
 
   get dayName() {

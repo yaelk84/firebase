@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   isMobile;
   singleDisplay = false;
   displayTitle = true;
+  // isShowMap = false;
+
 
   constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService, private deviceService: DeviceService) {
   }
@@ -129,5 +131,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   toggleMobileSwitcher() {
     this.formControl.setValue(!this.formControl.value);
+  }
+
+  onSwitch() {
+    console.log('!!!!!!!!!!!!!!', this.mapServices.isShowMap = !this.mapServices.isShowMap);
+    this.mapServices.isShowMap = !!this.mapServices.isShowMap;
   }
 }

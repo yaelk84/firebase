@@ -1,9 +1,9 @@
 
-<div class="popover-wrapper hours-list "    lib-rc-click-outside (clickOutside)="closeDropDown($event)"*ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
+<div class="popover-wrapper hours-list "    lib-rc-click-outside (clickOutside)="closeDropDown()"*ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
   <div *ngFor=" let dayHours of hoursList" class="drop-line">
       <span class="drop-label"> <span>{{'dropdownLabel' | rcTranslate}}</span> <span> {{dayHours.dayName}}:</span>
         </span>
-    <span class="drop-val" >
+    <span class="drop-val">
         <span *ngIf="dayHours.openToday" class="have-day-val">
              <span *ngIf="dayHours.label.morning">
 
@@ -34,8 +34,8 @@
         <span class="open-today" [ngClass]="{'withdropdown':isSingleDisplay}"   (click)=" isSingleDisplay && dropClick($event)">
           <span>
             <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
-            <br *ngIf="isMobile">
-            <span *ngIf="hours.label.morning"></span> <span>{{hours.label.morning}}</span>
+            <br *ngIf="isMobile && isSwitchedToMap">
+            <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
           </span>
         <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
         <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>

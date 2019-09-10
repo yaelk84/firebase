@@ -73,13 +73,7 @@
 .icon-arrow {
   margin-right: 10px;
   position: relative;
-  top: 14px;
-  @media (max-width: 1024px) and (min-width: $mobile_view + 1) {
-      top: 4px;
-  }
-  @media (max-width: $mobile_view + 1)  {
-    top: 2px;
-  }
+  top: 2px;
 }
 
 .hours {
@@ -141,6 +135,15 @@
   }
 }
 
+@media (max-width: 1024px) and (min-width: $mobile_view + 1) {
+  .popover-wrapper.hours-list:after {
+    left: 130px;
+  }
+  .location {
+    margin: 5px 0 7px 0;
+  }
+}
+
 @media (max-width: $mobile_view) {
   .list-wrapper {
     width: 100%;
@@ -168,7 +171,7 @@ margin-right: 5px;
 
     .location {
       font-size: 16px;
-      margin: 5px 0 2px 0;
+      margin: 5px 0 0 0;
       .location-icon {
         float: right;
         margin-right: 0;
@@ -184,14 +187,14 @@ margin-right: 5px;
     position: static;
     /deep/
     .popover-wrapper.hours-list {
-      top: 97px;
+      top: 90px;
       width: 100%;
       &:before{
         content: '';
       }
       &:after{
         content: '';
-        margin-left: 73px;
+        margin-left: 162px;
       }
     }
   }

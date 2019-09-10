@@ -10,7 +10,7 @@
  }
 .title-open-today{
   color:  $true-green;
-  margin-top: 3px;
+  margin-bottom: 5px;
 }
 .open-today,open-specific-day{
   display: flex;
@@ -73,10 +73,17 @@
   color: #0070f0;
 }
 
+//@media (max-width: 1024px) and (min-width: $mobile_view + 1) {
+//  .open-today {
+//    &.withdropdown {
+//      position: relative;
+//      top: 12px;
+//    }
+//  }
+//}
 
 
-
-@media (max-width: $mobile_view) {
+@media (max-width: $mobile_view)  {
   .branch-hours{
     font-size: 16px;
   }
@@ -84,14 +91,16 @@
   .open-today {
     &.withdropdown {
       position: relative;
-      bottom: 5px;
+      top: 8px;
       height: 0;
-      @media (max-width: $mobile_view + 1) {
-        bottom: -9px;
-      }
     }
     .infoWidow {
       display: none;
     }
+
+    //.hours-pos {
+    //  position: relative;
+    //  bottom: 9px;
+    //}
   }
 }

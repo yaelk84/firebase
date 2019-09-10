@@ -28,6 +28,7 @@ export class MapBranchesService {
   LAT_PARAM = 'geoCoordinateY';
   LNG_PARAM = 'geoCoordinateX';
   isSearchHereButtonClicked = false;
+  isShowMap = false;
 
   constructor(private apiService: ApiService, private mapsAPILoader: MapsAPILoader, private  events: RcEventBusService) {
   }
