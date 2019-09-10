@@ -16,7 +16,7 @@
   <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
     <span  class="back-to-results-wrapper"(click)="backToResults()">
-      <span class="go-back">   <div class="img-wrapper"><img src="{{'left.svg' | imgUrl}}" alt=""></div> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+      <span class="go-back"><button class="img-wrapper"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></button> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
 
       <app-single-branch-display  [ngClass]="{'hide-in-mobile' :hideListInMoBile}" [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
@@ -26,11 +26,11 @@
 
       <div class="branch-list-header">
         <div class="branch-result">{{branchResultTitle}}</div>
-        <div (click)="toggleDropDown($event)" class="hours">
+        <button (click)="toggleDropDown($event)" class="hours">
           <span>{{'filterHours' | rcTranslate}} </span>
           <div class="img-wrapper"><img [src]="(filterByDay || filterByHours)?filterWithHours:filterWithNoHours" alt=""></div>
 
-        </div>
+        </button>
       </div>
       <ng-container
         *ngIf="branchNewArrayFilter && branchNewArrayFilter.length">

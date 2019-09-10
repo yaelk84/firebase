@@ -1,12 +1,8 @@
 <div ng-if="checkBocValues" class="check-box-list">
   <div class="check-box-line" *ngFor="let checkBox of  filterList; let checkIndex = index">
     <lib-rc-checkbox [elementId]="'my_checkbox_index_' + checkIndex"
-                     [control]="checkBox.formControl"
-    >
-
-       {{checkBox.value}}
-
-
+                     [control]="checkBox.formControl">
+                     {{checkBox.value}}
     </lib-rc-checkbox>
   </div>
 </div>

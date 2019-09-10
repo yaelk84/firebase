@@ -4,6 +4,9 @@
   //margin-top: 19px;
   margin: 10px 0;
   padding: 0 20px;
+  &:focus {
+    outline: #0a294c;
+  }
 
   @media (min-width: $mobile_view + 1) {
     &:hover {
@@ -33,6 +36,19 @@
   .custom-control {
     padding-right: 0;
   }
+
+  /deep/
+  .rc-form-checkbox {
+    .custom-control {
+      input.custom-control-input:focus + .custom-control-indicator {
+        //outline: #0a294c;
+        border: 1px solid #df1a1e;
+        box-shadow: 1px 1px 8px -2px #df1a1e;
+      }
+    }
+  }
+
+
 }
 .check-box-list{
   margin-bottom: 22px;

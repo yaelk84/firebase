@@ -24,7 +24,9 @@ export class BranchDataService {
   citySelected = '';
   indexNoBankat = '';
 
-  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService, private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService, private mapBranches: MapBranchesService) {
+  constructor(private translate: RcTranslateService, private timeService: TimeService, private appService: AppService,
+              private hursService: HoursService, private pipe: FilterBranchPipe, private  events: RcEventBusService,
+              private mapBranches: MapBranchesService) {
   }
 
   branchNewArray: Array<object>;
@@ -117,7 +119,8 @@ export class BranchDataService {
   createSingleBranch(data) {
 
     const isBankat = data.channelsGroupCode === CONSTANTS.BANKAT;
-    const hours: any = this.hursService.createOpeningAndClosingHours(data.availability.availabilityStandard.weekDaysSpecification, false, isBankat);
+    const hours: any = this.hursService.createOpeningAndClosingHours(
+      data.availability.availabilityStandard.weekDaysSpecification, false, isBankat);
     const address = data.geographicAddress[0];
     const fax = this.craeteContactAddressFax(data.contactAddress);
     const comma = this.replaceNullOrUndefinedInEmpty(address.streetName) || this.replaceNullOrUndefinedInEmpty(address.buildingNumber) ? ',' : '';
@@ -130,7 +133,8 @@ export class BranchDataService {
 
       branchNum: data.branchNumber,
       branchName: data.branchName,
-      address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber) + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
+      address: this.replaceNullOrUndefinedInEmpty(address.streetName) + ' ' + this.replaceNullOrUndefinedInEmpty(address.buildingNumber)
+        + comma + ' ' + this.replaceNullOrUndefinedInEmpty(address.cityName),
       distanceInKm: data.geographicAddress[0].distanceInKm,
       openAndCloseHours: hours,
       branchService: this.craeteBrancServices(data.branchService),

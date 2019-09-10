@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   onSwitch() {
-    console.log('!!!!!!!!!!!!!!', this.mapServices.isShowMap = !this.mapServices.isShowMap);
+    // console.log('!!!!!!!!!!!!!!', this.mapServices.isShowMap = !this.mapServices.isShowMap);
     this.mapServices.isShowMap = !!this.mapServices.isShowMap;
   }
 }

@@ -76,6 +76,11 @@ span.tooltip:hover:after {
     }
   }
 
+  .img-wrapper {
+    border: none;
+    background: #f1f6fb;
+  }
+
   @supports (-moz-appearance:none) {
     .part-wrapper {
       border-bottom: 1.5px solid #EDECED;
@@ -180,7 +185,7 @@ span.tooltip:hover:after {
         color: $marine-two;
         margin-right: 5px;
         font-weight: 300;
-        width: 150px;
+        width: 182px;
       }
 
       &:first-child {
@@ -367,7 +372,7 @@ span.tooltip:hover:after {
     }
 
     /deep/ .close {
-      outline: none;
+      //outline: none;
       font-weight: normal;
       font-size: 0;
       background-image: url("../../../assets/media/icons/close.svg");
@@ -417,7 +422,7 @@ span.tooltip:hover:after {
 
   /deep/ .modal-content {
     /deep/ .close {
-      outline: none;
+      //outline: none;
       font-weight: normal;
       font-size: 0;
       background-image: url("../../../assets/media/icons/close.svg");

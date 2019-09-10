@@ -114,9 +114,6 @@ lib-rc-switcher{
     display: flex;
     align-items: center;
     color: #0a294c;
-    //&:hover {
-    //  background: #0a294c;
-    //}
 
     .custom-control-description {
       margin-#{$default-start}: 13px;
@@ -126,6 +123,9 @@ lib-rc-switcher{
       width: 100%;
       padding-bottom: 6px;
       text-align: right;
+      //&:focus {
+      //  outline: #0a294c;
+      //}
       @media (min-width: $mobile_view + 1) {
         &:hover {
           color: #f1f6fb;

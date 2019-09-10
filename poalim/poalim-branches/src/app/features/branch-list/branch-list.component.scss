@@ -93,6 +93,8 @@
     align-items: center;
     line-height: 20px;
     height: 27px;
+    border: none;
+    background: #ffffff;
 }
   lib-rc-switcher{
     display: none;
@@ -143,7 +145,7 @@
   img{
     width: 100%;
   }
-;
+
 }
 
 .init-message {
@@ -168,6 +170,17 @@
   max-width: 530px;
   width: 100%;
 }
+
+.img-wrapper {
+  border: none;
+  background: #ffffff;
+
+  .backto-branches-list {
+    width: 15px;
+  }
+}
+
+
 
 @media (max-width: 1024px) {
   .branch-list {
