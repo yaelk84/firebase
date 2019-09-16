@@ -108,6 +108,11 @@ margin-bottom: 15px;
   }
 }
 
+.text-to-crop {
+  border: none;
+  background: #ffffff;
+}
+
 @media only screen and (max-width: $mobile_view) {
   .hours-filter{
     margin-bottom: 15px;

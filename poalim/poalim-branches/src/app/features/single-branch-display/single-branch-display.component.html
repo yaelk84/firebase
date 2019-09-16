@@ -19,7 +19,7 @@
 
             </div>
             <div class="share">
-              <div class="share-btn" (click)="openShareBranchPopup = true"></div>
+              <button class="share-btn" (click)="openShareBranchPopup = true"></button>
               <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
                 <app-share-branch-popup
                   [branchName]="dataBranchSelected.branchSummarize.branchName"
@@ -88,10 +88,10 @@
 
       </div>
       <div class="selected-branch-buttons">
-        <div *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop" role="button">{{'order' |rcTranslate}}</div>
+        <button *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop">{{'order' |rcTranslate}}</button>
 
-        <span class="worng-data">
-         <span class="wrong-data-text" (click)="openReportproblem()" role="button">{{'worngData'|rcTranslate }}</span>
+        <span role="button" class="worng-data" (click)="openReportproblem()" tabindex="0">
+         <div role="button" class="wrong-data-text">{{'worngData'|rcTranslate }}</div>
            <span class="go-back"> <button class="img-wrapper"><img src="{{'left.svg' | imgUrl}}" alt=""></button> </span>
       </span>
       </div>

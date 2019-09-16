@@ -1,5 +1,5 @@
 <div class="hours-filter">
-  <h2> {{'title' | rcTranslate}}</h2>
+  <h2 id="dialog-hours_label"> {{'title' | rcTranslate}}</h2>
 
   <h4>{{'titleDays'|rcTranslate}}</h4>
   <div class="day-wrapper">
@@ -10,12 +10,12 @@
 
   <h4>{{'titleHours'|rcTranslate}}</h4>
   <div class="hours-wrapper">
-    <div class="morning text-to-crop-add" [ngClass]="{'selected':'morning' === selectedHours}"  (click)="selectHours('morning')"><div>{{'openMorning' |rcTranslate}}</div></div>
-    <div class="noon text-to-crop-add"  [ngClass]="{'selected':'noon' === selectedHours}"  (click)="selectHours('noon')" ><div>{{'openNoon'| rcTranslate}} </div></div>
+    <div role="button" tabindex="0" class="morning text-to-crop-add" [ngClass]="{'selected':'morning' === selectedHours}"  (click)="selectHours('morning')"><div>{{'openMorning' |rcTranslate}}</div></div>
+    <div role="button" tabindex="0" class="noon text-to-crop-add"  [ngClass]="{'selected':'noon' === selectedHours}"  (click)="selectHours('noon')" ><div>{{'openNoon'| rcTranslate}} </div></div>
   </div>
   <div class="btn-wrapper">
-    <div class="btn text-to-crop-add" (click)="submit()">{{'startFilter' |rcTranslate}}</div>
-    <div (click)="clear()" class="clean text-to-crop">{{'clean' |rcTranslate}}</div>
+    <button class="btn text-to-crop-add" (click)="submit()">{{'startFilter' |rcTranslate}}</button>
+    <button (click)="clear()" class="clean text-to-crop">{{'clean' |rcTranslate}}</button>
   </div>
   <button class="close-btn"  (click)="closePopOver()"></button>
 </div>

@@ -324,6 +324,8 @@ span.tooltip:hover:after {
 
     .wrong-data-text {
       color: $marine-two;
+      //border: none;
+      //background: #f1f6fb;
 
       &:hover {
         color: $lipstick-two;

@@ -133,8 +133,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.formControl.setValue(!this.formControl.value);
   }
 
-  onSwitch() {
-    // console.log('!!!!!!!!!!!!!!', this.mapServices.isShowMap = !this.mapServices.isShowMap);
-    this.mapServices.isShowMap = !!this.mapServices.isShowMap;
-  }
+  // onSwitch() {
+  //   console.log('!!!!!!!!!!!!!!', this.mapServices.isShowMap = !!this.mapServices.isShowMap);
+  //   this.mapServices.isShowMap = !!this.mapServices.isShowMap;
+  // }
 }

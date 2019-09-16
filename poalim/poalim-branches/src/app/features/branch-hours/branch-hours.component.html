@@ -31,10 +31,10 @@
     <div class="clearfix" *ngIf="!hours.wasChange">
       <div  *ngIf="hours.openCurrentDay && !dayName">
       <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
-        <span class="open-today" [ngClass]="{'withdropdown':isSingleDisplay}"   (click)=" isSingleDisplay && dropClick($event)">
+        <span role="button" tabindex="0" class="open-today" [ngClass]="{'withdropdown':isSingleDisplay}"   (click)=" isSingleDisplay && dropClick($event)">
           <span>
             <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
-            <br *ngIf="isMobile && isSwitchedToMap">
+<!--            <br *ngIf="isMobile && isSwitchedToMap">-->
             <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
           </span>
         <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
