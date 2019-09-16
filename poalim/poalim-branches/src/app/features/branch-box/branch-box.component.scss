@@ -8,6 +8,9 @@
   border-top:1px solid $pale-grey;
   border-bottom: 2px solid #EDECED;
   padding: 8px 0;
+  background-color: $white;
+  border-right: none;
+  border-left: none;
   &:first-child{
     border-top: none;
   }

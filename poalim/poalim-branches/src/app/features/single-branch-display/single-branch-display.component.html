@@ -47,7 +47,7 @@
             <span><img class="icon-service-list" src="{{'icons/service-list.svg' | imgUrl}}"></span>
             <span class="service-label">{{service.branchServiceTypeDescription}}</span>
           </div>
-          <div *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</div>
+          <button *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</button>
         </div>
       </div>
 
@@ -88,10 +88,10 @@
 
       </div>
       <div class="selected-branch-buttons">
-        <button *ngIf="!dataBranchSelected.isBankat && !isMobile" class="btn white-btn desktop">{{'order' |rcTranslate}}</button>
+        <button *ngIf="!dataBranchSelected.isBankat && !isMobile" class="rc-btn white-btn desktop">{{'order' |rcTranslate}}</button>
 
-        <span role="button" class="worng-data" (click)="openReportproblem()" tabindex="0">
-         <div role="button" class="wrong-data-text">{{'worngData'|rcTranslate }}</div>
+        <span class="worng-data" >
+         <button class="wrong-data-text" (click)="openReportproblem()">{{'worngData'|rcTranslate }}</button>
            <span class="go-back"> <button class="img-wrapper"><img src="{{'left.svg' | imgUrl}}" alt=""></button> </span>
       </span>
       </div>

@@ -232,7 +232,7 @@ lib-rc-switcher{
       font-size: 18px;
       border-radius: 21.6px;
       box-shadow: 0 3px 5px 0 rgba(3, 41, 76, 0.05);
-      background-color: $white;
+      background-color: transparent;
       color: $marine-two;
       border-color: transparent;
 
@@ -279,13 +279,17 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   width: 2px;
 }}
 
+.hours-pos{
+  color: $marine-two;
+}
+
 .icon-arrow{
   width: 13px;
   height: 8px;
   background-repeat: no-repeat;
   background-image: url('~src/assets/media/down.svg');
   cursor: pointer;
-
+  color: $marine-two;
 }
 .icon-arrow-red{
   width: 8px;
@@ -293,6 +297,12 @@ perfect-scrollbar > .ps.ps--active-y > .ps__rail-y{
   background-repeat: no-repeat;
   background-image: url('~src/assets/media/left.svg');
   cursor: pointer;
+}
+
+.open-today{
+  padding: 0;
+  background-color: transparent;
+  border: none;
 }
 
 

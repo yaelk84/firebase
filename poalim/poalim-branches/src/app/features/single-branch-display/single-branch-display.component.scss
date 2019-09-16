@@ -195,6 +195,8 @@ span.tooltip:hover:after {
     }
 
     .add-more {
+      border: none;
+      background-color: transparent;
       font-weight: normal;
       color: $marine-two;
       margin-right: 26px;
@@ -318,14 +320,40 @@ span.tooltip:hover:after {
     padding: 0 18px 30px 18px;
     display: flex;
 
-    .btn {
+    .rc-btn{
       margin-left: 30px;
+      font-size: 18px;
+      border-radius: 21.6px;
+      box-shadow: 0 3px 5px 0 rgba(3, 41, 76, 0.05);
+      background-color: $white;
+      color: $marine-two;
+
+      border: solid 1px transparent;
+      padding: 7px 40px 10px 40px !important;
+      font-family: inherit;
+      font-weight: normal;
+      text-align: center;
+      line-height: normal !important;
+
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      vertical-align: middle;
+      display: inline-block;
+
+      &:hover{
+        color: #df1a1e;
+        box-shadow: none;
+      }
+    }
+
+    .btn {
+
     }
 
     .wrong-data-text {
       color: $marine-two;
-      //border: none;
-      //background: #f1f6fb;
+      border: none;
+      background-color: transparent;
+      padding: 0;
 
       &:hover {
         color: $lipstick-two;

@@ -16,7 +16,7 @@
   <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
     <span  class="back-to-results-wrapper"(click)="backToResults()">
-      <span class="go-back"><button class="img-wrapper"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></button> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+      <span class="go-back"><button class="img-wrapper" [attr.aria-label]="'backToResults' |rcTranslate"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></button> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </span>
 
       <app-single-branch-display  [ngClass]="{'hide-in-mobile' :hideListInMoBile}" [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
@@ -48,7 +48,7 @@
         <div class="branch-list" id="branch_id" [ngClass]="{'hide-in-mobile' :hideListInMoBile}" >
           <perfect-scrollbar *ngIf="!isMobile || isTablet" class="branch-list-scroll"  [config]="config"  id="scoller">
             <h5 class="init-message" *ngIf="generalMessage">{{generalMessage}}</h5>
-            <div role="button" class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;" tabindex="0">
+            <div class="branch-box-wrapper" *ngFor=" let branch of  branchNewArrayFilter ;let i = index;">
               <app-branch-box [branchIndex]="i"  (branchClick)="selectBranch(branch.branchSummarize.branchNum, branch.indexNoBankat)" [branchData]="branch" ></app-branch-box>
             </div>
           </perfect-scrollbar>
