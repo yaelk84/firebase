@@ -90,10 +90,10 @@
       <div class="selected-branch-buttons">
         <button *ngIf="!dataBranchSelected.isBankat && !isMobile" class="rc-btn white-btn desktop">{{'order' |rcTranslate}}</button>
 
-        <span class="worng-data" >
-         <button class="wrong-data-text" (click)="openReportproblem()">{{'worngData'|rcTranslate }}</button>
-           <span class="go-back"> <button class="img-wrapper"><img src="{{'left.svg' | imgUrl}}" alt=""></button> </span>
-      </span>
+        <button class="worng-data" (click)="openReportproblem()">
+         <span class="wrong-data-text">{{'worngData'|rcTranslate }}</span>
+           <span class="go-back"> <span class="img-wrapper"><img src="{{'left.svg' | imgUrl}}" alt=""></span> </span>
+      </button>
       </div>
     </div>
 <!--    <agm-map-->

@@ -31,7 +31,8 @@
     <div class="clearfix" *ngIf="!hours.wasChange">
       <div  *ngIf="hours.openCurrentDay && !dayName">
       <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
-        <button class="open-today" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
+        {{isSingleDisplay}}
+        <button class="open-today" [attr.aria-hidden]="!isSingleDisplay" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
           <span>
             <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
 <!--            <br *ngIf="isMobile && isSwitchedToMap">-->

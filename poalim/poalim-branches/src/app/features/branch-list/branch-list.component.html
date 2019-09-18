@@ -15,9 +15,9 @@
 
   <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
-    <span  class="back-to-results-wrapper"(click)="backToResults()">
-      <span class="go-back"><button class="img-wrapper" [attr.aria-label]="'backToResults' |rcTranslate"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></button> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
-    </span>
+    <button  class="back-to-results-wrapper"(click)="backToResults()">
+      <span class="go-back"><span class="img-wrapper"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></span> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
+    </button>
 
       <app-single-branch-display  [ngClass]="{'hide-in-mobile' :hideListInMoBile}" [dataBranchSelected]="branchSelectedDisplay"></app-single-branch-display>
 
