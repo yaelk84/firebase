@@ -67,7 +67,7 @@ init() {
         objResult.branches = results[1];
         this.branches = results[1];
         objResult.cities = results[2];
-        this.cities = results[2].cities;
+        this.cities = results[2];
         objResult.location = results[4];
         objResult.uniqueInit = results[3];
         this.initGeneralMessages = results[3].generalMessages;

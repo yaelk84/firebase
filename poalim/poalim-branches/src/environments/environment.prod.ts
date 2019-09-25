@@ -1,7 +1,8 @@
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://63.32.9.230:7000/',
-  translationPath: '/assets/translate/',
-  configPath: '/assets/static-resources/config.json',
-  imgUrlPath: '/assets/media/'
+  apiBaseUrl: '/api/branches/',
+  translationPath: 'sites/all/themes/poalim/js/angular/assets/translate/',
+  configPath: 'sites/all/themes/poalim/js/angular/assets/config.json',
+  imgUrlPath: 'sites/all/themes/poalim/js/angular/assets/media/',
+  apiPath: ''
 };
