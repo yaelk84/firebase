@@ -160,7 +160,7 @@ export class SearchComponent implements OnInit {
   closeDropDown() {
     this.onMobileSearch.emit({isSearchOpen: false});
     this.openDropdown = false;
-    this.isAfterSelectBranch = true;
+    // this.isAfterSelectBranch = true;
   }
 
   onChange($event) {

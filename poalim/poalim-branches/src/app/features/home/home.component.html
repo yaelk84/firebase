@@ -2,7 +2,8 @@
   <div>
     <div class="header-bg">
       <div class="branches-header container">
-        <div *ngIf="displayTitle" class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
+<!--        *ngIf="displayTitle" -->
+        <div class="branch-title title"> {{'branchesTitle' | rcTranslate}}</div>
 
         <app-search (onMobileSearch)="onMobileTitleSearch($event)"></app-search>
         <div class="choose-title title">{{'chooseTitle' | rcTranslate}} </div>
