@@ -27,6 +27,7 @@ import {environment} from "../../../environments/environment";
 export class BranchListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
+  @ViewChild('buttonBackToResults') buttonBackToResults: ElementRef;
   @Input() branchNewArrayFilter: any;
   @Input() branchResultTitle: any;
   @Input() hideListInMoBile: boolean;
@@ -207,7 +208,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   backToResults() {
-
     const params = this.branchDataServices.citySelected.length ? {city: this.branchDataServices.citySelected} : {};
     this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
     this.mapServices.isSearchHereButtonClicked = false;
@@ -223,7 +223,11 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
     } else {
       this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
+      setTimeout(() => {
+        this.buttonBackToResults.nativeElement.focus();
+      }, 100);
     }
+
   }
 
   handleFilterChange(activeFilter) {
