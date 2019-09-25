@@ -47,15 +47,12 @@
         {{hours.label.textHours}}
       </div>
       <div class="open-specific-day" *ngIf="dayName">
-
-             <span *ngIf="hours.dayInWeek[dayName].specificDayValue.morning">
-
-            <span class="title-open-today"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>
+        <span *ngIf="hours.dayInWeek[dayName].specificDayValue.morning">
+        <span class="title-open-today"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>
         <span> {{hours.dayInWeek[dayName].specificDayValue.morning}}</span>
         </span>
 
         <span *ngIf="hours.dayInWeek[dayName].specificDayValue.noon"> <div class="icon-separation"></div></span>
-
         <span *ngIf="hours.dayInWeek[dayName].specificDayValue.noon">{{hours.dayInWeek[dayName].specificDayValue.noon}}</span>
       </div>
     </div>

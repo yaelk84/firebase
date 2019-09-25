@@ -3,6 +3,10 @@ import {CONSTANTS} from '../../constants';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {isNullOrUndefined} from 'util';
 import {DeviceService} from '../../core/services/device.service';
+import {environment} from "../../../environments/environment";
+import {MapBranchesService} from "../../core/services/map-branches.service";
+import {RcEventBusService} from "@realcommerce/rc-packages";
+import {GeoLocationObject} from "../../core/interface/coordinates";
 
 
 @Component({
@@ -16,7 +20,25 @@ export class SingleBranchDisplayComponent implements OnInit {
   @ViewChild('phone') elementView: ElementRef;
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
 
-  constructor( private deviceService: DeviceService) {
+  branchIcon = {
+    url: `${environment.imgUrlPath}branch-marker.svg`,
+    scaledSize: {width: 29, height: 29}
+  };
+  bankatAndHoverIcon = {
+    url: `${environment.imgUrlPath}bankat-shape.png`,
+    scaledSize: {width: 29, height: 29}
+  };
+  myLocationIcon = {
+    url: `${environment.imgUrlPath}myLocation-marker.svg`,
+    scaledSize: {width: 50, height: 70}
+  };
+
+  lat: number;
+  lng: number;
+  isMyLocationAccess = false;
+  branches: any;
+
+  constructor( private deviceService: DeviceService, private mapBranches: MapBranchesService, private events: RcEventBusService) {
   }
 
   start = 0;
@@ -35,9 +57,25 @@ export class SingleBranchDisplayComponent implements OnInit {
   }
 
  ngOnInit() {
+   this.showBranchesBasedOnLocationAccess();
     this.isMobile = this.deviceService.isMobile();
     this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexForDisplay) &&  this.dataBranchSelected.indexForDisplay > 0 ? this.dataBranchSelected.indexForDisplay : 1;
+  }
 
+  showBranchesBasedOnLocationAccess() {
+    this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
+      setTimeout(() => {
+        if (this.mapBranches.hasLocationPermission) {
+          this.isMyLocationAccess = true;
+          const point = this.mapBranches.position;
+          this.lat = (point as GeoLocationObject).lat;
+          this.lng = (point as GeoLocationObject).lng;
+        } else {
+          this.isMyLocationAccess = false;
+        }
+      }, 0);
+
+    }, true);
   }
 
   openReportproblem() {

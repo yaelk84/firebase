@@ -21,7 +21,8 @@
   </div>
   <button [attr.aria-expanded]="openDropDown" class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse($event)">
     <div class="badge-btn" *ngIf="dropDownCheckLength"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
-    <div  class="icon-filter-btn"></div>
+<!--    <span class="icon-filter-btn"></span>-->
+    <img class="icon-filter-btn" src="../../../assets/media/filterButton.svg">
   </button>
   <div  *ngIf="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper more-services" lib-rc-click-outside (clickOutside)="closeDropDownServices()">
     <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>

@@ -138,11 +138,11 @@ agm-map {
     width: 150px;
   }
 
-  /deep/.branch-hours {
-        .title-open-today {
-          display: block;
-        }
-      }
+  ///deep/.branch-hours {
+  //      .title-open-today {
+  //        display: block;
+  //      }
+  //    }
  }
 
 @media (max-width: 320px) {

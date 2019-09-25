@@ -14,8 +14,11 @@
 }
 .open-today,open-specific-day{
   display: flex;
+  //display: block;
   align-items: center;
-
+//@media (max-width: $mobile_view) {
+//  display: block;
+//}
 
 }
 .open-today{
