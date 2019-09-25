@@ -74,48 +74,48 @@ padding: 20px 3px;
       &.cube-0 {
         width: 25px;
         height: 35px;
-        background-image: url('~src/assets/media/cube-0.svg');
+        background-image: url('/assets/media/cube-0.svg');
       }
 
       &.cube-1 {
         width: 32px;
         height: 31px;
-        background-image: url('~src/assets/media/cube-1.svg');
+        background-image: url('/assets/media/cube-1.svg');
       }
 
       &.cube-2 {
         width: 38px;
         height: 29px;
-        background-image: url('~src/assets/media/cube-2.svg');
+        background-image: url('/assets/media/cube-2.svg');
       }
 
       &.cube-3 {
         width: 33px;
         height: 35px;
-        background-image: url('~src/assets/media/cube-3.svg');
+        background-image: url('/assets/media/cube-3.svg');
       }
 
       &.cube-4 {
         width: 42px;
         height: 23px;
-        background-image: url('~src/assets/media/cube-4.svg');
+        background-image: url('/assets/media/cube-4.svg');
       }
 
       &.cube-5 {
         width: 42px;
         height: 23px;
-        background-image: url('~src/assets/media/cube-4.svg');
+        background-image: url('/assets/media/cube-4.svg');
       }
 
       &.cube-6 {
         width: 34px;
         height: 33px;
-        background-image: url('~src/assets/media/cube-6.svg');
+        background-image: url('/assets/media/cube-6.svg');
       }
       &.cube-6 {
         width: 31px;
         height: 39px;
-        background-image: url('~src/assets/media/cube-7.svg');
+        background-image: url('/assets/media/cube-7.svg');
       }
 
 
@@ -165,7 +165,7 @@ padding: 20px 3px;
     transition: transform .2s ease-in-out;
     width: 10px;
     height: 12px;
-    background-image: url('~src/assets/media/filterButton.svg');
+    background-image: url('/assets/media/filterButton.svg');
     background-repeat: no-repeat;
     transform: rotate(45deg);
 

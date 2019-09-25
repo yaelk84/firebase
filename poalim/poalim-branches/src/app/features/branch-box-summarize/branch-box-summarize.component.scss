@@ -37,7 +37,7 @@
       display: inline-block;
       width: 21px;
       height: 20px;
-      background-image: url('~src/assets/media/group-26.svg');
+      background-image: url('/assets/media/group-26.svg');
       background-repeat: no-repeat;
       position: relative;
       top: 3px;
@@ -188,7 +188,7 @@ margin-right: 5px;
     position: static;
     /deep/
     .popover-wrapper.hours-list {
-      top: 127px;
+      top: 90px;
       width: 100%;
       &:before{
         content: '';
