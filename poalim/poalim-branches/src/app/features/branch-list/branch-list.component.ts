@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
@@ -215,7 +215,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
   }
 
   selectBranch(id, index?) {
-
     const indexNoBankat = isNullOrUndefined(index) ? '' : index;
     this.branchDataServices.indexNoBankat = indexNoBankat;
     if (isNullOrUndefined(id)) {
@@ -223,10 +222,8 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       const params = this.branchDataServices.citySelected.length ? {city: this.branchDataServices.citySelected} : {};
       this.router.navigate([], {queryParams: params, relativeTo: this.activeRoute});
     } else {
-
       this.router.navigate([], {queryParams: {branch: id}, relativeTo: this.activeRoute});
     }
-
   }
 
   handleFilterChange(activeFilter) {

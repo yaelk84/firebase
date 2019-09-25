@@ -10,7 +10,7 @@
  }
 .title-open-today{
   color:  $true-green;
-  margin-bottom: 5px;
+  margin-top: 5px;
 }
 .open-today,open-specific-day{
   display: flex;
@@ -88,11 +88,11 @@
   }
 
   .open-today {
-    &.withdropdown {
-      position: relative;
-      top: 8px;
-      height: 0;
-    }
+    //&.withdropdown {
+    //  position: relative;
+    //  top: 8px;
+    //  height: 0;
+    //}
     .infoWidow {
       display: none;
     }

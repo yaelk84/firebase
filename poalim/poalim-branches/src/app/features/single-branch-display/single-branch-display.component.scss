@@ -329,7 +329,7 @@ span.tooltip:hover:after {
       color: $marine-two;
 
       border: solid 1px transparent;
-      padding: 7px 40px 10px 40px !important;
+      padding: 7px 40px 10px 40px           ;
       font-family: inherit;
       font-weight: normal;
       text-align: center;
@@ -476,6 +476,10 @@ span.tooltip:hover:after {
 
 // Tablet
 @media (max-width: 1024px) and (min-width: $mobile_view + 1)  {
+  .rc-btn {
+    padding: 7px 15px !important;
+  }
+
   .share {
     position: absolute;
     top: 0;
@@ -505,6 +509,7 @@ span.tooltip:hover:after {
 
 
 @media (max-width: $mobile_view) {
+
   .notes {
     position: relative;
     bottom: 2px;
