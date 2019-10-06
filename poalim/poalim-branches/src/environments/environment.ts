@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: '',
-  translationPath: '/assets/translate/',
-  configPath: '/assets/config.json',
-  imgUrlPath: '/assets/media/',
-  apiPath: '/assets/stubs/'
+  apiBaseUrl: '/api/branches/',
+  translationPath: 'sites/all/themes/poalim/js/angular/assets/translate/',
+  configPath: 'sites/all/themes/poalim/js/angular/assets/config.json',
+  imgUrlPath: 'sites/all/themes/poalim/js/angular/assets/media/',
+  apiPath: ''
 };
 /*
  * For easier debugging in development mode, you can import the following file
