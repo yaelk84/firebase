@@ -8,8 +8,8 @@
          (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index" role="button" tabindex="0">
 
       <div class="wrapper-icon-filter">
-        <div class="icon-filter" [ngClass]="'cube-'+ i">
-
+        <div class="icon-filter">
+          <img [src]="filter.ServiceImg" [alt]="filter.ServiceImgAlt" [title]="filter.ServiceImgTitle" />
         </div>
       </div>
       <div>

@@ -71,6 +71,13 @@ padding: 20px 3px;
     .icon-filter {
       background-repeat: no-repeat;
 
+      &>img{
+        max-width: 40px;
+        max-height: 40px;
+        height: auto;
+        width: auto;
+      }
+
       &.cube-0 {
         width: 25px;
         height: 35px;
