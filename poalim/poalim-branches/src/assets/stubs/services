@@ -29,7 +29,7 @@
   {
     "serviceType": "11",
     "serviceLabel": "\u05d1\u05e0\u05e7\u05d8 \u05dc\u05de\u05e9\u05d9\u05db\u05d5\u05ea \u05d5\u05d4\u05e4\u05e7\u05d3\u05d5\u05ea \u05de\u05d6\u05d5\u05de\u05e0\u05d9\u05dd",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -38,7 +38,7 @@
   {
     "serviceType": "14",
     "serviceLabel": "\u05d1\u05e0\u05e7\u05d8 \u05dc\u05de\u05e9\u05d9\u05db\u05ea \u05de\u05d6\u05d5\u05de\u05e0\u05d9\u05dd \u05d1 SMS",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -47,7 +47,7 @@
   {
     "serviceType": "9",
     "serviceLabel": "\u05d1\u05e0\u05e7\u05d8 \u05dc\u05de\u05e9\u05d9\u05db\u05ea \u05de\u05d8\u0022\u05d7",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -56,7 +56,7 @@
   {
     "serviceType": "6",
     "serviceLabel": "\u05d1\u05e0\u05e7\u05d8 \u05e2\u05dd \u05e9\u05d8\u05e8\u05d5\u05ea \u05e9\u05dc 20 \u05e9\u0022\u05d7",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -65,7 +65,7 @@
   {
     "serviceType": "7",
     "serviceLabel": "\u05db\u05e1\u05e4\u05ea",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -74,7 +74,7 @@
   {
     "serviceType": "10",
     "serviceLabel": "\u05de\u05db\u05d5\u05e0\u05d4 \u05dc\u05d4\u05e4\u05e7\u05d3\u05ea \u05d4\u05e6\u0027\u05e7\u05d9\u05dd",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -83,7 +83,7 @@
   {
     "serviceType": "3",
     "serviceLabel": "\u05de\u05e8\u05db\u05d6 \u05d9\u05d9\u05e2\u05d5\u05e5 \u05e4\u05e0\u05e1\u05d9\u05d5\u05e0\u05d9",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -92,7 +92,7 @@
   {
     "serviceType": "16",
     "serviceLabel": "\u05e1\u05d7\u05e8 \u05d7\u05d5\u05e5",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -101,7 +101,7 @@
   {
     "serviceType": "8",
     "serviceLabel": "\u05e1\u05e0\u05d9\u05e3 \u05d3\u05d9\u05d2\u05d9\u05d8\u05dc\u05d9",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -110,7 +110,7 @@
   {
     "serviceType": "12",
     "serviceLabel": "\u05e2\u05d3\u05db\u05df \u05de\u05d9\u05d3\u05e2",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -119,7 +119,7 @@
   {
     "serviceType": "4",
     "serviceLabel": "\u05e4\u05d5\u05e2\u05dc\u05d9\u05dd \u05d4\u05d9\u05d9\u05d8\u05e7",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -128,7 +128,7 @@
   {
     "serviceType": "5",
     "serviceLabel": "\u05e4\u05d5\u05e2\u05dc\u05d9\u05dd \u05dc\u05e2\u05e1\u05e7\u05d9\u05dd \u05dc\u05e9\u05d9\u05e8\u05d5\u05ea \u05e2\u05e6\u05de\u05d9",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -137,7 +137,7 @@
   {
     "serviceType": "13",
     "serviceLabel": "\u05e4\u05d5\u05e2\u05dc\u05d9\u05dd \u05ea\u05de\u05d9\u05d3",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -146,7 +146,7 @@
   {
     "serviceType": "2",
     "serviceLabel": "\u05e7\u05d5\u05e4\u05ea \u05de\u05d8\u0022\u05d7 \u05de\u05d6\u05d5\u05de\u05e0\u05d9\u05dd",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -155,7 +155,7 @@
   {
     "serviceType": "15",
     "serviceLabel": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05d9\u05d9\u05e2\u05d5\u05e5 \u05e4\u05d9\u05e0\u05e0\u05e1\u05d9 \u05d1\u05d5\u05d9\u05d3\u05d0\u05d5 \u05e6\u0027\u05d0\u05d8",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",
@@ -164,7 +164,7 @@
   {
     "serviceType": "1",
     "serviceLabel": "\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05e7\u05d5\u05e4\u05d4 \/ \u05de\u05d6\u05d5\u05de\u05e0\u05d9\u05dd",
-    "ServiceImg": "",
+    "ServiceImg": "https://poalim.stage-rc.com\/\/sites\/default\/files\/media\/cube-3.svg",
     "ServiceImgAlt": "",
     "ServiceImgTitle": "",
     "order": "",

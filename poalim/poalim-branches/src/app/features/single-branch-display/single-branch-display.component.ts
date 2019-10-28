@@ -5,7 +5,7 @@ import {isNullOrUndefined} from 'util';
 import {DeviceService} from '../../core/services/device.service';
 import {environment} from "../../../environments/environment";
 import {MapBranchesService} from "../../core/services/map-branches.service";
-import {RcEventBusService} from "@realcommerce/rc-packages";
+import {RcEventBusService, RcTranslateService} from "@realcommerce/rc-packages";
 import {GeoLocationObject} from "../../core/interface/coordinates";
 
 
@@ -38,7 +38,7 @@ export class SingleBranchDisplayComponent implements OnInit {
   isMyLocationAccess = false;
   branches: any;
 
-  constructor( private deviceService: DeviceService, private mapBranches: MapBranchesService, private events: RcEventBusService) {
+  constructor( private deviceService: DeviceService, private mapBranches: MapBranchesService, private events: RcEventBusService, private translate: RcTranslateService) {
   }
 
   start = 0;
@@ -105,6 +105,10 @@ export class SingleBranchDisplayComponent implements OnInit {
   onNavigate() {
     window.location.href =
       `https://www.waze.com/ul?ll=${this.dataBranchSelected.coords.lat}%2C${this.dataBranchSelected.coords.lng}&navigate=yes&zoom=15`;
+  }
+
+  get textCopyNumber() {
+    return this.translate.getText('copyNumber');
   }
 
 }

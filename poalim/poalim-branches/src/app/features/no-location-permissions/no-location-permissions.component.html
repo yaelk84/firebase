@@ -8,11 +8,11 @@
       <div>{{'locationHeader'|rcTranslate}}</div>
     </div>
     <div class="msg-text">
-      <span>{{'locationMsg'|rcTranslate}}</span>
+      <span [innerHTML]="'locationMsg' | rcTranslate"></span>
     </div>
   </div>
   <div class="btn-wrapper">
-    <button class="btn text-to-crop " (click)="dismiss()" > {{'closed' | rcTranslate}}</button>
+    <button class="btn text-to-crop " (click)="dismiss()" > {{'confirmLocation' | rcTranslate}}</button>
   </div>
   <button class="close-btn"  (click)="dismiss()"></button>
 </div>

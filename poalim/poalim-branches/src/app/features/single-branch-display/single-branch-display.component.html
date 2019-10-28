@@ -19,7 +19,7 @@
 
             </div>
             <div class="share">
-              <button class="share-btn" (click)="openShareBranchPopup = true"></button>
+              <button class="share-btn" data-title="שיתוף" (click)="openShareBranchPopup = true"></button>
               <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
                 <app-share-branch-popup
                   [branchName]="dataBranchSelected.branchSummarize.branchName"
@@ -64,13 +64,13 @@
             class="value aaa"
             data-toggle="tooltip"
             #phone>{{dataBranchSelected.phone}}</span>
-          <span class="copy-icon tooltip" data-title="העתק מספר"><img class="copy-to-clipboard-icon" src="{{'icons/copyToClip.svg' | imgUrl}}"></span>
+          <span class="copy-icon tooltip" data-title="העתקת מספר"><img class="copy-to-clipboard-icon" src="{{'icons/copyToClip.svg' | imgUrl}}"></span>
         </div>
         <div class="line-data copy" *ngIf="dataBranchSelected.fax" (click)="copyToClipboard(dataBranchSelected.fax)">
           <span class="icon fax-icon"></span>
           <span class="label">{{'fax'| rcTranslate}}</span>
           <span class="value">{{dataBranchSelected.fax}}</span>
-          <span class="copy-icon tooltip"  data-title="העתק מספר"><img class="copy-to-clipboard-icon" src="{{'icons/copyToClip.svg' | imgUrl}}"></span>
+          <span class="copy-icon tooltip"  data-title="העתקת מספר"><img class="copy-to-clipboard-icon" src="{{'icons/copyToClip.svg' | imgUrl}}"></span>
         </div>
         <div class="line-data">
           <span class="icon manager-icon" ></span>

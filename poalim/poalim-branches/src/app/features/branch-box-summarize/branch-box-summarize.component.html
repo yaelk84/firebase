@@ -22,12 +22,13 @@
         <span *ngIf="dayHours.openToday" class="have-day-val">
              <span *ngIf="dayHours.label.morning">
 
-        <span> {{dayHours.label.morning}}</span>
+
+               <span *ngIf="dayHours.label.noon">{{dayHours.label.noon}}</span>
         </span>
 
         <span *ngIf="dayHours.label.noon && dayHours.label.morning"> <div  class="icon-separation"></div></span>
+        <span> {{dayHours.label.morning}}</span>
 
-        <span *ngIf="dayHours.label.noon">{{dayHours.label.noon}}</span>
         </span>
         <span *ngIf="!dayHours.openToday" class="closed">{{'closed'| rcTranslate}}</span>
 

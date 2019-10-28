@@ -22,7 +22,7 @@
 
 <div class="branch-hours" [ngClass]="{'single-display':isSingleDisplay}">
   <div class="clearfix branch-message" *ngIf="branchMessage">{{branchMessage}}</div>
-  <div class="clearfix is-bankat" *ngIf="hours.isBankat && !branchMessage">{{ 'alwaysOpen' | rcTranslate}}</div>
+  <div class="clearfix is-bankat" *ngIf="hours.isBankat && !branchMessage">{{ 'bankatOnly' | rcTranslate}}</div>
   <div class="clearfix" *ngIf="!hours.isBankat && !branchMessage">
 
     <div class="clearfix" *ngIf="hours.wasChange">
@@ -33,12 +33,12 @@
       <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
         <button class="open-today" [attr.aria-hidden]="!isSingleDisplay" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
           <span>
-            <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openToday'| rcTranslate }}</span>
+            <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openNow'| rcTranslate }}:</span>
 <!--            <br *ngIf="isMobile && isSwitchedToMap">-->
-            <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
+            <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
           </span>
         <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
-        <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
+          <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
            <div *ngIf="isSingleDisplay" class="icon-arrow"></div>
         </button>
 
