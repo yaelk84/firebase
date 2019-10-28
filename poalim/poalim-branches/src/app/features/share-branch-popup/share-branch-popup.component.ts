@@ -44,7 +44,7 @@ export class ShareBranchPopupComponent implements OnInit {
   }
 
   get branchDetailsForShareMailTitle() {
-    return this.translate.getText('shareBranchMailTitle', [this.branchNum, this.branchName]);
+    return this.translate.getText('shareBranchMailTitle', [this.branchName, this.branchNum]);
   }
 
   get branchDetailsForShareMailBody() {
