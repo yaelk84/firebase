@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {RcTranslateService} from "@realcommerce/rc-packages";
 
 @Component({
   selector: 'app-share-branch-popup',
@@ -8,8 +9,9 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ShareBranchPopupComponent implements OnInit {
   @Input() branchName: string;
   @Input() branchNum: number;
+  link: string;
 
-  constructor() { }
+  constructor(private translate: RcTranslateService) { }
 
   ngOnInit() {
   }
@@ -35,8 +37,17 @@ export class ShareBranchPopupComponent implements OnInit {
       message.style.display = 'none';
     }, 1500);
   }
+
   ShareBranchLinkByMail() {
-    const clientMail = 'mailto:address@dmail.com';
+    const clientMail = `mailto:address@dmail.com?Subject=${this.branchDetailsForShareMailTitle}&body=${this.branchDetailsForShareMailBody}%0D${window.location.href}`;
     window.location.href = clientMail;
+  }
+
+  get branchDetailsForShareMailTitle() {
+    return this.translate.getText('shareBranchMailTitle', [this.branchNum, this.branchName]);
+  }
+
+  get branchDetailsForShareMailBody() {
+    return this.translate.getText('shareBranchMailBody');
   }
 }
