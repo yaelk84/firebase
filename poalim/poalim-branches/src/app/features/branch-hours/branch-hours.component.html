@@ -35,10 +35,10 @@
           <span>
             <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openNow'| rcTranslate }}:</span>
 <!--            <br *ngIf="isMobile && isSwitchedToMap">-->
-            <span *ngIf="hours.label.noon">{{hours.label.noon}}</span>
+            <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
           </span>
         <span *ngIf="hours.label.noon"> <div class="icon-separation"></div></span>
-          <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
+            <span *ngIf="hours.label.noon" class="hours-pos">{{hours.label.noon}}</span>
            <div *ngIf="isSingleDisplay" class="icon-arrow"></div>
         </button>
 

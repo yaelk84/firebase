@@ -82,6 +82,10 @@
   font-size: 25px;
   color: $greyish-brown;
 
+  @media(max-width: $mobile_view) {
+    display: block;
+  }
+
   .branch-result{
        font-size: 25px;
   }
@@ -96,6 +100,12 @@
     height: 27px;
     border: none;
     background: #ffffff;
+
+    @media(max-width: $mobile_view) {
+      &>span{
+        white-space: nowrap;
+      }
+    }
 }
   lib-rc-switcher{
     display: none;
@@ -115,10 +125,13 @@
   font-size: 20px;
   color: $greyish-brown;
   margin-right: 12px;
-
   cursor: pointer;
 
+  @media(max-width: $mobile_view) {
+    white-space: nowrap;
+  }
 }
+
 .back-to-results-wrapper{
   display: flex;
   align-items: center;

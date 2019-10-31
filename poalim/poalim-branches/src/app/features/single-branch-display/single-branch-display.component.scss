@@ -383,6 +383,10 @@ span.tooltip:hover:after {
       &:hover {
         color: $lipstick-two;
       }
+
+      @media(max-width: $mobile_view) {
+        white-space: nowrap;
+      }
     }
 
     .worng-data {

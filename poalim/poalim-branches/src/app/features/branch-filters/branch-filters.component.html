@@ -12,7 +12,7 @@
           <img [src]="filter.ServiceImg" [alt]="filter.ServiceImgAlt" [title]="filter.ServiceImgTitle" />
         </div>
       </div>
-      <div>
+      <div class="label-filter-con">
         <div class="label-wrapper" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"> {{filter.serviceLabel}}</div>
       </div>
 

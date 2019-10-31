@@ -140,6 +140,16 @@ padding: 20px 3px;
     }
   }
 
+  @media(max-width: $mobile_view) {
+    .label-filter-con{
+      width: 100%;
+
+      .label-wrapper{
+        width: 100%;
+      }
+    }
+  }
+
   &:first-child {
     margin-#{$default-start}: 0
   }

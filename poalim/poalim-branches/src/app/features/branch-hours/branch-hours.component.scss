@@ -12,6 +12,10 @@
   color:  $true-green;
   margin-top: 5px;
   margin-left: 4px;
+
+  @media(max-width: $mobile_view) {
+    white-space: nowrap;
+  }
 }
 .open-today,open-specific-day{
   display: flex;
@@ -28,7 +32,7 @@
     padding: 0 15px;
     margin-right: -15px;
     padding-bottom: 2px;
-    width: 323px;
+    width: 330px;
 
     &:hover{
       border-radius: 16px;
