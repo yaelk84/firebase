@@ -102,13 +102,18 @@ export class BranchDataService {
    */
   private craeteContactAddressFax(contactAddress) {
 
-    const contactAddressFax = contactAddress.filter((value) => {
-      return value && value.contactChannelTypeCode === CONSTANTS.HAVE_FAX;
-    });
-    if (!contactAddressFax.length) {
-      return '';
+    if (contactAddress) {
+      const contactAddressFax = contactAddress.filter((value) => {
+        return value && value.contactChannelTypeCode === CONSTANTS.HAVE_FAX;
+      });
+      if (!contactAddressFax.length) {
+        return '';
+      }
+      return (!isNullOrUndefined(contactAddressFax[0].contactAddressInfo) ? contactAddressFax[0].contactAddressInfo : '');
     }
-    return (!isNullOrUndefined(contactAddressFax[0].contactAddressInfo) ? contactAddressFax[0].contactAddressInfo : '');
+
+    return '';
+
   }
 
   /**
