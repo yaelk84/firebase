@@ -428,6 +428,10 @@ span.tooltip:hover:after {
 // report-problem-popup
 
 .report-problem-popup-style {
+  /deep/.rc-popup-wrapper {
+    display: flex !important;
+    align-items: center;
+  }
   /deep/ .modal-content {
     @media(min-width: $mobile_view + 1) {
       min-width: 753px !important;
@@ -459,7 +463,18 @@ span.tooltip:hover:after {
 
 }
 
+
 // share-branch-popup
+
+/deep/
+.rc-popup-wrapper {
+  .modal{
+    display: flex;
+    align-items: center;
+  }
+}
+
+
 .rc-popup-wrapper {
   /deep/ .modal-content {
     width: 753px;
@@ -474,9 +489,6 @@ span.tooltip:hover:after {
   // DROPAL !!!!!!!!!!!!!!!!! ///
   /deep/.modal {
 
-    @media(min-width: $mobile_view + 1) {
-      max-height: 387px;
-    }
 
     overflow: hidden;
   }
@@ -502,6 +514,12 @@ span.tooltip:hover:after {
     opacity: 0.6;
   }
 }
+
+/deep/.rc-popup-wrapper {
+  display: flex !important;
+  align-items: center;
+}
+
 
 // Tablet
 @media (max-width: 1024px) and (min-width: $mobile_view + 1)  {

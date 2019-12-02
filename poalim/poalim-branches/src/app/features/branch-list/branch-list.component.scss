@@ -1,9 +1,11 @@
 @import "../../../assets/scss/style";
 
+
 /deep/
 .rc-popup-wrapper .modal-dialog .modal-content .close.pointer{
   left: 15px;
 }
+
 .no-location{
   left: 13px;
   top: 49px;
@@ -25,6 +27,10 @@
 }
 .list-wrapper{
   position: relative;
+
+  &.hide-back-to-result {
+    margin-top: 20px;
+  }
 
 
 
