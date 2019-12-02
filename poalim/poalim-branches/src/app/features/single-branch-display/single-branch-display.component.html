@@ -20,12 +20,15 @@
             </div>
             <div class="share">
               <button class="share-btn" data-title="שיתוף" (click)="openShareBranchPopup = true"></button>
-              <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
-                <app-share-branch-popup
-                  [branchName]="dataBranchSelected.branchSummarize.branchName"
-                  [branchNum]="dataBranchSelected.branchSummarize.branchNum">
-                </app-share-branch-popup>
-              </lib-rc-popup-wrapper>
+
+                <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
+                  <app-share-branch-popup
+                    [branchName]="dataBranchSelected.branchSummarize.branchName"
+                    [branchNum]="dataBranchSelected.branchSummarize.branchNum">
+                  </app-share-branch-popup>
+                </lib-rc-popup-wrapper>
+
+
             </div>
           </div>
         </div>

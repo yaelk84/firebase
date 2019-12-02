@@ -1,4 +1,4 @@
-<div class="list-wrapper">
+<div class="list-wrapper" [ngClass]="{'hide-back-to-result': branchNewArrayFilter.length <= 1}">
 <!--  <div class="popover-add-margin" >-->
 <!--    <div class="popover-wrapper  filter-days" lib-rc-click-outside (clickOutside)="closeDropDown()"[ngClass]="{'slideDown' :showDaysHoursFilter}" >-->
 <!--      <app-hours-filer (close)="closeDropDown()"> </app-hours-filer>-->
@@ -15,7 +15,7 @@
 
   <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
-    <button  class="back-to-results-wrapper" (click)="backToResults()" #buttonBackToResults>
+    <button *ngIf="branchNewArrayFilter.length > 1"  class="back-to-results-wrapper" (click)="backToResults()" #buttonBackToResults>
       <span class="go-back"><span class="img-wrapper"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></span> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
     </button>
 
