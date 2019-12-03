@@ -59,7 +59,7 @@
         <p>{{'thanks' | rcTranslate }}</p>
       </div>
       <div class="flex-btn">
-        <button class="outlined-btn" (click)="closeModal()" type="button">{{'yourWelcome' | rcTranslate}}</button>
+        <button *ngIf="!errorSendForm" class="outlined-btn" (click)="closeModal()" type="button">{{'yourWelcome' | rcTranslate}}</button>
       </div>
     </div>
   </div>
