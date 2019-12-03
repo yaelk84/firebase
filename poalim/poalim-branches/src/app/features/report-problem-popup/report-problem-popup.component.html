@@ -2,53 +2,77 @@
   <div class="image-wrapper" [ngClass]="{'shrink': reportBadServiceToggle}">
     <img src="{{'images/report-problem-img.svg' | imgUrl}}" alt="">
   </div>
-  <div class="msg-wrapper" >
+  <div class="msg-wrapper">
     <div class="msg-header">
       {{'reportProblemHeader' | rcTranslate}}
     </div>
     <div class="msg-text" [ngClass]="{'shrink': reportBadServiceToggle}">
       <span>{{'reportProblemMsg1' | rcTranslate}}</span> <br>
-<!--      <span>{{'reportProblemMsg2' | rcTranslate}}</span>-->
+      <!--      <span>{{'reportProblemMsg2' | rcTranslate}}</span>-->
     </div>
   </div>
 
   <div class="choose-problem-wrapper">
     <div class="choose-problem-header" [ngClass]="{'shrink': reportBadServiceToggle}">
-<!--      {{'chooseProblem' | rcTranslate}}-->
+      <!--      {{'chooseProblem' | rcTranslate}}-->
       <span>{{'reportProblemMsg2' | rcTranslate}}</span>
     </div>
     <div class="choose-problem-btns">
-      <button class="outlined-btn" [disabled]="reportBadServiceToggle" (click)="reportBadHours()">{{'badOpenHours' | rcTranslate}}</button>
-      <button class="outlined-btn" [disabled]="reportBadServiceToggle" (click)="reportBadAddress()">{{'badAddress' | rcTranslate}}</button>
-      <button class="outlined-btn" [ngClass]="{'active': reportBadServiceToggle}" (click)="reportBadServiceToggle = !reportBadServiceToggle">{{ 'badServices' | rcTranslate}}</button>
+      <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
+              (click)="reportBadHours()">{{'badOpenHours' | rcTranslate}}</button>
+      <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
+              (click)="reportBadAddress()">{{'badAddress' | rcTranslate}}</button>
+      <button class="outlined-btn" [ngClass]="{'active': reportBadServiceToggle}"
+              (click)="reportBadServiceToggle = !reportBadServiceToggle">{{ 'badServices' | rcTranslate}}</button>
     </div>
   </div>
   <div class="report-service-wrapper" [ngClass]="{'shrink': !reportBadServiceToggle}">
     <div class="report-service-text-box-wrapper">
-      <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250" class="report-service-textarea" #serviceReportInput></textarea>
+      <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250"
+                class="report-service-textarea" #serviceReportInput></textarea>
       <span class="report-service-text-box-note">{{ 'maxChars' | rcTranslate}}</span>
     </div>
     <div>
       <button class="btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
     </div>
   </div>
+  <form #form  action="constants.ERROR_LINK" method="post">
+    <input name ="branchNumber" [(ngModel)]="branchNumber" type="hidden" />
+    <input type="hidden" name="action" value="BranchesComplaints "/>
+    <input type="hidden" name="toAddress" value="a51 "/>
+
+    <input name ="branchName" [(ngModel)]="branchName" type="hidden"/>
+    <input class="invisible" name ="infoType"[(ngModel)]="infoType" />
+    <input class="invisible" name ="description" [(ngModel)]="description" />
+    <button  type="submit" #submitTrigger class="invisible" (click)="form.submit()">Submiaaat</button>
+  </form>
 </div>
 
 <div [hidden]="!isModalOpen" class="rc-popup-wrapper-success" *ngIf="isSendBtnClicked">
-<div class="share-branch-popup-wrapper">
-  <div class="popup-content">
-    <div class="share-branch-popup-icon">
-      <img src="{{'images/success-popup-icon.png' | imgUrl}}" class="success-popup-img">
-    </div>
-    <div class="success-popup-content">
-      <h2>{{'yourMsgReceived' | rcTranslate }}</h2>
-      <p>{{'thanks' | rcTranslate }}</p>
-    </div>
-    <div class="flex-btn">
-      <button class="outlined-btn" (click)="closeModal()" type="button">{{'yourWelcome' | rcTranslate}}</button>
+  <div class="share-branch-popup-wrapper">
+    <div class="popup-content">
+      <div class="share-branch-popup-icon">
+        <img src="{{'images/success-popup-icon.png' | imgUrl}}" class="success-popup-img">
+      </div>
+      <div class="success-popup-content" *ngIf="!errorSendForm;else errorDisplay">
+        <h2>{{'yourMsgReceived' | rcTranslate }}</h2>
+        <p>{{'thanks' | rcTranslate }}</p>
+      </div>
+      <div class="flex-btn">
+        <button class="outlined-btn" (click)="closeModal()" type="button">{{'yourWelcome' | rcTranslate}}</button>
+      </div>
     </div>
   </div>
-</div>
-</div>
 
 
+
+
+</div>
+
+<ng-template #errorDisplay>
+  <h2>error</h2>
+  <ng-container [ngSwitch]="sendFormErrorType">
+    <p *ngSwitchCase="constants.ERROR_SEND_FORM.ERROR_TYPE2">  {{'errorForm.error2'| rcTranslate}}</p>
+    <p *ngSwitchCase="constants.ERROR_SEND_FORM.ERROR_TYPE3"> {{'errorForm.error3'| rcTranslate}}</p>
+  </ng-container>
+</ng-template>
