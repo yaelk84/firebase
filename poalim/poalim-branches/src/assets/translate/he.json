@@ -76,6 +76,7 @@
   "reportProblemMsg2": "באיזו בעיה נתקלת?",
   "chooseProblem": "בחרו את הנתון השגוי:",
   "badOpenHours": "שעות פעילות שגויות",
+  "badOpenHoursToSend": "שעות פעילות",
   "badAddress": "כתובת לא מעודכנת",
   "badServices": "שירותים לא מעודכנים",
   "serviceReportInputPlaceholder" : "נשמח לקבל פרטים נוספים (לא חובה)",
@@ -98,5 +99,12 @@
   "searchHere": " חיפוש באזור זה",
   "yourWelcome": "סגירה",
   "yourMsgReceived": "פנייתך התקבלה והיא תטופל בהקדם.",
-  "thanks": "אנו שמחים על כל הזדמנות להשתפר,\nומודים לך על הדיווח"
+  "thanks": "אנו שמחים על כל הזדמנות להשתפר,\nומודים לך על הדיווח",
+  "errorForm": {
+    "error2": "שגיאה 2",
+    "error3": "שגיאה 3"
+  },
+  "infoType": {
+
+  }
 }

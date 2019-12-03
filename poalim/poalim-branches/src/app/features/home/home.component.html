@@ -33,6 +33,10 @@
 </div>
 
   </div>
+
+  <lib-rc-popup-wrapper *ngIf="openPopupErr"  (closeCallback)="openPopupErr = false"   class="report-problem-popup-style">
+    <app-report-problem-popup  (isModalOpen)="openPopupErr = false" [sendFormErrorType]="sendFormErrorType"  ></app-report-problem-popup>
+  </lib-rc-popup-wrapper>
 </div>
 
 
