@@ -4,7 +4,6 @@ import {CONSTANTS} from '../../constants';
 export class BranchObj {
 
   // private isHovering: boolean;
-
 constructor(
             private coords:any,
             private isBankat: boolean,

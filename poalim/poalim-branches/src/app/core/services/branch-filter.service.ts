@@ -21,7 +21,13 @@ import {Observable, throwError} from 'rxjs';
 export class BranchFilterService {
 
 
-  constructor(private functionsService: FunctionsService, private events: RcEventBusService, private  mapServices: MapBranchesService, private app: AppService, private branchDataServices: BranchDataService, private hours: HoursService) {
+  constructor(private functionsService: FunctionsService,
+              private events: RcEventBusService,
+              private  mapServices: MapBranchesService,
+              private app: AppService,
+              private branchDataServices: BranchDataService,
+              private hours: HoursService) {
+
   }
 
   private filtersTypesArray: any[] = []; // convert to array for sorting
@@ -63,7 +69,6 @@ export class BranchFilterService {
       return a.order - b.order;
     });
     this.filters = response;
-
   }
 
   /**  user remove location by filter click */
@@ -113,7 +118,6 @@ export class BranchFilterService {
    * @param selectedFilters Array
    */
   removeOtherFiltersIfOnlyOneFilterCanSelected(selectedFilters) {
-
     const removeItem = (id) => {
       const indexOfId = this.activeFilters.indexOf(id);
       if (indexOfId > -1) {
@@ -122,14 +126,14 @@ export class BranchFilterService {
       }
     };
     switch (selectedFilters) {
-      case CONSTANTS.FILTER_OPEN_NOW :
+      case CONSTANTS.FILTER_OPEN_NOW:
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
         removeItem(CONSTANTS.FILTER_BY_HOURS);
         removeItem(CONSTANTS.FILTER_BY_DAYS);
         this.hours.selectedDays = '';
         this.events.emit(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS); // that remove the day from friday because it clean specific day
         break;
-      case CONSTANTS.FILTER_OPEN_FRIDAY :
+      case CONSTANTS.FILTER_OPEN_FRIDAY:
         removeItem(CONSTANTS.FILTER_OPEN_NOW);
         removeItem(CONSTANTS.FILTER_BY_HOURS);
         removeItem(CONSTANTS.FILTER_BY_DAYS);
@@ -137,11 +141,11 @@ export class BranchFilterService {
         const valueToChange = this.activeFilters.indexOf(selectedFilters) === -1 ? CONSTANTS.FRIDAY : ''; // the opposite because the filter dont enter the array yet
         this.hours.selectedDays = valueToChange;
         break;
-      case CONSTANTS.FILTER_BY_DAYS :
+      case CONSTANTS.FILTER_BY_DAYS:
         removeItem(CONSTANTS.FILTER_OPEN_NOW);
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
         break;
-      case CONSTANTS.FILTER_BY_HOURS :
+      case CONSTANTS.FILTER_BY_HOURS:
         removeItem(CONSTANTS.FILTER_OPEN_NOW);
         removeItem(CONSTANTS.FILTER_OPEN_FRIDAY);
         break;
