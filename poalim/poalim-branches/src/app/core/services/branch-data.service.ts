@@ -78,8 +78,8 @@ export class BranchDataService {
    * return Array
    */
   private craeteBrancServices(services) {
-
     return services.filter((value) => {
+      value.branchServiceTypeDescription = this.appService.servicesNamesArray[value.branchServiceTypeCode];
       return value.serviceSwitch === CONSTANTS.yes;
     });
   }

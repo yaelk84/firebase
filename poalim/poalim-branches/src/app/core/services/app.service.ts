@@ -19,6 +19,7 @@ export class AppService {
   public appConfig;
   public cities = [];
   public branches = [];
+  public servicesNamesArray = [];
   public initGeneralMessages = {};
   public initBranchMessages = {};
   public queryParam = {};
@@ -32,6 +33,13 @@ export class AppService {
       }));
   }
 
+  public getBranchServicesNames(arr: []) {
+    arr.forEach((service: any) => {
+        this.servicesNamesArray[service.serviceType] = service.serviceLabel;
+    });
+    console.log(this.servicesNamesArray);
+
+  }
 
 
   public loadTranslation(): Observable<any> {
