@@ -19,9 +19,20 @@ export class ReportProblemPopupComponent implements OnInit {
   @Input() sendFormErrorType = CONSTANTS.ERROR_SEND_FORM.DONT_OPEN;
   @Input() branchNumber = '';
   @Input() branchName = '';
+  unShrinkDiv = false;
+  unShrinkDivType:'';
   constants = CONSTANTS;
   errorSendForm = false;
+  unShrinkDivToggle(type){
+    if(type !== this.unShrinkDivType){ //open another
+      this.unShrinkDivType = type
+      this.unShrinkDiv = true;
+    }
+    else{// click the same btn(toggle)
+      this.unShrinkDiv = !this.unShrinkDiv;
+    }
 
+  }
 
   constructor(private translate: RcTranslateService) {
   }

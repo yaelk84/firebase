@@ -46,5 +46,10 @@ export const CONSTANTS = {
     DESKTOP: 7
 
   },
+  UN_SHRINK_DIV_TYPE:{
+    REPORT_BAD_HOURS:'REPORT_BAD_HOURS',
+    REPORT_BAD_ADDRESS:'REPORT_BAD_ADDRESS',
+    REPORT_BAD_SERVICE:'REPORT_BAD_SERVICE'
+  },
   ERROR_LINK:"https://www.bankhapoalim.biz/wps/utils/PoalimP2P"
 };

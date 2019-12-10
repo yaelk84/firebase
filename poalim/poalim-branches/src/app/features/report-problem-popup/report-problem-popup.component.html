@@ -19,22 +19,38 @@
     </div>
     <div class="choose-problem-btns">
       <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
-              (click)="reportBadHours()">{{'badOpenHours' | rcTranslate}}</button>
+              (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS)">{{'badOpenHours' | rcTranslate}}</button>
       <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
-              (click)="reportBadAddress()">{{'badAddress' | rcTranslate}}</button>
+              (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_ADDRESS)">{{'badAddress' | rcTranslate}}</button>
       <button class="outlined-btn" [ngClass]="{'active': reportBadServiceToggle}"
-              (click)="reportBadServiceToggle = !reportBadServiceToggle">{{ 'badServices' | rcTranslate}}</button>
+              (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE)">{{ 'badServices' | rcTranslate}}</button>
     </div>
   </div>
-  <div class="report-service-wrapper" [ngClass]="{'shrink': !reportBadServiceToggle}">
-    <div class="report-service-text-box-wrapper">
+  <div class="report-service-wrapper" [ngClass]="{'shrink': !unShrinkDiv}">
+    <ng-container [ngSwitch]="unShrinkDivType">
+      <ng-container *ngSwitchCase="constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS">
+        <div>
+          <button class="btn" (click)="reportBadHours()">{{'send' | rcTranslate}}</button>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_ADDRESS">
+        <div>
+          <button class="btn" (click)="reportBadAddress()">{{'send' | rcTranslate}}</button>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE">
+        <div class="report-service-text-box-wrapper">
       <textarea placeholder="{{ 'serviceReportInputPlaceholder' | rcTranslate}}" maxlength="250"
                 class="report-service-textarea" #serviceReportInput></textarea>
-      <span class="report-service-text-box-note">{{ 'maxChars' | rcTranslate}}</span>
-    </div>
-    <div>
-      <button class="btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
-    </div>
+          <span class="report-service-text-box-note">{{ 'maxChars' | rcTranslate}}</span>
+        </div>
+        <div>
+          <button class="btn" (click)="sendServiceReport(serviceReportInput)">{{'send' | rcTranslate}}</button>
+        </div>
+      </ng-container>
+
+    </ng-container>
+
   </div>
   <form #form  action="{{constants.ERROR_LINK}}" method="post">
     <input name ="branchNumber" [(ngModel)]="branchNumber" type="hidden" />
