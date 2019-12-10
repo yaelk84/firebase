@@ -91,7 +91,7 @@
 
       </div>
       <div class="selected-branch-buttons">
-        <button *ngIf="!dataBranchSelected.isBankat && !isMobile" class="rc-btn white-btn desktop">{{'order' |rcTranslate}}</button>
+        <a href="https://login.bankhapoalim.co.il/ng-portals/rb/he/create-meeting" target="_blank" *ngIf="!dataBranchSelected.isBankat && !isMobile" class="rc-btn white-btn desktop">{{'order' |rcTranslate}}</a>
 
         <button class="worng-data" (click)="openReportproblem()">
          <span class="wrong-data-text">{{'worngData'|rcTranslate }}</span>
