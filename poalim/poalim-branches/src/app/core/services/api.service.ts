@@ -3,8 +3,8 @@ import {RcApiService} from '@realcommerce/rc-packages';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, mergeMap, switchMap} from 'rxjs/operators';
-import { ApiResponse} from '../models/api-response';
-import { ApiError} from '../models/api-response';
+import {ApiResponse} from '../models/api-response';
+import {ApiError} from '../models/api-response';
 import {environment} from '../../../environments/environment';
 
 @Injectable({
@@ -134,6 +134,24 @@ export class ApiService extends RcApiService {
     );
   }
 
+  private oldPost(action, body) {
+
+    this.http.post(action, body).pipe(
+      switchMap((result) => {
+        return of(result);
+        /*   if (result.isSucceeded === true) {
+             return of(result.content);
+           } else {
+             return throwError(result);
+           }*/
+      }),
+      catchError((error) => {
+        return error;
+        //return this.handleError(error, false);
+      })
+    );
+  }
+
   protected setCustomHeaders(headers: HttpHeaders) {
     // todo
   }
@@ -148,7 +166,6 @@ export class ApiService extends RcApiService {
   public getConfig() {
     return this.http.get(`${environment.configPath}`);
   }
-
 
 
   public getBranches(params = {}, force: boolean = true) {
@@ -170,10 +187,6 @@ export class ApiService extends RcApiService {
   public getBranchesInit(params = {}, force: boolean = true) {
     return this.apiGet(`${environment.apiPath}init`, {}, true);
   }
-
-
-
-
 
 
   /**

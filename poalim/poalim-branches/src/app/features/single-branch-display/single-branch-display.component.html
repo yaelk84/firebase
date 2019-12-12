@@ -131,6 +131,7 @@
 
 
 <lib-rc-popup-wrapper *ngIf="openPopup" (closeCallback)="openPopup = false" class="report-problem-popup-style">
-  <app-report-problem-popup (isModalOpen)="openPopup = false"></app-report-problem-popup>
+  <app-report-problem-popup  (isModalOpen)="openPopup = false"   [branchName]="dataBranchSelected.branchSummarize.branchName"
+                             [branchNumber]="dataBranchSelected.branchSummarize.branchNum"></app-report-problem-popup>
 </lib-rc-popup-wrapper>
 <!--[customClass]="'modal-lg'"-->

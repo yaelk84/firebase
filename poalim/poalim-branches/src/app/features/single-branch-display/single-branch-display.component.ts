@@ -3,10 +3,10 @@ import {CONSTANTS} from '../../constants';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {isNullOrUndefined} from 'util';
 import {DeviceService} from '../../core/services/device.service';
-import {environment} from "../../../environments/environment";
-import {MapBranchesService} from "../../core/services/map-branches.service";
-import {RcEventBusService, RcTranslateService} from "@realcommerce/rc-packages";
-import {GeoLocationObject} from "../../core/interface/coordinates";
+import {environment} from '../../../environments/environment';
+import {MapBranchesService} from '../../core/services/map-branches.service';
+import {RcEventBusService, RcTranslateService} from '@realcommerce/rc-packages';
+import {GeoLocationObject} from '../../core/interface/coordinates';
 
 
 @Component({
@@ -38,7 +38,7 @@ export class SingleBranchDisplayComponent implements OnInit {
   isMyLocationAccess = false;
   branches: any;
 
-  constructor( private deviceService: DeviceService, private mapBranches: MapBranchesService, private events: RcEventBusService, private translate: RcTranslateService) {
+  constructor(private deviceService: DeviceService, private mapBranches: MapBranchesService, private events: RcEventBusService, private translate: RcTranslateService) {
   }
 
   start = 0;
@@ -56,10 +56,12 @@ export class SingleBranchDisplayComponent implements OnInit {
 
   }
 
- ngOnInit() {
-   this.showBranchesBasedOnLocationAccess();
+  ngOnInit() {
+    console.log('data.branchselected', this.dataBranchSelected);
+    this.showBranchesBasedOnLocationAccess();
+
     this.isMobile = this.deviceService.isMobile();
-    this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexForDisplay) &&  this.dataBranchSelected.indexForDisplay > 0 ? this.dataBranchSelected.indexForDisplay : 1;
+    this.indexNoBankat = !isNullOrUndefined(this.dataBranchSelected.indexForDisplay) && this.dataBranchSelected.indexForDisplay > 0 ? this.dataBranchSelected.indexForDisplay : 1;
   }
 
   showBranchesBasedOnLocationAccess() {
@@ -81,7 +83,6 @@ export class SingleBranchDisplayComponent implements OnInit {
   openReportproblem() {
     this.openPopup = true;
   }
-
 
 
   copyToClipboard(element) {

@@ -10,6 +10,8 @@ import {interval} from 'rxjs';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {FormControl} from '@angular/forms';
 import {DeviceService} from '../../core/services/device.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {isNullOrUndefined} from 'util';
 
 
 @Component({
@@ -31,10 +33,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   isMobile;
   singleDisplay = false;
   displayTitle = true;
+  openPopupErr = false;
+  sendFormErrorType = CONSTANTS.ERROR_SEND_FORM.DONT_OPEN;
   // isShowMap = false;
 
 
-  constructor(private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService, private deviceService: DeviceService) {
+  constructor( private activeRoute: ActivatedRoute,private  apiService: ApiService, private  hours: HoursService, private mapBranches: MapBranchesService, private appService: AppService, private branchDataServices: BranchDataService, private events: RcEventBusService, private translate: RcTranslateService, private  mapServices: MapBranchesService, private filterBranch: BranchFilterService, private deviceService: DeviceService) {
   }
 
   /**
@@ -74,6 +78,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    const err = this.activeRoute.snapshot.queryParams.err;
+    if(!isNullOrUndefined(err) && err !== CONSTANTS.ERROR_SEND_FORM.DONT_OPEN){
+      this.openPopupErr = true;
+      this.sendFormErrorType = err;
+    }
+    console.log(err);
     this.isMobile = this.deviceService.isMobile();
     this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
       this.singleDisplay = this.branchDataServices.isSingleDisplay;
