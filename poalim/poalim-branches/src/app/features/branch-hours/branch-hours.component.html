@@ -1,5 +1,5 @@
 
-<div class="popover-wrapper hours-list "    lib-rc-click-outside (clickOutside)="closeDropDown()"*ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
+<div class="popover-wrapper hours-list"  lib-rc-click-outside (clickOutside)="closeDropDown()" *ngIf="openHoursDrop" [ngClass]="{'slideDown':openHoursDrop}">
   <div *ngFor=" let dayHours of hoursList" class="drop-line">
       <span class="drop-label"> <span>{{'dropdownLabel' | rcTranslate}}</span> <span> {{dayHours.dayName}}:</span>
         </span>
@@ -43,9 +43,13 @@
         </button>
 
       </div>
-      <div class="future-date" *ngIf="!dayName && !hours.filterByDay">
-        {{hours.label.textHours}}
+      <div class="future-date-wrapper" *ngIf="!dayName && !hours.filterByDay">
+        <button class="future-date" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
+          {{hours.label.textHours}}
+          <div *ngIf="isSingleDisplay && !hours.openCurrentDay" class="icon-arrow"></div>
+        </button>
       </div>
+
       <div class="open-specific-day" *ngIf="dayName">
         <span *ngIf="hours.dayInWeek[dayName].specificDayValue.morning">
         <span class="title-open-today"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>

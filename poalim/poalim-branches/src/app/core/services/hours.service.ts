@@ -190,7 +190,6 @@ export class HoursService {
     openHoursAndDays.label = this.createLable(openHoursAndDays);
 
     return openHoursAndDays;
-    ;
 
   }
 

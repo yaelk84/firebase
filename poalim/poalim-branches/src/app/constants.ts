@@ -5,7 +5,7 @@ export const CONSTANTS = {
     ERROR_TYPE3: '3',
     DONT_OPEN: ''
   },
-  MAX_RESULTS_DROP_DOWN: 6,
+  MAX_RESULTS_DROP_DOWN: 7,
   FRIDAY: 'Friday',
   BANKAT: 899,
   yes: 'yes',
