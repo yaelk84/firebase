@@ -17,12 +17,11 @@ export class BranchBoxSummarizeComponent implements OnInit {
   @Input() isSingleDisplay: boolean;
   @Input()  filterByDay: boolean;
 
-  closeDropDown(){
-    this.openHoursDrop=false;
+  closeDropDown() {
+    this.openHoursDrop = false;
   }
-  dropClick(){
-console.log('drop clcik')
-    this.openHoursDrop =!this.openHoursDrop;
+  dropClick() {
+    this.openHoursDrop = !this.openHoursDrop;
   }
   ngOnInit() {
    this.haveLocation = this.mapService.hasLocationPermission;
