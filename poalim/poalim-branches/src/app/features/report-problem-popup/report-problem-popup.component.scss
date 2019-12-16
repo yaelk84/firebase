@@ -4,7 +4,9 @@
 /deep/.modal-body {
   padding: 0;
 }
-
+form{
+  height: 0;
+}
 .report-problem-wrapper {
   text-align: center;
   padding: 2rem;
@@ -84,12 +86,15 @@
   .report-service-wrapper {
     margin-top: 2rem;
     overflow: hidden;
-    height: 190px;
+    height: auto;
     transition: all ease 0.7s;
     max-height: 1000px;
     display: flex;
     justify-content: center;
     flex-flow: column;
+    &.services-error{
+      height: 190px;
+    }
     .report-service-text-box-wrapper {
       position: relative;
       margin-bottom: 1.5rem;
