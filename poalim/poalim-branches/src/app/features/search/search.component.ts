@@ -195,16 +195,17 @@ export class SearchComponent implements OnInit {
     }
   }
   searchFn(term, item) {
+    term = term.toLowerCase();
     if (term.length < 3) {
       return false;
     }
     if (item.type === 'city') {
-      return item.name.indexOf(term) > -1;
+      return item.name.toLowerCase().indexOf(term) > -1;
     } else {
       const address = item.geographicAddress[0];
-      return item.branchName
-        .indexOf(term) > -1 || address.cityName
-        .indexOf(term) > -1 ||  address.streetName
+      return item.branchName.toLowerCase()
+        .indexOf(term) > -1 || address.cityName.toLowerCase()
+        .indexOf(term) > -1 ||  address.streetName.toLowerCase()
         .indexOf(term) > -1 || String(address.buildingNumber)
         .indexOf(term) > -1 ||  String(item.branchNumber)
         .indexOf(term) > -1;
