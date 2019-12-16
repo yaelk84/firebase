@@ -15,12 +15,14 @@ import {CONSTANTS} from '../../constants';
 import {DeviceService} from "../../core/services/event-service";
 
 
+let currentSearchItemsCities = [];
+let currentSearchItems = [];
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-
 
 export class SearchComponent implements OnInit {
 
@@ -37,7 +39,6 @@ export class SearchComponent implements OnInit {
   isMobile = false;
   @Output() onMobileSearch = new EventEmitter();
   @ViewChild('searchButton') searchButtonElem: ElementRef;
-
 
   constructor(private apiService: ApiService, private appService: AppService, private  router: Router,
               private  activeRoute: ActivatedRoute, private mapSEervice: MapBranchesService,
@@ -64,6 +65,8 @@ export class SearchComponent implements OnInit {
     // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data from stub)
     //  need to sort by distance if possible, else sort by branch name -> street -> city (cities go first then branches)
     this.items = [];
+    currentSearchItemsCities = [];
+    currentSearchItems = [];
     this.closeDropDown();
     const tempBranches = this.appService.branches.map((obj) => {
       obj.type = 'branch';
@@ -83,6 +86,8 @@ export class SearchComponent implements OnInit {
   }
 
   onSearch($event) {
+    currentSearchItemsCities = [];
+    currentSearchItems = [];
     this.onMobileSearch.emit({isSearchOpen: true});
     this.searchTerm = $event.term;
     this.sortFilteredItems($event.items);
@@ -96,6 +101,9 @@ export class SearchComponent implements OnInit {
 
 
   shouldShow(item) {
+    if (!item) {
+      return true;
+    }
     return this.filteredItems.indexOf(item) > -1;
   }
 
@@ -164,6 +172,8 @@ export class SearchComponent implements OnInit {
   }
 
   onChange($event) {
+    currentSearchItems = [];
+    currentSearchItemsCities = [];
     this.closeDropDown();
     this.searchButtonElem.nativeElement.focus();
     const UncheckLocationFilter = () => {
@@ -179,7 +189,6 @@ export class SearchComponent implements OnInit {
     }
 
     this.searchTerm = '';
-    // todo: handle item selected
     const branchNumber = $event && $event.branchNumber ? $event.branchNumber : '';
 
     if ($event.type === 'branch') {
@@ -194,21 +203,32 @@ export class SearchComponent implements OnInit {
 
     }
   }
+
   searchFn(term, item) {
     term = term.toLowerCase();
     if (term.length < 3) {
-      return false;
+      return null;
     }
     if (item.type === 'city') {
-      return item.name.toLowerCase().indexOf(term) > -1;
+      if (currentSearchItemsCities.length < 3 && item.name.toLowerCase().indexOf(term) > -1) {
+        currentSearchItemsCities.push(item);
+        return true;
+      }
+      return false;
+
     } else {
       const address = item.geographicAddress[0];
-      return item.branchName.toLowerCase()
-        .indexOf(term) > -1 || address.cityName.toLowerCase()
-        .indexOf(term) > -1 ||  address.streetName.toLowerCase()
-        .indexOf(term) > -1 || String(address.buildingNumber)
-        .indexOf(term) > -1 ||  String(item.branchNumber)
-        .indexOf(term) > -1;
+      if (currentSearchItems.length < 4 &&
+          (item.branchName.toLowerCase().indexOf(term) > -1
+            || address.cityName.toLowerCase().indexOf(term) > -1
+            || address.streetName.toLowerCase().indexOf(term) > -1
+            || String(address.buildingNumber).indexOf(term) > -1
+            || String(item.branchNumber).indexOf(term) > -1)) {
+            currentSearchItems.push(item);
+            return true;
+      }
+
+      return false;
     }
   }
 
