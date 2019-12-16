@@ -28,7 +28,7 @@
               (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE)">{{ 'badServices' | rcTranslate}}</button>
     </div>
   </div>
-  <div class="report-service-wrapper" [ngClass]="{'shrink': !unShrinkDiv}">
+  <div class="report-service-wrapper" [ngClass]="{'shrink': !unShrinkDiv,'services-error':unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE}">
     <ng-container [ngSwitch]="unShrinkDivType">
       <ng-container *ngSwitchCase="constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS">
         <div>
