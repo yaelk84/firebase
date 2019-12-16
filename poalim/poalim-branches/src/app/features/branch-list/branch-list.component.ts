@@ -255,7 +255,6 @@ export class BranchListComponent implements OnInit, AfterViewInit {
 
     }, true);
     this.events.on(CONSTANTS.EVENTS.OPEN_LOCATION_POPUP, () => {
-      console.log('event change');
       this.showNoLocation = true;
     }, true);
 

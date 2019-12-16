@@ -25,7 +25,6 @@ export class ShareBranchPopupComponent implements OnInit {
     });
     document.execCommand('copy');
     const branchLinkToShare = window.location.href;
-    console.log('link to share !@#$%^&*', branchLinkToShare);
     let message;
     setTimeout(() => {
       message = document.createElement('sapn');

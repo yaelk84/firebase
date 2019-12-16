@@ -127,7 +127,6 @@ export class BranchFiltersComponent implements OnInit {
     const size = this.getNumberPfBOxesBySize();
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
-      this.appService.getBranchServicesNames(response);
 
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
       this.checkBoxValues = this.filterService.createCheckBoxArray(

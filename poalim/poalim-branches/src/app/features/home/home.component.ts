@@ -84,13 +84,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.openPopupErr = true;
       this.sendFormErrorType = err;
     }
-    console.log(err);
     this.isMobile = this.deviceService.isMobile();
     this.events.on(CONSTANTS.EVENTS.SINGLE_DISPLY, () => {
       this.singleDisplay = this.branchDataServices.isSingleDisplay;
     });
     this.events.on(CONSTANTS.EVENTS.REFRESH_LIST, () => {
-      console.log('refresh list wad called', this.branchDataServices.branchesFilter.length);
       this.branchNewArrayFilter = this.branchDataServices.branchesFilter;
 
       if (this.branchDataServices.citySelected.length) {

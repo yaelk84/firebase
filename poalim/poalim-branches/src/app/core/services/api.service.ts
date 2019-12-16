@@ -12,6 +12,8 @@ import {environment} from '../../../environments/environment';
 })
 export class ApiService extends RcApiService {
 
+  private filterPromise;
+
   constructor(protected http: HttpClient) {
     super(http);
   }
@@ -174,6 +176,15 @@ export class ApiService extends RcApiService {
 
   public getFilters(params = {}, force: boolean = true) {
     return this.apiGet(`${environment.apiPath}services`, {}, true);
+  }
+
+  public getFiltersQueue(params = {}, force: boolean = true) {
+
+    if (!this.filterPromise) {
+      this.filterPromise = this.getFilters(params, force);
+    }
+
+    return this.filterPromise;
   }
 
   public getGetCurrentTimeStamp(params = {}, force: boolean = true) {

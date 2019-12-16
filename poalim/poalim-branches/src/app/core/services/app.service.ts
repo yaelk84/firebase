@@ -37,8 +37,6 @@ export class AppService {
     arr.forEach((service: any) => {
         this.servicesNamesArray[service.serviceType] = service.serviceLabel;
     });
-    console.log(this.servicesNamesArray);
-
   }
 
 
@@ -65,7 +63,7 @@ export class AppService {
 
 init() {
   return forkJoin([this.apiService.getGetCurrentTimeStamp(), this.apiService.getBranches(),
-    this.apiService.getGetCities(), this.apiService.getBranchesInit()]).pipe(
+    this.apiService.getGetCities(), this.apiService.getBranchesInit(), this.apiService.getFilters()]).pipe(
       switchMap((results: any) => {
 
         const objResult = {
@@ -80,6 +78,7 @@ init() {
         objResult.uniqueInit = results[3];
         this.initGeneralMessages = results[3].generalMessages;
         this.initBranchMessages = results[3].byBranchMessages;
+        this.getBranchServicesNames(results[4]);
 
         return of(objResult);
       }),

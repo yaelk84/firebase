@@ -57,7 +57,6 @@ export class SingleBranchDisplayComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('data.branchselected', this.dataBranchSelected);
     this.showBranchesBasedOnLocationAccess();
 
     this.isMobile = this.deviceService.isMobile();
@@ -92,10 +91,8 @@ export class SingleBranchDisplayComponent implements OnInit {
     document.addEventListener('copy', (e: ClipboardEvent) => {
       if (element === '2407*') {
         e.clipboardData.setData('text/plain', (joinElm));
-        console.log('copy phone', joinElm);
       } else {
         e.clipboardData.setData('text/plain', (element));
-        console.log('copy fax', element);
       }
       e.preventDefault();
       document.removeEventListener('copy', null);
