@@ -13,7 +13,7 @@
     <app-no-location-permissions (close)="closePopupLocation()"> </app-no-location-permissions>
   </div>
 
-  <ng-container *ngIf="branchNewArrayFilter.length;else notFound">
+  <ng-container *ngIf="branchNewArrayFilter.length || filterByDay || filterByHours">
     <div *ngIf="showSelectedBranch" class ="width-for-no-results">
     <button *ngIf="branchNewArrayFilter.length > 1"  class="back-to-results-wrapper" (click)="backToResults()" #buttonBackToResults>
       <span class="go-back"><span class="img-wrapper"><img class="backto-branches-list" src="{{'left.svg' | imgUrl}}" alt=""></span> </span> <span class="back-to-results">{{'backToResults' |rcTranslate}}</span>
@@ -69,12 +69,12 @@
     </div>
   </ng-container>
 
-  <ng-template #notFound>
+  <div ng-if="!branchNewArrayFilter || !branchNewArrayFilter.length">
     <div class="not-found-container">
       <img src="{{'images/not-found.svg' | imgUrl}}">
       <p>{{'notFound' | rcTranslate}}</p>
     </div>
-  </ng-template>
+  </div>
 </div>
 
 
