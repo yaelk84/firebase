@@ -8,6 +8,7 @@ import {isNullOrUndefined} from 'util';
 import {MapBranchesService} from '../../core/services/map-branches.service';
 import {RcEventBusService} from '@realcommerce/rc-packages';
 import {BranchDataService} from '../../core/services/branch-data.service';
+import {AppService} from "../../core/services/app.service";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class BranchFiltersComponent implements OnInit {
 
 
   constructor(private filterService: BranchFilterService, private deviceService: DeviceService, private  apiService: ApiService,
-              private mapService: MapBranchesService, private branchDataServices: BranchDataService) {
+              private mapService: MapBranchesService, private branchDataServices: BranchDataService, private appService: AppService) {
   }
 
   public formControl = new FormControl();
@@ -126,6 +127,8 @@ export class BranchFiltersComponent implements OnInit {
     const size = this.getNumberPfBOxesBySize();
     return this.apiService.getFilters().subscribe((response) => {
       this.filterService.createFiltersByTypes(response);
+      this.appService.getBranchServicesNames(response);
+
       this.branchFiltersWithIcon = this.filterService.filters.slice(0, size);
       this.checkBoxValues = this.filterService.createCheckBoxArray(
         this.filterService.filters.slice(size + 1, this.filterService.filters.length));
