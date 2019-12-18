@@ -69,7 +69,7 @@
     </div>
   </ng-container>
 
-  <div ng-if="!branchNewArrayFilter || !branchNewArrayFilter.length">
+  <div *ngIf="!branchNewArrayFilter || !branchNewArrayFilter.length">
     <div class="not-found-container">
       <img src="{{'images/not-found.svg' | imgUrl}}">
       <p>{{'notFound' | rcTranslate}}</p>
