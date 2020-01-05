@@ -62,8 +62,6 @@ export class SearchComponent implements OnInit {
 
 
   initSearch() {
-    // todo: get the list of items from the api data and manipulate for autocomplete (for now using demo data from stub)
-    //  need to sort by distance if possible, else sort by branch name -> street -> city (cities go first then branches)
     this.items = [];
     currentSearchItemsCities = [];
     currentSearchItems = [];
@@ -153,7 +151,16 @@ export class SearchComponent implements OnInit {
     this.closeDropDown();
   }
   doSearch(ngSelectAutoComplete) {
-    ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked')[0].click();
+
+    if (this.filteredItems && this.filteredItems.length === 0 && this.openDropdown) {
+      return;
+    }
+
+    if (ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked').length > 0) {
+      ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option-marked')[0].click();
+    } else {
+      ngSelectAutoComplete.element.childNodes[2].children[0].getElementsByClassName('ng-option')[0].click();
+    }
     this.searchFocused = false;
   }
 
@@ -207,7 +214,7 @@ export class SearchComponent implements OnInit {
   searchFn(term, item) {
     term = term.toLowerCase();
     if (term.length < 3) {
-      return null;
+      return false;
     }
     if (item.type === 'city') {
       if (currentSearchItemsCities.length < 3 && item.name.toLowerCase().indexOf(term) > -1) {

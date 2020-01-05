@@ -129,10 +129,15 @@
         }
 
       }
-      .ng-option:hover {
+      .ng-option:not(.ng-option-disabled):hover {
         background: $marine-two;
         color: $white;
       }
+
+      .ng-option.ng-option-disabled {
+        cursor: default;
+      }
+
       .ng-option-marked {
         background: $marine-two;
         color: $white;
@@ -172,14 +177,15 @@
         right: 2px;
       }
     }
-    .search-btn.cant-click {
-      background-color: $greyish-brown;
-      opacity: 0.5;
-
-    }
     .search-btn.can-click {
       opacity: 1;
       cursor: pointer;
+    }
+
+    .search-btn.cant-click {
+      background-color: $greyish-brown;
+      opacity: 0.5;
+      cursor: default;
     }
   }
 
