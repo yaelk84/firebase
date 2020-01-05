@@ -31,6 +31,9 @@ import { ShareBranchPopupComponent } from './features/share-branch-popup/share-b
 import { SuccessPopupMsgComponent } from './success-popup-msg/success-popup-msg.component';
 import { ImgUrlPipe } from './core/filters/img-url.pipe';
 
+const rootElement: any =  document.getElementsByTagName('app-root')[0];
+const branchApiCode = rootElement.dataset.branchKapi;
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
@@ -70,7 +73,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RcUiModule,
 
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',
+      apiKey: branchApiCode,
       libraries: ['geometry']
     }),
     AgmSnazzyInfoWindowModule
