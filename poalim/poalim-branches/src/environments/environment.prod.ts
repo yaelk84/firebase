@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   apiBaseUrl: '/he/api/branches/',
   translationPath: '/sites/all/themes/poalim/js/angular/assets/translate/',
   configPath: '/sites/all/themes/poalim/js/angular/assets/config.json',

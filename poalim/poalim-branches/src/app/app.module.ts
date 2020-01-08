@@ -30,9 +30,8 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { ShareBranchPopupComponent } from './features/share-branch-popup/share-branch-popup.component';
 import { SuccessPopupMsgComponent } from './success-popup-msg/success-popup-msg.component';
 import { ImgUrlPipe } from './core/filters/img-url.pipe';
-
-const rootElement: any =  document.getElementsByTagName('app-root')[0];
-const branchApiCode = rootElement.dataset.branchKapi;
+import { LAZY_MAPS_API_CONFIG } from '@agm/core';
+import {GoogleMapsConfig} from './core/services/google-maps.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -71,17 +70,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     PerfectScrollbarModule,
     RcUiModule,
-
-    AgmCoreModule.forRoot({
-      apiKey: branchApiCode,
-      libraries: ['geometry']
-    }),
+    AgmCoreModule.forRoot(),
     AgmSnazzyInfoWindowModule
   ],
   providers: [FilterBranchPipe, {
     provide: PERFECT_SCROLLBAR_CONFIG,
     useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-  }],
+  },
+  {provide: LAZY_MAPS_API_CONFIG, useClass: GoogleMapsConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
