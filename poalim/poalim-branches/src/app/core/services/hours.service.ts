@@ -16,11 +16,12 @@ export class HoursService {
   }
 
 
-  private currentTime ;
+  private currentTime;
   private order = {Sunday: 1, Monday: 2, Tuesday: 3, Wednesday: 4, Thursday: 5, Friday: 6, Saturday: 7};
 
   selectedHoursValue: string = '';
   selectedDaysValue: string = '';
+
   set selectedHours(hours: string) {
     this.selectedHoursValue = hours;
   }
@@ -35,14 +36,13 @@ export class HoursService {
   }
 
 
-
   set updateTime(time) {
-    this.currentTime =  this.timeService.getCurrentTime(time.time);
+    this.currentTime = this.timeService.getCurrentTime(time.time);
 
 
   }
 
-  get time(){
+  get time() {
     return this.currentTime;
   }
 
@@ -64,8 +64,13 @@ export class HoursService {
 
   private openNow(dayObject) {
 
-    return this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[0].endHour) > 0 ||
-      this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[1].endHour) > 0;
+    return (this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[0].endHour) > 0
+        && this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[0].startHour) < 0
+      ) ||
+      (this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[1].endHour) > 0 &&
+        this.timeService.hoursDiff(this.currentTime, dayObject.branchOpeningHours[1].startHour) < 0);
+
+    ;
   }
 
   private getOnlyOpendays(dataObj) {
@@ -124,7 +129,7 @@ export class HoursService {
 
           dataObjWithData.dayInWeek[key].noon = dataObj[key].branchOpeningHours[1];
         }
-        dataObjWithData.dayInWeek[key].specificDayValue = this.createLabelWithOpenAndClose(dataObjWithData.dayInWeek[key]) ;
+        dataObjWithData.dayInWeek[key].specificDayValue = this.createLabelWithOpenAndClose(dataObjWithData.dayInWeek[key]);
 
         dataObjWithData.dayInWeek[key].specificDayLabel = this.translate.getText('openInDayWithVal', [this.translate.getText(key)]);
       }
@@ -140,8 +145,9 @@ export class HoursService {
     }
     return currLabel.noon.startHour;
   }
-  private createLabelWithOpenAndClose(currLabel){
-    const  label:any = {};
+
+  private createLabelWithOpenAndClose(currLabel) {
+    const label: any = {};
     if (currLabel.morning) {
       label.morning = currLabel.morning.startHour + '-' + currLabel.morning.endHour;
     }
@@ -150,10 +156,11 @@ export class HoursService {
     }
     return label;
   }
+
   private createLable(dataObj) {
     let label: any = {};
     const currLabel = dataObj.dayInWeek[dataObj.closestOpenDay];
-    if (isNullOrUndefined(currLabel)){
+    if (isNullOrUndefined(currLabel)) {
       return '';
     }
     if (dataObj.openCurrentDay) {
@@ -207,8 +214,8 @@ export class HoursService {
     const beforeDays = arrayOfDays.slice(0, tomorrowIndex - 1);
     const days = [].concat(nextDays).concat(beforeDays);
     days.forEach((value) => {
-            value.label = this.createLabelWithOpenAndClose(value);
-            value.dayName = this.translate.getText(value.day);
+      value.label = this.createLabelWithOpenAndClose(value);
+      value.dayName = this.translate.getText(value.day);
 
     });
     return days;
