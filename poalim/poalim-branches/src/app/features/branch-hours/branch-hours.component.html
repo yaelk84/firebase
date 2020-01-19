@@ -29,7 +29,8 @@
       <div class="was-change">{{'changeHours'| rcTranslate}</div>
     </div>
     <div class="clearfix" *ngIf="!hours.wasChange">
-      <div  *ngIf="hours.openCurrentDay && !dayName">
+      <!--openCurrentDay-->
+      <div class=""  *ngIf="hours.openCurrentDay && hours.openCurrentHours && !dayName">
       <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
         <button class="open-today" [attr.aria-hidden]="!isSingleDisplay" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
           <span>
@@ -42,6 +43,10 @@
            <div *ngIf="isSingleDisplay" class="icon-arrow"></div>
         </button>
 
+      </div>
+      <!--openCurrentDay end-->
+      <div class=""  *ngIf="hours.openCurrentDay && !hours.openCurrentHours && !dayName">
+      <div  class="future-date" >{{hours.label}}</div>
       </div>
       <div class="future-date-wrapper" *ngIf="!dayName && !hours.filterByDay">
         <button class="future-date" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">

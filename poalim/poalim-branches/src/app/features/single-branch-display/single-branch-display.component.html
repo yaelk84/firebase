@@ -35,7 +35,7 @@
 
               <div *ngIf="isMobile" class="col-12 row-btn">
                 <div class="row">
-                  <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn " role="button">{{'order' |rcTranslate}}</div>
+                  <div *ngIf="!dataBranchSelected.isBankat" class="btn white-btn " role="button"><a href="https://login.bankhapoalim.co.il/ng-portals/rb/he/create-meeting" target="_blank">{{'order' |rcTranslate}}</a></div>
                   <div class="btn text-to-crop" (click)="onNavigate()">{{'navigate' | rcTranslate}}</div>
                 </div>
 

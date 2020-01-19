@@ -70,7 +70,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FormsModule,
     PerfectScrollbarModule,
     RcUiModule,
-    AgmCoreModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU',
+      language: 'iw'
+    }),
     AgmSnazzyInfoWindowModule
   ],
   providers: [FilterBranchPipe, {

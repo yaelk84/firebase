@@ -182,8 +182,7 @@ lib-rc-switcher{
       }
     }
     &.full-width {
-      height: 100%;
-      margin: 0;
+
       /deep/
       .modal-content {
         border: none;
@@ -235,6 +234,11 @@ lib-rc-switcher{
       background-color: white;
       color: $marine-two;
       border-color: transparent;
+    a{
+      color: $marine-two;
+      text-decoration: none;
+
+    }
 
     &:hover{
       color: $lipstick-two;

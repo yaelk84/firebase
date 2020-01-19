@@ -212,6 +212,11 @@
 }
 
 @media (max-width: 770px) {
+  .list-wrapper{
+  .popover-wrapper.filter-days {
+    padding:15px;
+  }
+  }
   .popover-add-margin{
     position: relative;
     margin: 0 15px;
