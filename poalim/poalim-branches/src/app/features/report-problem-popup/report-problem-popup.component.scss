@@ -71,6 +71,7 @@ form{
       flex-flow: row nowrap;
       justify-content: center;
       .outlined-btn {
+        margin:8px;
         min-width: 177px;
         margin-left: 1rem;
         //outline: none;
@@ -261,7 +262,6 @@ form{
 
 
 
-
 @media (max-width: $mobile_view) {
   .choose-problem-btns {
     flex-wrap: wrap !important;
@@ -277,8 +277,9 @@ form{
   }
 
   .rc-popup-wrapper-success {
+   min-width: 100%;
     .popup-content {
-      max-width: 355px;
+      max-width: 90%;
       padding: 1rem;
     }
     img.success-popup-img {

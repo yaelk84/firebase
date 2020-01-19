@@ -46,6 +46,23 @@ export class HoursService {
     return this.currentTime;
   }
 
+  private nextOpenHour(dayObject) {
+
+    let nextHourOpen = '';
+    if(!isNullOrUndefined(dayObject.morning) && !isNullOrUndefined(dayObject.morning.startHour)){
+      if (this.timeService.hoursDiff(this.currentTime, dayObject.morning.startHour) > 0) {
+
+        nextHourOpen = dayObject.morning.startHour;
+      }
+    }
+
+     if(!nextHourOpen.length &&!isNullOrUndefined(dayObject.noon) && !isNullOrUndefined(dayObject.noon.startHour)){
+      nextHourOpen = dayObject.noon.startHour;
+    }
+
+    return nextHourOpen;
+  }
+
   private openInMorninig(obj) {
     return (!isNullOrUndefined(obj.branchOpeningHours[0].startHour)) && obj.branchOpeningHours[0].startHour.length;
   }
@@ -85,15 +102,23 @@ export class HoursService {
   }
 
   private findNextOpenDay(dataObj) {
-    let time;
+        let time;
     let dayToCheck = this.timeService.getDayName(this.currentTime);
     for (let i = 0; i < 100; i++) { //
 
-      if (!isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openToday) && (i > 0 || !isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openNow))) {
+      if (!isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openToday) && (dataObj.dayInWeek[dayToCheck].openNow || (dataObj.dayInWeek[dayToCheck].nextHourToday && dataObj.dayInWeek[dayToCheck].nextHourToday.length) )) {
         dataObj.closestOpenDay = dayToCheck;
         if (i === 0) {
-          dataObj.openCurrentDay = true;
-          dataObj.openCurrentHours = true;
+                    dataObj.openCurrentDay = true;
+          if (!isNullOrUndefined(dataObj.dayInWeek[dayToCheck].openNow)) {
+            dataObj.openCurrentHours = true;
+          }
+
+          else if(dataObj.dayInWeek[dayToCheck].nextHourToday && dataObj.dayInWeek[dayToCheck].nextHourToday.length){
+
+            dataObj.nextOpenHour = dataObj.dayInWeek[dayToCheck].nextHourToday;
+          }
+
         } else if (i === 1) {
           dataObj.openCurrentTomorrow = true;
         }
@@ -114,12 +139,16 @@ export class HoursService {
     const dataObjWithData: any = {dayInWeek: {}};
 
     Object.keys(dataObj).forEach((key) => {
+
         dataObjWithData.dayInWeek[key] = {};
         if (this.checkIfOpen(dataObj[key])) {
           dataObjWithData.dayInWeek[key].openToday = true;
 
           if (this.openNow(dataObj[key])) {
             dataObjWithData.dayInWeek[key].openNow = true;
+          } else {
+
+
           }
         }
         if (this.openInMorninig(dataObj[key])) {
@@ -128,6 +157,10 @@ export class HoursService {
         if (this.openInNoon(dataObj[key])) {
 
           dataObjWithData.dayInWeek[key].noon = dataObj[key].branchOpeningHours[1];
+        }
+        if(! dataObjWithData.dayInWeek[key].openNow && dataObjWithData.dayInWeek[key].openToday){
+
+          dataObjWithData.dayInWeek[key].nextHourToday = this.nextOpenHour(dataObjWithData.dayInWeek[key]);
         }
         dataObjWithData.dayInWeek[key].specificDayValue = this.createLabelWithOpenAndClose(dataObjWithData.dayInWeek[key]);
 
@@ -163,8 +196,15 @@ export class HoursService {
     if (isNullOrUndefined(currLabel)) {
       return '';
     }
+
     if (dataObj.openCurrentDay) {
-      label = this.createLabelWithOpenAndClose(currLabel);
+      if( isNullOrUndefined(dataObj.nextOpenHour)){
+        label = this.createLabelWithOpenAndClose(currLabel);
+      }
+      else{
+        label =  this.translate.getText('openTodayAt', [dataObj.nextOpenHour]);
+      }
+
 
 
     } else if (dataObj.openCurrentTomorrow) {
