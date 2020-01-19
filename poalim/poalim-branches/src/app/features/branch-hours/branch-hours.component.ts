@@ -50,7 +50,7 @@ export class BranchHoursComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('hourts', this.hours)
+
     this.isMobile = this.deviceService.isMobile();
     this.hoursList = this.hoursService.creatHoursWeekList(this.hours);
 
