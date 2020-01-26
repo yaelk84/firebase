@@ -8,5 +8,9 @@
     {
       "messageIndependenceDay": ""
     }
-  ]
+  ],
+  "mapData": {
+    "apiKey": "AIzaSyCbhniBexRx0tx-iVCPLSqGwppLoebHJTU"
+  },
+  "hideShowOpenStatus": true
 }

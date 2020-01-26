@@ -22,6 +22,7 @@ export class AppService {
   public servicesNamesArray = [];
   public initGeneralMessages = {};
   public initBranchMessages = {};
+  public hideOpenClose = false;
   public queryParam = {};
   private firstObsSubscription: Subscription;
 
@@ -78,6 +79,7 @@ init() {
         objResult.uniqueInit = results[3];
         this.initGeneralMessages = results[3].generalMessages;
         this.initBranchMessages = results[3].byBranchMessages;
+        this.hideOpenClose = results[3].hideShowOpenStatus;
         this.getBranchServicesNames(results[4]);
 
         return of(objResult);

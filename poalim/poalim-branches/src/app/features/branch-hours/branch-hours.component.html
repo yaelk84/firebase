@@ -31,10 +31,10 @@
     <div class="clearfix" *ngIf="!hours.wasChange">
       <!--openCurrentDay-->
       <div class=""  *ngIf="hours.openCurrentDay && hours.openCurrentHours && !dayName">
-      <div *ngIf=" isMobile && isSingleDisplay" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
+      <div *ngIf="isMobile && isSingleDisplay && !hideShowCloseHours" class="title-open-today" >{{'openToday'| rcTranslate }}</div>
         <button class="open-today" [attr.aria-hidden]="!isSingleDisplay" [ngClass]="{'withdropdown':isSingleDisplay, 'no-outline': !isSingleDisplay}" (click)="$event.stopPropagation(); isSingleDisplay && dropClick($event)">
           <span>
-            <span *ngIf="!isMobile || !isSingleDisplay" class="title-open-today"> {{'openNow'| rcTranslate }}:</span>
+            <span *ngIf="(!isMobile || !isSingleDisplay) && !hideShowCloseHours" class="title-open-today"> {{'openNow'| rcTranslate }}:</span>
 <!--            <br *ngIf="isMobile && isSwitchedToMap">-->
             <span *ngIf="hours.label.morning"></span> <span class="hours-pos">{{hours.label.morning}}</span>
           </span>
@@ -57,7 +57,7 @@
 
       <div class="open-specific-day" *ngIf="dayName">
         <span *ngIf="hours.dayInWeek[dayName].specificDayValue.morning">
-        <span class="title-open-today"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>
+        <span class="title-open-today" *ngIf="!hideShowCloseHours"> {{hours.dayInWeek[dayName].specificDayLabel }}</span>
         <span> {{hours.dayInWeek[dayName].specificDayValue.morning}}</span>
         </span>
 

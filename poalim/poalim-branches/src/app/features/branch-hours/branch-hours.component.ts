@@ -3,8 +3,8 @@ import {RcTranslateService} from '@realcommerce/rc-packages';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {HoursService} from '../../core/services/hours.service';
 import {DeviceService} from '../../core/services/device.service';
-import {AppService} from "../../core/services/app.service";
-import {MapBranchesService} from "../../core/services/map-branches.service";
+import {AppService} from '../../core/services/app.service';
+import {MapBranchesService} from '../../core/services/map-branches.service';
 
 
 @Component({
@@ -28,6 +28,10 @@ export class BranchHoursComponent implements OnInit {
 
   get branchMessage() {
     return this.appService.initBranchMessages[0].messageIndependenceDay;
+  }
+
+  get hideShowCloseHours() {
+    return this.appService.hideOpenClose;
   }
 
   closeDropDown() {
