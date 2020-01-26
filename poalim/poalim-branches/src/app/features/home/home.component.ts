@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.servicesLoaded = false;
         this.mapBranches.myLocationFilter(this.location, response.branches).subscribe((res => {
           this.intervalTimer = setTimeout(() => {
-            this.servicesLoaded = true;
+            this.onServicesLoaded();
           }, 200);
           this.mapBranches.hasLocationPermissionFromGeoLocation = true;
           this.mapBranches.nearsBranches = res;
@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       } else {
         this.mapBranches.defaultFilter(this.branches); // update sorted branches
         this.branchDataServices.initBrnchesAndMap(this.branchDataServices.createDataArray(this.mapBranches.sortedBranches));
-        this.servicesLoaded = true;
+        this.onServicesLoaded();
 
       }
 
@@ -75,6 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log(err);
 
     });
+  }
+
+  onServicesLoaded() {
+    this.servicesLoaded = true;
+    document.getElementById('branchse_loader_drupal').classList.add('hide');
   }
 
   ngOnInit() {
