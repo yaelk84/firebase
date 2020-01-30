@@ -12,19 +12,22 @@
     </div>
   </div>
 
-  <div class="choose-problem-wrapper">
+  <div class="choose-problem-wrapper" role="region" [attr.aria-label]="'reportProblemMsg2' | rcTranslate">
     <div class="choose-problem-header" [ngClass]="{'shrink': reportBadServiceToggle}">
       <!--      {{'chooseProblem' | rcTranslate}}-->
       <span>{{'reportProblemMsg2' | rcTranslate}}</span>
     </div>
     <div class="choose-problem-btns">
       <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
+              role="radio" [attr.aria-checked]=" unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS"
               [ngClass]="{'active': unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS}"
               (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_HOURS)">{{'badOpenHours' | rcTranslate}}</button>
       <button class="outlined-btn" [disabled]="reportBadServiceToggle && false"
+              role="radio" [attr.aria-checked]=" unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_ADDRESS"
               [ngClass]="{'active': unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_ADDRESS}"
               (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_ADDRESS)">{{'badAddress' | rcTranslate}}</button>
       <button class="outlined-btn" [ngClass]="{'active': unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE}"
+              role="radio" [attr.aria-checked]=" unShrinkDivType === constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE"
               (click)="unShrinkDivToggle(constants.UN_SHRINK_DIV_TYPE.REPORT_BAD_SERVICE)">{{ 'badServices' | rcTranslate}}</button>
     </div>
   </div>

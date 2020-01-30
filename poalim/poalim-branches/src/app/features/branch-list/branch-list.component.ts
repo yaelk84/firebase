@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef} from '@angular/core';
+import {Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, SimpleChange, OnChanges, SimpleChanges} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
@@ -16,7 +16,7 @@ import {HoursService} from '../../core/services/hours.service';
 import {GeoLocationObject} from '../../core/interface/coordinates';
 import {AppService} from '../../core/services/app.service';
 import {DeviceService} from '../../core/services/event-service';
-import {environment} from "../../../environments/environment";
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -24,10 +24,11 @@ import {environment} from "../../../environments/environment";
   templateUrl: './branch-list.component.html',
   styleUrls: ['./branch-list.component.scss']
 })
-export class BranchListComponent implements OnInit, AfterViewInit {
+export class BranchListComponent implements OnInit, AfterViewInit, OnChanges {
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
   @ViewChild('buttonBackToResults') buttonBackToResults: ElementRef;
+  @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
   @Input() branchNewArrayFilter: any;
   @Input() branchResultTitle: any;
   @Input() hideListInMoBile: boolean;
@@ -59,6 +60,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
               private activeRoute: ActivatedRoute, private  mapServices: MapBranchesService, private  router: Router,
               private hours: HoursService, private appService: AppService, private deviceService: DeviceService) {
   }
+
   get generalMessage() {
     return this.appService.initGeneralMessages[0].messageIndependenceDay;
   }
@@ -102,7 +104,7 @@ export class BranchListComponent implements OnInit, AfterViewInit {
       this.branchDataServices.citySelected = queryParams.city;
       if (branchesFilter.length === 1) {
         singleCityResult(branchesFilter[0]);
-             this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
+        this.branchDataServices.initBranchesAndApplyFilters(branchesFilter, this.branchFilterService.activeFilters);
 
       } else {
 
@@ -268,6 +270,24 @@ export class BranchListComponent implements OnInit, AfterViewInit {
     this.isTablet = this.deviceService.isLg();
     this.filters = this.branchFilterService.filters;
     this.branchData = this.mapServices.sortedBranches;
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.branchNewArrayFilter && !changes.branchNewArrayFilter.firstChange) {
+      if (!isNullOrUndefined(this.itemList)) {
+        setTimeout(() => {
+          /* this.itemList.nativeElement.querySelectorAll('.branch-box-wrapper')[0].focus();*/
+  /*        const firstBranch = document.getElementById('branch0');
+          if (!isNullOrUndefined(firstBranch)){
+           const itemToFocus =  firstBranch.querySelector('.inner-box');
+            (itemToFocus as HTMLElement).focus();
+          }*/
+
+        }, 0);
+      }
+
+    }
 
   }
 

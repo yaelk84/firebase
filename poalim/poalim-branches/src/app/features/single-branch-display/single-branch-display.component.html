@@ -19,7 +19,7 @@
 
             </div>
             <div class="share">
-              <button class="share-btn" data-title="שיתוף" (click)="openShareBranchPopup = true"></button>
+              <button class="share-btn" data-title="שיתוף" [attr.aria-label]="'shareBtn'| rcTranslate" (click)="openShareBranchPopup = true"></button>
 
                 <lib-rc-popup-wrapper class="rc-popup-wrapper" *ngIf="openShareBranchPopup" (closeCallback)="openShareBranchPopup = false">
                   <app-share-branch-popup
@@ -46,10 +46,13 @@
       <div class="wrapper-service-and-btn">
         <div class="selected-branches-services">
           <h1>{{'servicesTitle' | rcTranslate}}</h1>
-          <div  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
-            <span><img class="icon-service-list" src="{{'icons/service-list.svg' | imgUrl}}"></span>
-            <span class="service-label">{{service.branchServiceTypeDescription}}</span>
-          </div>
+          <ul  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
+            <li>
+              <span><img class="icon-service-list" src="{{'icons/service-list.svg' | imgUrl}}"></span>
+              <span class="service-label">{{service.branchServiceTypeDescription}}</span>
+            </li>
+
+          </ul>
           <button *ngIf="end < dataBranchSelected.branchService.length" class="add-more link-underline" (click)="addMore()">{{'showMore' | rcTranslate}}</button>
         </div>
       </div>

@@ -1,34 +1,41 @@
 <div class="filter-box-cointener">
-  <div class="filter-box-wrapper">
+  <div class="filter-box-wrapper" role="region" [attr.aria-label]="'chooseTitle' | rcTranslate">
     <lib-rc-popup-wrapper (closeCallback)="closePopup()" *ngIf="openPOPup" [customClass]="'full-width full-height'">
       <div closeButton class="close-btn"></div>
-    <app-general-popup><app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter></app-general-popup>
+      <app-general-popup>
+        <app-check-box-filter (valueChange)="popupSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
+      </app-general-popup>
     </lib-rc-popup-wrapper>
-    <div #filterBox class="filter-box tablet-box" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"
-         (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index" role="button" tabindex="0">
+
+    <div #filterBox class="filter-box tablet-box"
+         [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"
+         (click)="toggleFilter(filter.serviceType)" *ngFor="let filter of  branchFiltersWithIcon ; let i = index"
+         role="button" tabindex="0">
 
       <div class="wrapper-icon-filter">
         <div class="icon-filter">
-          <img [src]="filter.ServiceImg" [alt]="filter.ServiceImgAlt" [title]="filter.ServiceImgTitle" />
+          <img [src]="filter.ServiceImg" [alt]="filter.ServiceImgAlt" [title]="filter.ServiceImgTitle"/>
         </div>
       </div>
       <div class="label-filter-con">
-        <div class="label-wrapper" [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"> {{filter.serviceLabel}}</div>
+        <div class="label-wrapper"
+             [ngClass]="{'filterActive':arrayOfActiveFilterIds.indexOf(filter.serviceType) != -1}"> {{filter.serviceLabel}}</div>
       </div>
 
 
     </div>
   </div>
-  <button [attr.aria-expanded]="openDropDown" class="filter-btn" [ngClass]="{'slideDown':openDropDown}"  (click)="togglePluse($event)">
-    <div class="badge-btn" *ngIf="dropDownCheckLength"> <span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
-<!--    <span class="icon-filter-btn"></span>-->
+  <button [attr.aria-expanded]="openDropDown" class="filter-btn" [ngClass]="{'slideDown':openDropDown}"
+          (click)="togglePluse($event)" [attr.aria-label]="'accessibility.more'| rcTranslate">
+    <div class="badge-btn" *ngIf="dropDownCheckLength"><span class="badge-btn-num">{{dropDownCheckLength}}</span></div>
+    <!--    <span class="icon-filter-btn"></span>-->
     <img class="icon-filter-btn" src="../../../assets/media/filterButton.svg">
   </button>
-  <div  *ngIf="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper more-services" lib-rc-click-outside (clickOutside)="closeDropDownServices()">
+  <div *ngIf="checkBoxValues" [ngClass]="{'slideDown':openDropDown}" class="popover-wrapper more-services"
+       lib-rc-click-outside (clickOutside)="closeDropDownServices()">
     <app-check-box-filter (valueChange)="dropDownSelected()" [filterList]="checkBoxValues"></app-check-box-filter>
 
   </div>
-
 
 
   <div>

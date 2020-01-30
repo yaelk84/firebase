@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {RcEventBusService} from '@realcommerce/rc-packages';
@@ -9,9 +9,10 @@ import {HoursService} from '../../core/services/hours.service';
   templateUrl: './hours-filer.component.html',
   styleUrls: ['./hours-filer.component.scss']
 })
-export class HoursFilerComponent implements OnInit {
+export class HoursFilerComponent implements OnInit, AfterContentInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() close: EventEmitter<any> = new EventEmitter();
+  @ViewChild('dayBox') dayBox: ElementRef<HTMLElement>;
   selectedDay: string = '';
   selectedHours: string = '';
   hours: any = {
@@ -76,9 +77,14 @@ export class HoursFilerComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("ddd")
     this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS, () => {
       this.clear();
     }, true);
+  }
+  ngAfterContentInit(){
+    debugger
+    this.dayBox.nativeElement.focus()
   }
 
 }

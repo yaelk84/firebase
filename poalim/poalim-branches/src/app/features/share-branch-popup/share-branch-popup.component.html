@@ -3,18 +3,18 @@
 <!--    <button type="button" class="close"><img src="../../../assets/media/icons/close.svg"></button>-->
     <div class="popup-content">
       <div class="share-branch-popup-icon">
-        <img src="{{'icons/share-branch.svg' | imgUrl}}">
+        <img [alt]="'accessibility.shareIcon'| rcTranslate" src="{{'icons/share-branch.svg' | imgUrl}}">
       </div>
       <div class="share-branch-popup-content">
         {{'shareBranchPopupTitle' | rcTranslate :[ branchNum, branchName ]}}
       </div>
       <div class="share-branch-popup-buttons">
-        <div class="flex-btn">
-          <button type="button" class="email" (click)="ShareBranchLinkByMail()"></button>
+        <div class="flex-btn" [attr.aria-label]="'shareWithEmail' | rcTranslate">
+          <button type="button" class="email" (click)="ShareBranchLinkByMail()" tabindex="0" role="button"></button>
           <p class="text-btn">{{'shareWithEmail' | rcTranslate}}</p>
         </div>
-        <div class="flex-btn">
-          <button type="button" class="copy-link" (click)="copyLink($event)"></button>
+        <div class="flex-btn" [attr.aria-label]="'copyLinkToShare' | rcTranslate">
+          <button type="button" class="copy-link" (click)="copyLink($event)" tabindex="0"  role="button"></button>
           <p class="text-btn">{{'copyLinkToShare' | rcTranslate}} <span class="msg-container"></span></p>
         </div>
       </div>

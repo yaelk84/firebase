@@ -165,6 +165,14 @@ span.tooltip:hover:after {
     padding: 18px;
     display: flex;
     justify-content: space-between;
+    ul{
+      padding-right: 0;
+      li{
+        display: flex;
+        align-items: baseline;
+        list-style: none;
+      }
+    }
 
     .white-btn {
       font-size: 18px;
