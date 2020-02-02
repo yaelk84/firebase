@@ -1,18 +1,19 @@
-import {AfterContentInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {BranchFilterService} from '../../core/services/branch-filter.service';
 import {RcEventBusService} from '@realcommerce/rc-packages';
 import {HoursService} from '../../core/services/hours.service';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-hours-filer',
   templateUrl: './hours-filer.component.html',
   styleUrls: ['./hours-filer.component.scss']
 })
-export class HoursFilerComponent implements OnInit, AfterContentInit {
+export class HoursFilerComponent implements OnInit, AfterViewInit {
   // tslint:disable-next-line:no-output-on-prefix
   @Output() close: EventEmitter<any> = new EventEmitter();
-  @ViewChild('dayBox') dayBox: ElementRef<HTMLElement>;
+  @ViewChildren('dayBox') dayBox: QueryList<ElementRef>;
   selectedDay: string = '';
   selectedHours: string = '';
   hours: any = {
@@ -77,14 +78,20 @@ export class HoursFilerComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    console.log("ddd")
+    console.log('ddd');
     this.events.on(CONSTANTS.EVENTS.CLEAN_DROP_DOWN_HOURS, () => {
       this.clear();
     }, true);
   }
-  ngAfterContentInit(){
-    debugger
-    this.dayBox.nativeElement.focus()
+
+  ngAfterViewInit() {
+    if (!isNullOrUndefined(this.dayBox)) {
+      this.dayBox.first.nativeElement.focus();
+
+    }
+
+
   }
+
 
 }

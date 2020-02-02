@@ -46,8 +46,8 @@
       <div class="wrapper-service-and-btn">
         <div class="selected-branches-services">
           <h1>{{'servicesTitle' | rcTranslate}}</h1>
-          <ul  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end ">
-            <li>
+          <ul >
+            <li  class="service-list"   *ngFor="let service of dataBranchSelected.branchService | slice:start:end " #services tabindex="0">
               <span><img class="icon-service-list" src="{{'icons/service-list.svg' | imgUrl}}"></span>
               <span class="service-label">{{service.branchServiceTypeDescription}}</span>
             </li>

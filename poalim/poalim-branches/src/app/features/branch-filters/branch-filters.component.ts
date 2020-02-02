@@ -60,7 +60,7 @@ export class BranchFiltersComponent implements OnInit {
     this.filterService.toggleFilter(id, defaultVal);
     this.arrayOfActiveFilterIds = this.filterService.activeFilters;
     this.mapService.isSearchHereButtonClicked = false;
-    if (this.filterBox) {
+    if (this.filterBox && this.mapService.hasLocationPermission) {
       this.filterBox.nativeElement.focus();
     }
   }

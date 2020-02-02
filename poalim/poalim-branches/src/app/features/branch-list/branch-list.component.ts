@@ -1,4 +1,15 @@
-import {Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef, SimpleChange, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  AfterViewInit,
+  ElementRef,
+  SimpleChange,
+  OnChanges,
+  SimpleChanges,
+  ViewChildren, QueryList
+} from '@angular/core';
 import {BranchObj} from '../../core/models/branch-model';
 import {BranchDataService} from '../../core/services/branch-data.service';
 import {ApiService} from '../../core/services/api.service';
@@ -24,11 +35,11 @@ import {environment} from '../../../environments/environment';
   templateUrl: './branch-list.component.html',
   styleUrls: ['./branch-list.component.scss']
 })
-export class BranchListComponent implements OnInit, AfterViewInit, OnChanges {
+export class BranchListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(PerfectScrollbarComponent) componentRef?: PerfectScrollbarComponent;
   @ViewChild('buttonBackToResults') buttonBackToResults: ElementRef;
-  @ViewChild('itemList') itemList: ElementRef<HTMLElement>;
+  @ViewChildren('itemList') itemList: QueryList<ElementRef>;
   @Input() branchNewArrayFilter: any;
   @Input() branchResultTitle: any;
   @Input() hideListInMoBile: boolean;
@@ -273,26 +284,24 @@ export class BranchListComponent implements OnInit, AfterViewInit, OnChanges {
 
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  /*ngOnChanges(changes: SimpleChanges) {
     if (changes.branchNewArrayFilter && !changes.branchNewArrayFilter.firstChange) {
-      if (!isNullOrUndefined(this.itemList)) {
-        setTimeout(() => {
-          /* this.itemList.nativeElement.querySelectorAll('.branch-box-wrapper')[0].focus();*/
-  /*        const firstBranch = document.getElementById('branch0');
-          if (!isNullOrUndefined(firstBranch)){
-           const itemToFocus =  firstBranch.querySelector('.inner-box');
-            (itemToFocus as HTMLElement).focus();
-          }*/
+      setTimeout(()=>{
 
-        }, 0);
-      }
+        if (!isNullOrUndefined(this.itemList) && !isNullOrUndefined(this.itemList.first)) {
+          this.itemList.first.nativeElement.focus();
+
+        }
+      },0)
+
 
     }
 
-  }
+  }*/
 
   ngAfterViewInit() {
 //
+
     this.callQueryParam();
     if (!this.mapServices.hasLocationPermissionFromGeoLocation) {
       this.showNoLocation = true;

@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild, AfterViewInit, ViewChildren, QueryList} from '@angular/core';
 import {CONSTANTS} from '../../constants';
 import {PerfectScrollbarModule, PerfectScrollbarConfigInterface, PerfectScrollbarComponent} from 'ngx-perfect-scrollbar';
 import {isNullOrUndefined} from 'util';
@@ -45,6 +45,8 @@ export class SingleBranchDisplayComponent implements OnInit {
   end = CONSTANTS.SERVICES_NUM;
   openPopup = false;
   @ViewChild('tooltip') tooltip: ElementRef;
+  @ViewChildren('services') services: QueryList<ElementRef>;
+
   openShareBranchPopup = false;
   indexNoBankat: string;
   @Input() dataBranchSelected: any;
@@ -53,6 +55,14 @@ export class SingleBranchDisplayComponent implements OnInit {
 
   addMore() {
     this.end = this.dataBranchSelected.branchService.length;
+    setTimeout(() => {
+      this.services.forEach((item, index) => {
+        if (index === CONSTANTS.SERVICES_NUM) {
+          item.nativeElement.focus();
+        }
+      });
+
+    }, 0);
 
   }
 

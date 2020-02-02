@@ -10,7 +10,10 @@
       commented due to qa requirements:
       lib-rc-click-outside (clickOutside)="closePopupLocation()"
  -->
-    <app-no-location-permissions (close)="closePopupLocation()"> </app-no-location-permissions>
+    <ng-container *ngIf="showNoLocation">
+      <app-no-location-permissions (close)="closePopupLocation()"> </app-no-location-permissions>
+    </ng-container>
+
   </div>
 
   <ng-container *ngIf="branchNewArrayFilter.length || filterByDay || filterByHours">
@@ -30,8 +33,9 @@
           <span>{{'filterHours' | rcTranslate}} </span>
           <div class="img-wrapper"><img [src]="(filterByDay || filterByHours)?filterWithHours:filterWithNoHours" alt=""></div>
         </button>
-          <div class="popover-add-margin">
+          <div class="popover-add-margin" >
             <div
+              *ngIf="showDaysHoursFilter "
               role="dialog"
               id="dialog-hours"
               aria-labelledby="dialog-hours_label"
